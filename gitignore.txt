@@ -1,0 +1,2 @@
+.DS_Store
+minecraft_any/
