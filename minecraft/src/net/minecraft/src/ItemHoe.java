@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Block;
+
 public class ItemHoe extends Item {
 	public ItemHoe(int var1, int var2) {
 		super(var1);

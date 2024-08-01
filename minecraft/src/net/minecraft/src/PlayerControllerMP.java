@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Block;
+
 public class PlayerControllerMP extends PlayerController {
 	private int currentBlockX = -1;
 	private int currentBlockY = -1;

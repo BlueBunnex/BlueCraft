@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockContainer;
+
 public class WorldRenderer {
 	public World worldObj;
 	private int glRenderList = -1;

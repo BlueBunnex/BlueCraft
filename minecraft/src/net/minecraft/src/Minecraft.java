@@ -8,6 +8,8 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.io.File;
 import net.minecraft.client.MinecraftApplet;
+import net.minecraft.src.block.Block;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controllers;
 import org.lwjgl.input.Keyboard;
@@ -730,7 +732,7 @@ public class Minecraft implements Runnable {
 			
 				case Keyboard.KEY_T:
 					// TODO debug key
-					this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.cd));
+					this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.pickaxeDiamond));
 					break;
 					
 				case Keyboard.KEY_F:

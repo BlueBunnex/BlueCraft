@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import net.minecraft.src.block.Block;
+
 public class CraftingManager {
 	private static final CraftingManager instance = new CraftingManager();
 	private List recipes = new ArrayList();
@@ -42,7 +44,6 @@ public class CraftingManager {
 		this.addRecipe(new ItemStack(Item.painting, 1), new Object[]{"###", "#X#", "###", Character.valueOf('#'), Item.stick, Character.valueOf('X'), Block.cloth});
 		this.addRecipe(new ItemStack(Item.appleGold, 1), new Object[]{"###", "#X#", "###", Character.valueOf('#'), Block.blockGold, Character.valueOf('X'), Item.appleRed});
 		this.addRecipe(new ItemStack(Block.lever, 1), new Object[]{"X", "#", Character.valueOf('#'), Block.cobblestone, Character.valueOf('X'), Item.stick});
-		this.addRecipe(new ItemStack(Block.torchRedstoneActive, 1), new Object[]{"X", "#", Character.valueOf('#'), Item.stick, Character.valueOf('X'), Item.redstone});
 		this.addRecipe(new ItemStack(Block.button, 1), new Object[]{"#", "#", Character.valueOf('#'), Block.stone});
 		this.addRecipe(new ItemStack(Block.pressurePlateStone, 1), new Object[]{"###", Character.valueOf('#'), Block.stone});
 		this.addRecipe(new ItemStack(Block.pressurePlateWood, 1), new Object[]{"###", Character.valueOf('#'), Block.planks});

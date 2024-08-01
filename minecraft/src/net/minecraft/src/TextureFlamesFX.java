@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Block;
+
 public class TextureFlamesFX extends TextureFX {
 	protected float[] currentFireFrame = new float[320];
 	protected float[] lastFireFrame = new float[320];

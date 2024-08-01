@@ -1,5 +1,8 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockFurnace;
+
 public class TileEntityFurnace extends TileEntity implements IInventory {
 	private ItemStack[] furnaceItemStacks = new ItemStack[3];
 	private int furnaceBurnTime = 0;

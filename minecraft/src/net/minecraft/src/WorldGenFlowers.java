@@ -2,6 +2,9 @@ package net.minecraft.src;
 
 import java.util.Random;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockFlower;
+
 public class WorldGenFlowers extends WorldGenerator {
 	private int plantBlockId;
 

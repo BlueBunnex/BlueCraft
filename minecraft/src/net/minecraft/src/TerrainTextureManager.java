@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 
+import net.minecraft.src.block.Block;
+
 public class TerrainTextureManager {
 	private float[] texCols = new float[768];
 	private int[] pixels = new int[5120];

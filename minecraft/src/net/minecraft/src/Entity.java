@@ -3,6 +3,9 @@ package net.minecraft.src;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockFluid;
+
 public abstract class Entity {
 	public boolean preventEntitySpawning = false;
 	public Entity riddenByEntity;

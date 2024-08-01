@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Block;
+
 public class EntityItem extends Entity {
 	public ItemStack item;
 	private int age2;

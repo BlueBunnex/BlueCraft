@@ -2,6 +2,10 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockDoor;
+import net.minecraft.src.block.BlockFluid;
+
 public class RenderBlocks {
 	private IBlockAccess blockAccess;
 	private int overrideBlockTexture = -1;
@@ -22,9 +26,26 @@ public class RenderBlocks {
 	}
 
 	public boolean renderBlockByRenderType(Block var1, int var2, int var3, int var4) {
-		int var5 = var1.getRenderType();
+		
+		// 5 WAS redstone wire, which no longer exists
+		int renderType = var1.getRenderType();
+		
 		var1.setBlockBoundsBasedOnState(this.blockAccess, var2, var3, var4);
-		return var5 == 0 ? this.renderStandardBlock(var1, var2, var3, var4) : (var5 == 4 ? this.renderBlockFluids(var1, var2, var3, var4) : (var5 == 1 ? this.renderBlockReed(var1, var2, var3, var4) : (var5 == 6 ? this.renderBlockCrops(var1, var2, var3, var4) : (var5 == 2 ? this.renderBlockTorch(var1, var2, var3, var4) : (var5 == 3 ? this.renderBlockFire(var1, var2, var3, var4) : (var5 == 5 ? this.renderBlockRedstoneWire(var1, var2, var3, var4) : (var5 == 8 ? this.renderBlockLadder(var1, var2, var3, var4) : (var5 == 7 ? this.renderBlockDoor(var1, var2, var3, var4) : (var5 == 9 ? this.renderBlockMinecartTrack(var1, var2, var3, var4) : (var5 == 10 ? this.renderBlockStairs(var1, var2, var3, var4) : (var5 == 11 ? this.renderBlockFence(var1, var2, var3, var4) : (var5 == 12 ? this.renderBlockLever(var1, var2, var3, var4) : false))))))))))));
+		
+		// this shit is eye-watering
+		return
+				   renderType == 0 ? this.renderStandardBlock(var1, var2, var3, var4)
+				: (renderType == 4 ? this.renderBlockFluids(var1, var2, var3, var4)
+				: (renderType == 1 ? this.renderBlockReed(var1, var2, var3, var4)
+				: (renderType == 6 ? this.renderBlockCrops(var1, var2, var3, var4)
+				: (renderType == 2 ? this.renderBlockTorch(var1, var2, var3, var4)
+				: (renderType == 3 ? this.renderBlockFire(var1, var2, var3, var4)
+				: (renderType == 8 ? this.renderBlockLadder(var1, var2, var3, var4)
+				: (renderType == 7 ? this.renderBlockDoor(var1, var2, var3, var4)
+				: (renderType == 9 ? this.renderBlockMinecartTrack(var1, var2, var3, var4)
+				: (renderType == 10 ? this.renderBlockStairs(var1, var2, var3, var4)
+				: (renderType == 11 ? this.renderBlockFence(var1, var2, var3, var4)
+				: (renderType == 12 ? this.renderBlockLever(var1, var2, var3, var4) : false)))))))))));
 	}
 
 	public boolean renderBlockTorch(Block var1, int var2, int var3, int var4) {
@@ -400,158 +421,6 @@ public class RenderBlocks {
 			var5.addVertexWithUV((double)(var2 + 1), (double)(var3 + 0), var23, var10, var16);
 			var5.addVertexWithUV((double)(var2 + 0), (double)(var3 + 0), var23, var12, var16);
 			var5.addVertexWithUV((double)(var2 + 0), (double)((float)var3 + var18), var31, var12, var14);
-		}
-
-		return true;
-	}
-
-	public boolean renderBlockRedstoneWire(Block var1, int var2, int var3, int var4) {
-		Tessellator var5 = Tessellator.instance;
-		int var6 = var1.getBlockTextureFromSideAndMetadata(1, this.blockAccess.getBlockMetadata(var2, var3, var4));
-		if(this.overrideBlockTexture >= 0) {
-			var6 = this.overrideBlockTexture;
-		}
-
-		float var7 = var1.getBlockBrightness(this.blockAccess, var2, var3, var4);
-		var5.setColorOpaque_F(var7, var7, var7);
-		int var8 = (var6 & 15) << 4;
-		int var9 = var6 & 240;
-		double var10 = (double)((float)var8 / 256.0F);
-		double var12 = (double)(((float)var8 + 15.99F) / 256.0F);
-		double var14 = (double)((float)var9 / 256.0F);
-		double var16 = (double)(((float)var9 + 15.99F) / 256.0F);
-		float var18 = 0.0F;
-		float var19 = 0.03125F;
-		boolean var20 = BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2 - 1, var3, var4) || !this.blockAccess.isBlockNormalCube(var2 - 1, var3, var4) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2 - 1, var3 - 1, var4);
-		boolean var21 = BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2 + 1, var3, var4) || !this.blockAccess.isBlockNormalCube(var2 + 1, var3, var4) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2 + 1, var3 - 1, var4);
-		boolean var22 = BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2, var3, var4 - 1) || !this.blockAccess.isBlockNormalCube(var2, var3, var4 - 1) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2, var3 - 1, var4 - 1);
-		boolean var23 = BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2, var3, var4 + 1) || !this.blockAccess.isBlockNormalCube(var2, var3, var4 + 1) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2, var3 - 1, var4 + 1);
-		if(!this.blockAccess.isBlockNormalCube(var2, var3 + 1, var4)) {
-			if(this.blockAccess.isBlockNormalCube(var2 - 1, var3, var4) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2 - 1, var3 + 1, var4)) {
-				var20 = true;
-			}
-
-			if(this.blockAccess.isBlockNormalCube(var2 + 1, var3, var4) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2 + 1, var3 + 1, var4)) {
-				var21 = true;
-			}
-
-			if(this.blockAccess.isBlockNormalCube(var2, var3, var4 - 1) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2, var3 + 1, var4 - 1)) {
-				var22 = true;
-			}
-
-			if(this.blockAccess.isBlockNormalCube(var2, var3, var4 + 1) && BlockRedstoneWire.isPowerProviderOrWire(this.blockAccess, var2, var3 + 1, var4 + 1)) {
-				var23 = true;
-			}
-		}
-
-		float var24 = 5.0F / 16.0F;
-		float var25 = (float)(var2 + 0);
-		float var26 = (float)(var2 + 1);
-		float var27 = (float)(var4 + 0);
-		float var28 = (float)(var4 + 1);
-		byte var29 = 0;
-		if((var20 || var21) && !var22 && !var23) {
-			var29 = 1;
-		}
-
-		if((var22 || var23) && !var21 && !var20) {
-			var29 = 2;
-		}
-
-		if(var29 != 0) {
-			var10 = (double)((float)(var8 + 16) / 256.0F);
-			var12 = (double)(((float)(var8 + 16) + 15.99F) / 256.0F);
-			var14 = (double)((float)var9 / 256.0F);
-			var16 = (double)(((float)var9 + 15.99F) / 256.0F);
-		}
-
-		if(var29 == 0) {
-			if(var21 || var22 || var23 || var20) {
-				if(!var20) {
-					var25 += var24;
-				}
-
-				if(!var20) {
-					var10 += (double)(var24 / 16.0F);
-				}
-
-				if(!var21) {
-					var26 -= var24;
-				}
-
-				if(!var21) {
-					var12 -= (double)(var24 / 16.0F);
-				}
-
-				if(!var22) {
-					var27 += var24;
-				}
-
-				if(!var22) {
-					var14 += (double)(var24 / 16.0F);
-				}
-
-				if(!var23) {
-					var28 -= var24;
-				}
-
-				if(!var23) {
-					var16 -= (double)(var24 / 16.0F);
-				}
-			}
-
-			var5.addVertexWithUV((double)(var26 + var18), (double)((float)var3 + var19), (double)(var28 + var18), var12, var16);
-			var5.addVertexWithUV((double)(var26 + var18), (double)((float)var3 + var19), (double)(var27 - var18), var12, var14);
-			var5.addVertexWithUV((double)(var25 - var18), (double)((float)var3 + var19), (double)(var27 - var18), var10, var14);
-			var5.addVertexWithUV((double)(var25 - var18), (double)((float)var3 + var19), (double)(var28 + var18), var10, var16);
-		}
-
-		if(var29 == 1) {
-			var5.addVertexWithUV((double)(var26 + var18), (double)((float)var3 + var19), (double)(var28 + var18), var12, var16);
-			var5.addVertexWithUV((double)(var26 + var18), (double)((float)var3 + var19), (double)(var27 - var18), var12, var14);
-			var5.addVertexWithUV((double)(var25 - var18), (double)((float)var3 + var19), (double)(var27 - var18), var10, var14);
-			var5.addVertexWithUV((double)(var25 - var18), (double)((float)var3 + var19), (double)(var28 + var18), var10, var16);
-		}
-
-		if(var29 == 2) {
-			var5.addVertexWithUV((double)(var26 + var18), (double)((float)var3 + var19), (double)(var28 + var18), var12, var16);
-			var5.addVertexWithUV((double)(var26 + var18), (double)((float)var3 + var19), (double)(var27 - var18), var10, var16);
-			var5.addVertexWithUV((double)(var25 - var18), (double)((float)var3 + var19), (double)(var27 - var18), var10, var14);
-			var5.addVertexWithUV((double)(var25 - var18), (double)((float)var3 + var19), (double)(var28 + var18), var12, var14);
-		}
-
-		var10 = (double)((float)(var8 + 16) / 256.0F);
-		var12 = (double)(((float)(var8 + 16) + 15.99F) / 256.0F);
-		var14 = (double)((float)var9 / 256.0F);
-		var16 = (double)(((float)var9 + 15.99F) / 256.0F);
-		if(!this.blockAccess.isBlockNormalCube(var2, var3 + 1, var4)) {
-			if(this.blockAccess.isBlockNormalCube(var2 - 1, var3, var4) && this.blockAccess.getBlockId(var2 - 1, var3 + 1, var4) == Block.redstoneWire.blockID) {
-				var5.addVertexWithUV((double)((float)var2 + var19), (double)((float)(var3 + 1) + var18), (double)((float)(var4 + 1) + var18), var12, var14);
-				var5.addVertexWithUV((double)((float)var2 + var19), (double)((float)(var3 + 0) - var18), (double)((float)(var4 + 1) + var18), var10, var14);
-				var5.addVertexWithUV((double)((float)var2 + var19), (double)((float)(var3 + 0) - var18), (double)((float)(var4 + 0) - var18), var10, var16);
-				var5.addVertexWithUV((double)((float)var2 + var19), (double)((float)(var3 + 1) + var18), (double)((float)(var4 + 0) - var18), var12, var16);
-			}
-
-			if(this.blockAccess.isBlockNormalCube(var2 + 1, var3, var4) && this.blockAccess.getBlockId(var2 + 1, var3 + 1, var4) == Block.redstoneWire.blockID) {
-				var5.addVertexWithUV((double)((float)(var2 + 1) - var19), (double)((float)(var3 + 0) - var18), (double)((float)(var4 + 1) + var18), var10, var16);
-				var5.addVertexWithUV((double)((float)(var2 + 1) - var19), (double)((float)(var3 + 1) + var18), (double)((float)(var4 + 1) + var18), var12, var16);
-				var5.addVertexWithUV((double)((float)(var2 + 1) - var19), (double)((float)(var3 + 1) + var18), (double)((float)(var4 + 0) - var18), var12, var14);
-				var5.addVertexWithUV((double)((float)(var2 + 1) - var19), (double)((float)(var3 + 0) - var18), (double)((float)(var4 + 0) - var18), var10, var14);
-			}
-
-			if(this.blockAccess.isBlockNormalCube(var2, var3, var4 - 1) && this.blockAccess.getBlockId(var2, var3 + 1, var4 - 1) == Block.redstoneWire.blockID) {
-				var5.addVertexWithUV((double)((float)(var2 + 1) + var18), (double)((float)(var3 + 0) - var18), (double)((float)var4 + var19), var10, var16);
-				var5.addVertexWithUV((double)((float)(var2 + 1) + var18), (double)((float)(var3 + 1) + var18), (double)((float)var4 + var19), var12, var16);
-				var5.addVertexWithUV((double)((float)(var2 + 0) - var18), (double)((float)(var3 + 1) + var18), (double)((float)var4 + var19), var12, var14);
-				var5.addVertexWithUV((double)((float)(var2 + 0) - var18), (double)((float)(var3 + 0) - var18), (double)((float)var4 + var19), var10, var14);
-			}
-
-			if(this.blockAccess.isBlockNormalCube(var2, var3, var4 + 1) && this.blockAccess.getBlockId(var2, var3 + 1, var4 + 1) == Block.redstoneWire.blockID) {
-				var5.addVertexWithUV((double)((float)(var2 + 1) + var18), (double)((float)(var3 + 1) + var18), (double)((float)(var4 + 1) - var19), var12, var14);
-				var5.addVertexWithUV((double)((float)(var2 + 1) + var18), (double)((float)(var3 + 0) - var18), (double)((float)(var4 + 1) - var19), var10, var14);
-				var5.addVertexWithUV((double)((float)(var2 + 0) - var18), (double)((float)(var3 + 0) - var18), (double)((float)(var4 + 1) - var19), var10, var16);
-				var5.addVertexWithUV((double)((float)(var2 + 0) - var18), (double)((float)(var3 + 1) + var18), (double)((float)(var4 + 1) - var19), var12, var16);
-			}
 		}
 
 		return true;

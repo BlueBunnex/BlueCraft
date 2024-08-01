@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.util.List;
 
+import net.minecraft.src.block.Block;
+
 public class EntityLiving extends Entity {
 	public int heartsHalvesLife = 20;
 	public float unusedRotationPitch2;

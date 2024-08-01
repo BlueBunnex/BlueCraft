@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.util.Random;
 
+import net.minecraft.src.block.Block;
+
 public class WorldGenDungeons extends WorldGenerator {
 	public boolean generate(World var1, Random var2, int var3, int var4, int var5) {
 		byte var6 = 3;
@@ -104,9 +106,19 @@ public class WorldGenDungeons extends WorldGenerator {
 		}
 	}
 
-	private ItemStack pickCheckLootItem(Random var1) {
-		int var2 = var1.nextInt(11);
-		return var2 == 0 ? new ItemStack(Item.saddle) : (var2 == 1 ? new ItemStack(Item.ingotIron, var1.nextInt(4) + 1) : (var2 == 2 ? new ItemStack(Item.bread) : (var2 == 3 ? new ItemStack(Item.wheat, var1.nextInt(4) + 1) : (var2 == 4 ? new ItemStack(Item.gunpowder, var1.nextInt(4) + 1) : (var2 == 5 ? new ItemStack(Item.silk, var1.nextInt(4) + 1) : (var2 == 6 ? new ItemStack(Item.bucketEmpty) : (var2 == 7 && var1.nextInt(100) == 0 ? new ItemStack(Item.appleGold) : (var2 == 8 && var1.nextInt(2) == 0 ? new ItemStack(Item.redstone, var1.nextInt(4) + 1) : null))))))));
+	private ItemStack pickCheckLootItem(Random random) {
+		
+		switch (random.nextInt(11)) {
+			case 0: return new ItemStack(Item.cd);
+			case 1: return new ItemStack(Item.ingotIron, random.nextInt(4) + 1);
+			case 2: return new ItemStack(Item.bread);
+			case 3: return new ItemStack(Item.wheat, random.nextInt(4) + 1);
+			case 4: return new ItemStack(Item.gunpowder, random.nextInt(4) + 1);
+			case 5: return new ItemStack(Item.silk, random.nextInt(4) + 1);
+			case 6: return new ItemStack(Item.bucketEmpty);
+			case 7: return random.nextInt(10) == 0 ? new ItemStack(Item.appleGold) : new ItemStack(Item.appleRed);
+			default: return null;
+		}
 	}
 
 	private String pickMobSpawner(Random var1) {

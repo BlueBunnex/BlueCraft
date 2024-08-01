@@ -4,6 +4,8 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
+import net.minecraft.src.block.Block;
+
 public class GuiMainMenu extends GuiScreen {
 	
 	private static final Random rand = new Random();

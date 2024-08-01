@@ -10,6 +10,8 @@ import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.NVFogDistance;
 import org.lwjgl.util.glu.GLU;
 
+import net.minecraft.src.block.Block;
+
 public class EntityRenderer {
 	private Minecraft mc;
 	private float farPlaneDistance = 0.0F;

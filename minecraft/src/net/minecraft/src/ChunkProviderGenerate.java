@@ -2,6 +2,9 @@ package net.minecraft.src;
 
 import java.util.Random;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockSand;
+
 public class ChunkProviderGenerate implements IChunkProvider {
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
@@ -534,13 +537,6 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			var14 = this.rand.nextInt(32);
 			var15 = var5 + this.rand.nextInt(16);
 			(new WorldGenMinable(Block.oreGold.blockID, 8)).generate(this.worldObj, this.rand, var13, var14, var15);
-		}
-
-		for(var12 = 0; var12 < 8; ++var12) {
-			var13 = var4 + this.rand.nextInt(16);
-			var14 = this.rand.nextInt(16);
-			var15 = var5 + this.rand.nextInt(16);
-			(new WorldGenMinable(Block.oreRedstone.blockID, 7)).generate(this.worldObj, this.rand, var13, var14, var15);
 		}
 
 		for(var12 = 0; var12 < 1; ++var12) {

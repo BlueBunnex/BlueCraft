@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockContainer;
+
 public class Chunk {
 	public static boolean isLit;
 	public byte[] blocks;

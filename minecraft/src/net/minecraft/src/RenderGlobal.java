@@ -10,6 +10,8 @@ import org.lwjgl.opengl.ARBOcclusionQuery;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
+import net.minecraft.src.block.Block;
+
 public class RenderGlobal implements IWorldAccess {
 	public List tileEntities = new ArrayList();
 	private World theWorld;

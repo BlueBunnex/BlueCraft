@@ -11,6 +11,9 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockFluid;
+
 public class World implements IBlockAccess {
 	private List lightingToUpdate;
 	private List loadedEntityList;

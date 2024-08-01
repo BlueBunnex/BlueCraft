@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Block;
+
 public final class ItemStack {
 	public int stackSize;
 	public int animationsToGo;

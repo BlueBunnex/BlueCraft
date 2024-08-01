@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.util.List;
 
+import net.minecraft.src.block.Block;
+
 public class EntityPlayer extends EntityLiving {
 	
 	public InventoryPlayer inventory = new InventoryPlayer(this);

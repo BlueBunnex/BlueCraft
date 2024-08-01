@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.util.Random;
 
+import net.minecraft.src.block.Block;
+
 public class Item {
 	
 	protected static Random rand = new Random();
@@ -83,7 +85,7 @@ public class Item {
 	minecartEmpty  = new ItemMinecart(72).setIconIndex(135),
 	saddle         = new ItemSaddle(73).setIconIndex(104),
 	doorSteel      = new ItemDoor(74, Material.iron).setIconIndex(44),
-	redstone       = new ItemRedstone(75).setIconIndex(56),
+	
 	snowball       = new ItemSnowball(76).setIconIndex(14),
 	cd             = new ItemSnowball(77).setIconIndex(90);
 	

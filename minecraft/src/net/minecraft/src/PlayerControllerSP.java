@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Block;
+
 public class PlayerControllerSP extends PlayerController {
 	private int curBlockX = -1;
 	private int curBlockY = -1;
