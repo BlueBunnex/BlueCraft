@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 public class EntityPlayerSP extends EntityPlayer {
+	
 	public MovementInput movementInput;
 	private Minecraft mc;
 
@@ -10,8 +11,6 @@ public class EntityPlayerSP extends EntityPlayer {
 		
 		this.skinUrl = "http://www.minecraft.net/skin/erkmrk.png";
 		System.out.println("Loading texture " + this.skinUrl);
-
-		this.username = "GAMER!!!";
 	}
 
 	public void updateEntityActionState() {

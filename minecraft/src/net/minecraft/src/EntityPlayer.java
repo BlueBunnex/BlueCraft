@@ -3,17 +3,23 @@ package net.minecraft.src;
 import java.util.List;
 
 public class EntityPlayer extends EntityLiving {
+	
 	public InventoryPlayer inventory = new InventoryPlayer(this);
 	public byte unusedMiningCooldown = 0;
 	public int score = 0;
 	public float prevCameraYaw;
 	public float cameraYaw;
-	protected String username;
 	private int damageRemainder = 0;
 
-	public EntityPlayer(World var1) {
-		super(var1);
-		this.setLocationAndAngles((double)var1.spawnX + 0.5D, (double)var1.spawnY, (double)var1.spawnZ + 0.5D, 0.0F, 0.0F);
+	public EntityPlayer(World world) {
+		super(world);
+		
+		this.setLocationAndAngles(
+				(double) world.spawnX + 0.5D,
+				(double) world.spawnY,
+				(double) world.spawnZ + 0.5D,
+				0.0F, 0.0F);
+		
 		this.yOffset = 1.62F;
 		this.health = 20;
 		this.entityType = "humanoid";
@@ -83,9 +89,6 @@ public class EntityPlayer extends EntityLiving {
 		this.setSize(0.2F, 0.2F);
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.motionY = (double)0.1F;
-		if(this.username.equals("Notch")) {
-			this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
-		}
 
 		this.inventory.dropAllItems();
 		if(var1 != null) {
@@ -203,12 +206,9 @@ public class EntityPlayer extends EntityLiving {
 		}
 	}
 
-	public void displayGUIFurnace(TileEntityFurnace var1) {
-	}
+	public void displayGUIFurnace(TileEntityFurnace var1) {}
 
-	public void displayGUIEditSign(TileEntitySign var1) {
-	}
+	public void displayGUIEditSign(TileEntitySign var1) {}
 
-	public void interactWithEntity(Entity var1) {
-	}
+	public void interactWithEntity(Entity var1) {}
 }
