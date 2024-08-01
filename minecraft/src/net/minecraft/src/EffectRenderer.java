@@ -64,7 +64,7 @@ public class EffectRenderer {
 				}
 
 				if(var8 == 2) {
-					var9 = this.renderEngine.getTexture("/gui/items.png");
+					var9 = this.renderEngine.getTexture("/items.png");
 				}
 
 				GL11.glBindTexture(GL11.GL_TEXTURE_2D, var9);

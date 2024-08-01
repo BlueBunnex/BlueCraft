@@ -10,7 +10,7 @@ public class RenderSnowball extends Render {
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glScalef(0.5F, 0.5F, 0.5F);
 		int var10 = Item.snowball.getIconIndex((ItemStack)null);
-		this.loadTexture("/gui/items.png");
+		this.loadTexture("/items.png");
 		Tessellator var11 = Tessellator.instance;
 		float var12 = (float)(var10 % 16 * 16 + 0) / 256.0F;
 		float var13 = (float)(var10 % 16 * 16 + 16) / 256.0F;

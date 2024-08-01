@@ -61,7 +61,7 @@ public class ItemRenderer {
 				if(this.itemToRender.itemID < 256) {
 					GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/terrain.png"));
 				} else {
-					GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/gui/items.png"));
+					GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/items.png"));
 				}
 
 				Tessellator var22 = Tessellator.instance;

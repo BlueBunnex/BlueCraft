@@ -724,6 +724,11 @@ public class Minecraft implements Runnable {
 
 	public void runTick() {
 		
+		// TODO test stuff
+		if (Keyboard.getEventKey() == Keyboard.KEY_T) {
+			this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.appleGold));
+		}
+		
 		// press F to toggle fullscreen
 		if (Keyboard.getEventKey() == Keyboard.KEY_F) {
 			this.toggleFullscreen();

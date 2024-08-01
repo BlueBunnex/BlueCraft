@@ -65,7 +65,7 @@ public class RenderItem extends Render {
 			if(var10.itemID < 256) {
 				this.loadTexture("/terrain.png");
 			} else {
-				this.loadTexture("/gui/items.png");
+				this.loadTexture("/items.png");
 			}
 
 			Tessellator var15 = Tessellator.instance;
@@ -122,7 +122,7 @@ public class RenderItem extends Render {
 				if(var3.itemID < 256) {
 					var2.bindTexture(var2.getTexture("/terrain.png"));
 				} else {
-					var2.bindTexture(var2.getTexture("/gui/items.png"));
+					var2.bindTexture(var2.getTexture("/items.png"));
 				}
 
 				this.renderIcon(var4, var5, var3.getIconIndex() % 16 * 16, var3.getIconIndex() / 16 * 16, 16, 16);
