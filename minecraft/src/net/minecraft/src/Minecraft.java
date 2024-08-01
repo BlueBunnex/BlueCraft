@@ -757,22 +757,36 @@ public class Minecraft implements Runnable {
 			
 			switch (Keyboard.getEventKey()) {
 			
-				// TODO debug menu
-				case Keyboard.KEY_C:
-					
-					IInventory inv = new InventoryGeneric(54, "Debug");
-					
-					for (int i=0; i<inv.getSizeInventory(); i++) {
-						inv.setInventorySlotContents(i, new ItemStack(i + 256, Item.itemsList[i + 256].getItemStackLimit()));
-					}
-					
-					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, inv));
-					
-					break;
-					
 				// press F to toggle full-screen
 				case Keyboard.KEY_F:
 					this.toggleFullscreen();
+					break;
+			
+				// TODO debug menu(s)
+				case Keyboard.KEY_O:
+					
+					IInventory invItem = new InventoryGeneric(27 * 3, "Debug");
+					
+					for (int i=0; i<invItem.getSizeInventory(); i++) {
+						if (Item.itemsList[i + 256] != null)
+							invItem.setInventorySlotContents(i, new ItemStack(i + 256, Item.itemsList[i + 256].getItemStackLimit()));
+					}
+					
+					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, invItem));
+					
+					break;
+					
+				case Keyboard.KEY_P:
+					
+					IInventory invBlock = new InventoryGeneric(27 * 3, "Debug");
+					
+					for (int i=0; i<invBlock.getSizeInventory(); i++) {
+						if (Item.itemsList[i] != null)
+							invBlock.setInventorySlotContents(i, new ItemStack(i, Item.itemsList[i].getItemStackLimit()));
+					}
+					
+					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, invBlock));
+					
 					break;
 			}
 		}
