@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import java.applet.Applet;
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
@@ -15,7 +17,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-public abstract class Minecraft implements Runnable {
+public class Minecraft implements Runnable {
 	
 	public PlayerController playerController = new PlayerControllerSP(this);
 	private boolean fullscreen = false;
@@ -66,8 +68,12 @@ public abstract class Minecraft implements Runnable {
 	private int mouseTicksRan = 0;
 	public boolean isRaining = false;
 	long systemTime = System.currentTimeMillis();
+	
+	final Applet mainFrame;
 
-	public Minecraft(Component var1, Canvas var2, MinecraftApplet var3, int var4, int var5, boolean var6) {
+	public Minecraft(Applet applet, Component var1, Canvas var2, MinecraftApplet var3, int var4, int var5, boolean var6) {
+		this.mainFrame = applet;
+		
 		this.tempDisplayWidth = var4;
 		this.tempDisplayHeight = var5;
 		this.fullscreen = var6;
@@ -79,7 +85,12 @@ public abstract class Minecraft implements Runnable {
 		this.fullscreen = var6;
 	}
 
-	public abstract void displayUnexpectedThrowable(UnexpectedThrowable var1);
+	public void displayUnexpectedThrowable(UnexpectedThrowable throwable) {
+		this.mainFrame.removeAll();
+		this.mainFrame.setLayout(new BorderLayout());
+		this.mainFrame.add(new PanelCrashReport(throwable), "Center");
+		this.mainFrame.validate();
+	}
 
 	public void setServer(String var1, int var2) {
 		this.serverName = var1;
