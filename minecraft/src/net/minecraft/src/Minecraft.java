@@ -186,6 +186,7 @@ public class Minecraft implements Runnable {
 	}
 
 	private void loadScreen() throws LWJGLException {
+		
 		ScaledResolution var1 = new ScaledResolution(this.displayWidth, this.displayHeight);
 		int var2 = var1.getScaledWidth();
 		int var3 = var1.getScaledHeight();
@@ -198,11 +199,13 @@ public class Minecraft implements Runnable {
 		GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
 		GL11.glViewport(0, 0, this.displayWidth, this.displayHeight);
 		GL11.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+		
 		Tessellator var4 = Tessellator.instance;
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_FOG);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/title/mojang.png"));
+		
 		var4.startDrawingQuads();
 		var4.setColorOpaque_I(16777215);
 		var4.addVertexWithUV(0.0D, (double)this.displayHeight, 0.0D, 0.0D, 0.0D);
@@ -210,11 +213,17 @@ public class Minecraft implements Runnable {
 		var4.addVertexWithUV((double)this.displayWidth, 0.0D, 0.0D, 0.0D, 0.0D);
 		var4.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 		var4.draw();
-		short var5 = 256;
-		short var6 = 256;
+		
+		short w = 256, h = 256;
+		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		var4.setColorOpaque_I(16777215);
-		this.scaledTessellator((this.displayWidth / 2 - var5) / 2, (this.displayHeight / 2 - var6) / 2, 0, 0, var5, var6);
+		this.scaledTessellator(
+			(this.displayWidth - w) / 4,
+			(this.displayHeight - h) / 4,
+			w/2, h/2,
+			0, 0, w, h
+		);
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_FOG);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
@@ -222,16 +231,20 @@ public class Minecraft implements Runnable {
 		Display.swapBuffers();
 	}
 
-	public void scaledTessellator(int var1, int var2, int var3, int var4, int var5, int var6) {
+	// literally only used to draw the logo
+	private void scaledTessellator(int x, int y, int w, int h, int texX, int texY, int texW, int texH) {
+		
 		float var7 = 0.00390625F;
 		float var8 = 0.00390625F;
-		Tessellator var9 = Tessellator.instance;
-		var9.startDrawingQuads();
-		var9.addVertexWithUV((double)(var1 + 0), (double)(var2 + var6), 0.0D, (double)((float)(var3 + 0) * var7), (double)((float)(var4 + var6) * var8));
-		var9.addVertexWithUV((double)(var1 + var5), (double)(var2 + var6), 0.0D, (double)((float)(var3 + var5) * var7), (double)((float)(var4 + var6) * var8));
-		var9.addVertexWithUV((double)(var1 + var5), (double)(var2 + 0), 0.0D, (double)((float)(var3 + var5) * var7), (double)((float)(var4 + 0) * var8));
-		var9.addVertexWithUV((double)(var1 + 0), (double)(var2 + 0), 0.0D, (double)((float)(var3 + 0) * var7), (double)((float)(var4 + 0) * var8));
-		var9.draw();
+		
+		Tessellator tes = Tessellator.instance;
+		
+		tes.startDrawingQuads();
+		tes.addVertexWithUV((double)(x + 0), (double)(y + h), 0.0D, (double)((float)(texX + 0) * var7),    (double)((float)(texY + texH) * var8));
+		tes.addVertexWithUV((double)(x + w), (double)(y + h), 0.0D, (double)((float)(texX + texW) * var7), (double)((float)(texY + texH) * var8));
+		tes.addVertexWithUV((double)(x + w), (double)(y + 0), 0.0D, (double)((float)(texX + texW) * var7), (double)((float)(texY + 0) * var8));
+		tes.addVertexWithUV((double)(x + 0), (double)(y + 0), 0.0D, (double)((float)(texX + 0) * var7),    (double)((float)(texY + 0) * var8));
+		tes.draw();
 	}
 
 	public static File getMinecraftDir() {

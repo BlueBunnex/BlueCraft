@@ -51,6 +51,7 @@ public class GuiMainMenu extends GuiScreen {
 	}
 
 	public void drawScreen(int var1, int var2, float var3) {
+		
 		this.drawDefaultBackground();
 		Tessellator var4 = Tessellator.instance;
 		this.drawLogo(var3);
@@ -65,7 +66,8 @@ public class GuiMainMenu extends GuiScreen {
 		GL11.glScalef(var5, var5, var5);
 		this.drawCenteredString(this.fontRenderer, this.currentSplash, 0, -8, 16776960);
 		GL11.glPopMatrix();
-		String var6 = "No copyright, go wild!";
+		
+		String var6 = "Stolen by Sillyboy Specifications.";
 		this.drawString(this.fontRenderer, var6, this.width - this.fontRenderer.getStringWidth(var6) - 2, this.height - 10, 16777215);
 		
 		super.drawScreen(var1, var2, var3);
