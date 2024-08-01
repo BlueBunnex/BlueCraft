@@ -40,15 +40,18 @@ public class Gui {
 		var1.drawStringWithShadow(var2, var3, var4, var5);
 	}
 
-	public void drawTexturedModalRect(int var1, int var2, int var3, int var4, int var5, int var6) {
+	public void drawTexturedModalRect(int x, int y, int texX, int texY, int texW, int texH) {
+		
 		float var7 = 0.00390625F;
 		float var8 = 0.00390625F;
-		Tessellator var9 = Tessellator.instance;
-		var9.startDrawingQuads();
-		var9.addVertexWithUV((double)(var1 + 0), (double)(var2 + var6), (double)this.zLevel, (double)((float)(var3 + 0) * var7), (double)((float)(var4 + var6) * var8));
-		var9.addVertexWithUV((double)(var1 + var5), (double)(var2 + var6), (double)this.zLevel, (double)((float)(var3 + var5) * var7), (double)((float)(var4 + var6) * var8));
-		var9.addVertexWithUV((double)(var1 + var5), (double)(var2 + 0), (double)this.zLevel, (double)((float)(var3 + var5) * var7), (double)((float)(var4 + 0) * var8));
-		var9.addVertexWithUV((double)(var1 + 0), (double)(var2 + 0), (double)this.zLevel, (double)((float)(var3 + 0) * var7), (double)((float)(var4 + 0) * var8));
-		var9.draw();
+		
+		Tessellator tes = Tessellator.instance;
+		
+		tes.startDrawingQuads();
+		tes.addVertexWithUV((double)(x + 0),    (double)(y + texH), (double)this.zLevel, (double)((float)(texX + 0) * var7),    (double)((float)(texY + texH) * var8));
+		tes.addVertexWithUV((double)(x + texW), (double)(y + texH), (double)this.zLevel, (double)((float)(texX + texW) * var7), (double)((float)(texY + texH) * var8));
+		tes.addVertexWithUV((double)(x + texW), (double)(y + 0),    (double)this.zLevel, (double)((float)(texX + texW) * var7), (double)((float)(texY + 0) * var8));
+		tes.addVertexWithUV((double)(x + 0),    (double)(y + 0),    (double)this.zLevel, (double)((float)(texX + 0) * var7),    (double)((float)(texY + 0) * var8));
+		tes.draw();
 	}
 }

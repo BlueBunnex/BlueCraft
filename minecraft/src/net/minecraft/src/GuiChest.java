@@ -58,7 +58,7 @@ public class GuiChest extends GuiContainer {
 		this.drawTexturedModalRect(x, y + this.inventoryRows * 18 + 17, 0, 126, this.xSize, 96);
 		
 		if (this.inventoryRows > 6) {
-			this.drawTexturedModalRect(x, y + 6 * 18, 0, 17, this.xSize, (this.inventoryRows - 6) * 18 + 17);
+			this.drawTexturedModalRect(x, y + 6 * 18, 0, 18, this.xSize, (this.inventoryRows - 6) * 18 + 17);
 		}
 	}
 }
