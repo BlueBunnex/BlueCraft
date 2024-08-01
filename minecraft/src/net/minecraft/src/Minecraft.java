@@ -557,9 +557,9 @@ public class Minecraft implements Runnable {
 	private void clickMouse(int mouseBtn) {
 		
 		if(mouseBtn != 0 || this.leftClickCounter <= 0) {
-			if(mouseBtn == 0) {
-				this.entityRenderer.itemRenderer.c();
-			}
+			
+			if(mouseBtn == 0)
+				this.entityRenderer.itemRenderer.swingItem();
 
 			int var3;
 			if(this.objectMouseOver == null) {
@@ -597,6 +597,7 @@ public class Minecraft implements Runnable {
 					int blockID = this.theWorld.getBlockId(var2, var3, var4);
 					
 					if (blockID > 0 && Block.blocksList[blockID].onBlockInteract(this.theWorld, var2, var3, var4, this.thePlayer)) {
+						this.entityRenderer.itemRenderer.swingItem();
 						return;
 					}
 
@@ -605,7 +606,7 @@ public class Minecraft implements Runnable {
 
 					int var9 = var7.stackSize;
 					if(var7.useItem(this.thePlayer, this.theWorld, var2, var3, var4, var5)) {
-						this.entityRenderer.itemRenderer.c();
+						this.entityRenderer.itemRenderer.swingItem();
 					}
 
 					if(var7.stackSize == 0) {

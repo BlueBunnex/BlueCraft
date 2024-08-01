@@ -352,7 +352,7 @@ public class ItemRenderer {
 		this.equippedProgress = 0.0F;
 	}
 
-	public void c() {
+	public void swingItem() {
 		this.e = -1;
 		this.f = true;
 	}
