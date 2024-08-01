@@ -720,6 +720,12 @@ public class Minecraft implements Runnable {
 	}
 
 	public void runTick() {
+		
+		// press F to toggle fullscreen
+		if (Keyboard.getEventKey() == Keyboard.KEY_F) {
+			this.toggleFullscreen();
+		}
+		
 		this.ingameGUI.updateTick();
 		if(!this.isGamePaused && this.theWorld != null) {
 			this.playerController.onUpdate();
