@@ -3,8 +3,8 @@ package net.minecraft.src;
 import net.minecraft.src.block.Block;
 
 public class PlayerController {
+	
 	protected final Minecraft mc;
-	public boolean isInTestMode = false;
 
 	public PlayerController(Minecraft var1) {
 		this.mc = var1;
@@ -14,14 +14,6 @@ public class PlayerController {
 	}
 
 	public void onWorldChange(World var1) {}
-
-	public void hitBlock(int x, int y, int z) {
-		this.sendBlockRemoved(x, y, z);
-	}
-	
-	public boolean interactBlock(int x, int y, int z) {
-		return false;
-	}
 
 	public boolean sendBlockRemoved(int var1, int var2, int var3) {
 		this.mc.effectRenderer.addBlockDestroyEffects(var1, var2, var3);

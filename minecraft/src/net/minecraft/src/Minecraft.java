@@ -537,20 +537,20 @@ public class Minecraft implements Runnable {
 		}
 	}
 
+	// should really be "hit block" or something
 	private void sendClickBlockToController(int var1, boolean var2) {
-		if(!this.playerController.isInTestMode) {
-			if(var1 != 0 || this.leftClickCounter <= 0) {
-				if(var2 && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == 0 && var1 == 0) {
-					int var3 = this.objectMouseOver.blockX;
-					int var4 = this.objectMouseOver.blockY;
-					int var5 = this.objectMouseOver.blockZ;
-					this.playerController.sendBlockRemoving(var3, var4, var5, this.objectMouseOver.sideHit);
-					this.effectRenderer.addBlockHitEffects(var3, var4, var5, this.objectMouseOver.sideHit);
-				} else {
-					this.playerController.resetBlockRemoving();
-				}
-
+		
+		if(var1 != 0 || this.leftClickCounter <= 0) {
+			if(var2 && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == 0 && var1 == 0) {
+				int var3 = this.objectMouseOver.blockX;
+				int var4 = this.objectMouseOver.blockY;
+				int var5 = this.objectMouseOver.blockZ;
+				this.playerController.sendBlockRemoving(var3, var4, var5, this.objectMouseOver.sideHit);
+				this.effectRenderer.addBlockHitEffects(var3, var4, var5, this.objectMouseOver.sideHit);
+			} else {
+				this.playerController.resetBlockRemoving();
 			}
+
 		}
 	}
 
@@ -584,22 +584,21 @@ public class Minecraft implements Runnable {
 				var3 = this.objectMouseOver.blockY;
 				int var4 = this.objectMouseOver.blockZ;
 				int var5 = this.objectMouseOver.sideHit;
-				Block var6 = Block.blocksList[this.theWorld.getBlockId(var2, var3, var4)];
 				
 				// hit block
 				if(mouseBtn == 0) {
 					this.theWorld.extinguishFire(var2, var3, var4, this.objectMouseOver.sideHit);
-					if(var6 != Block.bedrock || this.thePlayer.unusedMiningCooldown >= 100) {
-						this.playerController.hitBlock(var2, var3, var4);
-					}
 				
 				// interact block
 				} else {
 					
 					ItemStack var7 = this.thePlayer.inventory.getCurrentItem();
 					
-					if (this.playerController.interactBlock(var2, var3, var4))
+					int blockID = this.theWorld.getBlockId(var2, var3, var4);
+					
+					if (blockID > 0 && Block.blocksList[blockID].onBlockInteract(this.theWorld, var2, var3, var4, this.thePlayer)) {
 						return;
+					}
 
 					if(var7 == null)
 						return;
@@ -617,6 +616,7 @@ public class Minecraft implements Runnable {
 				}
 			}
 
+			// use item
 			if(mouseBtn == 1) {
 				ItemStack var10 = this.thePlayer.inventory.getCurrentItem();
 				if(var10 != null) {
@@ -898,6 +898,7 @@ public class Minecraft implements Runnable {
 				this.theWorld.updateEntities();
 			}
 
+			// TODO
 			if(!this.isGamePaused && !this.isMultiplayerWorld()) {
 				this.theWorld.tick();
 			}

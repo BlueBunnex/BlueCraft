@@ -3,6 +3,7 @@ package net.minecraft.src;
 import net.minecraft.src.block.Block;
 
 public class PlayerControllerSP extends PlayerController {
+	
 	private int curBlockX = -1;
 	private int curBlockY = -1;
 	private int curBlockZ = -1;
@@ -42,28 +43,6 @@ public class PlayerControllerSP extends PlayerController {
 		}
 
 		return var6;
-	}
-
-	public void hitBlock(int x, int y, int z) {
-		
-		int blockID = this.mc.theWorld.getBlockId(x, y, z);
-
-		if (blockID > 0 && Block.blocksList[blockID].blockStrength(this.mc.thePlayer) >= 1.0F)
-			this.sendBlockRemoved(x, y, z);
-
-	}
-	
-	/**
-	 * Tries to interact with the block. If block is air, or just can't interact, returns false.
-	 */
-	public boolean interactBlock(int x, int y, int z) {
-		
-		int blockID = this.mc.theWorld.getBlockId(x, y, z);
-		
-		if (blockID > 0)
-			return Block.blocksList[blockID].onBlockInteract(this.mc.theWorld, x, y, z, this.mc.thePlayer);
-		
-		return false;
 	}
 
 	public void resetBlockRemoving() {
