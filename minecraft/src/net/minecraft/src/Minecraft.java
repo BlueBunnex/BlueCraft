@@ -14,6 +14,7 @@ import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
+import net.minecraft.src.world.WorldRenderer;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controllers;

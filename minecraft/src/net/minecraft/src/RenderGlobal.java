@@ -15,6 +15,7 @@ import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.block.TileEntityRenderer;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
+import net.minecraft.src.world.WorldRenderer;
 
 public class RenderGlobal implements IWorldAccess {
 	public List tileEntities = new ArrayList();

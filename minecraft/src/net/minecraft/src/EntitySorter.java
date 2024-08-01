@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.util.Comparator;
 
+import net.minecraft.src.world.WorldRenderer;
+
 public class EntitySorter implements Comparator {
 	private Entity comparedEntity;
 
