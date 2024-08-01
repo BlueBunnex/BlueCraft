@@ -33,13 +33,14 @@ public class GuiControls extends GuiScreen {
 
 	}
 
-	protected void keyTyped(char var1, int var2) {
+	protected void keyTyped(char character, int keycode) {
+		
 		if(this.buttonId >= 0) {
-			this.options.setKeyBinding(this.buttonId, var2);
+			this.options.setKeyBinding(this.buttonId, keycode);
 			((GuiButton)this.controlList.get(this.buttonId)).displayString = this.options.getKeyBindingDescription(this.buttonId);
 			this.buttonId = -1;
 		} else {
-			super.keyTyped(var1, var2);
+			super.keyTyped(character, keycode);
 		}
 
 	}

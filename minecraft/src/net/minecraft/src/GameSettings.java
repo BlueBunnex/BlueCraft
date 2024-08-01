@@ -8,7 +8,8 @@ import java.io.PrintWriter;
 import org.lwjgl.input.Keyboard;
 
 public class GameSettings {
-	private static final String[] RENDER_DISTANCES = new String[]{"FAR", "NORMAL", "SHORT", "TINY"};
+	
+	private static final String[] RENDER_DISTANCES = new String[]{"Far", "Normal", "Short", "Tiny"};
 	private static final String[] DIFFICULTY_LEVELS = new String[]{"Peaceful", "Easy", "Normal", "Hard"};
 	public boolean a = true;
 	public boolean b = true;
@@ -24,22 +25,19 @@ public class GameSettings {
 	public KeyBinding keyBindBack = new KeyBinding("Back", 31);
 	public KeyBinding keyBindRight = new KeyBinding("Right", 32);
 	public KeyBinding keyBindJump = new KeyBinding("Jump", 57);
-	public KeyBinding keyBindInventory = new KeyBinding("Inventory", 23);
+	public KeyBinding keyBindInventory = new KeyBinding("Inventory", 18);
 	public KeyBinding keyBindDrop = new KeyBinding("Drop", 16);
 	public KeyBinding keyBindChat = new KeyBinding("Chat", 20);
-	public KeyBinding keyBindToggleFog = new KeyBinding("Toggle fog", 33);
-	public KeyBinding s = new KeyBinding("Save location", 28);
-	public KeyBinding t = new KeyBinding("Load location", 19);
-	public KeyBinding[] keyBindings = new KeyBinding[]{this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindToggleFog, this.s, this.t};
+	public KeyBinding[] keyBindings = new KeyBinding[]{this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindDrop, this.keyBindInventory, this.keyBindChat};
 	protected Minecraft mc;
 	private File optionsFile;
 	public int numberOfOptions = 10;
 	public int difficulty = 2;
 	public boolean thirdPersonView = false;
 
-	public GameSettings(Minecraft var1, File var2) {
-		this.mc = var1;
-		this.optionsFile = new File(var2, "options.txt");
+	public GameSettings(Minecraft mc, File optionsFile) {
+		this.mc = mc;
+		this.optionsFile = new File(optionsFile, "options.txt");
 		this.loadOptions();
 	}
 
@@ -52,56 +50,63 @@ public class GameSettings {
 		this.saveOptions();
 	}
 
-	public void setOptionValue(int var1, int var2) {
-		if(var1 == 0) {
-			this.a = !this.a;
-			this.mc.sndManager.onSoundOptionsChanged();
-		}
-
-		if(var1 == 1) {
-			this.b = !this.b;
-			this.mc.sndManager.onSoundOptionsChanged();
-		}
-
-		if(var1 == 2) {
-			this.invertMouse = !this.invertMouse;
-		}
-
-		if(var1 == 3) {
-			this.d = !this.d;
-		}
-
-		if(var1 == 4) {
-			this.renderDistance = this.renderDistance + var2 & 3;
-		}
-
-		if(var1 == 5) {
-			this.viewBobbing = !this.viewBobbing;
-		}
-
-		if(var1 == 6) {
-			this.anaglyph = !this.anaglyph;
-			this.mc.renderEngine.refreshTextures();
-		}
-
-		if(var1 == 7) {
-			this.limitFramerate = !this.limitFramerate;
-		}
-
-		if(var1 == 8) {
-			this.difficulty = this.difficulty + var2 & 3;
-		}
-
-		if(var1 == 9) {
-			this.fancyGraphics = !this.fancyGraphics;
-			this.mc.renderGlobal.loadRenderers();
+	public void setOptionValue(int optionIndex) {
+		
+		switch (optionIndex) {
+			
+			case 0:
+				this.a = !this.a;
+				this.mc.sndManager.onSoundOptionsChanged();
+				break;
+				
+			case 1:
+				this.b = !this.b;
+				this.mc.sndManager.onSoundOptionsChanged();
+				break;
+				
+			case 2:
+				this.invertMouse = !this.invertMouse;
+				break;
+				
+			case 3:
+				this.d = !this.d;
+				break;
+				
+			case 4:
+				this.renderDistance++;
+				this.renderDistance %= 4;
+				break;
+				
+			case 5:
+				this.viewBobbing = !this.viewBobbing;
+				break;
+				
+			case 6:
+				this.anaglyph = !this.anaglyph;
+				this.mc.renderEngine.refreshTextures();
+				break;
+				
+			case 7:
+				this.limitFramerate = !this.limitFramerate;
+				break;
+				
+			case 8:
+				this.difficulty++;
+				this.difficulty %= 4;
+				break;
+				
+			case 9:
+				this.fancyGraphics = !this.fancyGraphics;
+				this.mc.renderGlobal.loadRenderers();
+				break;
+				
 		}
 
 		this.saveOptions();
 	}
 
 	public String getOptionDisplayString(int var1) {
-		return var1 == 0 ? "Music: " + (this.a ? "ON" : "OFF") : (var1 == 1 ? "Sound: " + (this.b ? "ON" : "OFF") : (var1 == 2 ? "Invert mouse: " + (this.invertMouse ? "ON" : "OFF") : (var1 == 3 ? "Show FPS: " + (this.d ? "ON" : "OFF") : (var1 == 4 ? "Render distance: " + RENDER_DISTANCES[this.renderDistance] : (var1 == 5 ? "View bobbing: " + (this.viewBobbing ? "ON" : "OFF") : (var1 == 6 ? "3d anaglyph: " + (this.anaglyph ? "ON" : "OFF") : (var1 == 7 ? "Limit framerate: " + (this.limitFramerate ? "ON" : "OFF") : (var1 == 8 ? "Difficulty: " + DIFFICULTY_LEVELS[this.difficulty] : (var1 == 9 ? "Graphics: " + (this.fancyGraphics ? "FANCY" : "FAST") : "")))))))));
+		return var1 == 0 ? "Music: " + (this.a ? "ON" : "OFF") : (var1 == 1 ? "Sound: " + (this.b ? "ON" : "OFF") : (var1 == 2 ? "Invert mouse: " + (this.invertMouse ? "ON" : "OFF") : (var1 == 3 ? "Show debug: " + (this.d ? "ON" : "OFF") : (var1 == 4 ? "Render distance: " + RENDER_DISTANCES[this.renderDistance] : (var1 == 5 ? "View bobbing: " + (this.viewBobbing ? "ON" : "OFF") : (var1 == 6 ? "3d anaglyph: " + (this.anaglyph ? "ON" : "OFF") : (var1 == 7 ? "Limit framerate: " + (this.limitFramerate ? "ON" : "OFF") : (var1 == 8 ? "Difficulty: " + DIFFICULTY_LEVELS[this.difficulty] : (var1 == 9 ? "Graphics: " + (this.fancyGraphics ? "FANCY" : "FAST") : "")))))))));
 	}
 
 	public void loadOptions() {

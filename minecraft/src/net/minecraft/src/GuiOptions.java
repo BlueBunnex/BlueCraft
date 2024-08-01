@@ -22,7 +22,7 @@ public class GuiOptions extends GuiScreen {
 	protected void actionPerformed(GuiButton var1) {
 		if(var1.enabled) {
 			if(var1.id < 100) {
-				this.options.setOptionValue(var1.id, 1);
+				this.options.setOptionValue(var1.id);
 				var1.displayString = this.options.getOptionDisplayString(var1.id);
 			}
 

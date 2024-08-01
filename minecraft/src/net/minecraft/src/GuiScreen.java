@@ -23,9 +23,9 @@ public class GuiScreen extends Gui {
 		}
 	}
 
-	protected void keyTyped(char var1, int var2) {
+	protected void keyTyped(char character, int keycode) {
 		
-		if(var2 == 1) {
+		if (keycode == 1) {
 			this.mc.displayGuiScreen(null);
 			this.mc.setIngameFocus();
 		}

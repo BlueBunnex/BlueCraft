@@ -875,10 +875,6 @@ public class Minecraft implements Runnable {
 													this.thePlayer.inventory.currentItem = var4;
 												}
 											}
-
-											if(Keyboard.getEventKey() == this.options.keyBindToggleFog.keyCode) {
-												this.options.setOptionValue(4, !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) && !Keyboard.isKeyDown(Keyboard.KEY_RSHIFT) ? 1 : -1);
-											}
 										}
 									}
 								}
