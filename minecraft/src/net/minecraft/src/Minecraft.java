@@ -765,11 +765,13 @@ public class Minecraft implements Runnable {
 				// TODO debug menu(s)
 				case Keyboard.KEY_O:
 					
-					IInventory invItem = new InventoryGeneric(27 * 3, "Debug");
+					InventoryGeneric invItem = new InventoryGeneric(27 * 3, "Debug (Items)");
 					
-					for (int i=0; i<invItem.getSizeInventory(); i++) {
-						if (Item.itemsList[i + 256] != null)
-							invItem.setInventorySlotContents(i, new ItemStack(i + 256, Item.itemsList[i + 256].getItemStackLimit()));
+					for (int i=256; i<512; i++) {
+						if (Item.itemsList[i] != null) {
+							if (!invItem.pickUpItem(new ItemStack(i, Item.itemsList[i].getItemStackLimit())))
+								break;
+						}
 					}
 					
 					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, invItem));
@@ -778,11 +780,13 @@ public class Minecraft implements Runnable {
 					
 				case Keyboard.KEY_P:
 					
-					IInventory invBlock = new InventoryGeneric(27 * 3, "Debug");
+					InventoryGeneric invBlock = new InventoryGeneric(27 * 3, "Debug (Blocks)");
 					
-					for (int i=0; i<invBlock.getSizeInventory(); i++) {
-						if (Item.itemsList[i] != null)
-							invBlock.setInventorySlotContents(i, new ItemStack(i, Item.itemsList[i].getItemStackLimit()));
+					for (int i=0; i<256; i++) {
+						if (Item.itemsList[i] != null) {
+							if (!invBlock.pickUpItem(new ItemStack(i, Item.itemsList[i].getItemStackLimit())))
+								break;
+						}
 					}
 					
 					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, invBlock));

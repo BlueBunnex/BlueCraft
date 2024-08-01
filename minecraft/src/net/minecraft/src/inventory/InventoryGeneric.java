@@ -41,7 +41,7 @@ public class InventoryGeneric implements IInventory {
 
 	public void setInventorySlotContents(int i, ItemStack stack) {
 		
-		if (i >= this.getSizeInventory())
+		if (i >= slots.length)
 			return;
 		
 		slots[i] = stack;
@@ -56,5 +56,28 @@ public class InventoryGeneric implements IInventory {
 	}
 
 	public void onInventoryChanged() {}
+	
+	/**
+	 * If could not pick up, returns false. Puts into first available slot.
+	 * @param item
+	 * @return
+	 */
+	public boolean pickUpItem(ItemStack item) {
+		
+		for (int i=0; i<slots.length; i++) {
+			
+			if (slots[i] == null) {
+				slots[i] = item;
+				return true;
+			}
+			
+			// merge stacks
+//			if (slots[i].itemID == item.itemID) {
+//				
+//			}
+		}
+		
+		return false;
+	}
 
 }
