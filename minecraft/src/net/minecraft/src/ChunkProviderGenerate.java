@@ -537,7 +537,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			var13 = var4 + this.rand.nextInt(16);
 			var14 = this.rand.nextInt(16);
 			var15 = var5 + this.rand.nextInt(16);
-			(new WorldGenMinable(Block.oreDiamond.blockID, 7)).generate(this.worldObj, this.rand, var13, var14, var15);
+			(new WorldGenMinable(Block.oreMithril.blockID, 7)).generate(this.worldObj, this.rand, var13, var14, var15);
 		}
 
 		var10 = 0.5D;

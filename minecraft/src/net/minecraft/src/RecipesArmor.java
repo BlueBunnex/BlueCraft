@@ -6,11 +6,11 @@ import net.minecraft.src.item.ItemStack;
 public class RecipesArmor {
 	private String[][] recipePatterns = new String[][]{{"XXX", "X X"}, {"X X", "XXX", "XXX"}, {"XXX", "X X", "X X"}, {"X X", "X X"}};
 	private Object[][] recipeItems = new Object[][] {
-		{ Item.ingotIron, Item.diamond },
-		{ Item.helmetIron, Item.helmetDiamond },
-		{ Item.plateIron, Item.plateDiamond },
-		{ Item.legsIron, Item.legsDiamond },
-		{ Item.bootsIron, Item.bootsDiamond }
+		{ Item.ingotIron, Item.ingotMithril },
+		{ Item.helmetIron, Item.helmetMithril },
+		{ Item.plateIron, Item.plateMithril },
+		{ Item.legsIron, Item.legsMithril },
+		{ Item.bootsIron, Item.bootsMithril }
 	};
 
 	public void addRecipes(CraftingManager var1) {

@@ -183,8 +183,8 @@ public class TileEntityFurnace extends TileEntity implements IInventory {
 		if (shiftedIndex == Block.oreIron.blockID)
 			return Item.ingotIron.shiftedIndex;
 		
-		if (shiftedIndex == Block.oreDiamond.blockID)
-			return Item.diamond.shiftedIndex;
+		if (shiftedIndex == Block.oreMithril.blockID)
+			return Item.ingotMithril.shiftedIndex;
 		
 		if (shiftedIndex == Block.sand.blockID)
 			return Block.glass.blockID;

@@ -5,7 +5,7 @@ import net.minecraft.src.block.Block;
 
 public class ItemPickaxe extends ItemTool {
 	
-	private static Block[] blocksEffectiveAgainst = new Block[] { Block.cobblestone, Block.stairDouble, Block.stairSingle, Block.stone, Block.cobblestoneMossy, Block.oreIron, Block.blockIron, Block.oreCoal, Block.oreDiamond, Block.blockDiamond, Block.ice };
+	private static Block[] blocksEffectiveAgainst = new Block[] { Block.cobblestone, Block.stairDouble, Block.stairSingle, Block.stone, Block.cobblestoneMossy, Block.oreIron, Block.blockIron, Block.oreCoal, Block.oreMithril, Block.blockMithril, Block.ice };
 	private int harvestLevel;
 
 	public ItemPickaxe(int var1, int var2) {
@@ -18,7 +18,7 @@ public class ItemPickaxe extends ItemTool {
 		if (block == Block.obsidian)
 			return this.harvestLevel == 3;
 			
-		if (block == Block.blockDiamond || block == Block.oreDiamond)
+		if (block == Block.blockMithril || block == Block.oreMithril)
 			return this.harvestLevel >= 2;
 			
 		if (block == Block.blockIron || block == Block.oreIron)

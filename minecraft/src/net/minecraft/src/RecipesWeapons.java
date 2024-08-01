@@ -9,8 +9,8 @@ public class RecipesWeapons {
 	
 	private String[][] recipePatterns = new String[][]{{"X", "X", "#"}};
 	private Object[][] recipeItems = new Object[][] {
-		{Block.planks, Block.cobblestone, Item.ingotIron, Item.diamond},
-		{Item.swordWood, Item.swordStone, Item.swordIron, Item.swordDiamond}
+		{Block.planks, Block.cobblestone, Item.ingotIron, Item.ingotMithril},
+		{Item.swordWood, Item.swordStone, Item.swordIron, Item.swordMithril}
 	};
 
 	public void addRecipes(CraftingManager var1) {

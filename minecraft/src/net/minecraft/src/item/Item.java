@@ -32,23 +32,23 @@ public class Item {
 	axeIron        = new ItemAxe(2, 2).setIconIndex(50),
 	hoeIron        = new ItemHoe(36, 2).setIconIndex(66),
 	
-	swordDiamond   = new ItemSword(20, 3).setIconIndex(3),
-	shovelDiamond  = new ItemSpade(21, 3).setIconIndex(19),
-	pickaxeDiamond = new ItemPickaxe(22, 3).setIconIndex(35),
-	axeDiamond     = new ItemAxe(23, 3).setIconIndex(51),
-	hoeDiamond     = new ItemHoe(37, 3).setIconIndex(67),
+	swordMithril   = new ItemSword(20, 3).setIconIndex(3),
+	shovelMithril  = new ItemSpade(21, 3).setIconIndex(19),
+	pickaxeMithril = new ItemPickaxe(22, 3).setIconIndex(35),
+	axeMithril     = new ItemAxe(23, 3).setIconIndex(51),
+	hoeMithril     = new ItemHoe(37, 3).setIconIndex(67),
 	
 	helmetIron     = new ItemArmor(50, 2, 2, 0).setIconIndex(2),
 	plateIron      = new ItemArmor(51, 2, 2, 1).setIconIndex(18),
 	legsIron       = new ItemArmor(52, 2, 2, 2).setIconIndex(34),
 	bootsIron      = new ItemArmor(53, 2, 2, 3).setIconIndex(50),
-	helmetDiamond  = new ItemArmor(54, 3, 3, 0).setIconIndex(3),
-	plateDiamond   = new ItemArmor(55, 3, 3, 1).setIconIndex(19),
-	legsDiamond    = new ItemArmor(56, 3, 3, 2).setIconIndex(35),
-	bootsDiamond   = new ItemArmor(57, 3, 3, 3).setIconIndex(51),
+	helmetMithril  = new ItemArmor(54, 3, 3, 0).setIconIndex(3),
+	plateMithril   = new ItemArmor(55, 3, 3, 1).setIconIndex(19),
+	legsMithril    = new ItemArmor(56, 3, 3, 2).setIconIndex(35),
+	bootsMithril   = new ItemArmor(57, 3, 3, 3).setIconIndex(51),
 	
 	ingotIron      = new Item(9).setIconIndex(23),
-	diamond        = new Item(8).setIconIndex(39), // diamond ingot? idk
+	ingotMithril   = new Item(8).setIconIndex(39),
 	
 	flintAndSteel  = new ItemFlintAndSteel(3).setIconIndex(5),
 	appleRed       = new ItemFood(4, 4).setIconIndex(10),

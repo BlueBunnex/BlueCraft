@@ -9,6 +9,7 @@ import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 
 public class WorldGenDungeons extends WorldGenerator {
+	
 	public boolean generate(World var1, Random var2, int var3, int var4, int var5) {
 		byte var6 = 3;
 		int var7 = var2.nextInt(2) + 2;
@@ -125,8 +126,18 @@ public class WorldGenDungeons extends WorldGenerator {
 		}
 	}
 
-	private String pickMobSpawner(Random var1) {
-		int var2 = var1.nextInt(4);
-		return var2 == 0 ? "Skeleton" : (var2 == 1 ? "Zombie" : (var2 == 2 ? "Zombie" : (var2 == 3 ? "Spider" : "")));
+	private String pickMobSpawner(Random random) {
+		
+		switch (random.nextInt(4)) {
+			case 0:
+				return "Skeleton";
+			case 1:
+			case 2:
+				return "Zombie";
+			case 3:
+				return "Spider";
+			default:
+				return "";
+		}
 	}
 }

@@ -7,11 +7,11 @@ import net.minecraft.src.item.ItemStack;
 public class RecipesTools {
 	private String[][] recipePatterns = new String[][]{{"XXX", " # ", " # "}, {"X", "#", "#"}, {"XX", "X#", " #"}, {"XX", " #", " #"}};
 	private Object[][] recipeItems = new Object[][] {
-		{Block.planks, Block.cobblestone, Item.ingotIron, Item.diamond},
-		{Item.pickaxeWood, Item.pickaxeStone, Item.pickaxeIron, Item.pickaxeDiamond},
-		{Item.shovelWood, Item.shovelStone, Item.shovelIron, Item.shovelDiamond},
-		{Item.axeWood, Item.axeStone, Item.axeIron, Item.axeDiamond},
-		{Item.hoeWood, Item.hoeStone, Item.hoeIron, Item.hoeDiamond}
+		{Block.planks, Block.cobblestone, Item.ingotIron, Item.ingotMithril},
+		{Item.pickaxeWood, Item.pickaxeStone, Item.pickaxeIron, Item.pickaxeMithril},
+		{Item.shovelWood, Item.shovelStone, Item.shovelIron, Item.shovelMithril},
+		{Item.axeWood, Item.axeStone, Item.axeIron, Item.axeMithril},
+		{Item.hoeWood, Item.hoeStone, Item.hoeIron, Item.hoeMithril}
 	};
 
 	public void addRecipes(CraftingManager var1) {
