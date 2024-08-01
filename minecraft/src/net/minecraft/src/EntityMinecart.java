@@ -73,8 +73,6 @@ public class EntityMinecart extends Entity {
 
 	public void onUpdate() {
 		
-		// System.out.println(this.riddenByEntity);
-		
 		if (this.timeSinceHit > 0)
 			--this.timeSinceHit;
 
@@ -115,6 +113,12 @@ public class EntityMinecart extends Entity {
 			}
 
 			double speed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			
+			// accelerate when ridden
+			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && speed < 0.3D) {
+				speed += 0.01D;
+			}
+			
 			this.motionX = speed * var11 / var15;
 			this.motionZ = speed * var13 / var15;
 			double var21 = 0.0D;
