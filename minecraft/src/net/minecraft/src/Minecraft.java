@@ -765,7 +765,7 @@ public class Minecraft implements Runnable {
 				// TODO debug menu(s)
 				case Keyboard.KEY_O:
 					
-					InventoryGeneric invItem = new InventoryGeneric(27 * 3, "Debug (Items)");
+					InventoryGeneric invItem = new InventoryGeneric(9 * 7, "Debug (Items)");
 					
 					for (int i=256; i<512; i++) {
 						if (Item.itemsList[i] != null) {
@@ -780,7 +780,7 @@ public class Minecraft implements Runnable {
 					
 				case Keyboard.KEY_P:
 					
-					InventoryGeneric invBlock = new InventoryGeneric(27 * 3, "Debug (Blocks)");
+					InventoryGeneric invBlock = new InventoryGeneric(9 * 7, "Debug (Blocks)");
 					
 					for (int i=0; i<256; i++) {
 						if (Item.itemsList[i] != null) {

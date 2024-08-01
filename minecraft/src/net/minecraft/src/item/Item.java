@@ -78,7 +78,7 @@ public class Item {
 	minecartEmpty  = new ItemMinecart(54).setIconIndex(135),
 	
 	snowball       = new ItemSnowball(55).setIconIndex(14),
-	cd             = new ItemSnowball(56).setIconIndex(90);
+	cd             = new Item(56).setIconIndex(90).setMaxStackSize(1);
 	
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;
@@ -96,7 +96,7 @@ public class Item {
 		itemsList[256 + index] = this;
 	}
 
-	public Item setIconIndex(int iconIndex) {
+	protected Item setIconIndex(int iconIndex) {
 		this.iconIndex = iconIndex;
 		return this;
 	}
@@ -105,6 +105,11 @@ public class Item {
 		return this.iconIndex;
 	}
 
+	protected Item setMaxStackSize(int value) {
+		maxStackSize = value;
+		return this;
+	}
+	
 	public boolean onItemUse(ItemStack var1, EntityPlayer var2, World var3, int var4, int var5, int var6, int var7) {
 		return false;
 	}
