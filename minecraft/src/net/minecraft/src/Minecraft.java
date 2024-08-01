@@ -744,7 +744,9 @@ public class Minecraft implements Runnable {
 			
 				case Keyboard.KEY_T:
 					// TODO debug key
-					this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.doorWood));
+					for (int i=0; i<36; i++) {
+						this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.itemsList[256 + i]));
+					}
 					break;
 					
 				case Keyboard.KEY_F:
