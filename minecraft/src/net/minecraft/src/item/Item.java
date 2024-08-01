@@ -76,7 +76,6 @@ public class Item {
 	bucketWater    = new ItemBucket(52, Block.waterMoving.blockID).setIconIndex(75),
 	bucketLava     = new ItemBucket(53, Block.lavaMoving.blockID).setIconIndex(76),
 	minecartEmpty  = new ItemMinecart(54).setIconIndex(135),
-	
 	snowball       = new ItemSnowball(55).setIconIndex(14),
 	cd             = new Item(56).setIconIndex(90).setMaxStackSize(1);
 	
