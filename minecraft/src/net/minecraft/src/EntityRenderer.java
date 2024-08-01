@@ -74,15 +74,11 @@ public class EntityRenderer {
 			var16 = this.mc.objectMouseOver.hitVec.distanceTo(var5);
 		}
 
-		if(this.mc.playerController instanceof PlayerControllerCreative) {
-			var13 = 32.0D;
-		} else {
-			if(var16 > 3.0D) {
-				var16 = 3.0D;
-			}
-
-			var13 = var16;
+		if(var16 > 3.0D) {
+			var16 = 3.0D;
 		}
+
+		var13 = var16;
 
 		var15 = var5.addVector((double)var10 * var13, (double)var9 * var13, (double)var12 * var13);
 		this.pointedEntity = null;
@@ -105,7 +101,7 @@ public class EntityRenderer {
 			}
 		}
 
-		if(this.pointedEntity != null && !(this.mc.playerController instanceof PlayerControllerCreative)) {
+		if(this.pointedEntity != null) {
 			this.mc.objectMouseOver = new MovingObjectPosition(this.pointedEntity);
 		}
 

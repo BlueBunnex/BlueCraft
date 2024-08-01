@@ -6,7 +6,6 @@ import java.awt.Canvas;
 import net.minecraft.src.CanvasMinecraftApplet;
 import net.minecraft.src.Minecraft;
 import net.minecraft.src.MinecraftAppletImpl;
-import net.minecraft.src.Session;
 
 public class MinecraftApplet extends Applet {
 	private Canvas mcCanvas;
@@ -24,15 +23,6 @@ public class MinecraftApplet extends Applet {
 		this.mc.minecraftUri = this.getDocumentBase().getHost();
 		if(this.getDocumentBase().getPort() > 0) {
 			this.mc.minecraftUri = this.mc.minecraftUri + ":" + this.getDocumentBase().getPort();
-		}
-
-		if(this.getParameter("username") != null && this.getParameter("sessionid") != null) {
-			this.mc.session = new Session(this.getParameter("username"), this.getParameter("sessionid"));
-			if(this.getParameter("mppass") != null) {
-				this.mc.session.mpPassParameter = this.getParameter("mppass");
-			}
-		} else {
-			this.mc.session = new Session("Player", "");
 		}
 
 		if(this.getParameter("loadmap_user") != null && this.getParameter("loadmap_id") != null) {

@@ -16,6 +16,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
 public abstract class Minecraft implements Runnable {
+	
 	public PlayerController playerController = new PlayerControllerSP(this);
 	private boolean fullscreen = false;
 	public int displayWidth;
@@ -26,7 +27,6 @@ public abstract class Minecraft implements Runnable {
 	public RenderGlobal renderGlobal;
 	public EntityPlayerSP thePlayer;
 	public EffectRenderer effectRenderer;
-	public Session session = null;
 	public String minecraftUri;
 	public Canvas mcCanvas;
 	public boolean appletMode = true;
@@ -562,7 +562,7 @@ public abstract class Minecraft implements Runnable {
 
 			int var3;
 			if(this.objectMouseOver == null) {
-				if(var1 == 0 && !(this.playerController instanceof PlayerControllerCreative)) {
+				if(var1 == 0) {
 					this.leftClickCounter = 10;
 				}
 			} else if(this.objectMouseOver.typeOfHit == 1) {
@@ -716,7 +716,7 @@ public abstract class Minecraft implements Runnable {
 				var1 = Block.stone.blockID;
 			}
 
-			this.thePlayer.inventory.setCurrentItem(var1, this.playerController instanceof PlayerControllerCreative);
+			this.thePlayer.inventory.setCurrentItem(var1, false); // was: this.playerController instanceof PlayerControllerCreative
 		}
 
 	}
@@ -779,14 +779,6 @@ public abstract class Minecraft implements Runnable {
 											} else {
 												if(Keyboard.getEventKey() == Keyboard.KEY_ESCAPE) {
 													this.displayInGameMenu();
-												}
-
-												if(this.playerController instanceof PlayerControllerCreative) {
-													if(Keyboard.getEventKey() == this.options.t.keyCode) {
-													}
-
-													if(Keyboard.getEventKey() == this.options.s.keyCode) {
-													}
 												}
 
 												if(Keyboard.getEventKey() == Keyboard.KEY_F5) {
@@ -934,7 +926,7 @@ public abstract class Minecraft implements Runnable {
 			}
 
 			if(this.thePlayer == null) {
-				this.thePlayer = new EntityPlayerSP(this, var1, this.session);
+				this.thePlayer = new EntityPlayerSP(this, var1);
 				this.thePlayer.preparePlayerToSpawn();
 				this.playerController.flipPlayer(this.thePlayer);
 			}
@@ -1027,7 +1019,7 @@ public abstract class Minecraft implements Runnable {
 			this.theWorld.setEntityDead(this.thePlayer);
 		}
 
-		this.thePlayer = new EntityPlayerSP(this, this.theWorld, this.session);
+		this.thePlayer = new EntityPlayerSP(this, this.theWorld);
 		this.thePlayer.preparePlayerToSpawn();
 		this.playerController.flipPlayer(this.thePlayer);
 		this.theWorld.spawnPlayerWithLoadedChunks(this.thePlayer);

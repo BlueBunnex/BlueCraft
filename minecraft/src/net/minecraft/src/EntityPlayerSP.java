@@ -4,15 +4,14 @@ public class EntityPlayerSP extends EntityPlayer {
 	public MovementInput movementInput;
 	private Minecraft mc;
 
-	public EntityPlayerSP(Minecraft var1, World var2, Session var3) {
-		super(var2);
-		this.mc = var1;
-		if(var3 != null && var3.username != null && var3.username.length() > 0) {
-			this.skinUrl = "http://www.minecraft.net/skin/" + var3.username + ".png";
-			System.out.println("Loading texture " + this.skinUrl);
-		}
+	public EntityPlayerSP(Minecraft mc, World world) {
+		super(world);
+		this.mc = mc;
+		
+		this.skinUrl = "http://www.minecraft.net/skin/erkmrk.png";
+		System.out.println("Loading texture " + this.skinUrl);
 
-		this.username = var3.username;
+		this.username = "GAMER!!!";
 	}
 
 	public void updateEntityActionState() {
