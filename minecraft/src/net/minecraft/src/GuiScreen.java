@@ -7,47 +7,49 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 public class GuiScreen extends Gui {
+	
 	protected Minecraft mc;
 	public int width;
 	public int height;
-	protected List controlList = new ArrayList();
+	protected List<GuiButton> controlList = new ArrayList<GuiButton>();
 	public boolean allowUserInput = false;
 	protected FontRenderer fontRenderer;
 
 	public void drawScreen(int var1, int var2, float var3) {
+		
 		for(int var4 = 0; var4 < this.controlList.size(); ++var4) {
-			GuiButton var5 = (GuiButton)this.controlList.get(var4);
+			GuiButton var5 = (GuiButton) this.controlList.get(var4);
 			var5.drawButton(this.mc, var1, var2);
 		}
-
 	}
 
 	protected void keyTyped(char var1, int var2) {
+		
 		if(var2 == 1) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 			this.mc.setIngameFocus();
 		}
-
 	}
 
-	protected void mouseClicked(int var1, int var2, int var3) {
-		if(var3 == 0) {
-			for(int var4 = 0; var4 < this.controlList.size(); ++var4) {
-				GuiButton var5 = (GuiButton)this.controlList.get(var4);
-				if(var5.mousePressed(var1, var2)) {
+	protected void mouseClicked(int x, int y, int mouseBtn) {
+		
+		if(mouseBtn == 0) {
+			
+			for(int i = 0; i < this.controlList.size(); i++) {
+				
+				GuiButton button = this.controlList.get(i);
+				
+				if (button.mousePressed(x, y)) {
 					this.mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
-					this.actionPerformed(var5);
+					this.actionPerformed(button);
 				}
 			}
 		}
-
 	}
 
-	protected void mouseMovedOrUp(int var1, int var2, int var3) {
-	}
+	protected void mouseMovedOrUp(int var1, int var2, int var3) {}
 
-	protected void actionPerformed(GuiButton var1) {
-	}
+	protected void actionPerformed(GuiButton var1) {}
 
 	public void setWorldAndResolution(Minecraft var1, int var2, int var3) {
 		this.mc = var1;
@@ -57,18 +59,17 @@ public class GuiScreen extends Gui {
 		this.initGui();
 	}
 
-	public void initGui() {
-	}
+	public void initGui() {}
 
 	public void handleInput() {
-		while(Mouse.next()) {
+		
+		while (Mouse.next()) {
 			this.handleMouseInput();
 		}
 
-		while(Keyboard.next()) {
+		while (Keyboard.next()) {
 			this.handleKeyboardInput();
 		}
-
 	}
 
 	public void handleMouseInput() {
@@ -87,6 +88,7 @@ public class GuiScreen extends Gui {
 	}
 
 	public void handleKeyboardInput() {
+		
 		if(Keyboard.getEventKeyState()) {
 			if(Keyboard.getEventKey() == Keyboard.KEY_F11) {
 				this.mc.toggleFullscreen();
@@ -95,26 +97,23 @@ public class GuiScreen extends Gui {
 
 			this.keyTyped(Keyboard.getEventCharacter(), Keyboard.getEventKey());
 		}
-
 	}
 
-	public void updateScreen() {
-	}
+	public void updateScreen() {}
 
-	public void onGuiClosed() {
-	}
+	public void onGuiClosed() {}
 
 	public void drawDefaultBackground() {
 		this.drawWorldBackground(0);
 	}
 
 	public void drawWorldBackground(int var1) {
+		
 		if(this.mc.theWorld != null) {
 			this.drawGradientRect(0, 0, this.width, this.height, 1610941696, -1607454656);
 		} else {
 			this.drawBackground(var1);
 		}
-
 	}
 
 	public void drawBackground(int var1) {
@@ -137,6 +136,5 @@ public class GuiScreen extends Gui {
 		return true;
 	}
 
-	public void deleteWorld(boolean var1, int var2) {
-	}
+	public void deleteWorld(boolean var1, int var2) {}
 }
