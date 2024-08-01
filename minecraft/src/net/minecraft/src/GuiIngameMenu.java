@@ -7,7 +7,7 @@ public class GuiIngameMenu extends GuiScreen {
 	public void initGui() {
 		this.updateCounter2 = 0;
 		this.controlList.clear();
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 72, "Save and quit to title.."));
+		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 72, "Save and quit to title"));
 		this.controlList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 24, "Back to game"));
 		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 48, "Options..."));
 	}
@@ -36,12 +36,14 @@ public class GuiIngameMenu extends GuiScreen {
 
 	public void drawScreen(int var1, int var2, float var3) {
 		this.drawDefaultBackground();
-		boolean var4 = !this.mc.theWorld.saveWorld(this.updateCounter2++);
-		if(var4 || this.updateCounter < 20) {
+		
+		boolean hasSaved = this.mc.theWorld.saveWorld(this.updateCounter2++);
+		
+		if(!hasSaved || this.updateCounter < 20) {
 			float var5 = ((float)(this.updateCounter % 10) + var3) / 10.0F;
 			var5 = MathHelper.sin(var5 * (float)Math.PI * 2.0F) * 0.2F + 0.8F;
 			int var6 = (int)(255.0F * var5);
-			this.drawString(this.fontRenderer, "Saving level..", 8, this.height - 16, var6 << 16 | var6 << 8 | var6);
+			this.drawString(this.fontRenderer, "Saving level...", 8, this.height - 16, var6 << 16 | var6 << 8 | var6);
 		}
 
 		this.drawCenteredString(this.fontRenderer, "Game menu", this.width / 2, 40, 16777215);
