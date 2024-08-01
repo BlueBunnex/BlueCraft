@@ -19,7 +19,7 @@
 	<classpathentry kind="lib" path="libraries/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824.jar" sourcepath="libraries/com/paulscode/librarylwjglopenal/20100824/librarylwjglopenal-20100824-sources.jar"/>
 	<classpathentry kind="lib" path="libraries/com/paulscode/soundsystem/20120107/soundsystem-20120107.jar" sourcepath="libraries/com/paulscode/soundsystem/20120107/soundsystem-20120107-sources.jar"/>
 	<classpathentry kind="lib" path="libraries/org/mcphackers/rdi/rdi/1.0/rdi-1.0.jar" sourcepath="libraries/org/mcphackers/rdi/rdi/1.0/rdi-1.0-sources.jar"/>
-	<classpathentry kind="lib" path="jars/deobfuscated.jar" sourcepath="jars/deobfuscated-source.jar"/>
+	<classpathentry kind="lib" path="jars/deobfuscated.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="output"/>
 </classpath>
