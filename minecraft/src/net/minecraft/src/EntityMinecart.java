@@ -13,7 +13,18 @@ public class EntityMinecart extends Entity {
 	public int timeSinceHit;
 	public int forwardDirection;
 	private boolean isInReverse;
-	private static final int[][][] matrix = new int[][][]{{{0, 0, -1}, {0, 0, 1}}, {{-1, 0, 0}, {1, 0, 0}}, {{-1, -1, 0}, {1, 0, 0}}, {{-1, 0, 0}, {1, -1, 0}}, {{0, 0, -1}, {0, -1, 1}}, {{0, -1, -1}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}, {{0, 0, 1}, {-1, 0, 0}}, {{0, 0, -1}, {-1, 0, 0}}, {{0, 0, -1}, {1, 0, 0}}};
+	private static final int[][][] matrix = new int[][][] {
+		{ { 0,  0, -1}, { 0,  0, 1} },
+		{ {-1,  0,  0}, { 1,  0, 0} },
+		{ {-1, -1,  0}, { 1,  0, 0} },
+		{ {-1,  0,  0}, { 1, -1, 0} },
+		{ { 0,  0, -1}, { 0, -1, 1} },
+		{ { 0, -1, -1}, { 0,  0, 1} },
+		{ { 0,  0,  1}, { 1,  0, 0} },
+		{ { 0,  0,  1}, {-1,  0, 0} },
+		{ { 0,  0, -1}, {-1,  0, 0} },
+		{ { 0,  0, -1}, { 1,  0, 0} }
+	};
 
 	public EntityMinecart(World world) {
 		super(world);
@@ -84,27 +95,29 @@ public class EntityMinecart extends Entity {
 		this.prevPosZ = this.posZ;
 		this.motionY -= (double) 0.04F; // gravity?
 		
-		int var1 = MathHelper.floor_double(this.posX);
-		int var2 = MathHelper.floor_double(this.posY);
-		int var3 = MathHelper.floor_double(this.posZ);
+		int blockX = MathHelper.floor_double(this.posX);
+		int blockY = MathHelper.floor_double(this.posY);
+		int blockZ = MathHelper.floor_double(this.posZ);
 		
 		// snap to track below
-		if(this.worldObj.getBlockId(var1, var2 - 1, var3) == Block.minecartTrack.blockID)
-			var2--;
+		if(this.worldObj.getBlockId(blockX, blockY - 1, blockZ) == Block.minecartTrack.blockID)
+			blockY--;
 		
 		// if on track
-		if(this.worldObj.getBlockId(var1, var2, var3) == Block.minecartTrack.blockID) {
+		if(this.worldObj.getBlockId(blockX, blockY, blockZ) == Block.minecartTrack.blockID) {
 			
 			Vec3D var8 = this.getPos(this.posX, this.posY, this.posZ);
-			int var9 = this.worldObj.getBlockMetadata(var1, var2, var3);
-			this.posY = (double)var2;
+			int var9 = this.worldObj.getBlockMetadata(blockX, blockY, blockZ);
+			this.posY = (double)blockY;
 			if(var9 >= 2 && var9 <= 5) {
-				this.posY = (double)(var2 + 1);
+				this.posY = (double)(blockY + 1);
 			}
 
-			int[][] var10 = matrix[var9];
-			double var11 = (double)(var10[1][0] - var10[0][0]);
-			double var13 = (double)(var10[1][2] - var10[0][2]);
+			int[] dir0 = matrix[var9][0];
+			int[] dir1 = matrix[var9][1];
+			
+			double var11 = dir1[0] - dir0[0];
+			double var13 = dir1[2] - dir0[2];
 			double var15 = Math.sqrt(var11 * var11 + var13 * var13);
 			double var17 = this.motionX * var11 + this.motionZ * var13;
 			if(var17 < 0.0D) {
@@ -122,10 +135,10 @@ public class EntityMinecart extends Entity {
 			this.motionX = speed * var11 / var15;
 			this.motionZ = speed * var13 / var15;
 			double var21 = 0.0D;
-			double var23 = (double)var1 + 0.5D + (double)var10[0][0] * 0.5D;
-			double var25 = (double)var3 + 0.5D + (double)var10[0][2] * 0.5D;
-			double var27 = (double)var1 + 0.5D + (double)var10[1][0] * 0.5D;
-			double var29 = (double)var3 + 0.5D + (double)var10[1][2] * 0.5D;
+			double var23 = (double)blockX + 0.5D + (double)dir0[0] * 0.5D;
+			double var25 = (double)blockZ + 0.5D + (double)dir0[2] * 0.5D;
+			double var27 = (double)blockX + 0.5D + (double)dir1[0] * 0.5D;
+			double var29 = (double)blockZ + 0.5D + (double)dir1[2] * 0.5D;
 			var11 = var27 - var23;
 			var13 = var29 - var25;
 			
@@ -133,11 +146,11 @@ public class EntityMinecart extends Entity {
 			double var33;
 			
 			if(var11 == 0.0D) {
-				this.posX = (double)var1 + 0.5D;
-				var21 = this.posZ - (double)var3;
+				this.posX = (double)blockX + 0.5D;
+				var21 = this.posZ - (double)blockZ;
 			} else if(var13 == 0.0D) {
-				this.posZ = (double)var3 + 0.5D;
-				var21 = this.posX - (double)var1;
+				this.posZ = (double)blockZ + 0.5D;
+				var21 = this.posX - (double)blockX;
 			} else {
 				var31 = this.posX - var23;
 				var33 = this.posZ - var25;
@@ -151,11 +164,16 @@ public class EntityMinecart extends Entity {
 
 			this.moveEntity(this.motionX, 0.0D, this.motionZ);
 			
-			if(var10[0][1] != 0 && MathHelper.floor_double(this.posX) - var1 == var10[0][0] && MathHelper.floor_double(this.posZ) - var3 == var10[0][2]) {
-				this.setPosition(this.posX, this.posY + (double)var10[0][1], this.posZ);
-			} else if(var10[1][1] != 0 && MathHelper.floor_double(this.posX) - var1 == var10[1][0] && MathHelper.floor_double(this.posZ) - var3 == var10[1][2]) {
-				this.setPosition(this.posX, this.posY + (double)var10[1][1], this.posZ);
+			if(dir0[1] != 0 && MathHelper.floor_double(this.posX) - blockX == dir0[0] && MathHelper.floor_double(this.posZ) - blockZ == dir0[2]) {
+				
+				this.setPosition(this.posX, this.posY + (double)dir0[1], this.posZ);
+				
+			} else if(dir1[1] != 0 && MathHelper.floor_double(this.posX) - blockX == dir1[0] && MathHelper.floor_double(this.posZ) - blockZ == dir1[2]) {
+				
+				this.setPosition(this.posX, this.posY + (double)dir1[1], this.posZ);
 			}
+			
+			
 
 			// drag when not ridden
 			if (this.riddenByEntity == null) {
@@ -179,10 +197,11 @@ public class EntityMinecart extends Entity {
 
 			int var42 = MathHelper.floor_double(this.posX);
 			int var37 = MathHelper.floor_double(this.posZ);
-			if(var42 != var1 || var37 != var3) {
+			
+			if(var42 != blockX || var37 != blockZ) {
 				speed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-				this.motionX = speed * (double)(var42 - var1);
-				this.motionZ = speed * (double)(var37 - var3);
+				this.motionX = speed * (double)(var42 - blockX);
+				this.motionZ = speed * (double)(var37 - blockZ);
 			}
 			
 		// not on track
