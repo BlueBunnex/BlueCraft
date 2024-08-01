@@ -43,8 +43,6 @@ public class Minecraft implements Runnable {
 	private int leftClickCounter = 0;
 	private int tempDisplayWidth;
 	private int tempDisplayHeight;
-	public String loadMapUser = null;
-	public int loadMapID = 0;
 	public GuiIngame ingameGUI;
 	public boolean skipRenderWorld = false;
 	public ModelBiped playerModelBiped = new ModelBiped(0.0F);
@@ -56,8 +54,6 @@ public class Minecraft implements Runnable {
 	public File mcDataDir;
 	public static long[] frameTimes = new long[512];
 	public static int numRecordedFrameTimes = 0;
-	private String serverName;
-	private int serverPort;
 	private TextureWaterFX textureWaterFX = new TextureWaterFX();
 	private TextureLavaFX textureLavaFX = new TextureLavaFX();
 	private static File minecraftDir = null;
@@ -90,11 +86,6 @@ public class Minecraft implements Runnable {
 		this.mainFrame.setLayout(new BorderLayout());
 		this.mainFrame.add(new PanelCrashReport(throwable), "Center");
 		this.mainFrame.validate();
-	}
-
-	public void setServer(String var1, int var2) {
-		this.serverName = var1;
-		this.serverPort = var2;
 	}
 
 	public void startGame() throws LWJGLException {
@@ -186,11 +177,7 @@ public class Minecraft implements Runnable {
 		this.checkGLError("Post startup");
 		this.ingameGUI = new GuiIngame(this);
 		this.playerController.initController();
-		if(this.serverName != null) {
-			this.displayGuiScreen(new GuiConnecting(this, this.serverName, this.serverPort));
-		} else {
-			this.displayGuiScreen(new GuiMainMenu());
-		}
+		this.displayGuiScreen(new GuiMainMenu());
 
 	}
 
@@ -988,7 +975,6 @@ public class Minecraft implements Runnable {
 		}
 
 		this.loadingScreen.displayLoadingString("Simulating world for a bit");
-		boolean var9 = true;
 		this.theWorld.dropOldChunks();
 	}
 

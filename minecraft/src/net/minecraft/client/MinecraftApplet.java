@@ -23,13 +23,6 @@ public class MinecraftApplet extends Applet {
 			this.mc.minecraftUri = this.mc.minecraftUri + ":" + this.getDocumentBase().getPort();
 		}
 
-		if(this.getParameter("loadmap_user") != null && this.getParameter("loadmap_id") != null) {
-			this.mc.loadMapUser = this.getParameter("loadmap_user");
-			this.mc.loadMapID = Integer.parseInt(this.getParameter("loadmap_id"));
-		} else if(this.getParameter("server") != null && this.getParameter("port") != null) {
-			this.mc.setServer(this.getParameter("server"), Integer.parseInt(this.getParameter("port")));
-		}
-
 		this.mc.appletMode = true;
 		this.setLayout(new BorderLayout());
 		this.add(this.mcCanvas, "Center");
