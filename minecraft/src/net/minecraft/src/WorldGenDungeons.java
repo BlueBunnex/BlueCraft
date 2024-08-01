@@ -10,28 +10,28 @@ import net.minecraft.src.item.ItemStack;
 
 public class WorldGenDungeons extends WorldGenerator {
 	
-	public boolean generate(World var1, Random var2, int var3, int var4, int var5) {
+	public boolean generate(World world, Random rand, int x, int y, int z) {
 		byte var6 = 3;
-		int var7 = var2.nextInt(2) + 2;
-		int var8 = var2.nextInt(2) + 2;
+		int var7 = rand.nextInt(2) + 2;
+		int var8 = rand.nextInt(2) + 2;
 		int var9 = 0;
 
-		int var10;
-		int var11;
-		int var12;
-		for(var10 = var3 - var7 - 1; var10 <= var3 + var7 + 1; ++var10) {
-			for(var11 = var4 - 1; var11 <= var4 + var6 + 1; ++var11) {
-				for(var12 = var5 - var8 - 1; var12 <= var5 + var8 + 1; ++var12) {
-					Material var13 = var1.getBlockMaterial(var10, var11, var12);
-					if(var11 == var4 - 1 && !var13.isSolid()) {
+		int world0;
+		int world1;
+		int world2;
+		for(world0 = x - var7 - 1; world0 <= x + var7 + 1; ++world0) {
+			for(world1 = y - 1; world1 <= y + var6 + 1; ++world1) {
+				for(world2 = z - var8 - 1; world2 <= z + var8 + 1; ++world2) {
+					Material world3 = world.getBlockMaterial(world0, world1, world2);
+					if(world1 == y - 1 && !world3.isSolid()) {
 						return false;
 					}
 
-					if(var11 == var4 + var6 + 1 && !var13.isSolid()) {
+					if(world1 == y + var6 + 1 && !world3.isSolid()) {
 						return false;
 					}
 
-					if((var10 == var3 - var7 - 1 || var10 == var3 + var7 + 1 || var12 == var5 - var8 - 1 || var12 == var5 + var8 + 1) && var11 == var4 && var1.getBlockId(var10, var11, var12) == 0 && var1.getBlockId(var10, var11 + 1, var12) == 0) {
+					if((world0 == x - var7 - 1 || world0 == x + var7 + 1 || world2 == z - var8 - 1 || world2 == z + var8 + 1) && world1 == y && world.getBlockId(world0, world1, world2) == 0 && world.getBlockId(world0, world1 + 1, world2) == 0) {
 						++var9;
 					}
 				}
@@ -39,18 +39,18 @@ public class WorldGenDungeons extends WorldGenerator {
 		}
 
 		if(var9 >= 1 && var9 <= 5) {
-			for(var10 = var3 - var7 - 1; var10 <= var3 + var7 + 1; ++var10) {
-				for(var11 = var4 + var6; var11 >= var4 - 1; --var11) {
-					for(var12 = var5 - var8 - 1; var12 <= var5 + var8 + 1; ++var12) {
-						if(var10 != var3 - var7 - 1 && var11 != var4 - 1 && var12 != var5 - var8 - 1 && var10 != var3 + var7 + 1 && var11 != var4 + var6 + 1 && var12 != var5 + var8 + 1) {
-							var1.setBlockWithNotify(var10, var11, var12, 0);
-						} else if(var11 >= 0 && !var1.getBlockMaterial(var10, var11 - 1, var12).isSolid()) {
-							var1.setBlockWithNotify(var10, var11, var12, 0);
-						} else if(var1.getBlockMaterial(var10, var11, var12).isSolid()) {
-							if(var11 == var4 - 1 && var2.nextInt(4) != 0) {
-								var1.setBlockWithNotify(var10, var11, var12, Block.cobblestoneMossy.blockID);
+			for(world0 = x - var7 - 1; world0 <= x + var7 + 1; ++world0) {
+				for(world1 = y + var6; world1 >= y - 1; --world1) {
+					for(world2 = z - var8 - 1; world2 <= z + var8 + 1; ++world2) {
+						if(world0 != x - var7 - 1 && world1 != y - 1 && world2 != z - var8 - 1 && world0 != x + var7 + 1 && world1 != y + var6 + 1 && world2 != z + var8 + 1) {
+							world.setBlockWithNotify(world0, world1, world2, 0);
+						} else if(world1 >= 0 && !world.getBlockMaterial(world0, world1 - 1, world2).isSolid()) {
+							world.setBlockWithNotify(world0, world1, world2, 0);
+						} else if(world.getBlockMaterial(world0, world1, world2).isSolid()) {
+							if(world1 == y - 1 && rand.nextInt(4) != 0) {
+								world.setBlockWithNotify(world0, world1, world2, Block.cobblestoneMossy.blockID);
 							} else {
-								var1.setBlockWithNotify(var10, var11, var12, Block.cobblestone.blockID);
+								world.setBlockWithNotify(world0, world1, world2, Block.cobblestone.blockID);
 							}
 						}
 					}
@@ -58,53 +58,53 @@ public class WorldGenDungeons extends WorldGenerator {
 			}
 
 			label110:
-			for(var10 = 0; var10 < 2; ++var10) {
-				for(var11 = 0; var11 < 3; ++var11) {
-					var12 = var3 + var2.nextInt(var7 * 2 + 1) - var7;
-					int var14 = var5 + var2.nextInt(var8 * 2 + 1) - var8;
-					if(var1.getBlockId(var12, var4, var14) == 0) {
-						int var15 = 0;
-						if(var1.getBlockMaterial(var12 - 1, var4, var14).isSolid()) {
-							++var15;
+			for(world0 = 0; world0 < 2; ++world0) {
+				for(world1 = 0; world1 < 3; ++world1) {
+					world2 = x + rand.nextInt(var7 * 2 + 1) - var7;
+					int world4 = z + rand.nextInt(var8 * 2 + 1) - var8;
+					if(world.getBlockId(world2, y, world4) == 0) {
+						int world5 = 0;
+						if(world.getBlockMaterial(world2 - 1, y, world4).isSolid()) {
+							++world5;
 						}
 
-						if(var1.getBlockMaterial(var12 + 1, var4, var14).isSolid()) {
-							++var15;
+						if(world.getBlockMaterial(world2 + 1, y, world4).isSolid()) {
+							++world5;
 						}
 
-						if(var1.getBlockMaterial(var12, var4, var14 - 1).isSolid()) {
-							++var15;
+						if(world.getBlockMaterial(world2, y, world4 - 1).isSolid()) {
+							++world5;
 						}
 
-						if(var1.getBlockMaterial(var12, var4, var14 + 1).isSolid()) {
-							++var15;
+						if(world.getBlockMaterial(world2, y, world4 + 1).isSolid()) {
+							++world5;
 						}
 
-						if(var15 == 1) {
-							var1.setBlockWithNotify(var12, var4, var14, Block.chest.blockID);
-							TileEntityChest var16 = (TileEntityChest)var1.getBlockTileEntity(var12, var4, var14);
-							int var17 = 0;
+						if(world5 == 1) {
+							world.setBlockWithNotify(world2, y, world4, Block.chest.blockID);
+							TileEntityChest world6 = (TileEntityChest)world.getBlockTileEntity(world2, y, world4);
+							int world7 = 0;
 
 							while(true) {
-								if(var17 >= 8) {
+								if(world7 >= 8) {
 									continue label110;
 								}
 
-								ItemStack var18 = this.pickCheckLootItem(var2);
-								if(var18 != null) {
-									var16.setInventorySlotContents(var2.nextInt(var16.getSizeInventory()), var18);
+								ItemStack world8 = this.pickCheckLootItem(rand);
+								if(world8 != null) {
+									world6.setInventorySlotContents(rand.nextInt(world6.getSizeInventory()), world8);
 								}
 
-								++var17;
+								++world7;
 							}
 						}
 					}
 				}
 			}
 
-			var1.setBlockWithNotify(var3, var4, var5, Block.mobSpawner.blockID);
-			TileEntityMobSpawner var19 = (TileEntityMobSpawner)var1.getBlockTileEntity(var3, var4, var5);
-			var19.mobID = this.pickMobSpawner(var2);
+			world.setBlockWithNotify(x, y, z, Block.mobSpawner.blockID);
+			TileEntityMobSpawner world9 = (TileEntityMobSpawner)world.getBlockTileEntity(x, y, z);
+			world9.mobID = this.pickMobSpawner(rand);
 			return true;
 		} else {
 			return false;

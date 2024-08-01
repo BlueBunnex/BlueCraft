@@ -484,6 +484,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	}
 
 	public void populate(IChunkProvider var1, int var2, int var3) {
+		
 		BlockSand.fallInstantly = true;
 		int var4 = var2 * 16;
 		int var5 = var3 * 16;
@@ -493,55 +494,76 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		this.rand.setSeed((long)var2 * var6 + (long)var3 * var8 ^ this.worldObj.randomSeed);
 		double var10 = 0.25D;
 
-		int var12;
-		int var13;
-		int var14;
-		int var15;
+		int i;
 		
-		for(var12 = 0; var12 < 4; ++var12) {
-			var13 = var4 + this.rand.nextInt(16) + 8;
-			var14 = this.rand.nextInt(128);
-			var15 = var5 + this.rand.nextInt(16) + 8;
-			(new WorldGenDungeons()).generate(this.worldObj, this.rand, var13, var14, var15);
+		for (i = 0; i < 4; i++) {
+			
+			new WorldGenDungeons().generate(
+					this.worldObj,
+					this.rand,
+					var4 + this.rand.nextInt(16) + 8,
+					this.rand.nextInt(128),
+					var5 + this.rand.nextInt(16) + 8
+				);
 		}
 
-		for(var12 = 0; var12 < 20; ++var12) {
-			var13 = var4 + this.rand.nextInt(16);
-			var14 = this.rand.nextInt(128);
-			var15 = var5 + this.rand.nextInt(16);
-			(new WorldGenMinable(Block.dirt.blockID, 32)).generate(this.worldObj, this.rand, var13, var14, var15);
+		for (i = 0; i < 20; i++) {
+			
+			new WorldGenMinable(Block.dirt.blockID, 32).generate(
+					this.worldObj,
+					this.rand,
+					var4 + this.rand.nextInt(16),
+					this.rand.nextInt(128),
+					var5 + this.rand.nextInt(16)
+				);
 		}
 
-		for(var12 = 0; var12 < 10; ++var12) {
-			var13 = var4 + this.rand.nextInt(16);
-			var14 = this.rand.nextInt(128);
-			var15 = var5 + this.rand.nextInt(16);
-			(new WorldGenMinable(Block.gravel.blockID, 32)).generate(this.worldObj, this.rand, var13, var14, var15);
+		for (i = 0; i < 10; i++) {
+			
+			new WorldGenMinable(Block.gravel.blockID, 32).generate(
+					this.worldObj,
+					this.rand,
+					var4 + this.rand.nextInt(16),
+					this.rand.nextInt(128),
+					var5 + this.rand.nextInt(16)
+				);
 		}
 
-		for(var12 = 0; var12 < 20; ++var12) {
-			var13 = var4 + this.rand.nextInt(16);
-			var14 = this.rand.nextInt(128);
-			var15 = var5 + this.rand.nextInt(16);
-			(new WorldGenMinable(Block.oreCoal.blockID, 16)).generate(this.worldObj, this.rand, var13, var14, var15);
+		for (i = 0; i < 20; i++) {
+			
+			new WorldGenMinable(Block.oreCoal.blockID, 16).generate(
+					this.worldObj,
+					this.rand,
+					var4 + this.rand.nextInt(16),
+					this.rand.nextInt(128),
+					var5 + this.rand.nextInt(16)
+				);
 		}
 
-		for(var12 = 0; var12 < 20; ++var12) {
-			var13 = var4 + this.rand.nextInt(16);
-			var14 = this.rand.nextInt(64);
-			var15 = var5 + this.rand.nextInt(16);
-			(new WorldGenMinable(Block.oreIron.blockID, 8)).generate(this.worldObj, this.rand, var13, var14, var15);
+		for (i = 0; i < 20; i++) {
+			
+			new WorldGenMinable(Block.oreIron.blockID, 8).generate(
+					this.worldObj,
+					this.rand,
+					var4 + this.rand.nextInt(16),
+					this.rand.nextInt(64),
+					var5 + this.rand.nextInt(16)
+				);
 		}
 
-		for(var12 = 0; var12 < 1; ++var12) {
-			var13 = var4 + this.rand.nextInt(16);
-			var14 = this.rand.nextInt(16);
-			var15 = var5 + this.rand.nextInt(16);
-			(new WorldGenMinable(Block.oreMithril.blockID, 7)).generate(this.worldObj, this.rand, var13, var14, var15);
+		for (i = 0; i < 1; i++) {
+			
+			new WorldGenMinable(Block.oreMithril.blockID, 7).generate(
+					this.worldObj,
+					this.rand,
+					var4 + this.rand.nextInt(16),
+					this.rand.nextInt(16),
+					var5 + this.rand.nextInt(16)
+				);
 		}
 
 		var10 = 0.5D;
-		var12 = (int)((this.mobSpawnerNoise.generateNoiseOctaves((double)var4 * var10, (double)var5 * var10) / 8.0D + this.rand.nextDouble() * 4.0D + 4.0D) / 3.0D);
+		int var12 = (int)((this.mobSpawnerNoise.generateNoiseOctaves((double)var4 * var10, (double)var5 * var10) / 8.0D + this.rand.nextDouble() * 4.0D + 4.0D) / 3.0D);
 		if(var12 < 0) {
 			var12 = 0;
 		}
@@ -551,11 +573,10 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			++var12;
 		}
 
-		int var16;
+		int var14, var15, var16;
 		for(var14 = 0; var14 < var12; ++var14) {
 			var15 = var4 + this.rand.nextInt(16) + 8;
 			var16 = var5 + this.rand.nextInt(16) + 8;
-			var18.setScale(1.0D, 1.0D, 1.0D);
 			var18.generate(this.worldObj, this.rand, var15, this.worldObj.getHeightValue(var15, var16), var16);
 		}
 
