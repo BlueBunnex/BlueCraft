@@ -44,7 +44,7 @@ public class InventoryPlayer implements IInventory {
 		return -1;
 	}
 
-	public void setCurrentItem(int var1, boolean var2) {
+	public void setCurrentItem(int var1) {
 		int var3 = this.getInventorySlotContainItem(var1);
 		if(var3 >= 0 && var3 < 9) {
 			this.currentItem = var3;

@@ -3,8 +3,10 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class Item {
+	
 	protected static Random rand = new Random();
 	public static Item[] itemsList = new Item[1024];
+	
 	public static Item shovel = (new ItemSpade(0, 2)).setIconIndex(82);
 	public static Item pickaxeSteel = (new ItemPickaxe(1, 2)).setIconIndex(98);
 	public static Item axeSteel = (new ItemAxe(2, 2)).setIconIndex(114);

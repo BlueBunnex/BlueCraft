@@ -700,21 +700,24 @@ public class Minecraft implements Runnable {
 	}
 
 	private void clickMiddleMouseButton() {
+		
 		if(this.objectMouseOver != null) {
-			int var1 = this.theWorld.getBlockId(this.objectMouseOver.blockX, this.objectMouseOver.blockY, this.objectMouseOver.blockZ);
-			if(var1 == Block.grass.blockID) {
-				var1 = Block.dirt.blockID;
+			
+			int blockID = this.theWorld.getBlockId(this.objectMouseOver.blockX, this.objectMouseOver.blockY, this.objectMouseOver.blockZ);
+			
+			if(blockID == Block.grass.blockID) {
+				blockID = Block.dirt.blockID;
 			}
 
-			if(var1 == Block.stairDouble.blockID) {
-				var1 = Block.stairSingle.blockID;
+			if(blockID == Block.stairDouble.blockID) {
+				blockID = Block.stairSingle.blockID;
 			}
 
-			if(var1 == Block.bedrock.blockID) {
-				var1 = Block.stone.blockID;
+			if(blockID == Block.bedrock.blockID) {
+				blockID = Block.stone.blockID;
 			}
 
-			this.thePlayer.inventory.setCurrentItem(var1, false); // was: this.playerController instanceof PlayerControllerCreative
+			this.thePlayer.inventory.setCurrentItem(blockID);
 		}
 
 	}
