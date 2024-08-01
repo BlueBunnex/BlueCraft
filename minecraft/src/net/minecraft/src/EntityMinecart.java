@@ -128,8 +128,16 @@ public class EntityMinecart extends Entity {
 			double speed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			
 			// accelerate when ridden
-			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && speed < 0.3D) {
-				speed += 0.01D;
+			// remember, speed is always positive or zero
+			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
+				
+				double speedChange = (this.isInReverse ? -1 : 1) * 0.03D * ((EntityPlayer) this.riddenByEntity).moveForward;
+				
+				if (speed + speedChange < 0D)
+					this.isInReverse = !this.isInReverse;
+				
+				if (speed + speedChange < 0.3D)
+					speed += speedChange;
 			}
 			
 			this.motionX = speed * var11 / var15;
@@ -175,10 +183,10 @@ public class EntityMinecart extends Entity {
 			
 			
 
-			// drag when not ridden
+			// apply drag when not ridden
 			if (this.riddenByEntity == null) {
-				this.motionX *= 0.9D;
-				this.motionZ *= 0.9D;
+				this.motionX *= 0.8D;
+				this.motionZ *= 0.8D;
 			}
 			this.motionY *= 0.0D;
 
