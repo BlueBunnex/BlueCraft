@@ -1,9 +1,9 @@
 package net.minecraft.src.block;
 
-import net.minecraft.src.IInventory;
 import net.minecraft.src.Material;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
+import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 

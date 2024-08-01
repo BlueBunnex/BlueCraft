@@ -1,5 +1,10 @@
-package net.minecraft.src;
+package net.minecraft.src.inventory;
 
+import net.minecraft.src.Entity;
+import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.Material;
+import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.NBTTagList;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.item.ItemArmor;
 import net.minecraft.src.item.ItemStack;

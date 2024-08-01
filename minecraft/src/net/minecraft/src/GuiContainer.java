@@ -5,6 +5,7 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.ItemStack;
 
 public abstract class GuiContainer extends GuiScreen {

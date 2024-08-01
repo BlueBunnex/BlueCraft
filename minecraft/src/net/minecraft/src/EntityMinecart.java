@@ -3,6 +3,7 @@ package net.minecraft.src;
 import java.util.List;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 

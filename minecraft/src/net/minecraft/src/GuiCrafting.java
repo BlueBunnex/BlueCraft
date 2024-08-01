@@ -2,6 +2,10 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.inventory.IInventory;
+import net.minecraft.src.inventory.InventoryCraftResult;
+import net.minecraft.src.inventory.InventoryCrafting;
+import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;
 
 public class GuiCrafting extends GuiContainer {

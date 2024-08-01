@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.src.inventory;
 
 import net.minecraft.src.item.ItemStack;
 

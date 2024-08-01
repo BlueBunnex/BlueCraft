@@ -1,5 +1,6 @@
-package net.minecraft.src;
+package net.minecraft.src.inventory;
 
+import net.minecraft.src.GuiContainer;
 import net.minecraft.src.item.ItemStack;
 
 public class InventoryCrafting implements IInventory {

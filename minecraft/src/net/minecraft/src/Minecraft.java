@@ -9,7 +9,8 @@ import java.awt.Graphics;
 import java.io.File;
 import net.minecraft.client.MinecraftApplet;
 import net.minecraft.src.block.Block;
-import net.minecraft.src.item.Item;
+import net.minecraft.src.inventory.InventoryGeneric;
+import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.ItemStack;
 
 import org.lwjgl.LWJGLException;
@@ -755,15 +756,21 @@ public class Minecraft implements Runnable {
 			
 			switch (Keyboard.getEventKey()) {
 			
-				case Keyboard.KEY_T:
-					// TODO debug key
-					for (int i=0; i<36; i++) {
-						this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.itemsList[256 + i]));
+				// TODO debug menu
+				case Keyboard.KEY_C:
+					
+					IInventory inv = new InventoryGeneric(54, "Debug");
+					
+					for (int i=0; i<inv.getSizeInventory(); i++) {
+						inv.setInventorySlotContents(i, new ItemStack(i + 256, Item.itemsList[i + 256].maxStackSize));
 					}
+					
+					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, inv));
+					
 					break;
 					
+				// press F to toggle full-screen
 				case Keyboard.KEY_F:
-					// press F to toggle full-screen
 					this.toggleFullscreen();
 					break;
 			}

@@ -6,6 +6,7 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;
 
 public class GuiIngame extends Gui {
