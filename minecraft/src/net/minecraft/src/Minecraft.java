@@ -11,6 +11,7 @@ import net.minecraft.client.MinecraftApplet;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.inventory.InventoryGeneric;
 import net.minecraft.src.inventory.IInventory;
+import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 
 import org.lwjgl.LWJGLException;
@@ -762,7 +763,7 @@ public class Minecraft implements Runnable {
 					IInventory inv = new InventoryGeneric(54, "Debug");
 					
 					for (int i=0; i<inv.getSizeInventory(); i++) {
-						inv.setInventorySlotContents(i, new ItemStack(i + 256, Item.itemsList[i + 256].maxStackSize));
+						inv.setInventorySlotContents(i, new ItemStack(i + 256, Item.itemsList[i + 256].getItemStackLimit()));
 					}
 					
 					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, inv));
