@@ -7,8 +7,8 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderManager {
 	
-	// is it even POSSIBLE to parameterize this lol
-	private Map entityRenderMap = new HashMap();
+	// is it even POSSIBLE to parameterize this better lol
+	private Map<Object, Object> entityRenderMap = new HashMap<Object, Object>();
 	
 	public static RenderManager instance = new RenderManager();
 	private FontRenderer fontRenderer;
@@ -43,13 +43,11 @@ public class RenderManager {
 		this.entityRenderMap.put(EntityTNTPrimed.class, new RenderTNTPrimed());
 		this.entityRenderMap.put(EntityFallingSand.class, new RenderFallingSand());
 		this.entityRenderMap.put(EntityMinecart.class, new RenderMinecart());
-		Iterator var1 = this.entityRenderMap.values().iterator();
+		
+		Iterator<Object> iterator = this.entityRenderMap.values().iterator();
 
-		while(var1.hasNext()) {
-			Render var2 = (Render)var1.next();
-			var2.setRenderManager(this);
-		}
-
+		while (iterator.hasNext())
+			((Render) iterator.next()).setRenderManager(this);
 	}
 
 	public Render getEntityClassRenderObject(Class var1) {
