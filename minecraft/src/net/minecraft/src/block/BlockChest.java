@@ -167,26 +167,38 @@ public class BlockChest extends BlockContainer {
 		super.onBlockRemoval(var1, var2, var3, var4);
 	}
 
-	public void onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
+	public boolean onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
 		Object var6 = (TileEntityChest)var1.getBlockTileEntity(var2, var3, var4);
-		
-		if(var1.getBlockId(var2 - 1, var3, var4) == this.blockID) {
-			var6 = new InventoryLargeChest("Large chest", (TileEntityChest)var1.getBlockTileEntity(var2 - 1, var3, var4), (IInventory)var6);
-		}
+		if(var1.isBlockNormalCube(var2, var3 + 1, var4)) {
+			return true;
+		} else if(var1.getBlockId(var2 - 1, var3, var4) == this.blockID && var1.isBlockNormalCube(var2 - 1, var3 + 1, var4)) {
+			return true;
+		} else if(var1.getBlockId(var2 + 1, var3, var4) == this.blockID && var1.isBlockNormalCube(var2 + 1, var3 + 1, var4)) {
+			return true;
+		} else if(var1.getBlockId(var2, var3, var4 - 1) == this.blockID && var1.isBlockNormalCube(var2, var3 + 1, var4 - 1)) {
+			return true;
+		} else if(var1.getBlockId(var2, var3, var4 + 1) == this.blockID && var1.isBlockNormalCube(var2, var3 + 1, var4 + 1)) {
+			return true;
+		} else {
+			if(var1.getBlockId(var2 - 1, var3, var4) == this.blockID) {
+				var6 = new InventoryLargeChest("Large chest", (TileEntityChest)var1.getBlockTileEntity(var2 - 1, var3, var4), (IInventory)var6);
+			}
 
-		if(var1.getBlockId(var2 + 1, var3, var4) == this.blockID) {
-			var6 = new InventoryLargeChest("Large chest", (IInventory)var6, (TileEntityChest)var1.getBlockTileEntity(var2 + 1, var3, var4));
-		}
+			if(var1.getBlockId(var2 + 1, var3, var4) == this.blockID) {
+				var6 = new InventoryLargeChest("Large chest", (IInventory)var6, (TileEntityChest)var1.getBlockTileEntity(var2 + 1, var3, var4));
+			}
 
-		if(var1.getBlockId(var2, var3, var4 - 1) == this.blockID) {
-			var6 = new InventoryLargeChest("Large chest", (TileEntityChest)var1.getBlockTileEntity(var2, var3, var4 - 1), (IInventory)var6);
-		}
+			if(var1.getBlockId(var2, var3, var4 - 1) == this.blockID) {
+				var6 = new InventoryLargeChest("Large chest", (TileEntityChest)var1.getBlockTileEntity(var2, var3, var4 - 1), (IInventory)var6);
+			}
 
-		if(var1.getBlockId(var2, var3, var4 + 1) == this.blockID) {
-			var6 = new InventoryLargeChest("Large chest", (IInventory)var6, (TileEntityChest)var1.getBlockTileEntity(var2, var3, var4 + 1));
-		}
+			if(var1.getBlockId(var2, var3, var4 + 1) == this.blockID) {
+				var6 = new InventoryLargeChest("Large chest", (IInventory)var6, (TileEntityChest)var1.getBlockTileEntity(var2, var3, var4 + 1));
+			}
 
-		var5.displayGUIChest((IInventory)var6);
+			var5.displayGUIChest((IInventory)var6);
+			return true;
+		}
 	}
 
 	protected TileEntity getBlockEntity() {

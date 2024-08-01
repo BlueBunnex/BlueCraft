@@ -19,7 +19,9 @@ public class PlayerController {
 		this.sendBlockRemoved(x, y, z);
 	}
 	
-	public void interactBlock(int x, int y, int z) {}
+	public boolean interactBlock(int x, int y, int z) {
+		return false;
+	}
 
 	public boolean sendBlockRemoved(int var1, int var2, int var3) {
 		this.mc.effectRenderer.addBlockDestroyEffects(var1, var2, var3);

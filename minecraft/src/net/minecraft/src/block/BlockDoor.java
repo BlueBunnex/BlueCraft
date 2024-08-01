@@ -92,8 +92,8 @@ public class BlockDoor extends Block {
 
 	}
 
-	public void onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
-		this.openDoor(var1, var2, var3, var4, var5);
+	public boolean onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
+		return this.openDoor(var1, var2, var3, var4, var5);
 	}
 
 	private boolean openDoor(World var1, int var2, int var3, int var4, EntityPlayer var5) {

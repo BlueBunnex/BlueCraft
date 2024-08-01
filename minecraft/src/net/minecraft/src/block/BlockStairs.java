@@ -157,8 +157,8 @@ public class BlockStairs extends Block {
 		this.modelBlock.randomDisplayTick(var1, var2, var3, var4, var5);
 	}
 
-	public void onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
-		this.modelBlock.onBlockInteract(var1, var2, var3, var4, var5);
+	public boolean onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
+		return this.modelBlock.onBlockInteract(var1, var2, var3, var4, var5);
 	}
 
 	public void onBlockDestroyedByPlayer(World var1, int var2, int var3, int var4, int var5) {

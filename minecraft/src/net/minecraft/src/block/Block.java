@@ -430,7 +430,18 @@ public class Block {
 
 	public void onBlockPlaced(World var1, int var2, int var3, int var4, int var5) {}
 
-	public void onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {}
+	/**
+	 * Returns true only if something actually happened (and should swing arm).
+	 * @param var1
+	 * @param var2
+	 * @param var3
+	 * @param var4
+	 * @param var5
+	 * @return
+	 */
+	public boolean onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
+		return false;
+	}
 
 	public void velocityToAddToEntity(World var1, int var2, int var3, int var4, Entity var5, Vec3D var6) {}
 

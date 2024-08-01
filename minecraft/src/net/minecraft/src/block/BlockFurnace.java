@@ -92,9 +92,10 @@ public class BlockFurnace extends BlockContainer {
 		return var1 == 1 ? Block.stone.blockID : (var1 == 0 ? Block.stone.blockID : (var1 == 3 ? this.blockIndexInTexture - 1 : this.blockIndexInTexture));
 	}
 
-	public void onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
+	public boolean onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
 		TileEntityFurnace var6 = (TileEntityFurnace)var1.getBlockTileEntity(var2, var3, var4);
 		var5.displayGUIFurnace(var6);
+		return true;
 	}
 
 	public static void updateFurnaceBlockState(boolean var0, World var1, int var2, int var3, int var4) {

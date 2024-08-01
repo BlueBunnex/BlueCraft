@@ -595,14 +595,14 @@ public class Minecraft implements Runnable {
 				
 				// interact block
 				} else {
-					this.playerController.interactBlock(var2, var3, var4);
 					
 					ItemStack var7 = this.thePlayer.inventory.getCurrentItem();
-					int var8 = this.theWorld.getBlockId(var2, var3, var4);
-
-					if(var7 == null) {
+					
+					if (this.playerController.interactBlock(var2, var3, var4))
 						return;
-					}
+
+					if(var7 == null)
+						return;
 
 					int var9 = var7.stackSize;
 					if(var7.useItem(this.thePlayer, this.theWorld, var2, var3, var4, var5)) {

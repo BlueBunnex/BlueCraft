@@ -53,12 +53,17 @@ public class PlayerControllerSP extends PlayerController {
 
 	}
 	
-	public void interactBlock(int x, int y, int z) {
+	/**
+	 * Tries to interact with the block. If block is air, or just can't interact, returns false.
+	 */
+	public boolean interactBlock(int x, int y, int z) {
 		
 		int blockID = this.mc.theWorld.getBlockId(x, y, z);
 		
 		if (blockID > 0)
-			Block.blocksList[blockID].onBlockInteract(this.mc.theWorld, x, y, z, this.mc.thePlayer);
+			return Block.blocksList[blockID].onBlockInteract(this.mc.theWorld, x, y, z, this.mc.thePlayer);
+		
+		return false;
 	}
 
 	public void resetBlockRemoving() {
