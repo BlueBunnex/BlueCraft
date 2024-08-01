@@ -1,7 +1,5 @@
 package net.minecraft.src;
 
-import net.minecraft.src.world.World;
-
 public class GuiIngameMenu extends GuiScreen {
 	private int updateCounter2 = 0;
 	private int updateCounter = 0;
@@ -9,9 +7,9 @@ public class GuiIngameMenu extends GuiScreen {
 	public void initGui() {
 		this.updateCounter2 = 0;
 		this.controlList.clear();
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 48, "Save and quit to title.."));
+		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 72, "Save and quit to title.."));
 		this.controlList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 24, "Back to game"));
-		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96, "Options..."));
+		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 48, "Options..."));
 	}
 
 	protected void actionPerformed(GuiButton var1) {
@@ -20,12 +18,12 @@ public class GuiIngameMenu extends GuiScreen {
 		}
 
 		if(var1.id == 1) {
-			this.mc.changeWorld1((World)null);
+			this.mc.changeWorld1(null);
 			this.mc.displayGuiScreen(new GuiMainMenu());
 		}
 
 		if(var1.id == 4) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 			this.mc.setIngameFocus();
 		}
 
