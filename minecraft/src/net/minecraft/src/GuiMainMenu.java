@@ -25,25 +25,29 @@ public class GuiMainMenu extends GuiScreen {
 		}
 	}
 
-	protected void keyTyped(char var1, int var2) {
-	}
+	protected void keyTyped(char var1, int var2) {}
 
 	public void initGui() {
 		
 		this.controlList.clear();
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 48, "Play"));
-		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, "Options..."));
+		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 48, "Play"));
+		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 72, "Options..."));
+		this.controlList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 96, "Exit game"));
 	}
 
-	protected void actionPerformed(GuiButton var1) {
-		if(var1.id == 0) {
-			this.mc.displayGuiScreen(new GuiOptions(this, this.mc.options));
+	protected void actionPerformed(GuiButton button) {
+		
+		switch (button.id) {
+			case 0:
+				this.mc.displayGuiScreen(new GuiSelectWorld(this));
+				break;
+			case 1:
+				this.mc.displayGuiScreen(new GuiOptions(this, this.mc.options));
+				break;
+			case 2:
+				this.mc.shutdown();
+				break;
 		}
-
-		if(var1.id == 1) {
-			this.mc.displayGuiScreen(new GuiSelectWorld(this));
-		}
-
 	}
 
 	public void drawScreen(int var1, int var2, float var3) {
@@ -61,16 +65,9 @@ public class GuiMainMenu extends GuiScreen {
 		GL11.glScalef(var5, var5, var5);
 		this.drawCenteredString(this.fontRenderer, this.currentSplash, 0, -8, 16776960);
 		GL11.glPopMatrix();
-		String var6 = "Copyright Mojang Specifications. Do not distribute.";
+		String var6 = "No copyright, go wild!";
 		this.drawString(this.fontRenderer, var6, this.width - this.fontRenderer.getStringWidth(var6) - 2, this.height - 10, 16777215);
-		long var7 = Runtime.getRuntime().maxMemory();
-		long var9 = Runtime.getRuntime().totalMemory();
-		long var11 = Runtime.getRuntime().freeMemory();
-		long var13 = var7 - var11;
-		var6 = "Free memory: " + var13 * 100L / var7 + "% of " + var7 / 1024L / 1024L + "MB";
-		this.drawString(this.fontRenderer, var6, this.width - this.fontRenderer.getStringWidth(var6) - 2, 2, 8421504);
-		var6 = "Allocated memory: " + var9 * 100L / var7 + "% (" + var9 / 1024L / 1024L + "MB)";
-		this.drawString(this.fontRenderer, var6, this.width - this.fontRenderer.getStringWidth(var6) - 2, 12, 8421504);
+		
 		super.drawScreen(var1, var2, var3);
 	}
 
