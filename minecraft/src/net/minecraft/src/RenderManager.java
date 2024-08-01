@@ -6,7 +6,10 @@ import java.util.Map;
 import org.lwjgl.opengl.GL11;
 
 public class RenderManager {
+	
+	// is it even POSSIBLE to parameterize this lol
 	private Map entityRenderMap = new HashMap();
+	
 	public static RenderManager instance = new RenderManager();
 	private FontRenderer fontRenderer;
 	public static double renderPosX;
@@ -24,7 +27,7 @@ public class RenderManager {
 
 	private RenderManager() {
 		this.entityRenderMap.put(EntitySpider.class, new RenderSpider());
-		this.entityRenderMap.put(EntityPig.class, new RenderPig(new ModelPig(), new ModelPig(0.5F), 0.7F));
+		this.entityRenderMap.put(EntityPig.class, new RenderLiving(new ModelPig(), 0.7F));
 		this.entityRenderMap.put(EntitySheep.class, new RenderSheep(new ModelSheep(), new ModelCow(), 0.7F));
 		this.entityRenderMap.put(EntityCreeper.class, new RenderCreeper());
 		this.entityRenderMap.put(EntitySkeleton.class, new RenderLiving(new ModelSkeleton(), 0.5F));

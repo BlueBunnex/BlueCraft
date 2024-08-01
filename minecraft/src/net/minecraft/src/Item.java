@@ -83,7 +83,7 @@ public class Item {
 	bucketWater    = new ItemBucket(70, Block.waterMoving.blockID).setIconIndex(75),
 	bucketLava     = new ItemBucket(71, Block.lavaMoving.blockID).setIconIndex(76),
 	minecartEmpty  = new ItemMinecart(72).setIconIndex(135),
-	saddle         = new ItemSaddle(73).setIconIndex(104),
+	
 	doorSteel      = new ItemDoor(74, Material.iron).setIconIndex(44),
 	
 	snowball       = new ItemSnowball(76).setIconIndex(14),
@@ -145,6 +145,4 @@ public class Item {
 	public boolean canHarvestBlock(Block var1) {
 		return false;
 	}
-
-	public void saddleEntity(ItemStack var1, EntityLiving var2) {}
 }

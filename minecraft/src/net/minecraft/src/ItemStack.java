@@ -121,10 +121,9 @@ public final class ItemStack {
 		return Item.itemsList[this.itemID].canHarvestBlock(var1);
 	}
 
-	public void onItemDestroyedByUse(EntityPlayer var1) {
-	}
+	public void onItemDestroyedByUse(EntityPlayer var1) {}
 
 	public void useItemOnEntity(EntityLiving var1) {
-		Item.itemsList[this.itemID].saddleEntity(this, var1);
+		// this WAS where the garbage saddle logic was
 	}
 }
