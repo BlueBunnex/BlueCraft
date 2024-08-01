@@ -13,12 +13,13 @@ public class PlayerController {
 	public void initController() {
 	}
 
-	public void onWorldChange(World var1) {
-	}
+	public void onWorldChange(World var1) {}
 
-	public void clickBlock(int var1, int var2, int var3) {
-		this.sendBlockRemoved(var1, var2, var3);
+	public void hitBlock(int x, int y, int z) {
+		this.sendBlockRemoved(x, y, z);
 	}
+	
+	public void interactBlock(int x, int y, int z) {}
 
 	public boolean sendBlockRemoved(int var1, int var2, int var3) {
 		this.mc.effectRenderer.addBlockDestroyEffects(var1, var2, var3);

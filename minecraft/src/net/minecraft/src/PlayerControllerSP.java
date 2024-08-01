@@ -44,16 +44,21 @@ public class PlayerControllerSP extends PlayerController {
 		return var6;
 	}
 
-	public void clickBlock(int var1, int var2, int var3) {
-		int var4 = this.mc.theWorld.getBlockId(var1, var2, var3);
-		if(var4 > 0 && this.curBlockDamage == 0.0F) {
-			Block.blocksList[var4].onBlockClicked(this.mc.theWorld, var1, var2, var3, this.mc.thePlayer);
-		}
+	public void hitBlock(int x, int y, int z) {
+		
+		int blockID = this.mc.theWorld.getBlockId(x, y, z);
 
-		if(var4 > 0 && Block.blocksList[var4].blockStrength(this.mc.thePlayer) >= 1.0F) {
-			this.sendBlockRemoved(var1, var2, var3);
-		}
+		if (blockID > 0 && Block.blocksList[blockID].blockStrength(this.mc.thePlayer) >= 1.0F)
+			this.sendBlockRemoved(x, y, z);
 
+	}
+	
+	public void interactBlock(int x, int y, int z) {
+		
+		int blockID = this.mc.theWorld.getBlockId(x, y, z);
+		
+		if (blockID > 0)
+			Block.blocksList[blockID].onBlockInteract(this.mc.theWorld, x, y, z, this.mc.thePlayer);
 	}
 
 	public void resetBlockRemoving() {

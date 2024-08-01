@@ -12,6 +12,7 @@ import net.minecraft.src.Vec3D;
 import net.minecraft.src.World;
 
 public class BlockDoor extends Block {
+	
 	protected BlockDoor(int var1, Material var2) {
 		super(var1, var2);
 		this.blockIndexInTexture = 97;
@@ -91,102 +92,39 @@ public class BlockDoor extends Block {
 
 	}
 
-	public void onBlockClicked(World var1, int var2, int var3, int var4, EntityPlayer var5) {
-		this.blockActivated(var1, var2, var3, var4, var5);
+	public void onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {
+		this.openDoor(var1, var2, var3, var4, var5);
 	}
 
-	public boolean blockActivated(World var1, int var2, int var3, int var4, EntityPlayer var5) {
-		if(this.material == Material.iron) {
-			return true;
-		} else {
-			int var6 = var1.getBlockMetadata(var2, var3, var4);
-			if((var6 & 8) != 0) {
-				if(var1.getBlockId(var2, var3 - 1, var4) == this.blockID) {
-					this.blockActivated(var1, var2, var3 - 1, var4, var5);
-				}
-
-				return true;
-			} else {
-				if(var1.getBlockId(var2, var3 + 1, var4) == this.blockID) {
-					var1.setBlockMetadataWithNotify(var2, var3 + 1, var4, (var6 ^ 4) + 8);
-				}
-
-				var1.setBlockMetadataWithNotify(var2, var3, var4, var6 ^ 4);
-				var1.markBlocksDirty(var2, var3 - 1, var4, var2, var3, var4);
-				if(Math.random() < 0.5D) {
-					var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_open", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
-				} else {
-					var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_close", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
-				}
-
-				return true;
-			}
-		}
-	}
-
-	public void onPoweredBlockChange(World var1, int var2, int var3, int var4, boolean var5) {
+	private boolean openDoor(World var1, int var2, int var3, int var4, EntityPlayer var5) {
+		
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
+		
 		if((var6 & 8) != 0) {
 			if(var1.getBlockId(var2, var3 - 1, var4) == this.blockID) {
-				this.onPoweredBlockChange(var1, var2, var3 - 1, var4, var5);
+				this.openDoor(var1, var2, var3 - 1, var4, var5);
 			}
 
+			return true;
 		} else {
-			boolean var7 = (var1.getBlockMetadata(var2, var3, var4) & 4) > 0;
-			if(var7 != var5) {
-				if(var1.getBlockId(var2, var3 + 1, var4) == this.blockID) {
-					var1.setBlockMetadataWithNotify(var2, var3 + 1, var4, (var6 ^ 4) + 8);
-				}
-
-				var1.setBlockMetadataWithNotify(var2, var3, var4, var6 ^ 4);
-				var1.markBlocksDirty(var2, var3 - 1, var4, var2, var3, var4);
-				if(Math.random() < 0.5D) {
-					var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_open", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
-				} else {
-					var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_close", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
-				}
-
+			if(var1.getBlockId(var2, var3 + 1, var4) == this.blockID) {
+				var1.setBlockMetadataWithNotify(var2, var3 + 1, var4, (var6 ^ 4) + 8);
 			}
+
+			var1.setBlockMetadataWithNotify(var2, var3, var4, var6 ^ 4);
+			var1.markBlocksDirty(var2, var3 - 1, var4, var2, var3, var4);
+			if(Math.random() < 0.5D) {
+				var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_open", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
+			} else {
+				var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_close", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
+			}
+
+			return true;
 		}
-	}
-
-	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
-		int var6 = var1.getBlockMetadata(var2, var3, var4);
-		if((var6 & 8) != 0) {
-			if(var1.getBlockId(var2, var3 - 1, var4) != this.blockID) {
-				var1.setBlockWithNotify(var2, var3, var4, 0);
-			}
-
-			if(var5 > 0 && Block.blocksList[var5].canProvidePower()) {
-				this.onNeighborBlockChange(var1, var2, var3 - 1, var4, var5);
-			}
-		} else {
-			boolean var7 = false;
-			if(var1.getBlockId(var2, var3 + 1, var4) != this.blockID) {
-				var1.setBlockWithNotify(var2, var3, var4, 0);
-				var7 = true;
-			}
-
-			if(!var1.isBlockNormalCube(var2, var3 - 1, var4)) {
-				var1.setBlockWithNotify(var2, var3, var4, 0);
-				var7 = true;
-				if(var1.getBlockId(var2, var3 + 1, var4) == this.blockID) {
-					var1.setBlockWithNotify(var2, var3 + 1, var4, 0);
-				}
-			}
-
-			if(var7) {
-				this.dropBlockAsItem(var1, var2, var3, var4, var6);
-			} else if(var5 > 0 && Block.blocksList[var5].canProvidePower()) {
-				boolean var8 = var1.isBlockIndirectlyGettingPowered(var2, var3, var4) || var1.isBlockIndirectlyGettingPowered(var2, var3 + 1, var4);
-				this.onPoweredBlockChange(var1, var2, var3, var4, var8);
-			}
-		}
-
 	}
 
 	public int idDropped(int var1, Random var2) {
-		return (var1 & 8) != 0 ? 0 : (this.material == Material.iron ? Item.doorSteel.shiftedIndex : Item.doorWood.shiftedIndex);
+		return Item.doorWood.shiftedIndex;
 	}
 
 	public MovingObjectPosition collisionRayTrace(World var1, int var2, int var3, int var4, Vec3D var5, Vec3D var6) {

@@ -28,7 +28,6 @@ public class CraftingManager {
 		this.addRecipe(new ItemStack(Block.stairSingle, 3), new Object[]{"###", Character.valueOf('#'), Block.cobblestone});
 		this.addRecipe(new ItemStack(Block.ladder, 1), new Object[]{"# #", "###", "# #", Character.valueOf('#'), Item.stick});
 		this.addRecipe(new ItemStack(Item.doorWood, 1), new Object[]{"##", "##", "##", Character.valueOf('#'), Block.planks});
-		this.addRecipe(new ItemStack(Item.doorSteel, 1), new Object[]{"##", "##", "##", Character.valueOf('#'), Item.ingotIron});
 		this.addRecipe(new ItemStack(Item.sign, 1), new Object[]{"###", "###", " X ", Character.valueOf('#'), Block.planks, Character.valueOf('X'), Item.stick});
 		this.addRecipe(new ItemStack(Block.planks, 4), new Object[]{"#", Character.valueOf('#'), Block.wood});
 		this.addRecipe(new ItemStack(Item.stick, 4), new Object[]{"#", "#", Character.valueOf('#'), Block.planks});
@@ -43,9 +42,6 @@ public class CraftingManager {
 		this.addRecipe(new ItemStack(Block.stairCompactStone, 4), new Object[]{"#  ", "## ", "###", Character.valueOf('#'), Block.cobblestone});
 		this.addRecipe(new ItemStack(Item.painting, 1), new Object[]{"###", "#X#", "###", Character.valueOf('#'), Item.stick, Character.valueOf('X'), Block.cloth});
 		this.addRecipe(new ItemStack(Item.appleGold, 1), new Object[]{"###", "#X#", "###", Character.valueOf('#'), Block.blockGold, Character.valueOf('X'), Item.appleRed});
-		this.addRecipe(new ItemStack(Block.button, 1), new Object[]{"#", "#", Character.valueOf('#'), Block.stone});
-		this.addRecipe(new ItemStack(Block.pressurePlateStone, 1), new Object[]{"###", Character.valueOf('#'), Block.stone});
-		this.addRecipe(new ItemStack(Block.pressurePlateWood, 1), new Object[]{"###", Character.valueOf('#'), Block.planks});
 		Collections.sort(this.recipes, new RecipeSorter(this));
 		System.out.println(this.recipes.size() + " recipes");
 	}

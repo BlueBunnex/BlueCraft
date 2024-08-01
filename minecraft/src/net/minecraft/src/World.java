@@ -1696,29 +1696,7 @@ public class World implements IBlockAccess {
 		ChunkCache var16 = new ChunkCache(this, var10, var11, var12, var13, var14, var15);
 		return (new Pathfinder(var16)).createEntityPathTo(var1, var2, var3, var4, var5);
 	}
-
-	public boolean isBlockProvidingPowerTo(int var1, int var2, int var3, int var4) {
-		int var5 = this.getBlockId(var1, var2, var3);
-		return var5 == 0 ? false : Block.blocksList[var5].isIndirectlyPoweringTo(this, var1, var2, var3, var4);
-	}
-
-	public boolean isBlockGettingPowered(int var1, int var2, int var3) {
-		return this.isBlockProvidingPowerTo(var1, var2 - 1, var3, 0) ? true : (this.isBlockProvidingPowerTo(var1, var2 + 1, var3, 1) ? true : (this.isBlockProvidingPowerTo(var1, var2, var3 - 1, 2) ? true : (this.isBlockProvidingPowerTo(var1, var2, var3 + 1, 3) ? true : (this.isBlockProvidingPowerTo(var1 - 1, var2, var3, 4) ? true : this.isBlockProvidingPowerTo(var1 + 1, var2, var3, 5)))));
-	}
-
-	public boolean isBlockIndirectlyProvidingPowerTo(int var1, int var2, int var3, int var4) {
-		if(this.isBlockNormalCube(var1, var2, var3)) {
-			return this.isBlockGettingPowered(var1, var2, var3);
-		} else {
-			int var5 = this.getBlockId(var1, var2, var3);
-			return var5 == 0 ? false : Block.blocksList[var5].isPoweringTo(this, var1, var2, var3, var4);
-		}
-	}
-
-	public boolean isBlockIndirectlyGettingPowered(int var1, int var2, int var3) {
-		return this.isBlockIndirectlyProvidingPowerTo(var1, var2 - 1, var3, 0) ? true : (this.isBlockIndirectlyProvidingPowerTo(var1, var2 + 1, var3, 1) ? true : (this.isBlockIndirectlyProvidingPowerTo(var1, var2, var3 - 1, 2) ? true : (this.isBlockIndirectlyProvidingPowerTo(var1, var2, var3 + 1, 3) ? true : (this.isBlockIndirectlyProvidingPowerTo(var1 - 1, var2, var3, 4) ? true : this.isBlockIndirectlyProvidingPowerTo(var1 + 1, var2, var3, 5)))));
-	}
-
+	
 	public EntityPlayer getClosestPlayerToEntity(Entity var1, double var2) {
 		return this.getClosestPlayer(var1.posX, var1.posY, var1.posZ, var2);
 	}

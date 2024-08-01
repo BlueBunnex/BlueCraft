@@ -106,11 +106,6 @@ public class Block {
 	public static final Block stairCompactStone = new BlockStairs(67, cobblestone);
 	public static final Block signWall = (new BlockSign(68, TileEntitySign.class, Item.sign.shiftedIndex, false)).setHardness(1.0F).setStepSound(soundWoodFootstep);
 	
-	public static final Block pressurePlateStone = (new BlockPressurePlate(70, stone.blockIndexInTexture, EnumMobType.mobs)).setHardness(0.5F).setStepSound(soundStoneFootstep);
-	public static final Block doorSteel = (new BlockDoor(71, Material.iron)).setHardness(5.0F).setStepSound(soundMetalFootstep);
-	public static final Block pressurePlateWood = (new BlockPressurePlate(72, planks.blockIndexInTexture, EnumMobType.everything)).setHardness(0.5F).setStepSound(soundWoodFootstep);
-	
-	public static final Block button = (new BlockButton(77, stone.blockIndexInTexture)).setHardness(0.5F).setStepSound(soundStoneFootstep);
 	public static final Block snow = (new BlockSnow(78, 66)).setHardness(0.1F).setStepSound(soundClothFootstep);
 	public static final Block ice = (new BlockIce(79, 67)).setHardness(0.5F).setLightOpacity(3).setStepSound(soundGlassFootstep);
 	public static final Block blockSnow = (new BlockSnowBlock(80, 66)).setHardness(0.2F).setStepSound(soundClothFootstep);
@@ -431,53 +426,31 @@ public class Block {
 		return var5 == 0 || blocksList[var5].material.getIsLiquid();
 	}
 
-	public boolean blockActivated(World var1, int var2, int var3, int var4, EntityPlayer var5) {
-		return false;
-	}
+	public void onEntityWalking(World var1, int var2, int var3, int var4, Entity var5) {}
 
-	public void onEntityWalking(World var1, int var2, int var3, int var4, Entity var5) {
-	}
+	public void onBlockPlaced(World var1, int var2, int var3, int var4, int var5) {}
 
-	public void onBlockPlaced(World var1, int var2, int var3, int var4, int var5) {
-	}
+	public void onBlockInteract(World var1, int var2, int var3, int var4, EntityPlayer var5) {}
 
-	public void onBlockClicked(World var1, int var2, int var3, int var4, EntityPlayer var5) {
-	}
+	public void velocityToAddToEntity(World var1, int var2, int var3, int var4, Entity var5, Vec3D var6) {}
 
-	public void velocityToAddToEntity(World var1, int var2, int var3, int var4, Entity var5, Vec3D var6) {
-	}
-
-	public void setBlockBoundsBasedOnState(IBlockAccess var1, int var2, int var3, int var4) {
-	}
+	public void setBlockBoundsBasedOnState(IBlockAccess var1, int var2, int var3, int var4) {}
 
 	public int colorMultiplier(IBlockAccess var1, int var2, int var3, int var4) {
 		return 16777215;
 	}
 
-	public boolean isPoweringTo(IBlockAccess var1, int var2, int var3, int var4, int var5) {
-		return false;
-	}
+	public void onEntityCollidedWithBlock(World var1, int var2, int var3, int var4, Entity var5) {}
 
-	public boolean canProvidePower() {
-		return false;
-	}
-
-	public void onEntityCollidedWithBlock(World var1, int var2, int var3, int var4, Entity var5) {
-	}
-
-	public boolean isIndirectlyPoweringTo(World var1, int var2, int var3, int var4, int var5) {
-		return false;
-	}
-
-	public void setBlockBoundsForItemRender() {
-	}
+	public void setBlockBoundsForItemRender() {}
 
 	static {
+		
+		// make item forms
 		for(int var0 = 0; var0 < 256; ++var0) {
 			if(blocksList[var0] != null) {
 				Item.itemsList[var0] = new ItemBlock(var0 - 256);
 			}
 		}
-
 	}
 }

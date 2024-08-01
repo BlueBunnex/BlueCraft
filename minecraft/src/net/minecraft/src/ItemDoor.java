@@ -3,11 +3,9 @@ package net.minecraft.src;
 import net.minecraft.src.block.Block;
 
 public class ItemDoor extends Item {
-	private Material material;
 
-	public ItemDoor(int var1, Material var2) {
+	public ItemDoor(int var1) {
 		super(var1);
-		this.material = var2;
 		this.maxDamage = 64;
 		this.maxStackSize = 1;
 	}
@@ -17,12 +15,7 @@ public class ItemDoor extends Item {
 			return false;
 		} else {
 			++var5;
-			Block var8;
-			if(this.material == Material.wood) {
-				var8 = Block.doorWood;
-			} else {
-				var8 = Block.doorSteel;
-			}
+			Block var8 = Block.doorWood;
 
 			if(!var8.canPlaceBlockAt(var3, var4, var5, var6)) {
 				return false;

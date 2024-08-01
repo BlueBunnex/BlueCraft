@@ -78,13 +78,11 @@ public class Item {
 	painting       = new ItemPainting(65).setIconIndex(26),
 	appleGold      = new ItemFood(66, 42).setIconIndex(11),
 	sign           = new ItemSign(67).setIconIndex(42),
-	doorWood       = new ItemDoor(68, Material.wood).setIconIndex(43),
+	doorWood       = new ItemDoor(68).setIconIndex(43),
 	bucketEmpty    = new ItemBucket(69, 0).setIconIndex(74),
 	bucketWater    = new ItemBucket(70, Block.waterMoving.blockID).setIconIndex(75),
 	bucketLava     = new ItemBucket(71, Block.lavaMoving.blockID).setIconIndex(76),
 	minecartEmpty  = new ItemMinecart(72).setIconIndex(135),
-	
-	doorSteel      = new ItemDoor(74, Material.iron).setIconIndex(44),
 	
 	snowball       = new ItemSnowball(76).setIconIndex(14),
 	cd             = new ItemSnowball(77).setIconIndex(90);

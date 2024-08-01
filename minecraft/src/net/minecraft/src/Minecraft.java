@@ -554,42 +554,51 @@ public class Minecraft implements Runnable {
 		}
 	}
 
-	private void clickMouse(int var1) {
-		if(var1 != 0 || this.leftClickCounter <= 0) {
-			if(var1 == 0) {
+	private void clickMouse(int mouseBtn) {
+		
+		if(mouseBtn != 0 || this.leftClickCounter <= 0) {
+			if(mouseBtn == 0) {
 				this.entityRenderer.itemRenderer.c();
 			}
 
 			int var3;
 			if(this.objectMouseOver == null) {
-				if(var1 == 0) {
+				if(mouseBtn == 0) {
 					this.leftClickCounter = 10;
 				}
+				
 			} else if(this.objectMouseOver.typeOfHit == 1) {
-				if(var1 == 0) {
+				
+				if(mouseBtn == 0) {
 					this.thePlayer.attackEntity(this.objectMouseOver.entityHit);
 				}
 
-				if(var1 == 1) {
+				if(mouseBtn == 1) {
 					this.thePlayer.interactWithEntity(this.objectMouseOver.entityHit);
 				}
-			} else if(this.objectMouseOver.typeOfHit == 0) {
+				
+			// looking at a block
+			} else if (this.objectMouseOver.typeOfHit == 0) {
+				
 				int var2 = this.objectMouseOver.blockX;
 				var3 = this.objectMouseOver.blockY;
 				int var4 = this.objectMouseOver.blockZ;
 				int var5 = this.objectMouseOver.sideHit;
 				Block var6 = Block.blocksList[this.theWorld.getBlockId(var2, var3, var4)];
-				if(var1 == 0) {
+				
+				// hit block
+				if(mouseBtn == 0) {
 					this.theWorld.extinguishFire(var2, var3, var4, this.objectMouseOver.sideHit);
 					if(var6 != Block.bedrock || this.thePlayer.unusedMiningCooldown >= 100) {
-						this.playerController.clickBlock(var2, var3, var4);
+						this.playerController.hitBlock(var2, var3, var4);
 					}
+				
+				// interact block
 				} else {
+					this.playerController.interactBlock(var2, var3, var4);
+					
 					ItemStack var7 = this.thePlayer.inventory.getCurrentItem();
 					int var8 = this.theWorld.getBlockId(var2, var3, var4);
-					if(var8 > 0 && Block.blocksList[var8].blockActivated(this.theWorld, var2, var3, var4, this.thePlayer)) {
-						return;
-					}
 
 					if(var7 == null) {
 						return;
@@ -608,7 +617,7 @@ public class Minecraft implements Runnable {
 				}
 			}
 
-			if(var1 == 1) {
+			if(mouseBtn == 1) {
 				ItemStack var10 = this.thePlayer.inventory.getCurrentItem();
 				if(var10 != null) {
 					var3 = var10.stackSize;
@@ -732,7 +741,7 @@ public class Minecraft implements Runnable {
 			
 				case Keyboard.KEY_T:
 					// TODO debug key
-					this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.pickaxeDiamond));
+					this.thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.doorWood));
 					break;
 					
 				case Keyboard.KEY_F:

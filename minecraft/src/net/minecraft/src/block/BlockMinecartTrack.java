@@ -89,13 +89,11 @@ public class BlockMinecartTrack extends Block {
 		if(var7) {
 			this.dropBlockAsItem(var1, var2, var3, var4, var1.getBlockMetadata(var2, var3, var4));
 			var1.setBlockWithNotify(var2, var3, var4, 0);
-		} else if(var5 > 0 && Block.blocksList[var5].canProvidePower() && MinecartTrackLogic.getNAdjacentTracks(new MinecartTrackLogic(this, var1, var2, var3, var4)) == 3) {
-			this.refreshTrackShape(var1, var2, var3, var4);
 		}
 
 	}
 
 	private void refreshTrackShape(World var1, int var2, int var3, int var4) {
-		(new MinecartTrackLogic(this, var1, var2, var3, var4)).place(var1.isBlockIndirectlyGettingPowered(var2, var3, var4));
+		new MinecartTrackLogic(this, var1, var2, var3, var4).place(false);
 	}
 }
