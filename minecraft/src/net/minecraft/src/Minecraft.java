@@ -447,7 +447,7 @@ public class Minecraft implements Runnable {
 				this.checkGLError("Post render");
 				++var3;
 
-				for(this.isGamePaused = !this.isMultiplayerWorld() && this.currentScreen != null && this.currentScreen.doesGuiPauseGame(); System.currentTimeMillis() >= var1 + 1000L; var3 = 0) {
+				for(this.isGamePaused = this.currentScreen != null && this.currentScreen.doesGuiPauseGame(); System.currentTimeMillis() >= var1 + 1000L; var3 = 0) {
 					this.debug = var3 + " fps, " + WorldRenderer.chunksUpdated + " chunk updates";
 					WorldRenderer.chunksUpdated = 0;
 					var1 += 1000L;
@@ -928,39 +928,22 @@ public class Minecraft implements Runnable {
 			}
 		}
 
-		if(this.theWorld != null) {
+		if (this.theWorld != null) {
+			
 			this.theWorld.difficultySetting = this.options.difficulty;
-			if(!this.isGamePaused) {
+			
+			if (!this.isGamePaused) {
+				
 				this.entityRenderer.updateRenderer();
-			}
-
-			if(!this.isGamePaused) {
 				this.renderGlobal.updateClouds();
-			}
-
-			if(!this.isGamePaused) {
 				this.theWorld.updateEntities();
-			}
-
-			// TODO
-			if(!this.isGamePaused && !this.isMultiplayerWorld()) {
 				this.theWorld.tick();
-			}
-
-			if(!this.isGamePaused) {
 				this.theWorld.randomDisplayUpdates(MathHelper.floor_double(this.thePlayer.posX), MathHelper.floor_double(this.thePlayer.posY), MathHelper.floor_double(this.thePlayer.posZ));
-			}
-
-			if(!this.isGamePaused) {
 				this.effectRenderer.updateEffects();
 			}
 		}
 
 		this.systemTime = System.currentTimeMillis();
-	}
-
-	public boolean isMultiplayerWorld() {
-		return this.theWorld != null && this.theWorld.multiplayerWorld;
 	}
 
 	public void startWorld(String var1) {
@@ -988,18 +971,9 @@ public class Minecraft implements Runnable {
 		if(var1 != null) {
 			this.playerController.onWorldChange(var1);
 			var1.fontRenderer = this.fontRenderer;
-			if(!this.isMultiplayerWorld()) {
-				this.thePlayer = (EntityPlayerSP)var1.createDebugPlayer(EntityPlayerSP.class);
-			} else if(this.thePlayer != null) {
-				this.thePlayer.preparePlayerToSpawn();
-				if(var1 != null) {
-					var1.spawnEntityInWorld(this.thePlayer);
-				}
-			}
-
-			if(!var1.multiplayerWorld) {
-				this.preloadWorld(var2);
-			}
+			
+			this.thePlayer = (EntityPlayerSP) var1.createDebugPlayer(EntityPlayerSP.class);
+			this.preloadWorld(var2);
 
 			if(this.thePlayer == null) {
 				this.thePlayer = new EntityPlayerSP(this, var1);

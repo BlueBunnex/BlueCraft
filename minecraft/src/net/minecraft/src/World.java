@@ -51,7 +51,6 @@ public class World implements IBlockAccess {
 	private Set positionsToUpdate;
 	private int soundCounter;
 	private List entitiesWithinAABBExcludingEntity;
-	public boolean multiplayerWorld;
 
 	public static NBTTagCompound getLevelData(File var0, String var1) {
 		File var2 = new File(var0, "saves");
@@ -124,7 +123,6 @@ public class World implements IBlockAccess {
 		this.positionsToUpdate = new HashSet();
 		this.soundCounter = this.rand.nextInt(12000);
 		this.entitiesWithinAABBExcludingEntity = new ArrayList();
-		this.multiplayerWorld = false;
 		this.levelName = var1;
 		this.chunkProvider = this.getChunkProvider(this.saveDirectory);
 		this.calculateInitialSkylight();
@@ -156,7 +154,6 @@ public class World implements IBlockAccess {
 		this.positionsToUpdate = new HashSet();
 		this.soundCounter = this.rand.nextInt(12000);
 		this.entitiesWithinAABBExcludingEntity = new ArrayList();
-		this.multiplayerWorld = false;
 		this.levelName = var2;
 		var1.mkdirs();
 		this.saveDirectory = new File(var1, var2);
