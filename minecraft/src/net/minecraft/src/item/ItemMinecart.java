@@ -2,8 +2,8 @@ package net.minecraft.src.item;
 
 import net.minecraft.src.EntityMinecart;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.World;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public class ItemMinecart extends Item {
 	public ItemMinecart(int var1) {

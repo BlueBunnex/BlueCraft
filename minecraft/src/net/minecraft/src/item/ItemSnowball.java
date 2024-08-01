@@ -2,7 +2,7 @@ package net.minecraft.src.item;
 
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EntitySnowball;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class ItemSnowball extends Item {
 	public ItemSnowball(int var1) {

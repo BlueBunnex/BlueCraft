@@ -6,8 +6,8 @@ import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.EnumSkyBlock;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
 import net.minecraft.src.item.Item;
+import net.minecraft.src.world.World;
 
 public class BlockSnow extends Block {
 	protected BlockSnow(int var1, int var2) {

@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityList;
 import net.minecraft.src.RenderManager;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer {
 	private Map entityHashMap = new HashMap();

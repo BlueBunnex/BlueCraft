@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Entity;
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class BlockFarmland extends Block {
 	protected BlockFarmland(int var1) {

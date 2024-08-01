@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public abstract class EntityAnimal extends EntityCreature {
 	public EntityAnimal(World var1) {

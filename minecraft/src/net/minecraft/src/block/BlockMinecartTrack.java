@@ -7,7 +7,7 @@ import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class BlockMinecartTrack extends Block {
 	protected BlockMinecartTrack(int var1, int var2) {

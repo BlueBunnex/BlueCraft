@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import net.minecraft.src.world.World;
+
 public class SpawnerAnimals {
 	private int maxSpawns;
 	private Class entityType;

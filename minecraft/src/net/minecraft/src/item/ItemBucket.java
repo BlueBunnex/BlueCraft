@@ -5,7 +5,7 @@ import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class ItemBucket extends Item {
 	private int isFull;

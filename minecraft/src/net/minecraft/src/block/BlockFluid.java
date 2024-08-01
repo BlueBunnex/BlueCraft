@@ -7,7 +7,7 @@ import net.minecraft.src.Entity;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public abstract class BlockFluid extends Block {
 	protected int fluidType = 1;

@@ -3,7 +3,7 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class BlockFlowing extends BlockFluid {
 	int numAdjacentSources = 0;

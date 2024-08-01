@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.world.World;
+
 public class GuiIngameMenu extends GuiScreen {
 	private int updateCounter2 = 0;
 	private int updateCounter = 0;

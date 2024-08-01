@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.src.world.World;
+
 public class ChunkProviderClient implements IChunkProvider {
 	private Chunk blankChunk;
 	private Map chunkMapping = new HashMap();

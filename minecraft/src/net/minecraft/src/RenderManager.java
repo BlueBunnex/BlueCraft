@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.Map;
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.world.World;
+
 public class RenderManager {
 	
 	// is it even POSSIBLE to parameterize this better lol

@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public class EntitySheep extends EntityAnimal {
 	public boolean sheared = false;

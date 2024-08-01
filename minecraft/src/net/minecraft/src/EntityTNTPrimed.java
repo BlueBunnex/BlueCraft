@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.world.World;
+
 public class EntityTNTPrimed extends Entity {
 	public int fuse;
 

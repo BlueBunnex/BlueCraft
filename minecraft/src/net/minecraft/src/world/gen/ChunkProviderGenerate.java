@@ -1,9 +1,16 @@
-package net.minecraft.src;
+package net.minecraft.src.world.gen;
 
 import java.util.Random;
 
+import net.minecraft.src.Chunk;
+import net.minecraft.src.IChunkProvider;
+import net.minecraft.src.IProgressUpdate;
+import net.minecraft.src.Material;
+import net.minecraft.src.MathHelper;
+import net.minecraft.src.NoiseGeneratorOctaves;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockSand;
+import net.minecraft.src.world.World;
 
 public class ChunkProviderGenerate implements IChunkProvider {
 	private Random rand;

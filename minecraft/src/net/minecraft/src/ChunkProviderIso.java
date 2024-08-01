@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.io.IOException;
 
+import net.minecraft.src.world.World;
+
 public class ChunkProviderIso implements IChunkProvider {
 	private Chunk[] chunks = new Chunk[256];
 	private World worldObj;

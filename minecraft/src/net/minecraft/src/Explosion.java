@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public class Explosion {
 	public void doExplosion(World var1, Entity var2, double var3, double var5, double var7, float var9) {

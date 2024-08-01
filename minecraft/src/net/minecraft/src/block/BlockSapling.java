@@ -2,8 +2,8 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenTrees;
+import net.minecraft.src.world.World;
+import net.minecraft.src.world.gen.WorldGenTrees;
 
 public class BlockSapling extends BlockFlower {
 	protected BlockSapling(int var1, int var2) {

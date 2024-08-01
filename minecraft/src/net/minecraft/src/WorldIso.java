@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.io.File;
 
+import net.minecraft.src.world.World;
+
 class WorldIso extends World {
 	final CanvasIsomPreview isomPreview;
 

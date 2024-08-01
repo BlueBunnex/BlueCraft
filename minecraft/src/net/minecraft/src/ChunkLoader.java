@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 
 import net.minecraft.src.block.TileEntity;
+import net.minecraft.src.world.World;
 
 public class ChunkLoader implements IChunkLoader {
 	private File saveDir;

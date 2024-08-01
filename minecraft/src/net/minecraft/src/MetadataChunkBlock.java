@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public class MetadataChunkBlock {
 	public final EnumSkyBlock skyBlock;

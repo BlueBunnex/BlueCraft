@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.world.World;
+
 class SpawnerMonsters extends SpawnerAnimals {
 	final PlayerControllerSP playerController;
 

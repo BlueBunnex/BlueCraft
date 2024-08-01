@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
 
 public class EntityPainting extends Entity {
 	private int tickCounter;

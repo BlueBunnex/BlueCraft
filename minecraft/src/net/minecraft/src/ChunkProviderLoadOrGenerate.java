@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.io.IOException;
 
+import net.minecraft.src.world.World;
+
 public class ChunkProviderLoadOrGenerate implements IChunkProvider {
 	private Chunk blankChunk;
 	private IChunkProvider chunkProvider;

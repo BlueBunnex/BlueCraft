@@ -1,12 +1,14 @@
-package net.minecraft.src;
+package net.minecraft.src.world.gen;
 
 import java.util.Random;
 
+import net.minecraft.src.Material;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntityChest;
 import net.minecraft.src.block.TileEntityMobSpawner;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
 
 public class WorldGenDungeons extends WorldGenerator {
 	

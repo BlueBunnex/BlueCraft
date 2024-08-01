@@ -8,7 +8,7 @@ import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class BlockStairs extends Block {
 	private Block modelBlock;

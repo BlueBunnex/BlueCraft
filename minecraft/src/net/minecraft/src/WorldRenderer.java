@@ -9,6 +9,7 @@ import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockContainer;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.block.TileEntityRenderer;
+import net.minecraft.src.world.World;
 
 public class WorldRenderer {
 	public World worldObj;

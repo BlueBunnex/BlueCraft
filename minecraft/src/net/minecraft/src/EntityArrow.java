@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
 
 public class EntityArrow extends Entity {
 	private int xTile = -1;

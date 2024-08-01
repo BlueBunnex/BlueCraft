@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.world.World;
+
 public class EntityFallingSand extends Entity {
 	public int blockID;
 	public int fallTime = 0;

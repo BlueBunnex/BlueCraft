@@ -2,7 +2,7 @@ package net.minecraft.src.item;
 
 import net.minecraft.src.EntityArrow;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class ItemBow extends Item {
 	public ItemBow(int var1) {

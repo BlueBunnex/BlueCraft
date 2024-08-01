@@ -15,10 +15,10 @@ import net.minecraft.src.StepSound;
 import net.minecraft.src.StepSoundGlass;
 import net.minecraft.src.StepSoundSand;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.World;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemBlock;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
 
 public class Block {
 	public static final StepSound soundPowderFootstep = new StepSound("stone", 1.0F, 1.0F);

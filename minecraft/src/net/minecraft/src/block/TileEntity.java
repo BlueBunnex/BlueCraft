@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class TileEntity {
 	private static Map nameToClassMap = new HashMap();

@@ -13,6 +13,7 @@ import net.minecraft.src.inventory.InventoryGeneric;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controllers;

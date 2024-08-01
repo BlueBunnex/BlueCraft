@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public class TerrainTextureManager {
 	private float[] texCols = new float[768];

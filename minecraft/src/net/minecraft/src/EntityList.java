@@ -3,6 +3,8 @@ package net.minecraft.src;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.src.world.World;
+
 public class EntityList {
 	private static Map stringToClassMapping = new HashMap();
 	private static Map classToIDMapping = new HashMap();

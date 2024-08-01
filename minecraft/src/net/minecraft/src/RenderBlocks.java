@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockDoor;
 import net.minecraft.src.block.BlockFluid;
+import net.minecraft.src.world.World;
 
 public class RenderBlocks {
 	private IBlockAccess blockAccess;

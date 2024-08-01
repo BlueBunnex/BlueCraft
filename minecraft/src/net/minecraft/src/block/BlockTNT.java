@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.src.EntityTNTPrimed;
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class BlockTNT extends Block {
 	public BlockTNT(int var1, int var2) {

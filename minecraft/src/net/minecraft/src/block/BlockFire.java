@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class BlockFire extends Block {
 	private int[] chanceToEncourageFire = new int[256];

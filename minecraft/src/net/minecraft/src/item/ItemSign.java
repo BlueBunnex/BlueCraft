@@ -2,9 +2,9 @@ package net.minecraft.src.item;
 
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.World;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntitySign;
+import net.minecraft.src.world.World;
 
 public class ItemSign extends Item {
 	public ItemSign(int var1) {

@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.io.File;
 
+import net.minecraft.src.world.World;
+
 public class GuiSelectWorld extends GuiScreen {
 	protected GuiScreen parentScreen;
 	protected String screenTitle = "Select world";

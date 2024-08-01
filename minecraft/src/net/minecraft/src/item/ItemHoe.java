@@ -3,8 +3,8 @@ package net.minecraft.src.item;
 import net.minecraft.src.EntityItem;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public class ItemHoe extends Item {
 	public ItemHoe(int var1, int var2) {

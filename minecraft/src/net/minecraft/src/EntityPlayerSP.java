@@ -4,6 +4,7 @@ import net.minecraft.src.block.TileEntityFurnace;
 import net.minecraft.src.block.TileEntitySign;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
 
 public class EntityPlayerSP extends EntityPlayer {
 	

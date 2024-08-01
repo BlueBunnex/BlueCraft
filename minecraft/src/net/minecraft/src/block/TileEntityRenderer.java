@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.FontRenderer;
 import net.minecraft.src.RenderEngine;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class TileEntityRenderer {
 	private Map specialRendererMap = new HashMap();

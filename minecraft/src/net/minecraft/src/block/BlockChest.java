@@ -6,10 +6,10 @@ import net.minecraft.src.EntityItem;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
-import net.minecraft.src.World;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryLargeChest;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
 
 public class BlockChest extends BlockContainer {
 	private Random random = new Random();

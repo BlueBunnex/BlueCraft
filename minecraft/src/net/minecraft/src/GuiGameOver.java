@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.world.World;
+
 public class GuiGameOver extends GuiScreen {
 	
 	public void initGui() {

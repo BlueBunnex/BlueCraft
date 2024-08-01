@@ -1,8 +1,10 @@
-package net.minecraft.src;
+package net.minecraft.src.world.gen;
 
 import java.util.Random;
 
+import net.minecraft.src.MathHelper;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.world.World;
 
 public class WorldGenMinable extends WorldGenerator {
 	private int minableBlockId;

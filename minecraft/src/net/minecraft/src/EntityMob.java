@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.world.World;
+
 public class EntityMob extends EntityCreature {
 	protected int attackStrength = 2;
 

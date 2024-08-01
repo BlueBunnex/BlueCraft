@@ -1,6 +1,6 @@
 package net.minecraft.src.block;
 
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class BlockMushroom extends BlockFlower {
 	protected BlockMushroom(int var1, int var2) {

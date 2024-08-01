@@ -1,7 +1,7 @@
 package net.minecraft.src.item;
 
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.World;
+import net.minecraft.src.world.World;
 
 public class ItemSoup extends ItemFood {
 	public ItemSoup(int var1, int var2) {
