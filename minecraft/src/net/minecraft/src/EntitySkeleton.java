@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.item.Item;
+
 public class EntitySkeleton extends EntityMob {
 	public EntitySkeleton(World var1) {
 		super(var1);

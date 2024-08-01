@@ -1,6 +1,8 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.ItemArmor;
+import net.minecraft.src.item.ItemStack;
 
 public class InventoryPlayer implements IInventory {
 	public ItemStack[] mainInventory = new ItemStack[36];

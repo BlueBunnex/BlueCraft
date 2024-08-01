@@ -6,6 +6,8 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import net.minecraft.src.item.ItemStack;
+
 public class GuiIngame extends Gui {
 	private static RenderItem itemRenderer = new RenderItem();
 	private List chatMessageList = new ArrayList();

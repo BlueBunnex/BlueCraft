@@ -3,6 +3,8 @@ package net.minecraft.src;
 import java.util.List;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
 public class EntityMinecart extends Entity implements IInventory {
 	private ItemStack[] cargoItems;

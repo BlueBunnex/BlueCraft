@@ -1,5 +1,9 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.TileEntityFurnace;
+import net.minecraft.src.block.TileEntitySign;
+import net.minecraft.src.item.ItemStack;
+
 public class EntityPlayerSP extends EntityPlayer {
 	
 	public MovementInput movementInput;

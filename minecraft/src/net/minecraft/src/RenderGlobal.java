@@ -11,6 +11,9 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.TileEntity;
+import net.minecraft.src.block.TileEntityRenderer;
+import net.minecraft.src.item.ItemStack;
 
 public class RenderGlobal implements IWorldAccess {
 	public List tileEntities = new ArrayList();

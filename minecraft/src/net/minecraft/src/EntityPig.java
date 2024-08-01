@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.item.Item;
+
 public class EntityPig extends EntityAnimal {
 
 	public EntityPig(World world) {

@@ -1,10 +1,17 @@
 package net.minecraft.src;
 
-import net.minecraft.src.block.Block;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
 public class RecipesArmor {
 	private String[][] recipePatterns = new String[][]{{"XXX", "X X"}, {"X X", "XXX", "XXX"}, {"XXX", "X X", "X X"}, {"X X", "X X"}};
-	private Object[][] recipeItems = new Object[][]{{Block.cloth, Block.fire, Item.ingotIron, Item.diamond, Item.ingotGold}, {Item.helmetLeather, Item.helmetChain, Item.helmetSteel, Item.helmetDiamond, Item.helmetGold}, {Item.plateLeather, Item.plateChain, Item.plateSteel, Item.plateDiamond, Item.plateGold}, {Item.legsLeather, Item.legsChain, Item.legsSteel, Item.legsDiamond, Item.legsGold}, {Item.bootsLeather, Item.bootsChain, Item.bootsSteel, Item.bootsDiamond, Item.bootsGold}};
+	private Object[][] recipeItems = new Object[][] {
+		{ Item.ingotIron, Item.diamond },
+		{ Item.helmetIron, Item.helmetDiamond },
+		{ Item.plateIron, Item.plateDiamond },
+		{ Item.legsIron, Item.legsDiamond },
+		{ Item.bootsIron, Item.bootsDiamond }
+	};
 
 	public void addRecipes(CraftingManager var1) {
 		for(int var2 = 0; var2 < this.recipeItems[0].length; ++var2) {

@@ -1,5 +1,8 @@
 package net.minecraft.src;
 
+import net.minecraft.src.item.ItemArmor;
+import net.minecraft.src.item.ItemStack;
+
 class SlotArmor extends SlotInventory {
 	final int armorType;
 	final GuiInventory guiInventory;

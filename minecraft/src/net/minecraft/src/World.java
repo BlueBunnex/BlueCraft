@@ -13,6 +13,7 @@ import java.util.TreeSet;
 
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockFluid;
+import net.minecraft.src.block.TileEntity;
 
 public class World implements IBlockAccess {
 	private List lightingToUpdate;

@@ -1,6 +1,8 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
 public class EntitySlimeFX extends EntityFX {
 	public EntitySlimeFX(World var1, double var2, double var4, double var6) {

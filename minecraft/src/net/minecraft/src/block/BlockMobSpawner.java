@@ -3,8 +3,6 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.Material;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.TileEntityMobSpawner;
 
 public class BlockMobSpawner extends BlockContainer {
 	protected BlockMobSpawner(int var1, int var2) {

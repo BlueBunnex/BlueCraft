@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockFluid;
+import net.minecraft.src.item.ItemStack;
 
 public abstract class Entity {
 	public boolean preventEntitySpawning = false;

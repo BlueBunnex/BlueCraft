@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.item.ItemStack;
+
 public class GuiCrafting extends GuiContainer {
 	private InventoryCrafting craftingInventory = new InventoryCrafting(this, 3, 3);
 	private IInventory l = new InventoryCraftResult();

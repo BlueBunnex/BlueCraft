@@ -7,6 +7,7 @@ import java.util.Map;
 
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockContainer;
+import net.minecraft.src.block.TileEntity;
 
 public class Chunk {
 	public static boolean isLit;

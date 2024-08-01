@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.item.Item;
+
 public class EntitySpider extends EntityMob {
 	public EntitySpider(World var1) {
 		super(var1);

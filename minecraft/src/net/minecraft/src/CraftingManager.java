@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
 public class CraftingManager {
+	
 	private static final CraftingManager instance = new CraftingManager();
 	private List recipes = new ArrayList();
 
@@ -22,6 +25,7 @@ public class CraftingManager {
 		(new RecipesFood()).addRecipes(this);
 		(new RecipesCrafting()).addRecipes(this);
 		(new RecipesArmor()).addRecipes(this);
+		
 		this.addRecipe(new ItemStack(Block.blockSnow, 1), new Object[]{"###", "###", "###", Character.valueOf('#'), Item.snowball});
 		this.addRecipe(new ItemStack(Block.cloth, 1), new Object[]{"###", "###", "###", Character.valueOf('#'), Item.silk});
 		this.addRecipe(new ItemStack(Block.tnt, 1), new Object[]{"X#X", "#X#", "X#X", Character.valueOf('X'), Item.gunpowder, Character.valueOf('#'), Block.sand});
@@ -36,12 +40,12 @@ public class CraftingManager {
 		this.addRecipe(new ItemStack(Block.minecartTrack, 16), new Object[]{"X X", "X#X", "X X", Character.valueOf('X'), Item.ingotIron, Character.valueOf('#'), Item.stick});
 		this.addRecipe(new ItemStack(Item.minecartEmpty, 1), new Object[]{"# #", "###", Character.valueOf('#'), Item.ingotIron});
 		this.addRecipe(new ItemStack(Item.bucketEmpty, 1), new Object[]{"# #", " # ", Character.valueOf('#'), Item.ingotIron});
-		this.addRecipe(new ItemStack(Item.striker, 1), new Object[]{"A ", " B", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Item.flint});
+		this.addRecipe(new ItemStack(Item.flintAndSteel, 1), new Object[]{"A ", " B", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Item.flint});
 		this.addRecipe(new ItemStack(Item.bread, 1), new Object[]{"###", Character.valueOf('#'), Item.wheat});
 		this.addRecipe(new ItemStack(Block.stairCompactWood, 4), new Object[]{"#  ", "## ", "###", Character.valueOf('#'), Block.planks});
 		this.addRecipe(new ItemStack(Block.stairCompactStone, 4), new Object[]{"#  ", "## ", "###", Character.valueOf('#'), Block.cobblestone});
 		this.addRecipe(new ItemStack(Item.painting, 1), new Object[]{"###", "#X#", "###", Character.valueOf('#'), Item.stick, Character.valueOf('X'), Block.cloth});
-		this.addRecipe(new ItemStack(Item.appleGold, 1), new Object[]{"###", "#X#", "###", Character.valueOf('#'), Block.blockGold, Character.valueOf('X'), Item.appleRed});
+		
 		Collections.sort(this.recipes, new RecipeSorter(this));
 		System.out.println(this.recipes.size() + " recipes");
 	}

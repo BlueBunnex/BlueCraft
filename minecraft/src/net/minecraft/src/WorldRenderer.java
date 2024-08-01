@@ -7,6 +7,8 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockContainer;
+import net.minecraft.src.block.TileEntity;
+import net.minecraft.src.block.TileEntityRenderer;
 
 public class WorldRenderer {
 	public World worldObj;

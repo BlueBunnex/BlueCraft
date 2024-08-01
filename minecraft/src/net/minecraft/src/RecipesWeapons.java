@@ -1,10 +1,17 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
+// just combine this with tools I swear
 public class RecipesWeapons {
+	
 	private String[][] recipePatterns = new String[][]{{"X", "X", "#"}};
-	private Object[][] recipeItems = new Object[][]{{Block.planks, Block.cobblestone, Item.ingotIron, Item.diamond, Item.ingotGold}, {Item.swordWood, Item.swordStone, Item.swordSteel, Item.swordDiamond, Item.swordGold}};
+	private Object[][] recipeItems = new Object[][] {
+		{Block.planks, Block.cobblestone, Item.ingotIron, Item.diamond},
+		{Item.swordWood, Item.swordStone, Item.swordIron, Item.swordDiamond}
+	};
 
 	public void addRecipes(CraftingManager var1) {
 		for(int var2 = 0; var2 < this.recipeItems[0].length; ++var2) {

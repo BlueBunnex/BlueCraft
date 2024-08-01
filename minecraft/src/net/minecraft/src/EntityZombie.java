@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.item.Item;
+
 public class EntityZombie extends EntityMob {
 	public EntityZombie(World var1) {
 		super(var1);

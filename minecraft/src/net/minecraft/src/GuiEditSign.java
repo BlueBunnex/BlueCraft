@@ -4,6 +4,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.TileEntityRenderer;
+import net.minecraft.src.block.TileEntitySign;
 
 public class GuiEditSign extends GuiScreen {
 	protected String screenTitle = "Edit sign message:";

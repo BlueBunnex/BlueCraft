@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.ItemStack;
 
 public class EntityItem extends Entity {
 	public ItemStack item;

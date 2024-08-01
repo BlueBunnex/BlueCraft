@@ -5,8 +5,6 @@ import java.util.Random;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
-import net.minecraft.src.TileEntity;
-import net.minecraft.src.TileEntityFurnace;
 import net.minecraft.src.World;
 
 public class BlockFurnace extends BlockContainer {

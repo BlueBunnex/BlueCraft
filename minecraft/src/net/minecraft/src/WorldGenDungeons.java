@@ -3,6 +3,10 @@ package net.minecraft.src;
 import java.util.Random;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.TileEntityChest;
+import net.minecraft.src.block.TileEntityMobSpawner;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
 public class WorldGenDungeons extends WorldGenerator {
 	public boolean generate(World var1, Random var2, int var3, int var4, int var5) {

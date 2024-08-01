@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.TileEntity;
+
 public interface IBlockAccess {
 	int getBlockId(int var1, int var2, int var3);
 

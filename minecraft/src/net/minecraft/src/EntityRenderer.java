@@ -11,6 +11,7 @@ import org.lwjgl.opengl.NVFogDistance;
 import org.lwjgl.util.glu.GLU;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.ItemRenderer;
 
 public class EntityRenderer {
 	private Minecraft mc;

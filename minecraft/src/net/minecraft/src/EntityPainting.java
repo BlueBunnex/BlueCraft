@@ -3,6 +3,9 @@ package net.minecraft.src;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
+
 public class EntityPainting extends Entity {
 	private int tickCounter;
 	public int direction;

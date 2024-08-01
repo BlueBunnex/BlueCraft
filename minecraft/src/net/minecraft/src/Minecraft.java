@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.io.File;
 import net.minecraft.client.MinecraftApplet;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controllers;

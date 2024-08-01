@@ -1,5 +1,9 @@
 package net.minecraft.src;
 
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemArmor;
+import net.minecraft.src.item.ItemStack;
+
 public class RenderPlayer extends RenderLiving {
 	private ModelBiped modelBipedMain = (ModelBiped)this.mainModel;
 	private ModelBiped modelArmorChestplate = new ModelBiped(1.0F);

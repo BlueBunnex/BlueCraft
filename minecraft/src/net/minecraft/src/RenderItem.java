@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.ItemStack;
 
 public class RenderItem extends Render {
 	private RenderBlocks itemRenderBlocks = new RenderBlocks();

@@ -1,9 +1,11 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
 
 public class RecipesIngots {
-	private Object[][] recipeItems = new Object[][]{{Block.blockGold, Item.ingotGold}, {Block.blockSteel, Item.ingotIron}, {Block.blockDiamond, Item.diamond}};
+	private Object[][] recipeItems = new Object[][]{{Block.blockIron, Item.ingotIron}, {Block.blockDiamond, Item.diamond}};
 
 	public void addRecipes(CraftingManager var1) {
 		for(int var2 = 0; var2 < this.recipeItems.length; ++var2) {

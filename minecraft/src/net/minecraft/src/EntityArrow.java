@@ -2,6 +2,9 @@ package net.minecraft.src;
 
 import java.util.List;
 
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemStack;
+
 public class EntityArrow extends Entity {
 	private int xTile = -1;
 	private int yTile = -1;

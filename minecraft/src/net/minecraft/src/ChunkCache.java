@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.TileEntity;
 
 public class ChunkCache implements IBlockAccess {
 	private int chunkX;
