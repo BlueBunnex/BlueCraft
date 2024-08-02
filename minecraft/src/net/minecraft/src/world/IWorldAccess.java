@@ -29,6 +29,8 @@ public interface IWorldAccess {
 	 * @return sourceID of audio source, or null if failed to play
 	 */
 	String playMusic(String music, double x, double y, double z);
+	
+	void stopAudioSource(String sourceID);
 
 	void spawnParticle(String var1, double var2, double var4, double var6, double var8, double var10, double var12);
 

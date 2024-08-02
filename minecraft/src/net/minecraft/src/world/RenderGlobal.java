@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.src.world;
 
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -10,13 +10,36 @@ import org.lwjgl.opengl.ARBOcclusionQuery;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
+import net.minecraft.src.AxisAlignedBB;
+import net.minecraft.src.Entity;
+import net.minecraft.src.EntityBubbleFX;
+import net.minecraft.src.EntityExplodeFX;
+import net.minecraft.src.EntityFlameFX;
+import net.minecraft.src.EntityLavaFX;
+import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.EntityPlayerSP;
+import net.minecraft.src.EntityReddustFX;
+import net.minecraft.src.EntitySlimeFX;
+import net.minecraft.src.EntitySmokeFX;
+import net.minecraft.src.EntitySorter;
+import net.minecraft.src.EntitySplashFX;
+import net.minecraft.src.GLAllocation;
+import net.minecraft.src.ICamera;
+import net.minecraft.src.ImageBufferDownload;
+import net.minecraft.src.MathHelper;
+import net.minecraft.src.Minecraft;
+import net.minecraft.src.MovingObjectPosition;
+import net.minecraft.src.RenderBlocks;
+import net.minecraft.src.RenderEngine;
+import net.minecraft.src.RenderList;
+import net.minecraft.src.RenderManager;
+import net.minecraft.src.RenderSorter;
+import net.minecraft.src.Tessellator;
+import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.block.TileEntityRenderer;
 import net.minecraft.src.item.ItemStack;
-import net.minecraft.src.world.IWorldAccess;
-import net.minecraft.src.world.World;
-import net.minecraft.src.world.WorldRenderer;
 
 public class RenderGlobal implements IWorldAccess {
 	
@@ -1049,6 +1072,10 @@ public class RenderGlobal implements IWorldAccess {
 			return null;
 		
 		return this.mc.sndManager.playMusic(music, (float) x, (float) y, (float) z);
+	}
+	
+	public void stopAudioSource(String sourceID) {
+		this.mc.sndManager.stopAudioSource(sourceID);
 	}
 
 	public void spawnParticle(String var1, double var2, double var4, double var6, double var8, double var10, double var12) {

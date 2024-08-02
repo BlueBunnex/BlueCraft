@@ -23,10 +23,15 @@ public class BlockJukebox extends Block {
 			
 			audioSourceID = world.playMusic("calm", x, y, z);
 			
+			System.out.println("playing at: " + audioSourceID);
+			
 		} else {
 			
-			System.out.println("playing " + audioSourceID);
-			//world.stopMusic();
+			System.out.println("stopping: " + audioSourceID);
+			
+			world.stopAudioSource(audioSourceID);
+			audioSourceID = null;
+			
 		}
 		
 		return true;

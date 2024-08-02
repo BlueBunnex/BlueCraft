@@ -12,6 +12,7 @@ import org.lwjgl.util.glu.GLU;
 
 import net.minecraft.src.block.Block;
 import net.minecraft.src.item.ItemRenderer;
+import net.minecraft.src.world.RenderGlobal;
 import net.minecraft.src.world.World;
 
 public class EntityRenderer {

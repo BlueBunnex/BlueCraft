@@ -13,6 +13,8 @@ import net.minecraft.src.inventory.InventoryGeneric;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.sound.SoundManager;
+import net.minecraft.src.world.RenderGlobal;
 import net.minecraft.src.world.World;
 import net.minecraft.src.world.WorldRenderer;
 
