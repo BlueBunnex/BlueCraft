@@ -25,7 +25,6 @@ import net.minecraft.src.Explosion;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.IProgressUpdate;
-import net.minecraft.src.IWorldAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.MetadataChunkBlock;
@@ -817,24 +816,32 @@ public class World implements IBlockAccess {
 	}
 
 	public void playSoundAtEntity(Entity var1, String var2, float var3, float var4) {
+
 		for(int var5 = 0; var5 < this.worldAccesses.size(); ++var5) {
 			((IWorldAccess)this.worldAccesses.get(var5)).playSound(var2, var1.posX, var1.posY - (double)var1.yOffset, var1.posZ, var3, var4);
 		}
-
 	}
 
-	public void playSoundEffect(double var1, double var3, double var5, String var7, float var8, float var9) {
-		for(int var10 = 0; var10 < this.worldAccesses.size(); ++var10) {
-			((IWorldAccess)this.worldAccesses.get(var10)).playSound(var7, var1, var3, var5, var8, var9);
+	// TODO move the sound parameter eugh
+	public void playSoundEffect(double x, double y, double z, String sound, float volume, float pitch) {
+		
+		for (int i = 0; i < this.worldAccesses.size(); i++) {
+			((IWorldAccess) this.worldAccesses.get(i)).playSound(sound, x, y, z, volume, pitch);
 		}
-
+	}
+	
+	public void playMusic(String music, double x, double y, double z) {
+		
+		for (int i = 0; i < this.worldAccesses.size(); i++) {
+			((IWorldAccess) this.worldAccesses.get(i)).playMusic(music, x, y, z);
+		}
 	}
 
 	public void spawnParticle(String var1, double var2, double var4, double var6, double var8, double var10, double var12) {
+		
 		for(int var14 = 0; var14 < this.worldAccesses.size(); ++var14) {
 			((IWorldAccess)this.worldAccesses.get(var14)).spawnParticle(var1, var2, var4, var6, var8, var10, var12);
 		}
-
 	}
 
 	public void spawnEntityInWorld(Entity var1) {

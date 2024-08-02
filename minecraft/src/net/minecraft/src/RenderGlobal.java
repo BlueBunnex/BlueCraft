@@ -14,10 +14,12 @@ import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.block.TileEntityRenderer;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.IWorldAccess;
 import net.minecraft.src.world.World;
 import net.minecraft.src.world.WorldRenderer;
 
 public class RenderGlobal implements IWorldAccess {
+	
 	public List tileEntities = new ArrayList();
 	private World theWorld;
 	private RenderEngine renderEngine;
@@ -1031,16 +1033,22 @@ public class RenderGlobal implements IWorldAccess {
 		++this.frustumCheckOffset;
 	}
 
-	public void playSound(String var1, double var2, double var4, double var6, float var8, float var9) {
-		float var10 = 16.0F;
-		if(var8 > 1.0F) {
-			var10 *= var8;
-		}
+	public void playSound(String sound, double x, double y, double z, float volume, float pitch) {
 
-		if(this.mc.thePlayer.getDistanceSq(var2, var4, var6) < (double)(var10 * var10)) {
-			this.mc.sndManager.playSound(var1, (float)var2, (float)var4, (float)var6, var8, var9);
-		}
+		// don't play the sound at all if player is too far away
+		if(this.mc.thePlayer.getDistanceSq(x, y, z) > this.mc.sndManager.getAttenuationSq(volume))
+			return;
+		
+		this.mc.sndManager.playSound(sound, (float) x, (float) y, (float) z, volume, pitch);
+	}
+	
+	public void playMusic(String music, double x, double y, double z) {
 
+		// don't play the sound at all if player is too far away
+		if(this.mc.thePlayer.getDistanceSq(x, y, z) > this.mc.sndManager.getAttenuationSq(1))
+			return;
+		
+		this.mc.sndManager.playMusic(music, (float) x, (float) y, (float) z);
 	}
 
 	public void spawnParticle(String var1, double var2, double var4, double var6, double var8, double var10, double var12) {

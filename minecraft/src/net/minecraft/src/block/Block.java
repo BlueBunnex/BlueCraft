@@ -109,6 +109,8 @@ public class Block {
 	public static final Block ice = (new BlockIce(79, 67)).setHardness(0.5F).setLightOpacity(3).setStepSound(soundGlassFootstep);
 	public static final Block blockSnow = (new BlockSnowBlock(80, 66)).setHardness(0.2F).setStepSound(soundClothFootstep);
 	
+	public static final Block jukebox = new BlockJukebox(81).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep);
+	
 	public int blockIndexInTexture;
 	public final int blockID;
 	protected float hardness;
@@ -124,26 +126,31 @@ public class Block {
 	public final Material material;
 	public float slipperiness;
 
-	protected Block(int var1, Material var2) {
+	protected Block(int blockID, Material material) {
+		
 		this.stepSound = soundPowderFootstep;
 		this.blockParticleGravity = 1.0F;
 		this.slipperiness = 0.6F;
-		if(blocksList[var1] != null) {
-			throw new IllegalArgumentException("Slot " + var1 + " is already occupied by " + blocksList[var1] + " when adding " + this);
+		
+		if(blocksList[blockID] != null) {
+			
+			throw new IllegalArgumentException("Slot " + blockID + " is already occupied by " + blocksList[blockID] + " when adding " + this);
+			
 		} else {
-			this.material = var2;
-			blocksList[var1] = this;
-			this.blockID = var1;
+			
+			this.material = material;
+			blocksList[blockID] = this;
+			this.blockID = blockID;
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-			opaqueCubeLookup[var1] = this.isOpaqueCube();
-			lightOpacity[var1] = this.isOpaqueCube() ? 255 : 0;
-			canBlockGrass[var1] = this.getCanBlockGrass();
+			opaqueCubeLookup[blockID] = this.isOpaqueCube();
+			lightOpacity[blockID] = this.isOpaqueCube() ? 255 : 0;
+			canBlockGrass[blockID] = this.getCanBlockGrass();
 		}
 	}
 
-	protected Block(int var1, int var2, Material var3) {
-		this(var1, var3);
-		this.blockIndexInTexture = var2;
+	protected Block(int blockID, int indexInTexture, Material material) {
+		this(blockID, material);
+		this.blockIndexInTexture = indexInTexture;
 	}
 
 	protected Block setStepSound(StepSound var1) {

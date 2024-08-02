@@ -10,24 +10,32 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
+// TODO get resources internally instead of off the internet
+
 public class ThreadDownloadResources extends Thread {
+	
 	public File resourcesFolder;
 	private Minecraft mc;
 	private boolean closing = false;
 
-	public ThreadDownloadResources(File var1, Minecraft var2) {
-		this.mc = var2;
+	public ThreadDownloadResources(File var1, Minecraft mc) {
+		
+		this.mc = mc;
+		
 		this.setName("Resource download thread");
 		this.setDaemon(true);
 		this.resourcesFolder = new File(var1, "resources/");
-		if(!this.resourcesFolder.exists() && !this.resourcesFolder.mkdirs()) {
+		
+		if (!this.resourcesFolder.exists() && !this.resourcesFolder.mkdirs()) {
 			throw new RuntimeException("The working directory could not be created: " + this.resourcesFolder);
 		}
 	}
 
 	public void run() {
 		try {
-			ArrayList var1 = new ArrayList();
+			
+			ArrayList<String> var1 = new ArrayList<String>();
+			
 			URL var2 = new URL("http://www.minecraft.net/resources/");
 			BufferedReader var3 = new BufferedReader(new InputStreamReader(var2.openStream()));
 			String var4 = "";

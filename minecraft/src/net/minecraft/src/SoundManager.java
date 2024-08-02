@@ -9,6 +9,7 @@ import paulscode.sound.codecs.CodecWav;
 import paulscode.sound.libraries.LibraryLWJGLOpenAL;
 
 public class SoundManager {
+	
 	private SoundSystem sndSystem;
 	private SoundPool soundPoolSounds = new SoundPool();
 	private SoundPool soundPoolMusic = new SoundPool();
@@ -19,11 +20,11 @@ public class SoundManager {
 	private int ticksBeforeMusic = this.rand.nextInt(12000);
 
 	public void loadSoundSettings(GameSettings var1) {
+		
 		this.options = var1;
 		if(!this.loaded && (var1.b || var1.a)) {
 			this.tryToSetLibraryAndCodecs();
 		}
-
 	}
 
 	private void tryToSetLibraryAndCodecs() {
@@ -65,12 +66,12 @@ public class SoundManager {
 
 	}
 
-	public void addSound(String var1, File var2) {
-		this.soundPoolSounds.addSound(var1, var2);
+	public void addSound(String resName, File file) {
+		this.soundPoolSounds.addSound(resName, file);
 	}
 
-	public void addMusic(String var1, File var2) {
-		this.soundPoolMusic.addSound(var1, var2);
+	public void addMusic(String resName, File file) {
+		this.soundPoolMusic.addSound(resName, file);
 	}
 
 	public void setListener(EntityLiving var1, float var2) {
@@ -94,32 +95,64 @@ public class SoundManager {
 			}
 		}
 	}
+	
+	public float getAttenuation(float volume) {
+		
+		float attenuation = 16.0F;
+		
+		if (volume > 1.0F)
+			attenuation *= volume;
+		
+		return attenuation;
+	}
+	
+	public float getAttenuationSq(float volume) {
+		
+		float attenuation = getAttenuation(volume);
+		
+		return attenuation * attenuation; 
+	}
+	
+	private void play(SoundPoolEntry soundEntry, float x, float y, float z, float volume, float pitch) {
+		
+		// set up and play sound
+		this.playedSoundsCount = (this.playedSoundsCount + 1) % 256;
+		String sourceID = "sound_" + this.playedSoundsCount;
 
-	public void playSound(String var1, float var2, float var3, float var4, float var5, float var6) {
-		if(this.loaded && this.options.b) {
-			SoundPoolEntry var7 = this.soundPoolSounds.getRandomSoundFromSoundPool(var1);
-			if(var7 != null && var5 > 0.0F) {
-				this.playedSoundsCount = (this.playedSoundsCount + 1) % 256;
-				String var8 = "sound_" + this.playedSoundsCount;
-				float var9 = 16.0F;
-				if(var5 > 1.0F) {
-					var9 *= var5;
-				}
+		this.sndSystem.newSource(volume > 1.0F, sourceID, soundEntry.soundUrl, soundEntry.soundName, false, x, y, z, 2, getAttenuation(volume));
+		this.sndSystem.setPitch(sourceID, pitch);
+		
+		if (volume > 1.0F)
+			volume = 1.0F;
 
-				this.sndSystem.newSource(var5 > 1.0F, var8, var7.soundUrl, var7.soundName, false, var2, var3, var4, 2, var9);
-				this.sndSystem.setPitch(var8, var6);
-				if(var5 > 1.0F) {
-					var5 = 1.0F;
-				}
+		this.sndSystem.setVolume(sourceID, volume);
+		this.sndSystem.play(sourceID);
+	}
 
-				this.sndSystem.setVolume(var8, var5);
-				this.sndSystem.play(var8);
-			}
-
-		}
+	public void playSound(String sound, float x, float y, float z, float volume, float pitch) {
+		
+		if (!this.loaded || !this.options.b || volume <= 0.0F)
+			return;
+			
+		SoundPoolEntry soundEntry = this.soundPoolSounds.getRandomSoundFromSoundPool(sound);
+		
+		if (soundEntry != null)
+			play(soundEntry, x, y, z, volume, pitch);
+	}
+	
+	public void playMusic(String music, float x, float y, float z) {
+		
+		if (!this.loaded || !this.options.b)
+			return;
+		
+		SoundPoolEntry soundEntry = this.soundPoolMusic.getRandomSoundFromSoundPool(music);
+		
+		if (soundEntry != null)
+			play(soundEntry, x, y, z, 1f, 1f);
 	}
 
 	public void playSoundFX(String var1, float var2, float var3) {
+		
 		if(this.loaded && this.options.b) {
 			SoundPoolEntry var4 = this.soundPoolSounds.getRandomSoundFromSoundPool(var1);
 			if(var4 != null) {
