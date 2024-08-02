@@ -1028,20 +1028,20 @@ public class Minecraft implements Runnable {
 		this.theWorld.dropOldChunks();
 	}
 
-	public void installResource(String var1, File var2) {
-		int var3 = var1.indexOf("/");
-		String var4 = var1.substring(0, var3);
-		var1 = var1.substring(var3 + 1);
-		if(var4.equalsIgnoreCase("sound")) {
-			this.sndManager.addSound(var1, var2);
-		} else if(var4.equalsIgnoreCase("newsound")) {
-			this.sndManager.addSound(var1, var2);
-		} else if(var4.equalsIgnoreCase("music")) {
-			this.sndManager.addMusic(var1, var2);
-		} else if(var4.equalsIgnoreCase("newmusic")) {
-			this.sndManager.addMusic(var1, var2);
+	public void installResource(String path, File file) {
+		
+		int i = path.indexOf("/");
+		String dirName = path.substring(0, i);
+		String resName = path.substring(i + 1);
+		
+		if (dirName.equalsIgnoreCase("sound") || dirName.equalsIgnoreCase("newsound")) {
+			
+			this.sndManager.addSound(resName, file);
+			
+		} else if (dirName.equalsIgnoreCase("music") || dirName.equalsIgnoreCase("newmusic")) {
+			
+			this.sndManager.addMusic(resName, file);
 		}
-
 	}
 
 	public OpenGlCapsChecker getOpenGlCapsChecker() {
