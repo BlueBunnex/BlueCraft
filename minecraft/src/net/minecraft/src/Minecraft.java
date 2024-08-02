@@ -1037,10 +1037,16 @@ public class Minecraft implements Runnable {
 		if (dirName.equalsIgnoreCase("sound") || dirName.equalsIgnoreCase("newsound")) {
 			
 			this.sndManager.addSound(resName, file);
+			System.out.println("Installed sound: " + path);
 			
 		} else if (dirName.equalsIgnoreCase("music") || dirName.equalsIgnoreCase("newmusic")) {
 			
 			this.sndManager.addMusic(resName, file);
+			System.out.println("Installed music: " + path);
+			
+		} else {
+			
+			System.err.println("Did not install: " + path);
 		}
 	}
 
