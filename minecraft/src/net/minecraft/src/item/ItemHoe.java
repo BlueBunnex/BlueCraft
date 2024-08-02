@@ -20,7 +20,7 @@ public class ItemHoe extends Item {
 			return false;
 		} else {
 			Block var10 = Block.tilledField;
-			var3.playSoundEffect((double)((float)var4 + 0.5F), (double)((float)var5 + 0.5F), (double)((float)var6 + 0.5F), var10.stepSound.getStepSound(), (var10.stepSound.getVolume() + 1.0F) / 2.0F, var10.stepSound.getPitch() * 0.8F);
+			var3.playSoundEffect(var10.stepSound.getStepSound(), (double)((float)var4 + 0.5F), (double)((float)var5 + 0.5F), (double)((float)var6 + 0.5F), (var10.stepSound.getVolume() + 1.0F) / 2.0F, var10.stepSound.getPitch() * 0.8F);
 			var3.setBlockWithNotify(var4, var5, var6, var10.blockID);
 			var1.damageItem(1);
 			if(var3.rand.nextInt(8) == 0 && var8 == Block.grass.blockID) {

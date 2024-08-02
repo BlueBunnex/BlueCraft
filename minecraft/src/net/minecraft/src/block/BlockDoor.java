@@ -114,9 +114,9 @@ public class BlockDoor extends Block {
 			var1.setBlockMetadataWithNotify(var2, var3, var4, var6 ^ 4);
 			var1.markBlocksDirty(var2, var3 - 1, var4, var2, var3, var4);
 			if(Math.random() < 0.5D) {
-				var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_open", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
+				var1.playSoundEffect("random.door_open", (double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
 			} else {
-				var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.door_close", 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
+				var1.playSoundEffect("random.door_close", (double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, 1.0F, var1.rand.nextFloat() * 0.1F + 0.9F);
 			}
 
 			return true;

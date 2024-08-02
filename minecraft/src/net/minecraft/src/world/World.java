@@ -822,19 +822,27 @@ public class World implements IBlockAccess {
 		}
 	}
 
-	// TODO move the sound parameter eugh
-	public void playSoundEffect(double x, double y, double z, String sound, float volume, float pitch) {
+	public String playSoundEffect(String sound, double x, double y, double z, float volume, float pitch) {
 		
+		String sourceID = null;
+		
+		// TODO DEMOLISH multiple world accesses
 		for (int i = 0; i < this.worldAccesses.size(); i++) {
 			((IWorldAccess) this.worldAccesses.get(i)).playSound(sound, x, y, z, volume, pitch);
 		}
+		
+		return sourceID;
 	}
 	
-	public void playMusic(String music, double x, double y, double z) {
+	public String playMusic(String music, double x, double y, double z) {
+		
+		String sourceID = null;
 		
 		for (int i = 0; i < this.worldAccesses.size(); i++) {
-			((IWorldAccess) this.worldAccesses.get(i)).playMusic(music, x, y, z);
+			sourceID = ((IWorldAccess) this.worldAccesses.get(i)).playMusic(music, x, y, z);
 		}
+		
+		return sourceID;
 	}
 
 	public void spawnParticle(String var1, double var2, double var4, double var6, double var8, double var10, double var12) {
@@ -1361,7 +1369,7 @@ public class World implements IBlockAccess {
 		}
 
 		if(this.getBlockId(var1, var2, var3) == Block.fire.blockID) {
-			this.playSoundEffect((double)((float)var1 + 0.5F), (double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), "random.fizz", 0.5F, 2.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.8F);
+			this.playSoundEffect("random.fizz", (double)((float)var1 + 0.5F), (double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), 0.5F, 2.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.8F);
 			this.setBlockWithNotify(var1, var2, var3, 0);
 		}
 
@@ -1517,7 +1525,7 @@ public class World implements IBlockAccess {
 				if(var10 == 0 && this.getBlockLightValue(var7, var9, var8) <= this.rand.nextInt(8) && this.getSavedLightValue(EnumSkyBlock.Sky, var7, var9, var8) <= 0) {
 					EntityPlayer var11 = this.getClosestPlayer((double)var7 + 0.5D, (double)var9 + 0.5D, (double)var8 + 0.5D, 8.0D);
 					if(var11 != null && var11.getDistanceSq((double)var7 + 0.5D, (double)var9 + 0.5D, (double)var8 + 0.5D) > 4.0D) {
-						this.playSoundEffect((double)var7 + 0.5D, (double)var9 + 0.5D, (double)var8 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + this.rand.nextFloat() * 0.2F);
+						this.playSoundEffect("ambient.cave.cave", (double)var7 + 0.5D, (double)var9 + 0.5D, (double)var8 + 0.5D, 0.7F, 0.8F + this.rand.nextFloat() * 0.2F);
 						this.soundCounter = this.rand.nextInt(12000) + 6000;
 					}
 				}

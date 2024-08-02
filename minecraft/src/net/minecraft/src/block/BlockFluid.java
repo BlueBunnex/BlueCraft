@@ -198,7 +198,7 @@ public abstract class BlockFluid extends Block {
 		if(this.material == Material.water && var5.nextInt(64) == 0) {
 			int var6 = var1.getBlockMetadata(var2, var3, var4);
 			if(var6 > 0 && var6 < 8) {
-				var1.playSoundEffect((double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), (double)((float)var4 + 0.5F), "liquid.water", var5.nextFloat() * 0.25F + 12.0F / 16.0F, var5.nextFloat() * 1.0F + 0.5F);
+				var1.playSoundEffect("liquid.water", (double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), (double)((float)var4 + 0.5F), var5.nextFloat() * 0.25F + 12.0F / 16.0F, var5.nextFloat() * 1.0F + 0.5F);
 			}
 		}
 
@@ -272,7 +272,8 @@ public abstract class BlockFluid extends Block {
 	}
 
 	protected void triggerLavaMixEffects(World var1, int var2, int var3, int var4) {
-		var1.playSoundEffect((double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), (double)((float)var4 + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.rand.nextFloat() - var1.rand.nextFloat()) * 0.8F);
+		
+		var1.playSoundEffect("random.fizz", (double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), (double)((float)var4 + 0.5F), 0.5F, 2.6F + (var1.rand.nextFloat() - var1.rand.nextFloat()) * 0.8F);
 
 		for(int var5 = 0; var5 < 8; ++var5) {
 			var1.spawnParticle("largesmoke", (double)var2 + Math.random(), (double)var3 + 1.2D, (double)var4 + Math.random(), 0.0D, 0.0D, 0.0D);
