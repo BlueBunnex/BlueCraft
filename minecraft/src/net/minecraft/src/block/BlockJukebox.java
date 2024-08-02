@@ -5,6 +5,8 @@ import net.minecraft.src.Material;
 import net.minecraft.src.world.World;
 
 public class BlockJukebox extends Block {
+	
+	private String audioSourceID; 
 
 	protected BlockJukebox(int blockID) {
 		super(blockID, 17, Material.wood); // TODO add jukebox texture
@@ -17,7 +19,13 @@ public class BlockJukebox extends Block {
 	
 	public boolean onBlockInteract(World world, int x, int y, int z, EntityPlayer player) {
 		
-		world.playMusic("calm", x, y, z);
+		if (audioSourceID == null) {
+			
+			world.playMusic("calm", x, y, z);
+			
+		} else {
+			//world.stopMusic();
+		}
 		
 		return true;
 	}

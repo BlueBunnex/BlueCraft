@@ -113,7 +113,7 @@ public class SoundManager {
 		return attenuation * attenuation; 
 	}
 	
-	private void play(SoundPoolEntry soundEntry, float x, float y, float z, float volume, float pitch) {
+	private String play(SoundPoolEntry soundEntry, float x, float y, float z, float volume, float pitch) {
 		
 		// set up and play sound
 		this.playedSoundsCount = (this.playedSoundsCount + 1) % 256;
@@ -127,28 +127,51 @@ public class SoundManager {
 
 		this.sndSystem.setVolume(sourceID, volume);
 		this.sndSystem.play(sourceID);
+		
+		return sourceID;
 	}
 
-	public void playSound(String sound, float x, float y, float z, float volume, float pitch) {
+	/**
+	 * @param sound
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param volume
+	 * @param pitch
+	 * @return sourceID of audio source, or null if failed to play
+	 */
+	public String playSound(String sound, float x, float y, float z, float volume, float pitch) {
 		
 		if (!this.loaded || !this.options.b || volume <= 0.0F)
-			return;
+			return null;
 			
 		SoundPoolEntry soundEntry = this.soundPoolSounds.getRandomSoundFromSoundPool(sound);
 		
-		if (soundEntry != null)
-			play(soundEntry, x, y, z, volume, pitch);
+		if (soundEntry == null)
+			return null;
+		
+		return play(soundEntry, x, y, z, volume, pitch);
 	}
 	
-	public void playMusic(String music, float x, float y, float z) {
+	/**
+	 * 
+	 * @param music
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return sourceID of audio source, or null if failed to play
+	 */
+	public String playMusic(String music, float x, float y, float z) {
 		
 		if (!this.loaded || !this.options.b)
-			return;
+			return null;
 		
 		SoundPoolEntry soundEntry = this.soundPoolMusic.getRandomSoundFromSoundPool(music);
 		
-		if (soundEntry != null)
-			play(soundEntry, x, y, z, 1f, 1f);
+		if (soundEntry == null)
+			return null;
+		
+		return play(soundEntry, x, y, z, 1f, 1f);
 	}
 
 	public void playSoundFX(String var1, float var2, float var3) {

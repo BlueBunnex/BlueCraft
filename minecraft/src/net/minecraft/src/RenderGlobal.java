@@ -1033,22 +1033,22 @@ public class RenderGlobal implements IWorldAccess {
 		++this.frustumCheckOffset;
 	}
 
-	public void playSound(String sound, double x, double y, double z, float volume, float pitch) {
+	public String playSound(String sound, double x, double y, double z, float volume, float pitch) {
 
 		// don't play the sound at all if player is too far away
 		if(this.mc.thePlayer.getDistanceSq(x, y, z) > this.mc.sndManager.getAttenuationSq(volume))
-			return;
+			return null;
 		
-		this.mc.sndManager.playSound(sound, (float) x, (float) y, (float) z, volume, pitch);
+		return this.mc.sndManager.playSound(sound, (float) x, (float) y, (float) z, volume, pitch);
 	}
 	
-	public void playMusic(String music, double x, double y, double z) {
+	public String playMusic(String music, double x, double y, double z) {
 
 		// don't play the sound at all if player is too far away
 		if(this.mc.thePlayer.getDistanceSq(x, y, z) > this.mc.sndManager.getAttenuationSq(1))
-			return;
+			return null;
 		
-		this.mc.sndManager.playMusic(music, (float) x, (float) y, (float) z);
+		return this.mc.sndManager.playMusic(music, (float) x, (float) y, (float) z);
 	}
 
 	public void spawnParticle(String var1, double var2, double var4, double var6, double var8, double var10, double var12) {
