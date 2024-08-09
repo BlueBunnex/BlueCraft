@@ -1,8 +1,6 @@
 package net.minecraft.src.world;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.src.AxisAlignedBB;
@@ -15,9 +13,6 @@ import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.RenderItem;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.block.Block;
-import net.minecraft.src.block.BlockContainer;
-import net.minecraft.src.block.TileEntity;
-import net.minecraft.src.block.TileEntityRenderer;
 
 public class WorldRenderer {
 	public World worldObj;
@@ -50,12 +45,9 @@ public class WorldRenderer {
 	public int glOcclusionQuery;
 	public boolean isChunkLit;
 	private boolean isInitialized = false;
-	public List tileEntityRenderers = new ArrayList();
-	private List tileEntities;
 
-	public WorldRenderer(World var1, List var2, int var3, int var4, int var5, int var6, int var7) {
+	public WorldRenderer(World var1, int var3, int var4, int var5, int var6, int var7) {
 		this.worldObj = var1;
-		this.tileEntities = var2;
 		this.sizeWidth = this.sizeHeight = this.sizeDepth = var6;
 		this.rendererRadius = MathHelper.sqrt_float((float)(this.sizeWidth * this.sizeWidth + this.sizeHeight * this.sizeHeight + this.sizeDepth * this.sizeDepth)) / 2.0F;
 		this.glRenderList = var7;
@@ -108,8 +100,7 @@ public class WorldRenderer {
 
 			Chunk.isLit = false;
 			HashSet var21 = new HashSet();
-			var21.addAll(this.tileEntityRenderers);
-			this.tileEntityRenderers.clear();
+			
 			byte var8 = 1;
 			ChunkCache var9 = new ChunkCache(this.worldObj, var1 - var8, var2 - var8, var3 - var8, var4 + var8, var5 + var8, var6 + var8);
 			RenderBlocks var10 = new RenderBlocks(var9);
@@ -135,13 +126,6 @@ public class WorldRenderer {
 									GL11.glTranslatef((float)this.sizeDepth / 2.0F, (float)this.sizeHeight / 2.0F, (float)this.sizeDepth / 2.0F);
 									tessellator.startDrawingQuads();
 									tessellator.setTranslationD((double)(-this.posX), (double)(-this.posY), (double)(-this.posZ));
-								}
-
-								if(var11 == 0 && Block.blocksList[var18] instanceof BlockContainer) {
-									TileEntity var23 = var9.getBlockTileEntity(var17, var15, var16);
-									if(TileEntityRenderer.instance.hasSpecialRenderer(var23)) {
-										this.tileEntityRenderers.add(var23);
-									}
 								}
 
 								Block var24 = Block.blocksList[var18];
@@ -174,12 +158,6 @@ public class WorldRenderer {
 				}
 			}
 
-			HashSet var22 = new HashSet();
-			var22.addAll(this.tileEntityRenderers);
-			var22.removeAll(var21);
-			this.tileEntities.addAll(var22);
-			var21.removeAll(this.tileEntityRenderers);
-			this.tileEntities.removeAll(var21);
 			this.isChunkLit = Chunk.isLit;
 			this.isInitialized = true;
 		}

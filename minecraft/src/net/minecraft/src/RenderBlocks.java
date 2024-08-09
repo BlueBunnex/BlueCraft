@@ -3,7 +3,6 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.src.block.Block;
-import net.minecraft.src.block.BlockDoor;
 import net.minecraft.src.block.BlockFluid;
 import net.minecraft.src.world.World;
 
@@ -29,11 +28,12 @@ public class RenderBlocks {
 	public boolean renderBlockByRenderType(Block var1, int var2, int var3, int var4) {
 		
 		// 5 WAS redstone wire, which no longer exists
+		// same with 7 which was block door
 		int renderType = var1.getRenderType();
 		
 		var1.setBlockBoundsBasedOnState(this.blockAccess, var2, var3, var4);
 		
-		// this shit is eye-watering
+		// TODO this stuff is eye-watering
 		return
 				   renderType == 0 ? this.renderStandardBlock(var1, var2, var3, var4)
 				: (renderType == 4 ? this.renderBlockFluids(var1, var2, var3, var4)
@@ -42,11 +42,10 @@ public class RenderBlocks {
 				: (renderType == 2 ? this.renderBlockTorch(var1, var2, var3, var4)
 				: (renderType == 3 ? this.renderBlockFire(var1, var2, var3, var4)
 				: (renderType == 8 ? this.renderBlockLadder(var1, var2, var3, var4)
-				: (renderType == 7 ? this.renderBlockDoor(var1, var2, var3, var4)
 				: (renderType == 9 ? this.renderBlockMinecartTrack(var1, var2, var3, var4)
 				: (renderType == 10 ? this.renderBlockStairs(var1, var2, var3, var4)
 				: (renderType == 11 ? this.renderBlockFence(var1, var2, var3, var4)
-				: (renderType == 12 ? this.renderBlockLever(var1, var2, var3, var4) : false)))))))))));
+				: (renderType == 12 ? this.renderBlockLever(var1, var2, var3, var4) : false))))))))));
 	}
 
 	public boolean renderBlockTorch(Block var1, int var2, int var3, int var4) {
@@ -1111,118 +1110,6 @@ public class RenderBlocks {
 
 		var1.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		return var5;
-	}
-
-	public boolean renderBlockDoor(Block var1, int var2, int var3, int var4) {
-		Tessellator var5 = Tessellator.instance;
-		BlockDoor var6 = (BlockDoor)var1;
-		boolean var7 = false;
-		float var8 = 0.5F;
-		float var9 = 1.0F;
-		float var10 = 0.8F;
-		float var11 = 0.6F;
-		float var12 = var1.getBlockBrightness(this.blockAccess, var2, var3, var4);
-		float var13 = var1.getBlockBrightness(this.blockAccess, var2, var3 - 1, var4);
-		if(var6.minY > 0.0D) {
-			var13 = var12;
-		}
-
-		if(Block.lightValue[var1.blockID] > 0) {
-			var13 = 1.0F;
-		}
-
-		var5.setColorOpaque_F(var8 * var13, var8 * var13, var8 * var13);
-		this.renderBottomFace(var1, (double)var2, (double)var3, (double)var4, var1.getBlockTexture(this.blockAccess, var2, var3, var4, 0));
-		var7 = true;
-		var13 = var1.getBlockBrightness(this.blockAccess, var2, var3 + 1, var4);
-		if(var6.maxY < 1.0D) {
-			var13 = var12;
-		}
-
-		if(Block.lightValue[var1.blockID] > 0) {
-			var13 = 1.0F;
-		}
-
-		var5.setColorOpaque_F(var9 * var13, var9 * var13, var9 * var13);
-		this.renderTopFace(var1, (double)var2, (double)var3, (double)var4, var1.getBlockTexture(this.blockAccess, var2, var3, var4, 1));
-		var7 = true;
-		var13 = var1.getBlockBrightness(this.blockAccess, var2, var3, var4 - 1);
-		if(var6.minZ > 0.0D) {
-			var13 = var12;
-		}
-
-		if(Block.lightValue[var1.blockID] > 0) {
-			var13 = 1.0F;
-		}
-
-		var5.setColorOpaque_F(var10 * var13, var10 * var13, var10 * var13);
-		int var14 = var1.getBlockTexture(this.blockAccess, var2, var3, var4, 2);
-		if(var14 < 0) {
-			this.flipTexture = true;
-			var14 = -var14;
-		}
-
-		this.renderEastFace(var1, (double)var2, (double)var3, (double)var4, var14);
-		var7 = true;
-		this.flipTexture = false;
-		var13 = var1.getBlockBrightness(this.blockAccess, var2, var3, var4 + 1);
-		if(var6.maxZ < 1.0D) {
-			var13 = var12;
-		}
-
-		if(Block.lightValue[var1.blockID] > 0) {
-			var13 = 1.0F;
-		}
-
-		var5.setColorOpaque_F(var10 * var13, var10 * var13, var10 * var13);
-		var14 = var1.getBlockTexture(this.blockAccess, var2, var3, var4, 3);
-		if(var14 < 0) {
-			this.flipTexture = true;
-			var14 = -var14;
-		}
-
-		this.renderWestFace(var1, (double)var2, (double)var3, (double)var4, var14);
-		var7 = true;
-		this.flipTexture = false;
-		var13 = var1.getBlockBrightness(this.blockAccess, var2 - 1, var3, var4);
-		if(var6.minX > 0.0D) {
-			var13 = var12;
-		}
-
-		if(Block.lightValue[var1.blockID] > 0) {
-			var13 = 1.0F;
-		}
-
-		var5.setColorOpaque_F(var11 * var13, var11 * var13, var11 * var13);
-		var14 = var1.getBlockTexture(this.blockAccess, var2, var3, var4, 4);
-		if(var14 < 0) {
-			this.flipTexture = true;
-			var14 = -var14;
-		}
-
-		this.renderNorthFace(var1, (double)var2, (double)var3, (double)var4, var14);
-		var7 = true;
-		this.flipTexture = false;
-		var13 = var1.getBlockBrightness(this.blockAccess, var2 + 1, var3, var4);
-		if(var6.maxX < 1.0D) {
-			var13 = var12;
-		}
-
-		if(Block.lightValue[var1.blockID] > 0) {
-			var13 = 1.0F;
-		}
-
-		var5.setColorOpaque_F(var11 * var13, var11 * var13, var11 * var13);
-		var14 = var1.getBlockTexture(this.blockAccess, var2, var3, var4, 5);
-		if(var14 < 0) {
-			this.flipTexture = true;
-			var14 = -var14;
-		}
-
-		this.renderSouthFace(var1, (double)var2, (double)var3, (double)var4, var14);
-		var7 = true;
-		this.flipTexture = false;
-		return var7;
 	}
 
 	public void renderBottomFace(Block var1, double var2, double var4, double var6, int var8) {

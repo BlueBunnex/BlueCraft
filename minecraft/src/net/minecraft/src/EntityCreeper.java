@@ -70,6 +70,6 @@ public class EntityCreeper extends EntityMob {
 	}
 
 	protected int getDropItemId() {
-		return Item.gunpowder.shiftedIndex;
+		return Item.appleRed.shiftedIndex;
 	}
 }

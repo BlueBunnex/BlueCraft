@@ -14,19 +14,15 @@ public class Item {
 	public static Item[] itemsList = new Item[1024];
 	
 	public static Item
-	pointyClub     = new ItemPickaxe(0, 1).setIconIndex(33),
-	
 	swordIron      = new ItemSword(1, 2).setIconIndex(2),
 	shovelIron     = new ItemSpade(2, 2).setIconIndex(18),
 	pickaxeIron    = new ItemPickaxe(3, 2).setIconIndex(34),
 	axeIron        = new ItemAxe(4, 2).setIconIndex(50),
-	hoeIron        = new ItemHoe(5, 2).setIconIndex(66),
 	
 	swordMithril   = new ItemSword(6, 3).setIconIndex(3),
 	shovelMithril  = new ItemSpade(7, 3).setIconIndex(19),
 	pickaxeMithril = new ItemPickaxe(8, 3).setIconIndex(35),
 	axeMithril     = new ItemAxe(9, 3).setIconIndex(51),
-	hoeMithril     = new ItemHoe(10, 3).setIconIndex(67),
 	
 	helmetIron     = new ItemArmor(11, 2, 2, 0).setIconIndex(80),
 	plateIron      = new ItemArmor(12, 2, 2, 1).setIconIndex(81),
@@ -43,30 +39,12 @@ public class Item {
 	
 	flintAndSteel  = new ItemFlintAndSteel(21).setIconIndex(5),
 	appleRed       = new ItemFood(22, 4).setIconIndex(10),
-	bow            = new ItemBow(23).setIconIndex(21),
-	arrow          = new Item(24).setIconIndex(37),
+	appleGold      = new ItemFood(39, 20).setIconIndex(11),
 	coal           = new Item(25).setIconIndex(7),
 	stick          = new Item(26).setIconIndex(53),
-	bowlEmpty      = new Item(27).setIconIndex(71),
-	bowlSoup       = new ItemSoup(28, 10).setIconIndex(72),
-	silk           = new Item(29).setIconIndex(8),
-	feather        = new Item(30).setIconIndex(24),
-	gunpowder      = new Item(31).setIconIndex(40),
-	seeds          = new ItemSeeds(32, Block.crops.blockID).setIconIndex(9),
-	wheat          = new Item(33).setIconIndex(25),
 	bread          = new ItemFood(34, 5).setIconIndex(41),
-	flint          = new Item(35).setIconIndex(6),
 	porkRaw        = new ItemFood(36, 3).setIconIndex(87),
 	porkCooked     = new ItemFood(37, 8).setIconIndex(88),
-	painting       = new ItemPainting(38).setIconIndex(26),
-	appleGold      = new ItemFood(39, 20).setIconIndex(11),
-	sign           = new ItemSign(40).setIconIndex(42),
-	doorWood       = new ItemDoor(41).setIconIndex(43),
-	bucketEmpty    = new ItemBucket(42, 0).setIconIndex(74),
-	bucketWater    = new ItemBucket(43, Block.waterMoving.blockID).setIconIndex(75),
-	bucketLava     = new ItemBucket(44, Block.lavaMoving.blockID).setIconIndex(76),
-	minecartEmpty  = new ItemMinecart(45).setIconIndex(135),
-	snowball       = new ItemSnowball(46).setIconIndex(14),
 	cd             = new Item(47).setIconIndex(90).setMaxStackSize(1),
 	
 	rock           = new Item(48).setIconIndex(103),

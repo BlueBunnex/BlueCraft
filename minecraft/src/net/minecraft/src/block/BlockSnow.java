@@ -10,10 +10,15 @@ import net.minecraft.src.item.Item;
 import net.minecraft.src.world.World;
 
 public class BlockSnow extends Block {
+	
 	protected BlockSnow(int var1, int var2) {
 		super(var1, var2, Material.snow);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F / 16.0F, 1.0F);
 		this.setTickOnLoad(true);
+	}
+	
+	public int quantityDropped(Random random) {
+		return 0;
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World var1, int var2, int var3, int var4) {
@@ -44,14 +49,6 @@ public class BlockSnow extends Block {
 		} else {
 			return true;
 		}
-	}
-
-	public int idDropped(int var1, Random var2) {
-		return Item.snowball.shiftedIndex;
-	}
-
-	public int quantityDropped(Random var1) {
-		return 1;
 	}
 
 	public void updateTick(World var1, int var2, int var3, int var4, Random var5) {

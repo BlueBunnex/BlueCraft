@@ -87,7 +87,6 @@ public class TileEntity {
 	static {
 		addMapping(TileEntityFurnace.class, "Furnace");
 		addMapping(TileEntityChest.class, "Chest");
-		addMapping(TileEntitySign.class, "Sign");
 		addMapping(TileEntityMobSpawner.class, "MobSpawner");
 	}
 }

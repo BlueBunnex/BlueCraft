@@ -38,12 +38,10 @@ import net.minecraft.src.Tessellator;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntity;
-import net.minecraft.src.block.TileEntityRenderer;
 import net.minecraft.src.item.ItemStack;
 
 public class RenderGlobal implements IWorldAccess {
 	
-	public List tileEntities = new ArrayList();
 	private World theWorld;
 	private RenderEngine renderEngine;
 	private List worldRenderersToUpdate = new ArrayList();
@@ -248,12 +246,11 @@ public class RenderGlobal implements IWorldAccess {
 		}
 
 		this.worldRenderersToUpdate.clear();
-		this.tileEntities.clear();
 
 		for(var4 = 0; var4 < this.renderChunksWide; ++var4) {
 			for(int var5 = 0; var5 < this.renderChunksTall; ++var5) {
 				for(int var6 = 0; var6 < this.renderChunksDeep; ++var6) {
-					this.worldRenderers[(var6 * this.renderChunksTall + var5) * this.renderChunksWide + var4] = new WorldRenderer(this.theWorld, this.tileEntities, var4 * 16, var5 * 16, var6 * 16, 16, this.glRenderListBase + var2);
+					this.worldRenderers[(var6 * this.renderChunksTall + var5) * this.renderChunksWide + var4] = new WorldRenderer(this.theWorld, var4 * 16, var5 * 16, var6 * 16, 16, this.glRenderListBase + var2);
 					if(this.occlusionEnabled) {
 						this.worldRenderers[(var6 * this.renderChunksTall + var5) * this.renderChunksWide + var4].glOcclusionQuery = this.glOcclusionQueryBase.get(var3);
 					}
@@ -279,7 +276,6 @@ public class RenderGlobal implements IWorldAccess {
 	}
 
 	public void renderEntities(Vec3D var1, ICamera var2, float var3) {
-		TileEntityRenderer.instance.cacheActiveRenderInfo(this.theWorld, this.renderEngine, this.mc.fontRenderer, this.mc.thePlayer, var3);
 		RenderManager.instance.cacheActiveRenderInfo(this.theWorld, this.renderEngine, this.mc.fontRenderer, this.mc.thePlayer, this.mc.options, var3);
 		this.countEntitiesTotal = 0;
 		this.countEntitiesRendered = 0;
@@ -288,9 +284,6 @@ public class RenderGlobal implements IWorldAccess {
 		RenderManager.renderPosX = var4.lastTickPosX + (var4.posX - var4.lastTickPosX) * (double)var3;
 		RenderManager.renderPosY = var4.lastTickPosY + (var4.posY - var4.lastTickPosY) * (double)var3;
 		RenderManager.renderPosZ = var4.lastTickPosZ + (var4.posZ - var4.lastTickPosZ) * (double)var3;
-		TileEntityRenderer.staticPlayerX = var4.lastTickPosX + (var4.posX - var4.lastTickPosX) * (double)var3;
-		TileEntityRenderer.staticPlayerY = var4.lastTickPosY + (var4.posY - var4.lastTickPosY) * (double)var3;
-		TileEntityRenderer.staticPlayerZ = var4.lastTickPosZ + (var4.posZ - var4.lastTickPosZ) * (double)var3;
 		List var5 = this.theWorld.getLoadedEntityList();
 		this.countEntitiesTotal = var5.size();
 
@@ -301,10 +294,6 @@ public class RenderGlobal implements IWorldAccess {
 				++this.countEntitiesRendered;
 				RenderManager.instance.renderEntity(var7, var3);
 			}
-		}
-
-		for(var6 = 0; var6 < this.tileEntities.size(); ++var6) {
-			TileEntityRenderer.instance.renderTileEntity((TileEntity)this.tileEntities.get(var6), var3);
 		}
 
 	}

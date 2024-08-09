@@ -8,17 +8,10 @@ import net.minecraft.src.item.Item;
 import net.minecraft.src.world.World;
 
 public class BlockSnowBlock extends Block {
+	
 	protected BlockSnowBlock(int var1, int var2) {
 		super(var1, var2, Material.snow);
 		this.setTickOnLoad(true);
-	}
-
-	public int idDropped(int var1, Random var2) {
-		return Item.snowball.shiftedIndex;
-	}
-
-	public int quantityDropped(Random var1) {
-		return 6;
 	}
 
 	public void updateTick(World var1, int var2, int var3, int var4, Random var5) {

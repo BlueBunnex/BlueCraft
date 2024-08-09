@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntityFurnace;
-import net.minecraft.src.block.TileEntitySign;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;

@@ -115,15 +115,11 @@ public class WorldGenDungeons extends WorldGenerator {
 
 	private ItemStack pickCheckLootItem(Random random) {
 		
-		switch (random.nextInt(11)) {
+		switch (random.nextInt(4)) {
 			case 0: return new ItemStack(Item.cd);
 			case 1: return new ItemStack(Item.ingotIron, random.nextInt(4) + 1);
 			case 2: return new ItemStack(Item.bread);
-			case 3: return new ItemStack(Item.wheat, random.nextInt(4) + 1);
-			case 4: return new ItemStack(Item.gunpowder, random.nextInt(4) + 1);
-			case 5: return new ItemStack(Item.silk, random.nextInt(4) + 1);
-			case 6: return new ItemStack(Item.bucketEmpty);
-			case 7: return random.nextInt(10) == 0 ? new ItemStack(Item.appleGold) : new ItemStack(Item.appleRed);
+			case 3: return random.nextInt(10) == 0 ? new ItemStack(Item.appleGold) : new ItemStack(Item.appleRed);
 			default: return null;
 		}
 	}

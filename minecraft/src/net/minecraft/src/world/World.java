@@ -535,7 +535,7 @@ public class World implements IBlockAccess {
 			int var5;
 			if(var4) {
 				var5 = this.getBlockId(var1, var2, var3);
-				if(var5 == Block.stairSingle.blockID || var5 == Block.tilledField.blockID) {
+				if(var5 == Block.stairSingle.blockID) {
 					int var6 = this.getBlockLightValue_do(var1, var2 + 1, var3, false);
 					int var7 = this.getBlockLightValue_do(var1 + 1, var2, var3, false);
 					int var8 = this.getBlockLightValue_do(var1 - 1, var2, var3, false);

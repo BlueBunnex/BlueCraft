@@ -3,7 +3,6 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import net.minecraft.src.crafting.CraftingManager;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryCraftResult;
 import net.minecraft.src.inventory.InventoryCrafting;
@@ -53,26 +52,6 @@ public class GuiInventory extends GuiContainer {
 			}
 		}
 
-	}
-
-	public void a(IInventory var1) {
-		int[] var2 = new int[9];
-
-		for(int var3 = 0; var3 < 3; ++var3) {
-			for(int var4 = 0; var4 < 3; ++var4) {
-				int var5 = -1;
-				if(var3 < 2 && var4 < 2) {
-					ItemStack var6 = this.craftingInventory.getStackInSlot(var3 + var4 * 2);
-					if(var6 != null) {
-						var5 = var6.itemID;
-					}
-				}
-
-				var2[var3 + var4 * 3] = var5;
-			}
-		}
-
-		this.l.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(var2));
 	}
 
 	protected void drawGuiContainerForegroundLayer() {
