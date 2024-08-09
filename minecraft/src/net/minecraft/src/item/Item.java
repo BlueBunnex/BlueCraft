@@ -77,7 +77,8 @@ public class Item {
 	bucketLava     = new ItemBucket(53, Block.lavaMoving.blockID).setIconIndex(76),
 	minecartEmpty  = new ItemMinecart(54).setIconIndex(135),
 	snowball       = new ItemSnowball(55).setIconIndex(14),
-	cd             = new Item(56).setIconIndex(90).setMaxStackSize(1);
+	cd             = new Item(56).setIconIndex(90).setMaxStackSize(1),
+	rock           = new Item(57).setIconIndex(22);
 	
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;

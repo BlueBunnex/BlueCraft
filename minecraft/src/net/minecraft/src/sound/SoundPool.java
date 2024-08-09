@@ -22,7 +22,11 @@ public class SoundPool {
 			}
 
 			var1 = var1.replaceAll("/", ".");
-			if(!this.nameToSoundPoolEntriesMapping.containsKey(var1)) {
+			
+			// put arraylist under key
+			if (!this.nameToSoundPoolEntriesMapping.containsKey(var1)) {
+				
+				System.out.println("Created sound: " + var1);
 				this.nameToSoundPoolEntriesMapping.put(var1, new ArrayList());
 			}
 

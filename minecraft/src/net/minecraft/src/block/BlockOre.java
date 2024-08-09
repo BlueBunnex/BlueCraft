@@ -4,11 +4,12 @@ import java.util.Random;
 
 import net.minecraft.src.Material;
 import net.minecraft.src.item.Item;
+import net.minecraft.src.world.World;
 
-public class BlockOre extends Block {
+public class BlockOre extends BlockBreakToCobble {
 	
-	public BlockOre(int var1, int var2) {
-		super(var1, var2, Material.rock);
+	public BlockOre(int blockID, int indexInTexture) {
+		super(blockID, indexInTexture);
 	}
 
 	public int idDropped(int var1, Random var2) {

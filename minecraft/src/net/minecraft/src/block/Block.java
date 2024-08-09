@@ -21,6 +21,7 @@ import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
 
 public class Block {
+	
 	public static final StepSound soundPowderFootstep = new StepSound("stone", 1.0F, 1.0F);
 	public static final StepSound soundWoodFootstep = new StepSound("wood", 1.0F, 1.0F);
 	public static final StepSound soundGravelFootstep = new StepSound("gravel", 1.0F, 1.0F);
@@ -36,10 +37,11 @@ public class Block {
 	public static final int[] lightOpacity = new int[256];
 	public static final boolean[] canBlockGrass = new boolean[256];
 	public static final int[] lightValue = new int[256];
-	public static final Block stone = (new BlockStone(1, 1)).setHardness(1.5F).setResistance(10.0F).setStepSound(soundStoneFootstep);
+	
+	public static final Block stone = (new BlockBreakToCobble(1, 1)).setHardness(1.5F).setResistance(10.0F).setStepSound(soundStoneFootstep);
 	public static final BlockGrass grass = (BlockGrass)(new BlockGrass(2)).setHardness(0.6F).setStepSound(soundGrassFootstep);
 	public static final Block dirt = (new BlockDirt(3, 2)).setHardness(0.5F).setStepSound(soundGravelFootstep);
-	public static final Block cobblestone = (new Block(4, 16, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
+	public static final Block cobblestone = new BlockCobble(4, 16).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
 	public static final Block planks = (new Block(5, 4, Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep);
 	public static final Block sapling = (new BlockSapling(6, 15)).setHardness(0.0F).setStepSound(soundGrassFootstep);
 	public static final Block bedrock = (new Block(7, 17, Material.rock)).setHardness(-1.0F).setResistance(6000000.0F).setStepSound(soundStoneFootstep);
@@ -84,7 +86,7 @@ public class Block {
 	public static final Block tnt = (new BlockTNT(46, 8)).setHardness(0.0F).setStepSound(soundGrassFootstep);
 	public static final Block bookshelf = (new BlockBookshelf(47, 35)).setHardness(1.5F).setStepSound(soundWoodFootstep);
 	public static final Block cobblestoneMossy = (new Block(48, 36, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block obsidian = (new BlockObsidian(49, 37)).setHardness(10.0F).setResistance(20.0F).setStepSound(soundStoneFootstep);
+	public static final Block obsidian = (new Block(49, 37, Material.rock)).setHardness(10.0F).setResistance(20.0F).setStepSound(soundStoneFootstep);
 	public static final Block torch = (new BlockTorch(50, 80)).setHardness(0.0F).setLightValue(15.0F / 16.0F).setStepSound(soundWoodFootstep);
 	public static final BlockFire fire = (BlockFire)((BlockFire)(new BlockFire(51, 31)).setHardness(0.0F).setLightValue(1.0F).setStepSound(soundWoodFootstep));
 	public static final Block mobSpawner = (new BlockMobSpawner(52, 65)).setHardness(5.0F).setStepSound(soundMetalFootstep);
@@ -254,33 +256,31 @@ public class Block {
 	public boolean isCollidable() {
 		return true;
 	}
+	
+	// TODO onBreakReplaceBlockWith(Block block, int toolLevel) (?)
 
-	public void updateTick(World var1, int var2, int var3, int var4, Random var5) {
-	}
+	public void updateTick(World world, int x, int y, int z, Random random) {}
 
-	public void randomDisplayTick(World var1, int var2, int var3, int var4, Random var5) {
-	}
+	public void randomDisplayTick(World world, int x, int y, int z, Random random) {}
 
-	public void onBlockDestroyedByPlayer(World var1, int var2, int var3, int var4, int var5) {
-	}
+	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int SOMETHING) {}
 
-	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
-	}
+	public void onNeighborBlockChange(World world, int x, int y, int z, int SOMETHING) {}
 
 	public int tickRate() {
 		return 10;
 	}
 
-	public void onBlockAdded(World var1, int var2, int var3, int var4) {
-	}
+	public void onBlockAdded(World world, int x, int y, int z) {}
 
-	public void onBlockRemoval(World var1, int var2, int var3, int var4) {
-	}
+	public void onBlockRemoval(World world, int x, int y, int z) {}
 
+	// TODO should take in tool level
 	public int quantityDropped(Random var1) {
 		return 1;
 	}
 
+	// TODO should take in tool level
 	public int idDropped(int var1, Random var2) {
 		return this.blockID;
 	}

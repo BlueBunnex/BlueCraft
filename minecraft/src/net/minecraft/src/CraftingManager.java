@@ -45,6 +45,7 @@ public class CraftingManager {
 		this.addRecipe(new ItemStack(Block.stairCompactWood, 4), new Object[]{"#  ", "## ", "###", Character.valueOf('#'), Block.planks});
 		this.addRecipe(new ItemStack(Block.stairCompactStone, 4), new Object[]{"#  ", "## ", "###", Character.valueOf('#'), Block.cobblestone});
 		this.addRecipe(new ItemStack(Item.painting, 1), new Object[]{"###", "#X#", "###", Character.valueOf('#'), Item.stick, Character.valueOf('X'), Block.cloth});
+		this.addRecipe(new ItemStack(Block.cobblestone, 1), new Object[]{"XX", "XX", Character.valueOf('X'), Item.rock});
 		
 		Collections.sort(this.recipes, new RecipeSorter(this));
 		System.out.println(this.recipes.size() + " recipes");
