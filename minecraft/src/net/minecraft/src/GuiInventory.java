@@ -3,6 +3,7 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import net.minecraft.src.crafting.CraftingManager;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryCraftResult;
 import net.minecraft.src.inventory.InventoryCrafting;

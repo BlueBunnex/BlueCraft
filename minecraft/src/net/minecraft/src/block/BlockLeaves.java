@@ -3,6 +3,7 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.Entity;
+import net.minecraft.src.Item;
 import net.minecraft.src.Material;
 import net.minecraft.src.world.World;
 
@@ -34,12 +35,12 @@ public class BlockLeaves extends BlockLeavesBase {
 		}
 	}
 
-	public int quantityDropped(Random var1) {
-		return var1.nextInt(10) == 0 ? 1 : 0;
+	public int quantityDropped(Random random) {
+		return random.nextInt(4) == 0 ? 1 : 0;
 	}
 
-	public int idDropped(int var1, Random var2) {
-		return Block.sapling.blockID;
+	public int idDropped(int var1, Random random) {
+		return random.nextInt(4) == 0 ? Block.sapling.blockID : Item.stick.shiftedIndex;
 	}
 
 	public boolean isOpaqueCube() {

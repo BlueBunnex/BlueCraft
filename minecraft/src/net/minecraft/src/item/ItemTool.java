@@ -4,7 +4,9 @@ import net.minecraft.src.Entity;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.block.Block;
 
+// TODO rework efficiency (speed and against/'tool type')
 public class ItemTool extends Item {
+	
 	private Block[] blocksEffectiveAgainst;
 	private float efficiencyOnProperMaterial = 4.0F;
 	private int damageVsEntity;

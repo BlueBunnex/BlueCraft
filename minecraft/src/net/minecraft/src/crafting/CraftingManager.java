@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.src.crafting;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,13 +19,14 @@ public class CraftingManager {
 	}
 
 	private CraftingManager() {
-		(new RecipesTools()).addRecipes(this);
-		(new RecipesWeapons()).addRecipes(this);
-		(new RecipesIngots()).addRecipes(this);
-		(new RecipesFood()).addRecipes(this);
-		(new RecipesCrafting()).addRecipes(this);
-		(new RecipesArmor()).addRecipes(this);
+		new RecipesTools().addRecipes(this);
+		new RecipesIngots().addRecipes(this);
+		new RecipesFood().addRecipes(this);
+		new RecipesArmor().addRecipes(this);
 		
+		this.addRecipe(new ItemStack(Block.chest), new Object[]{"###", "# #", "###", Character.valueOf('#'), Block.planks});
+		this.addRecipe(new ItemStack(Block.stoneOvenIdle), new Object[]{"##", "##", Character.valueOf('#'), Block.cobblestone});
+		this.addRecipe(new ItemStack(Block.workbench), new Object[]{"AA", "BB", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Block.planks});
 		this.addRecipe(new ItemStack(Block.blockSnow, 1), new Object[]{"###", "###", "###", Character.valueOf('#'), Item.snowball});
 		this.addRecipe(new ItemStack(Block.cloth, 1), new Object[]{"###", "###", "###", Character.valueOf('#'), Item.silk});
 		this.addRecipe(new ItemStack(Block.tnt, 1), new Object[]{"X#X", "#X#", "X#X", Character.valueOf('X'), Item.gunpowder, Character.valueOf('#'), Block.sand});

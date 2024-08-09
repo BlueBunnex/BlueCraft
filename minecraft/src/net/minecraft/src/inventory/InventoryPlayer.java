@@ -261,17 +261,15 @@ public class InventoryPlayer implements IInventory {
 	}
 
 	public int getDamageVsEntity(Entity var1) {
+		
 		ItemStack var2 = this.getStackInSlot(this.currentItem);
 		return var2 != null ? var2.getDamageVsEntity(var1) : 1;
 	}
 
-	public boolean canHarvestBlock(Block var1) {
-		if(var1.material != Material.rock && var1.material != Material.iron) {
-			return true;
-		} else {
-			ItemStack var2 = this.getStackInSlot(this.currentItem);
-			return var2 != null ? var2.canHarvestBlock(var1) : false;
-		}
+	public boolean canHarvestBlock(Block block) {
+	
+		ItemStack item = this.getStackInSlot(this.currentItem);
+		return item != null ? item.canHarvestBlock(block) : false;
 	}
 
 	public ItemStack armorItemInSlot(int var1) {

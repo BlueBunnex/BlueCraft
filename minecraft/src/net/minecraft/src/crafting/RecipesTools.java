@@ -1,16 +1,25 @@
-package net.minecraft.src;
+package net.minecraft.src.crafting;
 
-import net.minecraft.src.block.Block;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 
-// just combine this with tools I swear
-public class RecipesWeapons {
+public class RecipesTools {
 	
-	private String[][] recipePatterns = new String[][]{{"X", "X", "#"}};
+	private String[][] recipePatterns = new String[][] {
+		{"XXX", " # ", " # "},
+		{"X", "#", "#"},
+		{"XX", "X#", " #"},
+		{"XX", " #", " #"},
+		{"X", "X", "#"}
+	};
+	
 	private Object[][] recipeItems = new Object[][] {
-		{Block.planks, Block.cobblestone, Item.ingotIron, Item.ingotMithril},
-		{Item.swordWood, Item.swordStone, Item.swordIron, Item.swordMithril}
+		{Item.ingotIron, Item.ingotMithril},
+		{Item.pickaxeIron, Item.pickaxeMithril},
+		{Item.shovelIron, Item.shovelMithril},
+		{Item.axeIron, Item.axeMithril},
+		{Item.hoeIron, Item.hoeMithril},
+		{Item.swordIron, Item.swordMithril}
 	};
 
 	public void addRecipes(CraftingManager var1) {
@@ -25,5 +34,7 @@ public class RecipesWeapons {
 
 		var1.addRecipe(new ItemStack(Item.bow, 1), new Object[]{" #X", "# X", " #X", Character.valueOf('X'), Item.silk, Character.valueOf('#'), Item.stick});
 		var1.addRecipe(new ItemStack(Item.arrow, 4), new Object[]{"X", "#", "Y", Character.valueOf('Y'), Item.feather, Character.valueOf('X'), Item.ingotIron, Character.valueOf('#'), Item.stick});
+		
+		var1.addRecipe(new ItemStack(Item.pointyClub, 1), new Object[]{"#X", " X", Character.valueOf('X'), Item.stick, Character.valueOf('#'), Item.rock});
 	}
 }

@@ -16,7 +16,7 @@ public class BlockCobble extends Block {
 	}
 	
 	public int quantityDropped(Random random) {
-		return 4;
+		return random.nextInt(3) + 1;
 	}
 
 }

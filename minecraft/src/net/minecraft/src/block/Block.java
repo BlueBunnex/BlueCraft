@@ -88,7 +88,7 @@ public class Block {
 	public static final Block cobblestoneMossy = (new Block(48, 36, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
 	public static final Block obsidian = (new Block(49, 37, Material.rock)).setHardness(10.0F).setResistance(20.0F).setStepSound(soundStoneFootstep);
 	public static final Block torch = (new BlockTorch(50, 80)).setHardness(0.0F).setLightValue(15.0F / 16.0F).setStepSound(soundWoodFootstep);
-	public static final BlockFire fire = (BlockFire)((BlockFire)(new BlockFire(51, 31)).setHardness(0.0F).setLightValue(1.0F).setStepSound(soundWoodFootstep));
+	public static final BlockFire fire = (BlockFire) new BlockFire(51, 31).setHardness(0.0F).setLightValue(1.0F).setStepSound(soundWoodFootstep);
 	public static final Block mobSpawner = (new BlockMobSpawner(52, 65)).setHardness(5.0F).setStepSound(soundMetalFootstep);
 	public static final Block stairCompactWood = new BlockStairs(53, planks);
 	public static final Block chest = (new BlockChest(54)).setHardness(2.5F).setStepSound(soundWoodFootstep);
@@ -285,8 +285,12 @@ public class Block {
 		return this.blockID;
 	}
 
-	public float blockStrength(EntityPlayer var1) {
-		return this.hardness < 0.0F ? 0.0F : (!var1.canHarvestBlock(this) ? 1.0F / this.hardness / 100.0F : var1.getCurrentPlayerStrVsBlock(this) / this.hardness / 30.0F);
+	public float blockStrength(EntityPlayer player) {
+		return this.hardness < 0.0F ? 0.0F : (!canHarvestBlock(player) ? 1.0F / this.hardness / 100.0F : player.getCurrentPlayerStrVsBlock(this) / this.hardness / 30.0F);
+	}
+	
+	public boolean canHarvestBlock(EntityPlayer player) {
+		return player.canHarvestBlock(this);
 	}
 
 	public void dropBlockAsItem(World var1, int var2, int var3, int var4, int var5) {

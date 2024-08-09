@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.src.crafting;
 
 import net.minecraft.src.block.Block;
 import net.minecraft.src.item.Item;
