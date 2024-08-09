@@ -13,7 +13,17 @@ public class BlockOre extends BlockBreakToCobble {
 	}
 
 	public int idDropped(int var1, Random var2) {
-		return this.blockID == Block.oreCoal.blockID ? Item.coal.shiftedIndex : this.blockID;
+		
+		if (this.blockID == Block.oreCoal.blockID)
+			return Item.coal.shiftedIndex;
+		
+		if (this.blockID == Block.oreIron.blockID)
+			return Item.oreIron.shiftedIndex;
+		
+		if (this.blockID == Block.oreMithril.blockID)
+			return Item.oreMithril.shiftedIndex;
+		
+		return this.blockID;
 	}
 
 	public int quantityDropped(Random var1) {

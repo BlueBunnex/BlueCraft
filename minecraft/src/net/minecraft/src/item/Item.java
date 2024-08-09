@@ -78,7 +78,10 @@ public class Item {
 	minecartEmpty  = new ItemMinecart(54).setIconIndex(135),
 	snowball       = new ItemSnowball(55).setIconIndex(14),
 	cd             = new Item(56).setIconIndex(90).setMaxStackSize(1),
-	rock           = new Item(57).setIconIndex(22);
+	
+	rock           = new Item(57).setIconIndex(103),
+	oreIron        = new Item(58).setIconIndex(104),
+	oreMithril     = new Item(59).setIconIndex(105);
 	
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;
