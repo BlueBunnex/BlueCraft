@@ -1,9 +1,5 @@
-## Current gameplay
-### Early game
-1. Break leaves for sticks and stone for rocks (logs cannot be mined with your fist) and craft a Pointy Club
-2. Pointy club allows you to mine iron
+Stripping down Minecraft to just the stuff I like: Building my little place and looting like it's an RPG.
 
 ## Planned content
-- Features similar to [BTW](https://wiki.btwce.com) such as:
-  - Sheep dropping [wool items](https://wiki.btwce.com/index.php?title=Wool) that can then be crafted into stuff such as wool blocks and fabric.
-- Beds that serve as spawnpoints and are crafted with fabric.
+- Stats readout as in [this Reddit post](https://www.reddit.com/r/feedthebeast/comments/1el2sh7/im_having_trouble_finding_a_name_for_this_modpack/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
+- Something inspired by [this video](https://youtu.be/thtm6E3hmiQ), lol.
