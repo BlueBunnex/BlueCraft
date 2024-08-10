@@ -33,97 +33,107 @@ public class GuiIngame extends Gui {
 
 	public void renderGameOverlay(float var1, boolean var2, int var3, int var4) {
 		ScaledResolution var5 = new ScaledResolution(this.mc.displayWidth, this.mc.displayHeight);
-		int var6 = var5.getScaledWidth();
-		int var7 = var5.getScaledHeight();
-		FontRenderer var8 = this.mc.fontRenderer;
+		
+		int width = var5.getScaledWidth();
+		int height = var5.getScaledHeight();
+		
+		FontRenderer fontRenderer = this.mc.fontRenderer;
+		
 		this.mc.entityRenderer.setupOverlayRendering();
 		GL11.glEnable(GL11.GL_BLEND);
 		if(this.mc.options.fancyGraphics) {
-			this.renderVignette(this.mc.thePlayer.getBrightness(var1), var6, var7);
+			this.renderVignette(this.mc.thePlayer.getBrightness(var1), width, height);
 		}
+		
+		fontRenderer.drawString("HP: " + this.mc.thePlayer.health + "/20", width / 2, height - 40, 4210752);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/gui/gui.png"));
 		InventoryPlayer var9 = this.mc.thePlayer.inventory;
 		this.zLevel = -90.0F;
-		this.drawTexturedModalRect(var6 / 2 - 91, var7 - 22, 0, 0, 182, 22);
-		this.drawTexturedModalRect(var6 / 2 - 91 - 1 + var9.currentItem * 20, var7 - 22 - 1, 0, 22, 24, 22);
+		this.drawTexturedModalRect(width / 2 - 91, height - 22, 0, 0, 182, 22);
+		this.drawTexturedModalRect(width / 2 - 91 - 1 + var9.currentItem * 20, height - 22 - 1, 0, 22, 24, 22);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/gui/icons.png"));
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ONE_MINUS_SRC_COLOR);
-		this.drawTexturedModalRect(var6 / 2 - 7, var7 / 2 - 7, 0, 0, 16, 16);
+		this.drawTexturedModalRect(width / 2 - 7, height / 2 - 7, 0, 0, 16, 16);
 		GL11.glDisable(GL11.GL_BLEND);
+		
 		boolean var10 = this.mc.thePlayer.heartsLife / 3 % 2 == 1;
 		if(this.mc.thePlayer.heartsLife < 10) {
 			var10 = false;
 		}
-
-		int var11 = this.mc.thePlayer.health;
-		int var12 = this.mc.thePlayer.prevHealth;
+		
+		int health = this.mc.thePlayer.health;
+		int prevHealth = this.mc.thePlayer.prevHealth;
 		this.rand.setSeed((long)(this.updateCounter * 312871));
-		int var13;
-		int var14;
-		int var15;
+		
 		if(this.mc.playerController.shouldDrawHUD()) {
-			var13 = this.mc.thePlayer.getPlayerArmorValue();
+			
+			int armor = this.mc.thePlayer.getPlayerArmorValue();
 
-			int var16;
-			for(var14 = 0; var14 < 10; ++var14) {
-				var15 = var7 - 32;
-				if(var13 > 0) {
-					var16 = var6 / 2 + 91 - var14 * 8 - 9;
-					if(var14 * 2 + 1 < var13) {
-						this.drawTexturedModalRect(var16, var15, 34, 9, 9, 9);
+			for(int i = 0; i < 10; i++) {
+				
+				int y = height - 32;
+				
+				// draw armor
+				if(armor > 0) {
+					
+					int x = width / 2 + 91 - i * 8 - 9;
+					
+					if(i * 2 + 1 < armor) {
+						this.drawTexturedModalRect(x, y, 34, 9, 9, 9);
 					}
 
-					if(var14 * 2 + 1 == var13) {
-						this.drawTexturedModalRect(var16, var15, 25, 9, 9, 9);
+					if(i * 2 + 1 == armor) {
+						this.drawTexturedModalRect(x, y, 25, 9, 9, 9);
 					}
 
-					if(var14 * 2 + 1 > var13) {
-						this.drawTexturedModalRect(var16, var15, 16, 9, 9, 9);
+					if(i * 2 + 1 > armor) {
+						this.drawTexturedModalRect(x, y, 16, 9, 9, 9);
 					}
 				}
 
+				// draw health
 				byte var25 = 0;
 				if(var10) {
 					var25 = 1;
 				}
 
-				int var17 = var6 / 2 - 91 + var14 * 8;
-				if(var11 <= 4) {
-					var15 += this.rand.nextInt(2);
+				int x = width / 2 - 91 + i * 8;
+				if(health <= 4) {
+					y += this.rand.nextInt(2);
 				}
 
-				this.drawTexturedModalRect(var17, var15, 16 + var25 * 9, 0, 9, 9);
+				this.drawTexturedModalRect(x, y, 16 + var25 * 9, 0, 9, 9);
 				if(var10) {
-					if(var14 * 2 + 1 < var12) {
-						this.drawTexturedModalRect(var17, var15, 70, 0, 9, 9);
+					if(i * 2 + 1 < prevHealth) {
+						this.drawTexturedModalRect(x, y, 70, 0, 9, 9);
 					}
 
-					if(var14 * 2 + 1 == var12) {
-						this.drawTexturedModalRect(var17, var15, 79, 0, 9, 9);
+					if(i * 2 + 1 == prevHealth) {
+						this.drawTexturedModalRect(x, y, 79, 0, 9, 9);
 					}
 				}
 
-				if(var14 * 2 + 1 < var11) {
-					this.drawTexturedModalRect(var17, var15, 52, 0, 9, 9);
+				if(i * 2 + 1 < health) {
+					this.drawTexturedModalRect(x, y, 52, 0, 9, 9);
 				}
 
-				if(var14 * 2 + 1 == var11) {
-					this.drawTexturedModalRect(var17, var15, 61, 0, 9, 9);
+				if(i * 2 + 1 == health) {
+					this.drawTexturedModalRect(x, y, 61, 0, 9, 9);
 				}
 			}
 
 			if(this.mc.thePlayer.isInsideOfMaterial(Material.water)) {
-				var14 = (int)Math.ceil((double)(this.mc.thePlayer.air - 2) * 10.0D / 300.0D);
-				var15 = (int)Math.ceil((double)this.mc.thePlayer.air * 10.0D / 300.0D) - var14;
+				int var14 = (int)Math.ceil((double)(this.mc.thePlayer.air - 2) * 10.0D / 300.0D);
+				int var15 = (int)Math.ceil((double)this.mc.thePlayer.air * 10.0D / 300.0D) - var14;
 
-				for(var16 = 0; var16 < var14 + var15; ++var16) {
-					if(var16 < var14) {
-						this.drawTexturedModalRect(var6 / 2 - 91 + var16 * 8, var7 - 32 - 9, 16, 18, 9, 9);
+				for(int i = 0; i < var14 + var15; i++) {
+					if(i < var14) {
+						this.drawTexturedModalRect(width / 2 - 91 + i * 8, height - 32 - 9, 16, 18, 9, 9);
 					} else {
-						this.drawTexturedModalRect(var6 / 2 - 91 + var16 * 8, var7 - 32 - 9, 25, 18, 9, 9);
+						this.drawTexturedModalRect(width / 2 - 91 + i * 8, height - 32 - 9, 25, 18, 9, 9);
 					}
 				}
 			}
@@ -136,37 +146,39 @@ public class GuiIngame extends Gui {
 		RenderHelper.enableStandardItemLighting();
 		GL11.glPopMatrix();
 
-		for(var13 = 0; var13 < 9; ++var13) {
-			var14 = var6 / 2 - 90 + var13 * 20 + 2;
-			var15 = var7 - 16 - 3;
-			this.renderInventorySlot(var13, var14, var15, var1);
+		for(int i = 0; i < 9; i++) {
+			int var14 = width / 2 - 90 + i * 20 + 2;
+			int var15 = height - 16 - 3;
+			this.renderInventorySlot(i, var14, var15, var1);
 		}
 
+		// draw debug menu
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		if(this.mc.options.d) {
-			var8.drawStringWithShadow("Minecraft Alpha v1.0.5 (" + this.mc.debug + ")", 2, 2, 16777215);
-			var8.drawStringWithShadow(this.mc.debugInfoRenders(), 2, 12, 16777215);
-			var8.drawStringWithShadow(this.mc.getEntityDebug(), 2, 22, 16777215);
-			var8.drawStringWithShadow(this.mc.debugInfoEntities(), 2, 32, 16777215);
+			fontRenderer.drawStringWithShadow("Minecraft Alpha v1.0.5 (" + this.mc.debug + ")", 2, 2, 16777215);
+			fontRenderer.drawStringWithShadow(this.mc.debugInfoRenders(), 2, 12, 16777215);
+			fontRenderer.drawStringWithShadow(this.mc.getEntityDebug(), 2, 22, 16777215);
+			fontRenderer.drawStringWithShadow(this.mc.debugInfoEntities(), 2, 32, 16777215);
 			long var22 = Runtime.getRuntime().maxMemory();
 			long var26 = Runtime.getRuntime().totalMemory();
 			long var27 = Runtime.getRuntime().freeMemory();
 			long var19 = var26 - var27;
 			String var21 = "Used memory: " + var19 * 100L / var22 + "% (" + var19 / 1024L / 1024L + "MB) of " + var22 / 1024L / 1024L + "MB";
-			this.drawString(var8, var21, var6 - var8.getStringWidth(var21) - 2, 2, 14737632);
+			this.drawString(fontRenderer, var21, width - fontRenderer.getStringWidth(var21) - 2, 2, 14737632);
 			var21 = "Allocated memory: " + var26 * 100L / var22 + "% (" + var26 / 1024L / 1024L + "MB)";
-			this.drawString(var8, var21, var6 - var8.getStringWidth(var21) - 2, 12, 14737632);
+			this.drawString(fontRenderer, var21, width - fontRenderer.getStringWidth(var21) - 2, 12, 14737632);
 		} else {
-			var8.drawStringWithShadow("Minecraft Alpha v1.0.5", 2, 2, 16777215);
+			fontRenderer.drawStringWithShadow("Minecraft Alpha v1.0.5", 2, 2, 16777215);
 		}
 
+		// draw chat
 		byte var23 = 10;
 		boolean var24 = false;
 
-		for(var15 = 0; var15 < this.chatMessageList.size() && var15 < var23; ++var15) {
-			if(((ChatLine)this.chatMessageList.get(var15)).updateCounter < 200 || var24) {
-				var8.drawStringWithShadow(((ChatLine)this.chatMessageList.get(var15)).message, 2, var7 - 8 - var15 * 9 - 20, 16777215);
+		for(int i = 0; i < this.chatMessageList.size() && i < var23; i++) {
+			if(((ChatLine)this.chatMessageList.get(i)).updateCounter < 200 || var24) {
+				fontRenderer.drawStringWithShadow(((ChatLine)this.chatMessageList.get(i)).message, 2, height - 8 - i * 9 - 20, 16777215);
 			}
 		}
 

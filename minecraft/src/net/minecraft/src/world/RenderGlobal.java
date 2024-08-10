@@ -1086,8 +1086,6 @@ public class RenderGlobal implements IWorldAccess {
 				this.mc.effectRenderer.addEffect(new EntitySplashFX(this.theWorld, var2, var4, var6, var8, var10, var12));
 			} else if(var1 == "largesmoke") {
 				this.mc.effectRenderer.addEffect(new EntitySmokeFX(this.theWorld, var2, var4, var6, 2.5F));
-			} else if(var1 == "reddust") {
-				this.mc.effectRenderer.addEffect(new EntityReddustFX(this.theWorld, var2, var4, var6));
 			} else if(var1 == "snowballpoof") {
 				this.mc.effectRenderer.addEffect(new EntitySlimeFX(this.theWorld, var2, var4, var6));
 			}
