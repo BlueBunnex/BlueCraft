@@ -51,8 +51,10 @@ public class Block {
 	public static final Block sand = (new BlockSand(12, 18)).setHardness(0.5F).setStepSound(soundSandFootstep);
 	public static final Block gravel = (new Block(13, 19, Material.sand)).setHardness(0.6F).setStepSound(soundGravelFootstep);
 	
+	public static final Block oreCoal = (new BlockOre(16, 32)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
 	public static final Block oreIron = (new BlockOre(15, 33)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
-	public static final Block oreCoal = (new BlockOre(16, 34)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
+	public static final Block oreMithril = (new BlockOre(56, 34)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
+	
 	public static final Block wood = (new BlockLog(17)).setHardness(2.0F).setStepSound(soundWoodFootstep);
 	public static final BlockLeaves leaves = (BlockLeaves)(new BlockLeaves(18, 52)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep);
 	public static final Block sponge = (new BlockSponge(19)).setHardness(0.6F).setStepSound(soundGrassFootstep);
@@ -92,9 +94,8 @@ public class Block {
 	public static final Block stairCompactWood = new BlockStairs(53, planks);
 	public static final Block chest = (new BlockChest(54)).setHardness(2.5F).setStepSound(soundWoodFootstep);
 	
-	public static final Block oreMithril = (new BlockOre(56, 50)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
 	public static final Block blockMithril = (new BlockOreBlock(57, 40)).setHardness(5.0F).setResistance(10.0F).setStepSound(soundMetalFootstep);
-	public static final Block workbench = (new BlockWorkbench(58)).setHardness(2.5F).setStepSound(soundWoodFootstep);
+	public static final Block workbench = new BlockWorkbench(58).setHardness(2.5F).setStepSound(soundWoodFootstep);
 	public static final Block ladder = (new BlockLadder(65, 83)).setHardness(0.4F).setStepSound(soundWoodFootstep);
 	public static final Block stairCompactStone = new BlockStairs(67, cobblestone);
 	
