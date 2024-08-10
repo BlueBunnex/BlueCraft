@@ -18,10 +18,10 @@ public class BlockOre extends BlockBreakToCobble {
 			return Item.coal.shiftedIndex;
 		
 		if (this.blockID == Block.oreIron.blockID)
-			return Item.oreIron.shiftedIndex;
+			return Item.ingotIron.shiftedIndex;
 		
 		if (this.blockID == Block.oreMithril.blockID)
-			return Item.oreMithril.shiftedIndex;
+			return Item.ingotMithril.shiftedIndex;
 		
 		return this.blockID;
 	}

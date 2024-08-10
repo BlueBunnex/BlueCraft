@@ -3,7 +3,6 @@ package net.minecraft.src;
 import java.util.List;
 
 import net.minecraft.src.block.Block;
-import net.minecraft.src.block.TileEntityFurnace;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;
@@ -212,10 +211,6 @@ public class EntityPlayer extends EntityLiving {
 			return var2 == 0 ? false : super.attackEntityFrom(var1, var2);
 		}
 	}
-
-	public void displayGUIFurnace(TileEntityFurnace var1) {}
-
-	public void displayGUIEditSign(TileEntitySign var1) {}
 
 	public void interactWithEntity(Entity var1) {}
 }

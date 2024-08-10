@@ -14,42 +14,38 @@ public class Item {
 	public static Item[] itemsList = new Item[1024];
 	
 	public static Item
-	swordIron      = new ItemSword(1, 2).setIconIndex(2),
-	shovelIron     = new ItemSpade(2, 2).setIconIndex(18),
-	pickaxeIron    = new ItemPickaxe(3, 2).setIconIndex(34),
-	axeIron        = new ItemAxe(4, 2).setIconIndex(50),
+	swordIron      = new ItemSword(0, 2).setIconIndex(0),
+	pickaxeIron    = new ItemPickaxe(2, 2).setIconIndex(1),
+	axeIron        = new ItemAxe(3, 2).setIconIndex(2),
+	shovelIron     = new ItemSpade(1, 2).setIconIndex(3),
 	
-	swordMithril   = new ItemSword(6, 3).setIconIndex(3),
-	shovelMithril  = new ItemSpade(7, 3).setIconIndex(19),
-	pickaxeMithril = new ItemPickaxe(8, 3).setIconIndex(35),
-	axeMithril     = new ItemAxe(9, 3).setIconIndex(51),
+	swordMithril   = new ItemSword(4, 3).setIconIndex(16),
+	pickaxeMithril = new ItemPickaxe(6, 3).setIconIndex(17),
+	axeMithril     = new ItemAxe(7, 3).setIconIndex(18),
+	shovelMithril  = new ItemSpade(5, 3).setIconIndex(19),
 	
-	helmetIron     = new ItemArmor(11, 2, 2, 0).setIconIndex(80),
-	plateIron      = new ItemArmor(12, 2, 2, 1).setIconIndex(81),
-	legsIron       = new ItemArmor(13, 2, 2, 2).setIconIndex(82),
-	bootsIron      = new ItemArmor(14, 2, 2, 3).setIconIndex(83),
+	helmetIron     = new ItemArmor(8, 2, 2, 0).setIconIndex(4),
+	plateIron      = new ItemArmor(9, 2, 2, 1).setIconIndex(5),
+	legsIron       = new ItemArmor(10, 2, 2, 2).setIconIndex(6),
+	bootsIron      = new ItemArmor(11, 2, 2, 3).setIconIndex(7),
 	
-	helmetMithril  = new ItemArmor(15, 3, 3, 0).setIconIndex(96),
-	plateMithril   = new ItemArmor(16, 3, 3, 1).setIconIndex(97),
-	legsMithril    = new ItemArmor(17, 3, 3, 2).setIconIndex(98),
-	bootsMithril   = new ItemArmor(18, 3, 3, 3).setIconIndex(99),
+	helmetMithril  = new ItemArmor(12, 3, 3, 0).setIconIndex(20),
+	plateMithril   = new ItemArmor(13, 3, 3, 1).setIconIndex(21),
+	legsMithril    = new ItemArmor(14, 3, 3, 2).setIconIndex(22),
+	bootsMithril   = new ItemArmor(15, 3, 3, 3).setIconIndex(23),
 	
-	ingotIron      = new Item(19).setIconIndex(23),
-	ingotMithril   = new Item(20).setIconIndex(39),
+	ingotIron      = new Item(16).setIconIndex(145),
+	ingotMithril   = new Item(17).setIconIndex(146),
 	
-	flintAndSteel  = new ItemFlintAndSteel(21).setIconIndex(5),
-	appleRed       = new ItemFood(22, 4).setIconIndex(10),
-	appleGold      = new ItemFood(39, 20).setIconIndex(11),
-	coal           = new Item(25).setIconIndex(7),
-	stick          = new Item(26).setIconIndex(53),
-	bread          = new ItemFood(34, 5).setIconIndex(41),
-	porkRaw        = new ItemFood(36, 3).setIconIndex(87),
-	porkCooked     = new ItemFood(37, 8).setIconIndex(88),
-	cd             = new Item(47).setIconIndex(90).setMaxStackSize(1),
-	
-	rock           = new Item(48).setIconIndex(103),
-	oreIron        = new Item(49).setIconIndex(104),
-	oreMithril     = new Item(50).setIconIndex(105);
+	flintAndSteel  = new ItemFlintAndSteel(18).setIconIndex(128),
+	appleRed       = new ItemFood(19, 4).setIconIndex(161),
+	appleGold      = new ItemFood(20, 20).setIconIndex(162),
+	coal           = new Item(21).setIconIndex(144),
+	stick          = new Item(22).setIconIndex(130),
+	bread          = new ItemFood(23, 5).setIconIndex(160),
+	porkRaw        = new ItemFood(24, 3).setIconIndex(163),
+	porkCooked     = new ItemFood(25, 8).setIconIndex(164),
+	cd             = new Item(26).setIconIndex(129).setMaxStackSize(1);
 	
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;

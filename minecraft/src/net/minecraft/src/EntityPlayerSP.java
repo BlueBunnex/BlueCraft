@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import net.minecraft.src.block.TileEntityFurnace;
+import net.minecraft.src.gui.GuiChest;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
@@ -52,14 +52,6 @@ public class EntityPlayerSP extends EntityPlayer {
 
 	public void displayGUIChest(IInventory var1) {
 		this.mc.displayGuiScreen(new GuiChest(this.inventory, var1));
-	}
-
-	public void displayGUIEditSign(TileEntitySign var1) {
-		this.mc.displayGuiScreen(new GuiEditSign(var1));
-	}
-
-	public void displayGUIFurnace(TileEntityFurnace var1) {
-		this.mc.displayGuiScreen(new GuiFurnace(this.inventory, var1));
 	}
 
 	public ItemStack getCurrentEquippedItem() {
