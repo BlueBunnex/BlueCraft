@@ -1,16 +1,16 @@
 package net.minecraft.src.entity.spawning;
 
 import net.minecraft.src.ChunkPosition;
-import net.minecraft.src.PlayerControllerSP;
+import net.minecraft.src.PlayerController;
 import net.minecraft.src.world.World;
 
 public class SpawnerMonsters extends SpawnerAnimals {
 	
-	final PlayerControllerSP playerController;
+	final PlayerController playerController;
 
-	public SpawnerMonsters(PlayerControllerSP var1, int var2, Class var3, Class[] var4) {
+	public SpawnerMonsters(PlayerController playerController, int var2, Class var3, Class[] var4) {
 		super(var2, var3, var4);
-		this.playerController = var1;
+		this.playerController = playerController;
 	}
 
 	protected ChunkPosition getRandomSpawningPointInChunk(World var1, int var2, int var3) {

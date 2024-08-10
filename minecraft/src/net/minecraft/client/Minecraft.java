@@ -68,7 +68,7 @@ import org.lwjgl.util.glu.GLU;
 
 public class Minecraft implements Runnable {
 	
-	public PlayerController playerController = new PlayerControllerSP(this);
+	public PlayerController playerController = new PlayerController(this);
 	private boolean fullscreen = false;
 	public int displayWidth;
 	public int displayHeight;
