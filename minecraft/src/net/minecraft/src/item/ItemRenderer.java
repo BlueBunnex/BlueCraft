@@ -3,17 +3,17 @@ package net.minecraft.src.item;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import net.minecraft.src.EntityPlayerSP;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.Minecraft;
-import net.minecraft.src.Render;
 import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.RenderHelper;
-import net.minecraft.src.RenderManager;
-import net.minecraft.src.RenderPlayer;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.entity.EntityPlayerSP;
+import net.minecraft.src.entity.render.Render;
+import net.minecraft.src.entity.render.RenderManager;
+import net.minecraft.src.entity.render.RenderPlayer;
 
 public class ItemRenderer {
 	private Minecraft mc;

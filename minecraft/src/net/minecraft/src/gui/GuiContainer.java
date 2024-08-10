@@ -5,9 +5,9 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import net.minecraft.src.EntityPlayerSP;
 import net.minecraft.src.RenderHelper;
-import net.minecraft.src.RenderItem;
+import net.minecraft.src.entity.EntityPlayerSP;
+import net.minecraft.src.entity.render.RenderItem;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.ItemStack;
 

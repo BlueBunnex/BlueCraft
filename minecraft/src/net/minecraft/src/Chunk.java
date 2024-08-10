@@ -8,6 +8,7 @@ import java.util.Map;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockContainer;
 import net.minecraft.src.block.TileEntity;
+import net.minecraft.src.entity.Entity;
 import net.minecraft.src.world.World;
 
 public class Chunk {

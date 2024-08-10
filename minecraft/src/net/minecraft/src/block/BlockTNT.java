@@ -2,8 +2,8 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.EntityTNTPrimed;
 import net.minecraft.src.Material;
+import net.minecraft.src.entity.EntityTNTPrimed;
 import net.minecraft.src.world.World;
 
 public class BlockTNT extends Block {

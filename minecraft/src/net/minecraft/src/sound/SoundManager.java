@@ -3,9 +3,9 @@ package net.minecraft.src.sound;
 import java.io.File;
 import java.util.Random;
 
-import net.minecraft.src.EntityLiving;
 import net.minecraft.src.GameSettings;
 import net.minecraft.src.MathHelper;
+import net.minecraft.src.entity.EntityLiving;
 import paulscode.sound.SoundSystem;
 import paulscode.sound.SoundSystemConfig;
 import paulscode.sound.codecs.CodecJOrbis;

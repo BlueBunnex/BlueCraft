@@ -1,8 +1,8 @@
 package net.minecraft.src.item;
 
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityLiving;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.entity.Entity;
+import net.minecraft.src.entity.EntityLiving;
 
 public class ItemSword extends Item {
 	private int weaponDamage;

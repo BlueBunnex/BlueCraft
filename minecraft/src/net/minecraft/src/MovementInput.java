@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import net.minecraft.src.entity.EntityPlayer;
+
 public class MovementInput {
 	public float moveStrafe = 0.0F;
 	public float moveForward = 0.0F;

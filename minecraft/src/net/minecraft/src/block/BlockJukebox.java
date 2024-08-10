@@ -1,7 +1,7 @@
 package net.minecraft.src.block;
 
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Material;
+import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;
 
 public class BlockJukebox extends Block {

@@ -1,6 +1,6 @@
 package net.minecraft.src.item;
 
-import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;
 
 public class ItemFood extends Item {

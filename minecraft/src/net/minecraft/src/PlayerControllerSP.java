@@ -1,6 +1,17 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.entity.EntityAnimal;
+import net.minecraft.src.entity.EntityCreeper;
+import net.minecraft.src.entity.EntityMob;
+import net.minecraft.src.entity.EntityPig;
+import net.minecraft.src.entity.EntityPlayer;
+import net.minecraft.src.entity.EntitySheep;
+import net.minecraft.src.entity.EntitySkeleton;
+import net.minecraft.src.entity.EntitySpider;
+import net.minecraft.src.entity.EntityZombie;
+import net.minecraft.src.entity.spawning.SpawnerAnimals;
+import net.minecraft.src.entity.spawning.SpawnerMonsters;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
 

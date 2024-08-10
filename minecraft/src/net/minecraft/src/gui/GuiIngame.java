@@ -11,9 +11,9 @@ import net.minecraft.src.FontRenderer;
 import net.minecraft.src.Material;
 import net.minecraft.src.Minecraft;
 import net.minecraft.src.RenderHelper;
-import net.minecraft.src.RenderItem;
 import net.minecraft.src.ScaledResolution;
 import net.minecraft.src.Tessellator;
+import net.minecraft.src.entity.render.RenderItem;
 import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;
 

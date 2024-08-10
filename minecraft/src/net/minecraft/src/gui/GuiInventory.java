@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import net.minecraft.src.RenderHelper;
-import net.minecraft.src.RenderManager;
+import net.minecraft.src.entity.render.RenderManager;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryCraftResult;
 import net.minecraft.src.item.ItemStack;

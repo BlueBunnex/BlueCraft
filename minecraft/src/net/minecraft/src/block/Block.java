@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityItem;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.MovingObjectPosition;
-import net.minecraft.src.StepSound;
-import net.minecraft.src.StepSoundGlass;
-import net.minecraft.src.StepSoundSand;
 import net.minecraft.src.Vec3D;
+import net.minecraft.src.entity.Entity;
+import net.minecraft.src.entity.EntityItem;
+import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemBlock;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.sound.StepSound;
+import net.minecraft.src.sound.StepSoundGlass;
+import net.minecraft.src.sound.StepSoundSand;
 import net.minecraft.src.world.World;
 
 public class Block {

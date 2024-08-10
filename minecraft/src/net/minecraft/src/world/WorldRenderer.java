@@ -6,13 +6,13 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Chunk;
 import net.minecraft.src.ChunkCache;
-import net.minecraft.src.Entity;
 import net.minecraft.src.ICamera;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.RenderBlocks;
-import net.minecraft.src.RenderItem;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.entity.Entity;
+import net.minecraft.src.entity.render.RenderItem;
 
 public class WorldRenderer {
 	public World worldObj;

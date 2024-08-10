@@ -2,10 +2,10 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.EntityItem;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
+import net.minecraft.src.entity.EntityItem;
+import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryLargeChest;
 import net.minecraft.src.item.ItemStack;

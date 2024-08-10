@@ -18,8 +18,6 @@ import net.minecraft.src.ChunkCoordIntPair;
 import net.minecraft.src.ChunkLoader;
 import net.minecraft.src.ChunkProviderLoadOrGenerate;
 import net.minecraft.src.CompressedStreamTools;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EnumSkyBlock;
 import net.minecraft.src.Explosion;
 import net.minecraft.src.IBlockAccess;
@@ -36,6 +34,8 @@ import net.minecraft.src.Pathfinder;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntity;
+import net.minecraft.src.entity.Entity;
+import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.gen.ChunkProviderGenerate;
 
 public class World implements IBlockAccess {

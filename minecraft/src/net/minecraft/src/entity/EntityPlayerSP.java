@@ -1,0 +1,110 @@
+package net.minecraft.src.entity;
+
+import net.minecraft.src.Minecraft;
+import net.minecraft.src.MovementInput;
+import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.NBTTagList;
+import net.minecraft.src.gui.GuiChest;
+import net.minecraft.src.inventory.IInventory;
+import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.world.World;
+
+public class EntityPlayerSP extends EntityPlayer {
+	
+	public MovementInput movementInput;
+	private Minecraft mc;
+
+	public EntityPlayerSP(Minecraft mc, World world) {
+		super(world);
+		this.mc = mc;
+		
+		this.skinUrl = "http://www.minecraft.net/skin/erkmrk.png";
+		System.out.println("Loading texture " + this.skinUrl);
+	}
+
+	public void updateEntityActionState() {
+		this.moveStrafing = this.movementInput.moveStrafe;
+		this.moveForward = this.movementInput.moveForward;
+		this.isJumping = this.movementInput.jump;
+	}
+
+	public void onLivingUpdate() {
+		this.movementInput.updatePlayerMoveState(this);
+		super.onLivingUpdate();
+	}
+
+	public void resetPlayerKeyState() {
+		this.movementInput.resetKeyState();
+	}
+
+	public void handleKeyPress(int var1, boolean var2) {
+		this.movementInput.checkKeyForMovementInput(var1, var2);
+	}
+
+	public void writeEntityToNBT(NBTTagCompound var1) {
+		super.writeEntityToNBT(var1);
+		var1.setInteger("Score", this.score);
+		var1.setTag("Inventory", this.inventory.writeToNBT(new NBTTagList()));
+	}
+
+	public void readEntityFromNBT(NBTTagCompound var1) {
+		super.readEntityFromNBT(var1);
+		this.score = var1.getInteger("Score");
+		NBTTagList var2 = var1.getTagList("Inventory");
+		this.inventory.readFromNBT(var2);
+	}
+
+	public void displayGUIChest(IInventory var1) {
+		this.mc.displayGuiScreen(new GuiChest(this.inventory, var1));
+	}
+
+	public ItemStack getCurrentEquippedItem() {
+		return this.inventory.getCurrentItem();
+	}
+
+	public void destroyCurrentEquippedItem() {
+		this.inventory.setInventorySlotContents(this.inventory.currentItem, (ItemStack)null);
+	}
+
+	public void attackEntity(Entity var1) {
+		int var2 = this.inventory.getDamageVsEntity(var1);
+		if(var2 > 0) {
+			var1.attackEntityFrom(this, var2);
+			ItemStack var3 = this.getCurrentEquippedItem();
+			if(var3 != null && var1 instanceof EntityLiving) {
+				var3.hitEntity((EntityLiving)var1);
+				if(var3.stackSize <= 0) {
+					var3.onItemDestroyedByUse(this);
+					this.destroyCurrentEquippedItem();
+				}
+			}
+		}
+
+	}
+
+	public void onItemPickup(Entity var1) {
+		this.mc.effectRenderer.addEffect(new EntityPickupFX(this.mc.theWorld, var1, this, -0.5F));
+	}
+
+	public int getPlayerArmorValue() {
+		return this.inventory.getTotalArmorValue();
+	}
+
+	public void interactWithEntity(Entity var1) {
+		if(!var1.interact(this)) {
+			ItemStack var2 = this.getCurrentEquippedItem();
+			if(var2 != null && var1 instanceof EntityLiving) {
+				var2.useItemOnEntity((EntityLiving)var1);
+				if(var2.stackSize <= 0) {
+					var2.onItemDestroyedByUse(this);
+					this.destroyCurrentEquippedItem();
+				}
+			}
+
+		}
+	}
+
+	protected double getYOffset() {
+		return (double)(this.yOffset - 0.5F);
+	}
+}

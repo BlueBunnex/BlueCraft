@@ -1,9 +1,9 @@
 package net.minecraft.src.block;
 
 import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.EntityList;
-import net.minecraft.src.EntityLiving;
 import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.entity.EntityList;
+import net.minecraft.src.entity.EntityLiving;
 
 public class TileEntityMobSpawner extends TileEntity {
 	public int delay = -1;

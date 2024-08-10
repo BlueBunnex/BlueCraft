@@ -1,6 +1,6 @@
 package net.minecraft.src.world;
 
-import net.minecraft.src.Entity;
+import net.minecraft.src.entity.Entity;
 
 public interface IWorldAccess {
 	
