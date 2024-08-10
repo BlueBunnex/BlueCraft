@@ -32,10 +32,11 @@ public class GuiIngame extends Gui {
 	}
 
 	public void renderGameOverlay(float var1, boolean var2, int var3, int var4) {
-		ScaledResolution var5 = new ScaledResolution(this.mc.displayWidth, this.mc.displayHeight);
 		
-		int width = var5.getScaledWidth();
-		int height = var5.getScaledHeight();
+		ScaledResolution res = new ScaledResolution(this.mc.displayWidth, this.mc.displayHeight);
+		
+		int width  = res.getScaledWidth();
+		int height = res.getScaledHeight();
 		
 		FontRenderer fontRenderer = this.mc.fontRenderer;
 		
@@ -44,15 +45,16 @@ public class GuiIngame extends Gui {
 		if(this.mc.options.fancyGraphics) {
 			this.renderVignette(this.mc.thePlayer.getBrightness(var1), width, height);
 		}
-		
-		fontRenderer.drawString("HP: " + this.mc.thePlayer.health + "/20", width / 2, height - 40, 4210752);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/gui/gui.png"));
+		
 		InventoryPlayer var9 = this.mc.thePlayer.inventory;
+		
 		this.zLevel = -90.0F;
 		this.drawTexturedModalRect(width / 2 - 91, height - 22, 0, 0, 182, 22);
 		this.drawTexturedModalRect(width / 2 - 91 - 1 + var9.currentItem * 20, height - 22 - 1, 0, 22, 24, 22);
+		
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/gui/icons.png"));
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ONE_MINUS_SRC_COLOR);
@@ -64,70 +66,37 @@ public class GuiIngame extends Gui {
 			var10 = false;
 		}
 		
-		int health = this.mc.thePlayer.health;
-		int prevHealth = this.mc.thePlayer.prevHealth;
-		this.rand.setSeed((long)(this.updateCounter * 312871));
-		
 		if(this.mc.playerController.shouldDrawHUD()) {
 			
+			int health = this.mc.thePlayer.health;
 			int armor = this.mc.thePlayer.getPlayerArmorValue();
-
-			for(int i = 0; i < 10; i++) {
-				
-				int y = height - 32;
-				
-				// draw armor
-				if(armor > 0) {
-					
-					int x = width / 2 + 91 - i * 8 - 9;
-					
-					if(i * 2 + 1 < armor) {
-						this.drawTexturedModalRect(x, y, 34, 9, 9, 9);
-					}
-
-					if(i * 2 + 1 == armor) {
-						this.drawTexturedModalRect(x, y, 25, 9, 9, 9);
-					}
-
-					if(i * 2 + 1 > armor) {
-						this.drawTexturedModalRect(x, y, 16, 9, 9, 9);
-					}
-				}
-
-				// draw health
-				byte var25 = 0;
-				if(var10) {
-					var25 = 1;
-				}
-
-				int x = width / 2 - 91 + i * 8;
-				if(health <= 4) {
-					y += this.rand.nextInt(2);
-				}
-
-				this.drawTexturedModalRect(x, y, 16 + var25 * 9, 0, 9, 9);
-				if(var10) {
-					if(i * 2 + 1 < prevHealth) {
-						this.drawTexturedModalRect(x, y, 70, 0, 9, 9);
-					}
-
-					if(i * 2 + 1 == prevHealth) {
-						this.drawTexturedModalRect(x, y, 79, 0, 9, 9);
-					}
-				}
-
-				if(i * 2 + 1 < health) {
-					this.drawTexturedModalRect(x, y, 52, 0, 9, 9);
-				}
-
-				if(i * 2 + 1 == health) {
-					this.drawTexturedModalRect(x, y, 61, 0, 9, 9);
-				}
+			
+			int leftX = width / 2 - 91;
+			int y = height - 32;
+			
+			// draw armor
+			if(armor > 0) {
+				this.drawTexturedModalRect(leftX + 24, y, 34, 9, 9, 9);
 			}
 
+			// draw health
+			byte var25 = 0;
+			if(var10) {
+				var25 = 1;
+			}
+
+			this.drawTexturedModalRect(leftX, y, 16 + var25 * 9, 0, 9, 9);
+			
+			if (health <= 10) {
+				this.drawTexturedModalRect(leftX, y, 61, 0, 9, 9);
+			} else {
+				this.drawTexturedModalRect(leftX, y, 52, 0, 9, 9);
+			}
+
+			// bubbles
 			if(this.mc.thePlayer.isInsideOfMaterial(Material.water)) {
-				int var14 = (int)Math.ceil((double)(this.mc.thePlayer.air - 2) * 10.0D / 300.0D);
-				int var15 = (int)Math.ceil((double)this.mc.thePlayer.air * 10.0D / 300.0D) - var14;
+				int var14 = (int) Math.ceil((double)(this.mc.thePlayer.air - 2) * 10.0D / 300.0D);
+				int var15 = (int) Math.ceil((double)this.mc.thePlayer.air * 10.0D / 300.0D) - var14;
 
 				for(int i = 0; i < var14 + var15; i++) {
 					if(i < var14) {
@@ -137,6 +106,12 @@ public class GuiIngame extends Gui {
 					}
 				}
 			}
+			
+			// draw stat text (changes texture so have to do last)
+			fontRenderer.drawBorderedString("" + health, leftX + 11, y + 1, -65536, -16777216);
+			
+			if (armor > 0)
+				fontRenderer.drawBorderedString("" + armor, leftX + 35, y + 1, -2236963, -16777216);
 		}
 
 		GL11.glDisable(GL11.GL_BLEND);

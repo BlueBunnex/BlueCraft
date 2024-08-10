@@ -104,13 +104,13 @@ public class FontRenderer {
 
 	}
 
-	public void drawStringWithShadow(String var1, int var2, int var3, int var4) {
-		this.renderString(var1, var2 + 1, var3 + 1, var4, true);
-		this.drawString(var1, var2, var3, var4);
+	public void drawStringWithShadow(String text, int x, int y, int color) {
+		this.renderString(text, x + 1, y + 1, color, true);
+		this.drawString(text, x, y, color);
 	}
 
-	public void drawString(String var1, int var2, int var3, int var4) {
-		this.renderString(var1, var2, var3, var4, false);
+	public void drawString(String text, int x, int y, int color) {
+		this.renderString(text, x, y, color, false);
 	}
 
 	public void renderString(String var1, int var2, int var3, int var4, boolean var5) {
@@ -178,5 +178,21 @@ public class FontRenderer {
 
 			return var2;
 		}
+	}
+
+	public void drawBorderedString(String text, int x, int y, int colorMain, int colorBorder) {
+		
+		this.renderString(text, x + 1, y + 1, colorBorder, true);
+		this.renderString(text, x + 1, y,     colorBorder, true);
+		this.renderString(text, x + 1, y - 1, colorBorder, true);
+		
+		this.renderString(text, x - 1, y + 1, colorBorder, true);
+		this.renderString(text, x - 1, y,     colorBorder, true);
+		this.renderString(text, x - 1, y - 1, colorBorder, true);
+		
+		this.renderString(text, x, y + 1, colorBorder, true);
+		this.renderString(text, x, y - 1, colorBorder, true);
+		
+		this.drawString(text, x, y, colorMain);
 	}
 }
