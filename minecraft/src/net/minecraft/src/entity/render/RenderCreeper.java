@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.entity.EntityCreeper;
 import net.minecraft.src.entity.EntityLiving;
-import net.minecraft.src.entity.model.ModelCreeper;
 
 public class RenderCreeper extends RenderLiving {
 	public RenderCreeper() {

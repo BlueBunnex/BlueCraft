@@ -11,7 +11,7 @@ import net.minecraft.client.MinecraftApplet;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.EntityPlayerSP;
 import net.minecraft.src.entity.EntityRenderer;
-import net.minecraft.src.entity.model.ModelBiped;
+import net.minecraft.src.entity.render.ModelBiped;
 import net.minecraft.src.gui.GuiChest;
 import net.minecraft.src.gui.GuiErrorScreen;
 import net.minecraft.src.gui.GuiGameOver;
@@ -21,13 +21,14 @@ import net.minecraft.src.gui.GuiInventory;
 import net.minecraft.src.gui.GuiMainMenu;
 import net.minecraft.src.gui.GuiScreen;
 import net.minecraft.src.inventory.InventoryGeneric;
-import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.sound.SoundManager;
 import net.minecraft.src.world.RenderGlobal;
 import net.minecraft.src.world.World;
 import net.minecraft.src.world.WorldRenderer;
+import net.minecraft.src.entity.Entity;
+import net.minecraft.src.entity.EntityGuard;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controllers;
@@ -806,6 +807,12 @@ public class Minecraft implements Runnable {
 					
 					this.displayGuiScreen(new GuiChest(this.thePlayer.inventory, invBlock));
 					
+					break;
+					
+				case Keyboard.KEY_I:
+					Entity entity = new EntityGuard(this.theWorld);
+					entity.setLocationAndAngles(this.thePlayer.posX, this.thePlayer.posY, this.thePlayer.posZ, 0F, 0F);
+					this.theWorld.spawnEntityInWorld(entity);
 					break;
 			}
 		}

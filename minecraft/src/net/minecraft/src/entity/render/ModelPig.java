@@ -1,4 +1,4 @@
-package net.minecraft.src.entity.model;
+package net.minecraft.src.entity.render;
 
 public class ModelPig extends ModelQuadraped {
 	public ModelPig() {

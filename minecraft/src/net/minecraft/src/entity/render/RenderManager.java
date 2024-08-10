@@ -21,12 +21,6 @@ import net.minecraft.src.entity.EntitySkeleton;
 import net.minecraft.src.entity.EntitySpider;
 import net.minecraft.src.entity.EntityTNTPrimed;
 import net.minecraft.src.entity.EntityZombie;
-import net.minecraft.src.entity.model.ModelBiped;
-import net.minecraft.src.entity.model.ModelCow;
-import net.minecraft.src.entity.model.ModelPig;
-import net.minecraft.src.entity.model.ModelSheep;
-import net.minecraft.src.entity.model.ModelSkeleton;
-import net.minecraft.src.entity.model.ModelZombie;
 import net.minecraft.src.world.World;
 
 public class RenderManager {

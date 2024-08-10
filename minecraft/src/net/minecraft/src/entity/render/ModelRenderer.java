@@ -1,4 +1,4 @@
-package net.minecraft.src.entity.model;
+package net.minecraft.src.entity.render;
 
 import org.lwjgl.opengl.GL11;
 

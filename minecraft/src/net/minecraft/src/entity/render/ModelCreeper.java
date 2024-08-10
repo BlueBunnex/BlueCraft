@@ -1,8 +1,8 @@
-package net.minecraft.src.entity.model;
+package net.minecraft.src.entity.render;
 
 import net.minecraft.src.MathHelper;
 
-public class ModelCreeper extends ModelBase {
+public class ModelCreeper extends Model {
 	public ModelRenderer head;
 	public ModelRenderer headwear;
 	public ModelRenderer body;

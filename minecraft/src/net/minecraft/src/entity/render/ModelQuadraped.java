@@ -1,8 +1,8 @@
-package net.minecraft.src.entity.model;
+package net.minecraft.src.entity.render;
 
 import net.minecraft.src.MathHelper;
 
-public class ModelQuadraped extends ModelBase {
+public class ModelQuadraped extends Model {
 	public ModelRenderer head = new ModelRenderer(0, 0);
 	public ModelRenderer body;
 	public ModelRenderer leg1;

@@ -1,6 +1,7 @@
-package net.minecraft.src.entity.model;
+package net.minecraft.src.entity.render;
 
 public class ModelCow extends ModelQuadraped {
+	
 	public ModelCow() {
 		super(12, 0.0F);
 		this.head = new ModelRenderer(0, 0);

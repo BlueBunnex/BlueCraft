@@ -39,6 +39,7 @@ import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.gen.ChunkProviderGenerate;
 
 public class World implements IBlockAccess {
+	
 	private List lightingToUpdate;
 	private List loadedEntityList;
 	private List unloadedEntityList;

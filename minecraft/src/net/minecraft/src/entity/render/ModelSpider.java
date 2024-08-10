@@ -1,8 +1,9 @@
-package net.minecraft.src.entity.model;
+package net.minecraft.src.entity.render;
 
 import net.minecraft.src.MathHelper;
 
-public class ModelSpider extends ModelBase {
+public class ModelSpider extends Model {
+	
 	public ModelRenderer spiderHead;
 	public ModelRenderer spiderNeck;
 	public ModelRenderer spiderBody;

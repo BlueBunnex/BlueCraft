@@ -2,10 +2,10 @@ package net.minecraft.src.entity.render;
 
 import net.minecraft.src.entity.EntityLiving;
 import net.minecraft.src.entity.EntitySheep;
-import net.minecraft.src.entity.model.ModelBase;
 
 public class RenderSheep extends RenderLiving {
-	public RenderSheep(ModelBase var1, ModelBase var2, float var3) {
+	
+	public RenderSheep(Model var1, Model var2, float var3) {
 		super(var1, var3);
 		this.setRenderPassModel(var2);
 	}

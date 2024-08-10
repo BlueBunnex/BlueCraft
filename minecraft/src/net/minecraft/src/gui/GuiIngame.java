@@ -18,6 +18,7 @@ import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;
 
 public class GuiIngame extends Gui {
+	
 	private static RenderItem itemRenderer = new RenderItem();
 	private List chatMessageList = new ArrayList();
 	private Random rand = new Random();
@@ -112,6 +113,9 @@ public class GuiIngame extends Gui {
 			
 			if (armor > 0)
 				fontRenderer.drawBorderedString("" + armor, leftX + 35, y + 1, -2236963, -16777216);
+			
+			// drawing text also messes with color, so revert before drawing hotbar
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		}
 
 		GL11.glDisable(GL11.GL_BLEND);

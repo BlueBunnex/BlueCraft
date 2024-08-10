@@ -6,18 +6,18 @@ import org.lwjgl.opengl.GL12;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
-import net.minecraft.src.entity.model.ModelBase;
 
 public class RenderLiving extends Render {
-	protected ModelBase mainModel;
-	protected ModelBase renderPassModel;
+	
+	protected Model mainModel;
+	protected Model renderPassModel;
 
-	public RenderLiving(ModelBase var1, float var2) {
+	public RenderLiving(Model var1, float var2) {
 		this.mainModel = var1;
 		this.shadowSize = var2;
 	}
 
-	public void setRenderPassModel(ModelBase var1) {
+	public void setRenderPassModel(Model var1) {
 		this.renderPassModel = var1;
 	}
 

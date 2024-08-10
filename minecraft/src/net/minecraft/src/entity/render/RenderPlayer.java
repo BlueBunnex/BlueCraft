@@ -3,7 +3,6 @@ package net.minecraft.src.entity.render;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
 import net.minecraft.src.entity.EntityPlayer;
-import net.minecraft.src.entity.model.ModelBiped;
 
 public class RenderPlayer extends RenderLiving {
 	

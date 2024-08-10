@@ -9,13 +9,12 @@ import net.minecraft.src.RenderEngine;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
-import net.minecraft.src.entity.model.ModelBase;
-import net.minecraft.src.entity.model.ModelBiped;
 import net.minecraft.src.world.World;
 
 public abstract class Render {
+	
 	protected RenderManager renderManager;
-	private ModelBase modelBase = new ModelBiped();
+	private Model modelBase = new ModelBiped();
 	private RenderBlocks renderBlocks = new RenderBlocks();
 	protected float shadowSize = 0.0F;
 	protected float shadowOpaque = 1.0F;
