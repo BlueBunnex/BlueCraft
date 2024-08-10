@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Iterator;
 
+import net.minecraft.io.CompressedStreamTools;
+import net.minecraft.io.NBTTagCompound;
+import net.minecraft.io.NBTTagList;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityList;

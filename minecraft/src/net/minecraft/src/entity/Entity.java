@@ -3,14 +3,14 @@ package net.minecraft.src.entity;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.io.NBTTagCompound;
+import net.minecraft.io.NBTTagDouble;
+import net.minecraft.io.NBTTagFloat;
+import net.minecraft.io.NBTTagList;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.BlockFluid;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagDouble;
-import net.minecraft.src.NBTTagFloat;
-import net.minecraft.src.NBTTagList;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.item.ItemStack;

@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import org.lwjgl.input.Keyboard;
 
+import net.minecraft.client.Minecraft;
+
 public class GameSettings {
 	
 	private static final String[] RENDER_DISTANCES = new String[]{"Far", "Normal", "Short", "Tiny"};

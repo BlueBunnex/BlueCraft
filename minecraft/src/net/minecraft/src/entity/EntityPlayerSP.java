@@ -1,9 +1,9 @@
 package net.minecraft.src.entity;
 
-import net.minecraft.src.Minecraft;
+import net.minecraft.client.Minecraft;
+import net.minecraft.io.NBTTagCompound;
+import net.minecraft.io.NBTTagList;
 import net.minecraft.src.MovementInput;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagList;
 import net.minecraft.src.gui.GuiChest;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.ItemStack;

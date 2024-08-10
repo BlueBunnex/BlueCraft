@@ -6,10 +6,10 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.ChatLine;
 import net.minecraft.src.FontRenderer;
 import net.minecraft.src.Material;
-import net.minecraft.src.Minecraft;
 import net.minecraft.src.RenderHelper;
 import net.minecraft.src.ScaledResolution;
 import net.minecraft.src.Tessellator;

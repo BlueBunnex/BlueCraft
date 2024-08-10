@@ -2,8 +2,8 @@ package net.minecraft.src.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.FontRenderer;
-import net.minecraft.src.Minecraft;
 
 public class GuiButton extends Gui {
 	private int width;

@@ -2,10 +2,10 @@ package net.minecraft.src.entity;
 
 import java.util.List;
 
+import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.EntityArrow;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryPlayer;

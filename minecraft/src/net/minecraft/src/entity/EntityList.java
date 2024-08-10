@@ -3,11 +3,11 @@ package net.minecraft.src.entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.EntityArrow;
 import net.minecraft.src.EntityMinecart;
 import net.minecraft.src.EntityPainting;
 import net.minecraft.src.EntitySnowball;
-import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.world.World;
 
 public class EntityList {

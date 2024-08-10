@@ -6,7 +6,6 @@ import java.awt.Canvas;
 import java.awt.Component;
 
 import net.minecraft.src.CanvasMinecraftApplet;
-import net.minecraft.src.Minecraft;
 
 public class MinecraftApplet extends Applet {
 	
@@ -18,10 +17,6 @@ public class MinecraftApplet extends Applet {
 		this.mcCanvas = new CanvasMinecraftApplet(this);
 
 		this.mc = new MinecraftAppletImpl(this, this, this.mcCanvas, this, this.getWidth(), this.getHeight(), false);
-		this.mc.minecraftUri = this.getDocumentBase().getHost();
-		if(this.getDocumentBase().getPort() > 0) {
-			this.mc.minecraftUri = this.mc.minecraftUri + ":" + this.getDocumentBase().getPort();
-		}
 
 		this.mc.appletMode = true;
 		this.setLayout(new BorderLayout());

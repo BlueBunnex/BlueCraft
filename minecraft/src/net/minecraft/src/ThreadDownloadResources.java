@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
+
 // TODO get resources internally instead of off the internet
 
 public class ThreadDownloadResources extends Thread {

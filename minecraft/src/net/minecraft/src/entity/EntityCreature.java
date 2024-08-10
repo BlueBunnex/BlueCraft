@@ -1,8 +1,8 @@
 package net.minecraft.src.entity;
 
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.PathEntity;
 import net.minecraft.src.Vec3D;
+import net.minecraft.src.entity.pathfinding.PathEntity;
 import net.minecraft.src.world.World;
 
 public class EntityCreature extends EntityLiving {

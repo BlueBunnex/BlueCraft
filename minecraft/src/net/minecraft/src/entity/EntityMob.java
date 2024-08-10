@@ -1,8 +1,8 @@
 package net.minecraft.src.entity;
 
+import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.EnumSkyBlock;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.world.World;
 
 public class EntityMob extends EntityCreature {

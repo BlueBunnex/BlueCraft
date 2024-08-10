@@ -1,6 +1,6 @@
 package net.minecraft.src.entity;
 
-import net.minecraft.src.NBTTagCompound;
+import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.world.World;
 

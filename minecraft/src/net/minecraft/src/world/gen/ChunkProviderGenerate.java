@@ -7,7 +7,6 @@ import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.IProgressUpdate;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.NoiseGeneratorOctaves;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockSand;
 import net.minecraft.src.world.World;

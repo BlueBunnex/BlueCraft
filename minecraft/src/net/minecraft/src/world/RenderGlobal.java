@@ -10,13 +10,13 @@ import org.lwjgl.opengl.ARBOcclusionQuery;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.EntityReddustFX;
 import net.minecraft.src.GLAllocation;
 import net.minecraft.src.ICamera;
 import net.minecraft.src.ImageBufferDownload;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.Minecraft;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.RenderEngine;

@@ -11,13 +11,14 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.minecraft.io.CompressedStreamTools;
+import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Chunk;
 import net.minecraft.src.ChunkCache;
 import net.minecraft.src.ChunkCoordIntPair;
 import net.minecraft.src.ChunkLoader;
 import net.minecraft.src.ChunkProviderLoadOrGenerate;
-import net.minecraft.src.CompressedStreamTools;
 import net.minecraft.src.EnumSkyBlock;
 import net.minecraft.src.Explosion;
 import net.minecraft.src.IBlockAccess;
@@ -27,15 +28,14 @@ import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.MetadataChunkBlock;
 import net.minecraft.src.MovingObjectPosition;
-import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NextTickListEntry;
-import net.minecraft.src.PathEntity;
-import net.minecraft.src.Pathfinder;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityPlayer;
+import net.minecraft.src.entity.pathfinding.PathEntity;
+import net.minecraft.src.entity.pathfinding.Pathfinder;
 import net.minecraft.src.world.gen.ChunkProviderGenerate;
 
 public class World implements IBlockAccess {

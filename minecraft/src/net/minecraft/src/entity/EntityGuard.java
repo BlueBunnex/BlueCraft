@@ -25,6 +25,6 @@ public class EntityGuard extends EntityMob {
 	}
 
 	protected int getDropItemId() {
-		return Item.appleRed.shiftedIndex;
+		return Item.ingotIron.shiftedIndex;
 	}
 }

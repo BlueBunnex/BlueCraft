@@ -1,5 +1,6 @@
 package net.minecraft.src;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;

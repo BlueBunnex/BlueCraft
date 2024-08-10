@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.NVFogDistance;
 import org.lwjgl.util.glu.GLU;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.ClippingHelperImplementation;
 import net.minecraft.src.EffectRenderer;
@@ -17,7 +18,6 @@ import net.minecraft.src.Frustum;
 import net.minecraft.src.GLAllocation;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.Minecraft;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.RenderHelper;
 import net.minecraft.src.ScaledResolution;

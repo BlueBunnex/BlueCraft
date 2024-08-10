@@ -1,7 +1,7 @@
 package net.minecraft.src.block;
 
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagList;
+import net.minecraft.io.NBTTagCompound;
+import net.minecraft.io.NBTTagList;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.item.ItemStack;
 

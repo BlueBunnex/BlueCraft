@@ -2,8 +2,8 @@ package net.minecraft.src.gui;
 
 import java.io.File;
 
-import net.minecraft.src.Minecraft;
-import net.minecraft.src.NBTTagCompound;
+import net.minecraft.client.Minecraft;
+import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.world.World;
 
 public class GuiSelectWorld extends GuiScreen {
