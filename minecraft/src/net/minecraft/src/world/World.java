@@ -35,7 +35,6 @@ import net.minecraft.src.PathEntity;
 import net.minecraft.src.Pathfinder;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
-import net.minecraft.src.block.BlockFluid;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.world.gen.ChunkProviderGenerate;
 
@@ -1250,13 +1249,12 @@ public class World implements IBlockAccess {
 		int var6 = MathHelper.floor_double(var1.minZ);
 		int var7 = MathHelper.floor_double(var1.maxZ + 1.0D);
 
-		for(int var8 = var2; var8 < var3; ++var8) {
-			for(int var9 = var4; var9 < var5; ++var9) {
-				for(int var10 = var6; var10 < var7; ++var10) {
-					int var11 = this.getBlockId(var8, var9, var10);
-					if(var11 == Block.fire.blockID || var11 == Block.lavaMoving.blockID || var11 == Block.lavaStill.blockID) {
+		for(int x = var2; x < var3; x++) {
+			for(int y = var4; y < var5; y++) {
+				for(int z = var6; z < var7; z++) {
+					
+					if (this.getBlockId(x, y, z) == Block.fire.blockID)
 						return true;
-					}
 				}
 			}
 		}
@@ -1279,7 +1277,7 @@ public class World implements IBlockAccess {
 				for(int var14 = var8; var14 < var9; ++var14) {
 					Block var15 = Block.blocksList[this.getBlockId(var12, var13, var14)];
 					if(var15 != null && var15.material == var2) {
-						double var16 = (double)((float)(var13 + 1) - BlockFluid.getFluidHeightPercent(this.getBlockMetadata(var12, var13, var14)));
+						double var16 = var13 + 1;
 						if((double)var7 >= var16) {
 							var10 = true;
 							var15.velocityToAddToEntity(this, var12, var13, var14, var3, var11);
@@ -1550,10 +1548,6 @@ public class World implements IBlockAccess {
 					if(var10 != 0 && var10 != Block.ice.blockID && Block.blocksList[var10].material.getIsSolid()) {
 						this.setBlockWithNotify(var7 + var3, var9, var8 + var4, Block.snow.blockID);
 					}
-
-					if(var10 == Block.waterStill.blockID && var14.getBlockMetadata(var7, var9 - 1, var8) == 0) {
-						this.setBlockWithNotify(var7 + var3, var9 - 1, var8 + var4, Block.ice.blockID);
-					}
 				}
 			}
 
@@ -1710,7 +1704,7 @@ public class World implements IBlockAccess {
 			var9 = null;
 		}
 
-		return var7 != Block.waterMoving && var7 != Block.waterStill && var7 != Block.lavaMoving && var7 != Block.lavaStill && var7 != Block.fire && var7 != Block.snow ? var1 > 0 && var7 == null && (var9 == null || this.checkIfAABBIsClear(var9)) && var8.canPlaceBlockAt(this, var2, var3, var4) : true;
+		return var7 != Block.fire && var7 != Block.snow ? var1 > 0 && var7 == null && (var9 == null || this.checkIfAABBIsClear(var9)) && var8.canPlaceBlockAt(this, var2, var3, var4) : true;
 	}
 
 	public PathEntity getPathToEntity(Entity var1, Entity var2, float var3) {

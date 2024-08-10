@@ -37,19 +37,15 @@ public class Block {
 	public static final boolean[] canBlockGrass = new boolean[256];
 	public static final int[] lightValue = new int[256];
 	
-	public static final Block stone = (new BlockBreakToCobble(1, 1)).setHardness(1.5F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final BlockGrass grass = (BlockGrass)(new BlockGrass(2)).setHardness(0.6F).setStepSound(soundGrassFootstep);
-	public static final Block dirt = (new BlockDirt(3, 2)).setHardness(0.5F).setStepSound(soundGravelFootstep);
+	public static final Block stone       = (new BlockBreakToCobble(1, 1)).setHardness(1.5F).setResistance(10.0F).setStepSound(soundStoneFootstep);
 	public static final Block cobblestone = new Block(4, 16, Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block planks = (new Block(5, 4, Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep);
-	public static final Block sapling = (new BlockSapling(6, 15)).setHardness(0.0F).setStepSound(soundGrassFootstep);
-	public static final Block bedrock = (new Block(7, 17, Material.rock)).setHardness(-1.0F).setResistance(6000000.0F).setStepSound(soundStoneFootstep);
-	public static final Block waterMoving = (new BlockFlowing(8, Material.water)).setHardness(100.0F).setLightOpacity(3);
-	public static final Block waterStill = (new BlockStationary(9, Material.water)).setHardness(100.0F).setLightOpacity(3);
-	public static final Block lavaMoving = (new BlockFlowing(10, Material.lava)).setHardness(0.0F).setLightValue(1.0F).setLightOpacity(255);
-	public static final Block lavaStill = (new BlockStationary(11, Material.lava)).setHardness(100.0F).setLightValue(1.0F).setLightOpacity(255);
-	public static final Block sand = (new BlockSand(12, 18)).setHardness(0.5F).setStepSound(soundSandFootstep);
-	public static final Block gravel = (new Block(13, 19, Material.sand)).setHardness(0.6F).setStepSound(soundGravelFootstep);
+	public static final Block bedrock     = (new Block(7, 17, Material.rock)).setHardness(-1.0F).setResistance(6000000.0F).setStepSound(soundStoneFootstep);
+	public static final BlockGrass grass  = (BlockGrass)(new BlockGrass(2)).setHardness(0.6F).setStepSound(soundGrassFootstep);
+	public static final Block dirt        = (new BlockDirt(3, 2)).setHardness(0.5F).setStepSound(soundGravelFootstep);
+	public static final Block planks      = (new Block(5, 4, Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep);
+	public static final Block sapling     = (new BlockSapling(6, 15)).setHardness(0.0F).setStepSound(soundGrassFootstep);
+	public static final Block sand        = (new BlockSand(12, 18)).setHardness(0.5F).setStepSound(soundSandFootstep);
+	public static final Block gravel      = (new Block(13, 19, Material.sand)).setHardness(0.6F).setStepSound(soundGravelFootstep);
 	
 	public static final Block oreCoal = (new BlockOre(16, 32)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
 	public static final Block oreIron = (new BlockOre(15, 33)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
@@ -59,22 +55,7 @@ public class Block {
 	public static final BlockLeaves leaves = (BlockLeaves)(new BlockLeaves(18, 52)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep);
 	public static final Block sponge = (new BlockSponge(19)).setHardness(0.6F).setStepSound(soundGrassFootstep);
 	public static final Block glass = (new BlockGlass(20, 49, Material.glass, false)).setHardness(0.3F).setStepSound(soundGlassFootstep);
-	public static final Block clothRed = null;
-	public static final Block clothOrange = null;
-	public static final Block clothYellow = null;
-	public static final Block clothChartreuse = null;
-	public static final Block clothGreen = null;
-	public static final Block clothSpringGreen = null;
-	public static final Block clothCyan = null;
-	public static final Block clothCapri = null;
-	public static final Block clothUltramarine = null;
-	public static final Block clothViolet = null;
-	public static final Block clothPurple = null;
-	public static final Block clothMagenta = null;
-	public static final Block clothRose = null;
-	public static final Block clothDarkGray = null;
 	public static final Block cloth = (new Block(35, 64, Material.cloth)).setHardness(0.8F).setStepSound(soundClothFootstep);
-	public static final Block clothWhite = null;
 	public static final BlockFlower plantYellow = (BlockFlower)(new BlockFlower(37, 13)).setHardness(0.0F).setStepSound(soundGrassFootstep);
 	public static final BlockFlower plantRed = (BlockFlower)(new BlockFlower(38, 12)).setHardness(0.0F).setStepSound(soundGrassFootstep);
 	public static final BlockFlower mushroomBrown = (BlockFlower)(new BlockMushroom(39, 29)).setHardness(0.0F).setStepSound(soundGrassFootstep).setLightValue(2.0F / 16.0F);
@@ -100,7 +81,7 @@ public class Block {
 	public static final Block stairCompactStone = new BlockStairs(67, cobblestone);
 	
 	public static final Block snow = (new BlockSnow(78, 66)).setHardness(0.1F).setStepSound(soundClothFootstep);
-	public static final Block ice = (new BlockIce(79, 67)).setHardness(0.5F).setLightOpacity(3).setStepSound(soundGlassFootstep);
+	public static final Block ice = (new Block(79, 67, Material.ice)).setHardness(0.5F).setLightOpacity(3).setStepSound(soundGlassFootstep);
 	public static final Block blockSnow = (new BlockSnowBlock(80, 66)).setHardness(0.2F).setStepSound(soundClothFootstep);
 	
 	public static final Block jukebox = new BlockJukebox(81).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep);

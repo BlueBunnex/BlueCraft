@@ -1,8 +1,8 @@
 package net.minecraft.src;
 
-import net.minecraft.src.block.BlockFluid;
 import net.minecraft.src.world.World;
 
+// TODO probably remove idk, need to check when this is incited
 public class EntityRainFX extends EntityFX {
 	public EntityRainFX(World var1, double var2, double var4, double var6) {
 		super(var1, var2, var4, var6, 0.0D, 0.0D, 0.0D);

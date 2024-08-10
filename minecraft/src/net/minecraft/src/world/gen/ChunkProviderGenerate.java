@@ -88,7 +88,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 									if(this.worldObj.snowCovered && var11 * 8 + var30 >= var5 - 1) {
 										var51 = Block.ice.blockID;
 									} else {
-										var51 = Block.waterStill.blockID;
+										var51 = Block.glass.blockID; // TODO
 									}
 								}
 
@@ -166,7 +166,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 								}
 
 								if(var15 < var4 && var13 == 0) {
-									var13 = (byte)Block.waterStill.blockID;
+									var13 = (byte) Block.glass.blockID; // TODO
 								}
 
 								var12 = var11;
@@ -296,9 +296,6 @@ public class ChunkProviderGenerate implements IChunkProvider {
 							for(int var42 = var36 + 1; !var56 && var42 >= var54 - 1; --var42) {
 								var43 = (var40 * 16 + var41) * 128 + var42;
 								if(var42 >= 0 && var42 < 128) {
-									if(var3[var43] == Block.waterMoving.blockID || var3[var43] == Block.waterStill.blockID) {
-										var56 = true;
-									}
 
 									if(var42 != var54 - 1 && var40 != var53 && var40 != var34 - 1 && var41 != var55 && var41 != var38 - 1) {
 										var42 = var54;
@@ -326,13 +323,10 @@ public class ChunkProviderGenerate implements IChunkProvider {
 										}
 
 										if(var51 == Block.stone.blockID || var51 == Block.dirt.blockID || var51 == Block.grass.blockID) {
-											if(var48 < 10) {
-												var3[var46] = (byte)Block.lavaMoving.blockID;
-											} else {
-												var3[var46] = 0;
-												if(var47 && var3[var46 - 1] == Block.dirt.blockID) {
-													var3[var46 - 1] = (byte)Block.grass.blockID;
-												}
+											
+											var3[var46] = 0;
+											if(var47 && var3[var46 - 1] == Block.dirt.blockID) {
+												var3[var46 - 1] = (byte)Block.grass.blockID;
 											}
 										}
 									}
@@ -616,20 +610,6 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			var15 = this.rand.nextInt(128);
 			var16 = blockZ + this.rand.nextInt(16) + 8;
 			(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.rand, var14, var15, var16);
-		}
-
-		for(var14 = 0; var14 < 50; ++var14) {
-			var15 = blockX + this.rand.nextInt(16) + 8;
-			var16 = this.rand.nextInt(this.rand.nextInt(120) + 8);
-			var17 = blockZ + this.rand.nextInt(16) + 8;
-			(new WorldGenLiquids(Block.waterMoving.blockID)).generate(this.worldObj, this.rand, var15, var16, var17);
-		}
-
-		for(var14 = 0; var14 < 20; ++var14) {
-			var15 = blockX + this.rand.nextInt(16) + 8;
-			var16 = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(112) + 8) + 8);
-			var17 = blockZ + this.rand.nextInt(16) + 8;
-			(new WorldGenLiquids(Block.lavaMoving.blockID)).generate(this.worldObj, this.rand, var15, var16, var17);
 		}
 
 		if(this.worldObj.snowCovered) {
