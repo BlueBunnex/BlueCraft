@@ -28,7 +28,7 @@ import net.minecraft.src.world.RenderGlobal;
 import net.minecraft.src.world.World;
 import net.minecraft.src.world.WorldRenderer;
 import net.minecraft.src.entity.Entity;
-import net.minecraft.src.entity.EntityGuard;
+import net.minecraft.src.entity.EntityZombie;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controllers;
@@ -810,7 +810,7 @@ public class Minecraft implements Runnable {
 					break;
 					
 				case Keyboard.KEY_I:
-					Entity entity = new EntityGuard(this.theWorld);
+					Entity entity = new EntityZombie(this.theWorld);
 					entity.setLocationAndAngles(this.thePlayer.posX, this.thePlayer.posY, this.thePlayer.posZ, 0F, 0F);
 					this.theWorld.spawnEntityInWorld(entity);
 					break;
