@@ -13,6 +13,8 @@ import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemBlock;
 import net.minecraft.src.item.ItemStack;
+import net.minecraft.src.item.ToolLevel;
+import net.minecraft.src.item.ToolType;
 import net.minecraft.src.sound.StepSound;
 import net.minecraft.src.sound.StepSoundGlass;
 import net.minecraft.src.sound.StepSoundSand;
@@ -37,7 +39,7 @@ public class Block {
 	public static final int[] lightValue = new int[256];
 	
 	public static final Block stone       = (new BlockBreakToCobble(1, 1)).setHardness(1.5F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block cobblestone = new Block(4, 16, Material.rock).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
+	public static final Block cobblestone = new BlockToolSensitive(4, 16, Material.rock, ToolLevel.BRONZE, ToolType.PICKAXE).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
 	public static final Block bedrock     = (new Block(7, 17, Material.rock)).setHardness(-1.0F).setResistance(6000000.0F).setStepSound(soundStoneFootstep);
 	public static final BlockGrass grass  = (BlockGrass)(new BlockGrass(2)).setHardness(0.6F).setStepSound(soundGrassFootstep);
 	public static final Block dirt        = (new BlockDirt(3, 2)).setHardness(0.5F).setStepSound(soundGravelFootstep);

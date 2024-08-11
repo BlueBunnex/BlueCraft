@@ -1,5 +1,6 @@
 package net.minecraft.src.block;
 
+// TODO remove this class, but add a transparency flag elsewhere in the block class
 public class Material {
 	
 	public static final Material air = new MaterialTransparent();

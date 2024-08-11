@@ -6,14 +6,18 @@ import net.minecraft.src.entity.EntityLiving;
 
 public class ItemTool extends Item {
 	
-	private Block[] blocksEffectiveAgainst;
 	private float efficiencyOnProperMaterial = 4.0F;
 	private int damageVsEntity;
+	
+	public final ToolLevel level;
+	public final ToolType type;
 
 	public ItemTool(int index, ToolLevel level, ToolType type) {
 		super(index);
 		
-		this.blocksEffectiveAgainst = type.blocksEffectiveAgainst;
+		this.level = level;
+		this.type = type;
+		
 		this.maxStackSize = 1;
 		
 		// calculate durability
@@ -36,22 +40,21 @@ public class ItemTool extends Item {
 
 	public float getStrVsBlock(ItemStack var1, Block block) {
 		
-		for (int i = 0; i < this.blocksEffectiveAgainst.length; i++) {
+		for (int i = 0; i < this.type.blocksEffectiveAgainst.length; i++) {
 			
-			if (this.blocksEffectiveAgainst[i] == block) {
+			if (this.type.blocksEffectiveAgainst[i] == block)
 				return this.efficiencyOnProperMaterial;
-			}
 		}
 
 		return 1.0F;
 	}
 
-	public void hitEntity(ItemStack var1, EntityLiving var2) {
-		var1.damageItem(1);
+	public void hitEntity(ItemStack itemStack, EntityLiving hitEntity) {
+		itemStack.damageItem(1);
 	}
 
-	public void onBlockDestroyed(ItemStack var1, int var2, int var3, int var4, int var5) {
-		var1.damageItem(1);
+	public void onBlockDestroyed(ItemStack itemStack, int var2, int var3, int var4, int var5) {
+		itemStack.damageItem(1);
 	}
 
 	public int getDamageVsEntity(Entity var1) {
