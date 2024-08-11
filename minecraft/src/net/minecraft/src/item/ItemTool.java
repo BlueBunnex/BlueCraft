@@ -4,17 +4,15 @@ import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
 
-// TODO rework efficiency (speed and against/'tool type')
 public class ItemTool extends Item {
 	
 	private Block[] blocksEffectiveAgainst;
 	private float efficiencyOnProperMaterial = 4.0F;
 	private int damageVsEntity;
-	protected int toolMaterial;
 
 	public ItemTool(int index, ToolLevel level, ToolType type) {
 		super(index);
-		this.toolMaterial = level.ordinal();
+		
 		this.blocksEffectiveAgainst = type.blocksEffectiveAgainst;
 		this.maxStackSize = 1;
 		
@@ -36,11 +34,11 @@ public class ItemTool extends Item {
 		}
 	}
 
-	public float getStrVsBlock(ItemStack var1, Block var2) {
+	public float getStrVsBlock(ItemStack var1, Block block) {
 		
-		for (int var3 = 0; var3 < this.blocksEffectiveAgainst.length; ++var3) {
+		for (int i = 0; i < this.blocksEffectiveAgainst.length; i++) {
 			
-			if (this.blocksEffectiveAgainst[var3] == var2) {
+			if (this.blocksEffectiveAgainst[i] == block) {
 				return this.efficiencyOnProperMaterial;
 			}
 		}

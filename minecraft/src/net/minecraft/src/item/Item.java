@@ -20,17 +20,17 @@ public class Item {
 	ingotMithril   = new Item(2).setIconIndex(32),
 	
 	// tools
-	swordBronze    = new ItemSword(3, 1).setIconIndex(1),
+	swordBronze    = new ItemTool(3,  ToolLevel.BRONZE, ToolType.SWORD)   .setIconIndex(1),
 	pickaxeBronze  = new ItemTool(4,  ToolLevel.BRONZE, ToolType.PICKAXE) .setIconIndex(2),
 	axeBronze      = new ItemTool(5,  ToolLevel.BRONZE, ToolType.AXE)     .setIconIndex(3),
 	shovelBronze   = new ItemTool(6,  ToolLevel.BRONZE, ToolType.SHOVEL)  .setIconIndex(4),
 	
-	swordIron      = new ItemSword(7, 2).setIconIndex(17),
+	swordIron      = new ItemTool(7,  ToolLevel.IRON, ToolType.SWORD)     .setIconIndex(17),
 	pickaxeIron    = new ItemTool(8,  ToolLevel.IRON, ToolType.PICKAXE)   .setIconIndex(18),
 	axeIron        = new ItemTool(9,  ToolLevel.IRON, ToolType.AXE)       .setIconIndex(19),
 	shovelIron     = new ItemTool(10, ToolLevel.IRON, ToolType.SHOVEL)    .setIconIndex(20),
 	
-	swordMithril   = new ItemSword(11, 3).setIconIndex(33),
+	swordMithril   = new ItemTool(11, ToolLevel.MITHRIL, ToolType.SWORD)  .setIconIndex(33),
 	pickaxeMithril = new ItemTool(12, ToolLevel.MITHRIL, ToolType.PICKAXE).setIconIndex(34),
 	axeMithril     = new ItemTool(13, ToolLevel.MITHRIL, ToolType.AXE)    .setIconIndex(35),
 	shovelMithril  = new ItemTool(14, ToolLevel.MITHRIL, ToolType.SHOVEL) .setIconIndex(36),
