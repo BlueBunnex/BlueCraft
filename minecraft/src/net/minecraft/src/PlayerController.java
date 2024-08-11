@@ -66,7 +66,7 @@ public class PlayerController {
 			}
 		}
 
-		if(var6 && this.mc.thePlayer.canHarvestBlock(Block.blocksList[var4])) {
+		if(var6 && Block.blocksList[var4].canHarvestBlock(this.mc.thePlayer)) {
 			Block.blocksList[var4].dropBlockAsItem(this.mc.theWorld, var1, var2, var3, var5);
 		}
 

@@ -161,10 +161,6 @@ public class EntityPlayer extends EntityLiving {
 		return var2;
 	}
 
-	public boolean canHarvestBlock(Block var1) {
-		return this.inventory.canHarvestBlock(var1);
-	}
-
 	public void readEntityFromNBT(NBTTagCompound var1) {
 		super.readEntityFromNBT(var1);
 	}

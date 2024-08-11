@@ -263,7 +263,9 @@ public class Block {
 	}
 	
 	public boolean canHarvestBlock(EntityPlayer player) {
-		return player.canHarvestBlock(this);
+		
+		ItemStack item = player.inventory.getStackInSlot(player.inventory.currentItem);
+		return item != null ? item.canHarvestBlock(this) : false;
 	}
 
 	public void dropBlockAsItem(World var1, int var2, int var3, int var4, int var5) {
