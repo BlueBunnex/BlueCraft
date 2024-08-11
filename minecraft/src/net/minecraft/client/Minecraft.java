@@ -435,7 +435,7 @@ public class Minecraft implements Runnable {
 					Thread.sleep(10L);
 				}
 
-				if(Keyboard.isKeyDown(Keyboard.KEY_F6)) {
+				if(this.options.showDebugMenu) {
 					this.displayDebugInfo();
 				} else {
 					this.prevFrameTime = System.nanoTime();
@@ -571,16 +571,20 @@ public class Minecraft implements Runnable {
 		}
 	}
 
-	// should really be "hit block" or something
-	private void sendClickBlockToController(int var1, boolean var2) {
+	private void sendClickBlockToController(int var1, boolean isMining) {
 		
-		if(var1 != 0 || this.leftClickCounter <= 0) {
-			if(var2 && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == 0 && var1 == 0) {
-				int var3 = this.objectMouseOver.blockX;
-				int var4 = this.objectMouseOver.blockY;
-				int var5 = this.objectMouseOver.blockZ;
-				this.playerController.sendBlockRemoving(var3, var4, var5, this.objectMouseOver.sideHit);
-				this.effectRenderer.addBlockHitEffects(var3, var4, var5, this.objectMouseOver.sideHit);
+		if (var1 != 0 || this.leftClickCounter <= 0) {
+			
+			if (isMining && this.objectMouseOver != null && this.objectMouseOver.typeOfHit == 0 && var1 == 0) {
+				
+				int x = this.objectMouseOver.blockX;
+				int y = this.objectMouseOver.blockY;
+				int z = this.objectMouseOver.blockZ;
+				int side = this.objectMouseOver.sideHit;
+				
+				this.playerController.sendBlockRemoving(x, y, z, side);
+				this.effectRenderer.addBlockHitEffects(x, y, z, side);
+				
 			} else {
 				this.playerController.resetBlockRemoving();
 			}
@@ -590,18 +594,18 @@ public class Minecraft implements Runnable {
 
 	private void clickMouse(int mouseBtn) {
 		
-		if(mouseBtn != 0 || this.leftClickCounter <= 0) {
+		if (mouseBtn != 0 || this.leftClickCounter <= 0) {
 			
-			if(mouseBtn == 0)
+			if (mouseBtn == 0)
 				this.entityRenderer.itemRenderer.swingItem();
 
-			int var3;
-			if(this.objectMouseOver == null) {
+			if (this.objectMouseOver == null) {
 				if(mouseBtn == 0) {
 					this.leftClickCounter = 10;
 				}
 				
-			} else if(this.objectMouseOver.typeOfHit == 1) {
+			// looking at entity
+			} else if (this.objectMouseOver.typeOfHit == 1) {
 				
 				if(mouseBtn == 0) {
 					this.thePlayer.attackEntity(this.objectMouseOver.entityHit);
@@ -614,23 +618,23 @@ public class Minecraft implements Runnable {
 			// looking at a block
 			} else if (this.objectMouseOver.typeOfHit == 0) {
 				
-				int var2 = this.objectMouseOver.blockX;
-				var3 = this.objectMouseOver.blockY;
-				int var4 = this.objectMouseOver.blockZ;
-				int var5 = this.objectMouseOver.sideHit;
+				int x = this.objectMouseOver.blockX;
+				int y = this.objectMouseOver.blockY;
+				int z = this.objectMouseOver.blockZ;
+				int side = this.objectMouseOver.sideHit;
 				
 				// hit block
 				if(mouseBtn == 0) {
-					this.theWorld.extinguishFire(var2, var3, var4, this.objectMouseOver.sideHit);
+					this.theWorld.extinguishFire(x, y, z, this.objectMouseOver.sideHit);
 				
 				// interact block
 				} else {
 					
 					ItemStack var7 = this.thePlayer.inventory.getCurrentItem();
 					
-					int blockID = this.theWorld.getBlockId(var2, var3, var4);
+					int blockID = this.theWorld.getBlockId(x, y, z);
 					
-					if (blockID > 0 && Block.blocksList[blockID].onBlockInteract(this.theWorld, var2, var3, var4, this.thePlayer)) {
+					if (blockID > 0 && Block.blocksList[blockID].onBlockInteract(this.theWorld, x, y, z, this.thePlayer)) {
 						this.entityRenderer.itemRenderer.swingItem();
 						return;
 					}
@@ -639,7 +643,7 @@ public class Minecraft implements Runnable {
 						return;
 
 					int var9 = var7.stackSize;
-					if(var7.useItem(this.thePlayer, this.theWorld, var2, var3, var4, var5)) {
+					if(var7.useItem(this.thePlayer, this.theWorld, x, y, z, side)) {
 						this.entityRenderer.itemRenderer.swingItem();
 					}
 
@@ -653,11 +657,15 @@ public class Minecraft implements Runnable {
 
 			// use item
 			if(mouseBtn == 1) {
+				
 				ItemStack var10 = this.thePlayer.inventory.getCurrentItem();
+				
 				if(var10 != null) {
-					var3 = var10.stackSize;
+					
+					int stackSize = var10.stackSize;
+					
 					ItemStack var11 = var10.useItemRightClick(this.theWorld, this.thePlayer);
-					if(var11 != var10 || var11 != null && var11.stackSize != var3) {
+					if(var11 != var10 || var11 != null && var11.stackSize != stackSize) {
 						this.thePlayer.inventory.mainInventory[this.thePlayer.inventory.currentItem] = var11;
 						this.entityRenderer.itemRenderer.resetEquippedProgress2();
 						if(var11.stackSize == 0) {

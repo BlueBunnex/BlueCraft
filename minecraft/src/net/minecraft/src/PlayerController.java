@@ -73,38 +73,56 @@ public class PlayerController {
 		return var6;
 	}
 
-	public void sendBlockRemoving(int var1, int var2, int var3, int var4) {
-		if(this.blockHitWait > 0) {
-			--this.blockHitWait;
+	public void sendBlockRemoving(int x, int y, int z, int side) {
+		
+		if (this.blockHitWait > 0) {
+			
+			this.blockHitWait--;
+			
 		} else {
 			
-			if(var1 == this.curBlockX && var2 == this.curBlockY && var3 == this.curBlockZ) {
-				int var5 = this.mc.theWorld.getBlockId(var1, var2, var3);
-				if(var5 == 0) {
+			// is hitting same block as was last call
+			if (x == this.curBlockX && y == this.curBlockY && z == this.curBlockZ) {
+				
+				int blockID = this.mc.theWorld.getBlockId(x, y, z);
+				
+				if (blockID == 0)
 					return;
-				}
 
-				Block var6 = Block.blocksList[var5];
-				this.curBlockDamage += var6.blockStrength(this.mc.thePlayer);
-				if(this.blockDestroySoundCounter % 4.0F == 0.0F && var6 != null) {
-					this.mc.sndManager.playSound(var6.stepSound.getStepSound(), (float)var1 + 0.5F, (float)var2 + 0.5F, (float)var3 + 0.5F, (var6.stepSound.getVolume() + 1.0F) / 8.0F, var6.stepSound.getPitch() * 0.5F);
+				Block block = Block.blocksList[blockID];
+				this.curBlockDamage += block.blockStrength(this.mc.thePlayer);
+				
+				// handle sound
+				if (this.blockDestroySoundCounter % 4.0F == 0.0F && block != null) {
+					
+					this.mc.sndManager.playSound(
+							block.stepSound.getStepSound(),
+							(float) x + 0.5F,
+							(float) y + 0.5F,
+							(float) z + 0.5F,
+							(block.stepSound.getVolume() + 1.0F) / 8.0F,
+							block.stepSound.getPitch() * 0.5F
+						);
 				}
-
-				++this.blockDestroySoundCounter;
-				if(this.curBlockDamage >= 1.0F) {
-					this.sendBlockRemoved(var1, var2, var3);
+				this.blockDestroySoundCounter++;
+				
+				// destroy block
+				if (this.curBlockDamage >= 1.0F) {
+					this.sendBlockRemoved(x, y, z);
 					this.curBlockDamage = 0.0F;
 					this.prevBlockDamage = 0.0F;
 					this.blockDestroySoundCounter = 0.0F;
 					this.blockHitWait = 5;
 				}
+				
+			// started hitting new block
 			} else {
 				this.curBlockDamage = 0.0F;
 				this.prevBlockDamage = 0.0F;
 				this.blockDestroySoundCounter = 0.0F;
-				this.curBlockX = var1;
-				this.curBlockY = var2;
-				this.curBlockZ = var3;
+				this.curBlockX = x;
+				this.curBlockY = y;
+				this.curBlockZ = z;
 			}
 
 		}

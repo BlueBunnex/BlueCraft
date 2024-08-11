@@ -16,7 +16,7 @@ public class GameSettings {
 	public boolean a = true;
 	public boolean b = true;
 	public boolean invertMouse = false;
-	public boolean d = false;
+	public boolean showDebugMenu = false;
 	public int renderDistance = 0;
 	public boolean viewBobbing = true;
 	public boolean anaglyph = false;
@@ -71,7 +71,7 @@ public class GameSettings {
 				break;
 				
 			case 3:
-				this.d = !this.d;
+				this.showDebugMenu = !this.showDebugMenu;
 				break;
 				
 			case 4:
@@ -108,7 +108,7 @@ public class GameSettings {
 	}
 
 	public String getOptionDisplayString(int var1) {
-		return var1 == 0 ? "Music: " + (this.a ? "ON" : "OFF") : (var1 == 1 ? "Sound: " + (this.b ? "ON" : "OFF") : (var1 == 2 ? "Invert mouse: " + (this.invertMouse ? "ON" : "OFF") : (var1 == 3 ? "Show debug: " + (this.d ? "ON" : "OFF") : (var1 == 4 ? "Render distance: " + RENDER_DISTANCES[this.renderDistance] : (var1 == 5 ? "View bobbing: " + (this.viewBobbing ? "ON" : "OFF") : (var1 == 6 ? "3d anaglyph: " + (this.anaglyph ? "ON" : "OFF") : (var1 == 7 ? "Limit framerate: " + (this.limitFramerate ? "ON" : "OFF") : (var1 == 8 ? "Difficulty: " + DIFFICULTY_LEVELS[this.difficulty] : (var1 == 9 ? "Graphics: " + (this.fancyGraphics ? "FANCY" : "FAST") : "")))))))));
+		return var1 == 0 ? "Music: " + (this.a ? "ON" : "OFF") : (var1 == 1 ? "Sound: " + (this.b ? "ON" : "OFF") : (var1 == 2 ? "Invert mouse: " + (this.invertMouse ? "ON" : "OFF") : (var1 == 3 ? "Show debug: " + (this.showDebugMenu ? "ON" : "OFF") : (var1 == 4 ? "Render distance: " + RENDER_DISTANCES[this.renderDistance] : (var1 == 5 ? "View bobbing: " + (this.viewBobbing ? "ON" : "OFF") : (var1 == 6 ? "3d anaglyph: " + (this.anaglyph ? "ON" : "OFF") : (var1 == 7 ? "Limit framerate: " + (this.limitFramerate ? "ON" : "OFF") : (var1 == 8 ? "Difficulty: " + DIFFICULTY_LEVELS[this.difficulty] : (var1 == 9 ? "Graphics: " + (this.fancyGraphics ? "FANCY" : "FAST") : "")))))))));
 	}
 
 	public void loadOptions() {
@@ -141,7 +141,7 @@ public class GameSettings {
 				}
 
 				if(var3[0].equals("showFrameRate")) {
-					this.d = var3[1].equals("true");
+					this.showDebugMenu = var3[1].equals("true");
 				}
 
 				if(var3[0].equals("viewDistance")) {
@@ -187,7 +187,7 @@ public class GameSettings {
 			var1.println("music:" + this.a);
 			var1.println("sound:" + this.b);
 			var1.println("invertYMouse:" + this.invertMouse);
-			var1.println("showFrameRate:" + this.d);
+			var1.println("showFrameRate:" + this.showDebugMenu);
 			var1.println("viewDistance:" + this.renderDistance);
 			var1.println("bobView:" + this.viewBobbing);
 			var1.println("anaglyph3d:" + this.anaglyph);

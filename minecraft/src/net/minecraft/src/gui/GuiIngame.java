@@ -134,7 +134,8 @@ public class GuiIngame extends Gui {
 		// draw debug menu
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-		if(this.mc.options.d) {
+		
+		if (this.mc.options.showDebugMenu) {
 			fontRenderer.drawStringWithShadow("Minecraft Alpha v1.0.5 (" + this.mc.debug + ")", 2, 2, 16777215);
 			fontRenderer.drawStringWithShadow(this.mc.debugInfoRenders(), 2, 12, 16777215);
 			fontRenderer.drawStringWithShadow(this.mc.getEntityDebug(), 2, 22, 16777215);
