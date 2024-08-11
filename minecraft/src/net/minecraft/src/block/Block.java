@@ -441,10 +441,10 @@ public class Block {
 	static {
 		
 		// make item forms
-		for(int var0 = 0; var0 < 256; ++var0) {
-			if(blocksList[var0] != null) {
-				Item.itemsList[var0] = new ItemBlock(var0 - 256);
-			}
+		for(int i = 0; i < 256; i++) {
+			
+			if(blocksList[i] != null)
+				Item.itemsList[i] = new ItemBlock(i);
 		}
 	}
 }

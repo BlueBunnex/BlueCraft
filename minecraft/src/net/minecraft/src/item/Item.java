@@ -66,14 +66,15 @@ public class Item {
 	protected int maxStackSize = 64;
 	protected int maxDamage = 32;
 	protected int iconIndex;
+	
+	//private static int indexCounter = 0;
 
 	protected Item(int index) {
 		
 		this.shiftedIndex = 256 + index;
 		
-		if(itemsList[256 + index] != null) {
-			System.out.println("CONFLICT @ " + index);
-		}
+		if (itemsList[256 + index] != null)
+			System.err.println("CONFLICT @ " + index);
 
 		itemsList[256 + index] = this;
 	}

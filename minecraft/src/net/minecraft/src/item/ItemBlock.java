@@ -5,12 +5,13 @@ import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;
 
 public class ItemBlock extends Item {
+	
 	private int blockID;
 
-	public ItemBlock(int var1) {
-		super(var1);
-		this.blockID = var1 + 256;
-		this.setIconIndex(Block.blocksList[var1 + 256].getBlockTextureFromSide(2));
+	public ItemBlock(int blockID) {
+		super(blockID - 256);
+		this.blockID = blockID;
+		this.setIconIndex(Block.blocksList[blockID].getBlockTextureFromSide(2));
 	}
 
 	public boolean onItemUse(ItemStack var1, EntityPlayer var2, World var3, int var4, int var5, int var6, int var7) {

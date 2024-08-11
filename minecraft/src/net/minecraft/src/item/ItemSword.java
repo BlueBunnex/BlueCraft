@@ -5,6 +5,7 @@ import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
 
 public class ItemSword extends Item {
+	
 	private int weaponDamage;
 
 	public ItemSword(int var1, int var2) {
