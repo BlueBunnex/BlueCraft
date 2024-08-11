@@ -3,7 +3,6 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.EnumSkyBlock;
-import net.minecraft.src.Material;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.world.World;
 

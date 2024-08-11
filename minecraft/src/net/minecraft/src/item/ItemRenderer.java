@@ -4,12 +4,12 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.RenderHelper;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.entity.EntityPlayerSP;
 import net.minecraft.src.entity.render.Render;
 import net.minecraft.src.entity.render.RenderManager;
@@ -229,12 +229,6 @@ public class ItemRenderer {
 			if(Block.blocksList[var6] != null) {
 				this.renderInsideOfBlock(var1, Block.blocksList[var6].getBlockTextureFromSide(2));
 			}
-		}
-
-		if(this.mc.thePlayer.isInsideOfMaterial(Material.water)) {
-			var2 = this.mc.renderEngine.getTexture("/water.png");
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, var2);
-			this.renderWarpedTextureOverlay(var1);
 		}
 
 		GL11.glEnable(GL11.GL_ALPHA_TEST);

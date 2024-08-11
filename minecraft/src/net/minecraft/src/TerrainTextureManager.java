@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.world.World;
 
 public class TerrainTextureManager {
@@ -94,31 +95,15 @@ public class TerrainTextureManager {
 						boolean var13 = true;
 
 						for(int var14 = 0; var14 < 128; ++var14) {
+							
 							int var15 = var11 - var10 - var14 + 160 - 16;
+							
 							if(var15 < this.yBuf[var12] || var15 < this.yBuf[var12 + 1]) {
+								
 								Block var16 = Block.blocksList[var2.getBlockId(var9, var14, var8)];
+								
 								if(var16 == null) {
 									var13 = false;
-								} else if(var16.material == Material.water) {
-									int var24 = var2.getBlockId(var9, var14 + 1, var8);
-									if(var24 == 0 || Block.blocksList[var24].material != Material.water) {
-										float var25 = (float)var14 / 127.0F * 0.6F + 0.4F;
-										float var26 = var2.getBrightness(var9, var14 + 1, var8) * var25;
-										if(var15 >= 0 && var15 < 160) {
-											int var27 = var12 + var15 * 32;
-											if(var12 >= 0 && var12 <= 32 && this.waterBuf[var27] <= var14) {
-												this.waterBuf[var27] = var14;
-												this.waterBr[var27] = (int)(var26 * 127.0F);
-											}
-
-											if(var12 >= -1 && var12 <= 31 && this.waterBuf[var27 + 1] <= var14) {
-												this.waterBuf[var27 + 1] = var14;
-												this.waterBr[var27 + 1] = (int)(var26 * 127.0F);
-											}
-
-											var13 = false;
-										}
-									}
 								} else {
 									if(var13) {
 										if(var15 < this.yBuf[var12]) {

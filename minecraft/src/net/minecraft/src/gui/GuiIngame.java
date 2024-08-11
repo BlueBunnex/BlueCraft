@@ -9,10 +9,10 @@ import org.lwjgl.opengl.GL12;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.ChatLine;
 import net.minecraft.src.FontRenderer;
-import net.minecraft.src.Material;
 import net.minecraft.src.RenderHelper;
 import net.minecraft.src.ScaledResolution;
 import net.minecraft.src.Tessellator;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.entity.render.RenderItem;
 import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;
@@ -92,20 +92,6 @@ public class GuiIngame extends Gui {
 				this.drawTexturedModalRect(leftX, y, 61, 0, 9, 9);
 			} else {
 				this.drawTexturedModalRect(leftX, y, 52, 0, 9, 9);
-			}
-
-			// bubbles
-			if(this.mc.thePlayer.isInsideOfMaterial(Material.water)) {
-				int var14 = (int) Math.ceil((double)(this.mc.thePlayer.air - 2) * 10.0D / 300.0D);
-				int var15 = (int) Math.ceil((double)this.mc.thePlayer.air * 10.0D / 300.0D) - var14;
-
-				for(int i = 0; i < var14 + var15; i++) {
-					if(i < var14) {
-						this.drawTexturedModalRect(width / 2 - 91 + i * 8, height - 32 - 9, 16, 18, 9, 9);
-					} else {
-						this.drawTexturedModalRect(width / 2 - 91 + i * 8, height - 32 - 9, 25, 18, 9, 9);
-					}
-				}
 			}
 			
 			// draw stat text (changes texture so have to do last)

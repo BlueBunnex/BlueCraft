@@ -26,7 +26,6 @@ import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.entity.Entity;
-import net.minecraft.src.entity.EntityBubbleFX;
 import net.minecraft.src.entity.EntityExplodeFX;
 import net.minecraft.src.entity.EntityFlameFX;
 import net.minecraft.src.entity.EntityLavaFX;
@@ -1071,9 +1070,8 @@ public class RenderGlobal implements IWorldAccess {
 		double var16 = this.mc.thePlayer.posY - var4;
 		double var18 = this.mc.thePlayer.posZ - var6;
 		if(var14 * var14 + var16 * var16 + var18 * var18 <= 256.0D) {
-			if(var1 == "bubble") {
-				this.mc.effectRenderer.addEffect(new EntityBubbleFX(this.theWorld, var2, var4, var6, var8, var10, var12));
-			} else if(var1 == "smoke") {
+			
+			if(var1 == "smoke") {
 				this.mc.effectRenderer.addEffect(new EntitySmokeFX(this.theWorld, var2, var4, var6));
 			} else if(var1 == "explode") {
 				this.mc.effectRenderer.addEffect(new EntityExplodeFX(this.theWorld, var2, var4, var6, var8, var10, var12));

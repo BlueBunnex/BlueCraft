@@ -3,9 +3,9 @@ package net.minecraft.src.entity;
 import java.util.List;
 
 import net.minecraft.io.NBTTagCompound;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.sound.StepSound;
 import net.minecraft.src.world.World;
 
@@ -96,25 +96,6 @@ public class EntityLiving extends Entity {
 		}
 
 		int var8;
-		if(this.isEntityAlive() && this.isInsideOfMaterial(Material.water)) {
-			--this.air;
-			if(this.air == -20) {
-				this.air = 0;
-
-				for(var8 = 0; var8 < 8; ++var8) {
-					float var2 = this.rand.nextFloat() - this.rand.nextFloat();
-					float var3 = this.rand.nextFloat() - this.rand.nextFloat();
-					float var4 = this.rand.nextFloat() - this.rand.nextFloat();
-					this.worldObj.spawnParticle("bubble", this.posX + (double)var2, this.posY + (double)var3, this.posZ + (double)var4, this.motionX, this.motionY, this.motionZ);
-				}
-
-				this.attackEntityFrom((Entity)null, 2);
-			}
-
-			this.fire = 0;
-		} else {
-			this.air = this.maxAir;
-		}
 
 		this.prevCameraPitch = this.cameraPitch;
 		if(this.attackTime > 0) {
@@ -375,67 +356,46 @@ public class EntityLiving extends Entity {
 
 	public void moveEntityWithHeading(float var1, float var2) {
 		double var3;
-		if(this.handleWaterMovement()) {
-			var3 = this.posY;
-			this.moveFlying(var1, var2, 0.02F);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= (double)0.8F;
-			this.motionY *= (double)0.8F;
-			this.motionZ *= (double)0.8F;
-			this.motionY -= 0.02D;
-			if(this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, this.motionY + (double)0.6F - this.posY + var3, this.motionZ)) {
-				this.motionY = (double)0.3F;
+		
+		// movement
+		float var8 = 0.91F;
+		if(this.onGround) {
+			var8 = 546.0F * 0.1F * 0.1F * 0.1F;
+			int var4 = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ));
+			if(var4 > 0) {
+				var8 = Block.blocksList[var4].slipperiness * 0.91F;
 			}
-		} else if(this.handleLavaMovement()) {
-			var3 = this.posY;
-			this.moveFlying(var1, var2, 0.02F);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.5D;
-			this.motionY *= 0.5D;
-			this.motionZ *= 0.5D;
-			this.motionY -= 0.02D;
-			if(this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, this.motionY + (double)0.6F - this.posY + var3, this.motionZ)) {
-				this.motionY = (double)0.3F;
-			}
-		} else {
-			float var8 = 0.91F;
-			if(this.onGround) {
-				var8 = 546.0F * 0.1F * 0.1F * 0.1F;
-				int var4 = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ));
-				if(var4 > 0) {
-					var8 = Block.blocksList[var4].slipperiness * 0.91F;
-				}
-			}
-
-			float var9 = 0.16277136F / (var8 * var8 * var8);
-			this.moveFlying(var1, var2, this.onGround ? 0.1F * var9 : 0.02F);
-			var8 = 0.91F;
-			if(this.onGround) {
-				var8 = 546.0F * 0.1F * 0.1F * 0.1F;
-				int var5 = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ));
-				if(var5 > 0) {
-					var8 = Block.blocksList[var5].slipperiness * 0.91F;
-				}
-			}
-
-			if(this.isOnLadder()) {
-				this.fallDistance = 0.0F;
-				if(this.motionY < -0.15D) {
-					this.motionY = -0.15D;
-				}
-			}
-
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			if(this.isCollidedHorizontally && this.isOnLadder()) {
-				this.motionY = 0.2D;
-			}
-
-			this.motionY -= 0.08D;
-			this.motionY *= (double)0.98F;
-			this.motionX *= (double)var8;
-			this.motionZ *= (double)var8;
 		}
 
+		float var9 = 0.16277136F / (var8 * var8 * var8);
+		this.moveFlying(var1, var2, this.onGround ? 0.1F * var9 : 0.02F);
+		var8 = 0.91F;
+		if(this.onGround) {
+			var8 = 546.0F * 0.1F * 0.1F * 0.1F;
+			int var5 = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ));
+			if(var5 > 0) {
+				var8 = Block.blocksList[var5].slipperiness * 0.91F;
+			}
+		}
+
+		if(this.isOnLadder()) {
+			this.fallDistance = 0.0F;
+			if(this.motionY < -0.15D) {
+				this.motionY = -0.15D;
+			}
+		}
+
+		this.moveEntity(this.motionX, this.motionY, this.motionZ);
+		if(this.isCollidedHorizontally && this.isOnLadder()) {
+			this.motionY = 0.2D;
+		}
+
+		this.motionY -= 0.08D;
+		this.motionY *= (double)0.98F;
+		this.motionX *= (double)var8;
+		this.motionZ *= (double)var8;
+
+		// other stuff
 		this.prevLimbYaw = this.limbYaw;
 		var3 = this.posX - this.prevPosX;
 		double var10 = this.posZ - this.prevPosZ;
@@ -498,7 +458,7 @@ public class EntityLiving extends Entity {
 			}
 		}
 
-		if(this.health <= 0) {
+		if (this.health <= 0) {
 			this.isJumping = false;
 			this.moveStrafing = 0.0F;
 			this.moveForward = 0.0F;
@@ -507,16 +467,8 @@ public class EntityLiving extends Entity {
 			this.updateEntityActionState();
 		}
 
-		boolean var10 = this.handleWaterMovement();
-		boolean var3 = this.handleLavaMovement();
-		if(this.isJumping) {
-			if(var10) {
-				this.motionY += (double)0.04F;
-			} else if(var3) {
-				this.motionY += (double)0.04F;
-			} else if(this.onGround) {
-				this.jump();
-			}
+		if (this.isJumping && this.onGround) {
+			this.jump();
 		}
 
 		this.moveStrafing *= 0.98F;
@@ -566,13 +518,6 @@ public class EntityLiving extends Entity {
 			this.rotationYaw += this.randomYawVelocity;
 			this.rotationPitch = this.defaultPitch;
 		}
-
-		boolean var4 = this.handleWaterMovement();
-		boolean var3 = this.handleLavaMovement();
-		if(var4 || var3) {
-			this.isJumping = this.rand.nextFloat() < 0.8F;
-		}
-
 	}
 
 	public void faceEntity(Entity var1, float var2) {

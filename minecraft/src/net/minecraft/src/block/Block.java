@@ -5,7 +5,6 @@ import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.Material;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.entity.Entity;
@@ -53,7 +52,7 @@ public class Block {
 	
 	public static final Block wood = (new BlockLog(17)).setHardness(2.0F).setStepSound(soundWoodFootstep);
 	public static final BlockLeaves leaves = (BlockLeaves)(new BlockLeaves(18, 52)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep);
-	public static final Block sponge = (new BlockSponge(19)).setHardness(0.6F).setStepSound(soundGrassFootstep);
+	public static final Block sponge = (new Block(19, 48, Material.sponge)).setHardness(0.6F).setStepSound(soundGrassFootstep);
 	public static final Block glass = (new BlockGlass(20, 49, Material.glass, false)).setHardness(0.3F).setStepSound(soundGlassFootstep);
 	public static final Block cloth = (new Block(35, 64, Material.cloth)).setHardness(0.8F).setStepSound(soundClothFootstep);
 	public static final BlockFlower plantYellow = (BlockFlower)(new BlockFlower(37, 13)).setHardness(0.0F).setStepSound(soundGrassFootstep);
@@ -258,14 +257,20 @@ public class Block {
 		return this.blockID;
 	}
 
-	public float blockStrength(EntityPlayer player) {
-		return this.hardness < 0.0F ? 0.0F : (!canHarvestBlock(player) ? 1.0F / this.hardness / 100.0F : player.getCurrentPlayerStrVsBlock(this) / this.hardness / 30.0F);
+	public final float blockStrength(EntityPlayer player) {
+		
+		if (this.hardness < 0.0F)
+			return 0.0F;
+		
+		if (!canHarvestBlock(player))
+			return 1.0F / this.hardness / 100.0F;
+		
+		return player.getCurrentPlayerStrVsBlock(this) / this.hardness / 30.0F;
 	}
 	
+	// ItemStack item = player.inventory.getStackInSlot(player.inventory.currentItem);
 	public boolean canHarvestBlock(EntityPlayer player) {
-		
-		ItemStack item = player.inventory.getStackInSlot(player.inventory.currentItem);
-		return item != null ? item.canHarvestBlock(this) : false;
+		return true;
 	}
 
 	public void dropBlockAsItem(World var1, int var2, int var3, int var4, int var5) {

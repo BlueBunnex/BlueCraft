@@ -3,7 +3,6 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.Material;
 import net.minecraft.src.world.World;
 
 public class BlockStep extends Block {

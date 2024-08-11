@@ -1,7 +1,5 @@
 package net.minecraft.src.block;
 
-import net.minecraft.src.Material;
-
 public class BlockOreBlock extends Block {
 	
 	public BlockOreBlock(int var1, int var2) {

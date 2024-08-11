@@ -3,6 +3,7 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.world.World;
 
 public class RenderBlocks {
@@ -737,7 +738,9 @@ public class RenderBlocks {
 			if(this.renderAllFaces || var6) {
 				var9 = true;
 				var24 = var1.getBlockTextureFromSideAndMetadata(1, var19);
-				float var25 = (float)BlockFluid.getFlowDirection(this.blockAccess, var2, var3, var4, var18);
+				
+				// TODO removed fluids :3
+				float var25 = 0; //(float)BlockFluid.getFlowDirection(this.blockAccess, var2, var3, var4, var18);
 				if(var25 > -999.0F) {
 					var24 = var1.getBlockTextureFromSideAndMetadata(2, var19);
 				}

@@ -1,6 +1,7 @@
 package net.minecraft.src;
 
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.world.World;
 

@@ -2,8 +2,6 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.Material;
-
 public class BlockMobSpawner extends BlockContainer {
 	protected BlockMobSpawner(int var1, int var2) {
 		super(var1, var2, Material.rock);

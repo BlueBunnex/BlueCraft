@@ -2,8 +2,8 @@ package net.minecraft.src.entity.pathfinding;
 
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.MCHashTable;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.entity.Entity;
 
 public class Pathfinder {
@@ -159,16 +159,14 @@ public class Pathfinder {
 	}
 
 	private int getVerticalOffset(Entity var1, int var2, int var3, int var4, PathPoint var5) {
+		
 		for(int var6 = var2; var6 < var2 + var5.xCoord; ++var6) {
 			for(int var7 = var3; var7 < var3 + var5.yCoord; ++var7) {
 				for(int var8 = var4; var8 < var4 + var5.zCoord; ++var8) {
+					
 					Material var9 = this.worldMap.getBlockMaterial(var2, var3, var4);
-					if(var9.getIsSolid()) {
+					if (var9.getIsSolid()) {
 						return 0;
-					}
-
-					if(var9 == Material.water || var9 == Material.lava) {
-						return -1;
 					}
 				}
 			}

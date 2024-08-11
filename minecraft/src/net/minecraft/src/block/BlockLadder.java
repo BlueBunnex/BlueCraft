@@ -3,12 +3,12 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.Material;
 import net.minecraft.src.world.World;
 
 public class BlockLadder extends Block {
+	
 	protected BlockLadder(int var1, int var2) {
-		super(var1, var2, Material.circuits);
+		super(var1, var2, Material.wood);
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World var1, int var2, int var3, int var4) {

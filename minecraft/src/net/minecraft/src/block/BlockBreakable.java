@@ -1,7 +1,6 @@
 package net.minecraft.src.block;
 
 import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.Material;
 
 public class BlockBreakable extends Block {
 	private boolean localFlag;

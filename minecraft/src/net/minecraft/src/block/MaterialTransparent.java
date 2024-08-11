@@ -1,6 +1,6 @@
-package net.minecraft.src;
+package net.minecraft.src.block;
 
-public class MaterialLogic extends Material {
+public class MaterialTransparent extends Material {
 	public boolean isSolid() {
 		return false;
 	}

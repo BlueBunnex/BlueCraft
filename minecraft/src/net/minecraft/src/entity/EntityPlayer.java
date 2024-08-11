@@ -4,9 +4,9 @@ import java.util.List;
 
 import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.EntityArrow;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.inventory.IInventory;
 import net.minecraft.src.inventory.InventoryPlayer;
 import net.minecraft.src.item.ItemStack;
@@ -149,10 +149,8 @@ public class EntityPlayer extends EntityLiving {
 	}
 
 	public float getCurrentPlayerStrVsBlock(Block var1) {
+		
 		float var2 = this.inventory.getStrVsBlock(var1);
-		if(this.isInsideOfMaterial(Material.water)) {
-			var2 /= 5.0F;
-		}
 
 		if(!this.onGround) {
 			var2 /= 5.0F;

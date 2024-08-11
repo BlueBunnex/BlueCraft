@@ -120,9 +120,4 @@ public class Item {
 	public int getDamageVsEntity(Entity var1) {
 		return 1;
 	}
-
-	// should really be stored in "Block" class, like minimumToolLevelToHarvest()
-	public boolean canHarvestBlock(Block var1) {
-		return false;
-	}
 }

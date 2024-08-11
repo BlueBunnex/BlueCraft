@@ -1,13 +1,14 @@
 package net.minecraft.src.entity;
 
 import net.minecraft.io.NBTTagCompound;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
 
 public class EntityItem extends Entity {
+	
 	public ItemStack item;
 	private int age2;
 	public int age = 0;
@@ -44,15 +45,8 @@ public class EntityItem extends Entity {
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 		this.motionY -= (double)0.04F;
-		if(this.worldObj.getBlockMaterial(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)) == Material.lava) {
-			this.motionY = (double)0.2F;
-			this.motionX = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-			this.motionZ = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-			this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
-		}
 
 		this.pushOutOfBlocks(this.posX, this.posY, this.posZ);
-		this.handleWaterMovement();
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
 		float var1 = 0.98F;
 		if(this.onGround) {
@@ -76,10 +70,6 @@ public class EntityItem extends Entity {
 			this.setEntityDead();
 		}
 
-	}
-
-	public boolean handleWaterMovement() {
-		return this.worldObj.handleMaterialAcceleration(this.boundingBox, Material.water, this);
 	}
 
 	private boolean pushOutOfBlocks(double var1, double var3, double var5) {

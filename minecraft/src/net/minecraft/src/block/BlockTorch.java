@@ -3,14 +3,14 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.Material;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.world.World;
 
 public class BlockTorch extends Block {
+	
 	protected BlockTorch(int var1, int var2) {
-		super(var1, var2, Material.circuits);
+		super(var1, var2, Material.wood);
 		this.setTickOnLoad(true);
 	}
 

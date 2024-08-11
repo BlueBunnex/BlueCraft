@@ -2,8 +2,6 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.Material;
-
 public class BlockLog extends Block {
 	
 	protected BlockLog(int var1) {

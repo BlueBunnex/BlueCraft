@@ -122,10 +122,6 @@ public final class ItemStack {
 		return Item.itemsList[this.itemID].getDamageVsEntity(var1);
 	}
 
-	public boolean canHarvestBlock(Block var1) {
-		return Item.itemsList[this.itemID].canHarvestBlock(var1);
-	}
-
 	public void onItemDestroyedByUse(EntityPlayer var1) {}
 
 	public void useItemOnEntity(EntityLiving var1) {

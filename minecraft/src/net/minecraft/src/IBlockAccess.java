@@ -1,5 +1,6 @@
 package net.minecraft.src;
 
+import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntity;
 
 public interface IBlockAccess {

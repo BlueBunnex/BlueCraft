@@ -66,8 +66,7 @@ public class EntityCreature extends EntityLiving {
 		}
 
 		int var22 = MathHelper.floor_double(this.boundingBox.minY);
-		boolean var23 = this.handleWaterMovement();
-		boolean var24 = this.handleLavaMovement();
+		
 		this.rotationPitch = 0.0F;
 		if(this.pathToEntity != null && this.rand.nextInt(100) != 0) {
 			Vec3D var25 = this.pathToEntity.getPosition(this);
@@ -122,15 +121,11 @@ public class EntityCreature extends EntityLiving {
 				}
 			}
 
-			if(this.entityToAttack != null) {
+			if (this.entityToAttack != null) {
 				this.faceEntity(this.entityToAttack, 30.0F);
 			}
 
-			if(this.isCollidedHorizontally) {
-				this.isJumping = true;
-			}
-
-			if(this.rand.nextFloat() < 0.8F && (var23 || var24)) {
+			if (this.isCollidedHorizontally) {
 				this.isJumping = true;
 			}
 

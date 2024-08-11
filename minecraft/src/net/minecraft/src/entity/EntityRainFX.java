@@ -1,9 +1,9 @@
 package net.minecraft.src.entity;
 
 import net.minecraft.src.BlockFluid;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.Tessellator;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.world.World;
 
 // TODO probably remove idk, need to check when this is incited

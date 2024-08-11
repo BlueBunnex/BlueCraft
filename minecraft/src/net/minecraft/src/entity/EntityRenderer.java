@@ -16,7 +16,6 @@ import net.minecraft.src.ClippingHelperImplementation;
 import net.minecraft.src.EffectRenderer;
 import net.minecraft.src.Frustum;
 import net.minecraft.src.GLAllocation;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.RenderHelper;
@@ -24,6 +23,7 @@ import net.minecraft.src.ScaledResolution;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.item.ItemRenderer;
 import net.minecraft.src.world.RenderGlobal;
 import net.minecraft.src.world.World;
@@ -128,9 +128,6 @@ public class EntityRenderer {
 	private float getFOVModifier(float var1) {
 		EntityPlayerSP var2 = this.mc.thePlayer;
 		float var3 = 70.0F;
-		if(var2.isInsideOfMaterial(Material.water)) {
-			var3 = 60.0F;
-		}
 
 		if(var2.health <= 0) {
 			float var4 = (float)var2.deathTime + var1;
@@ -357,12 +354,6 @@ public class EntityRenderer {
 			RenderHelper.disableStandardItemLighting();
 			this.setupFog(0);
 			var4.renderParticles(var2, var1);
-			if(this.mc.objectMouseOver != null && var2.isInsideOfMaterial(Material.water)) {
-				GL11.glDisable(GL11.GL_ALPHA_TEST);
-				var3.drawBlockBreaking(var2, this.mc.objectMouseOver, 0, var2.inventory.getCurrentItem(), var1);
-				var3.drawSelectionBox(var2, this.mc.objectMouseOver, 0, var2.inventory.getCurrentItem(), var1);
-				GL11.glEnable(GL11.GL_ALPHA_TEST);
-			}
 
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			this.setupFog(0);
@@ -391,7 +382,7 @@ public class EntityRenderer {
 			GL11.glDepthMask(true);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glDisable(GL11.GL_BLEND);
-			if(this.mc.objectMouseOver != null && !var2.isInsideOfMaterial(Material.water)) {
+			if(this.mc.objectMouseOver != null) {
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				var3.drawBlockBreaking(var2, this.mc.objectMouseOver, 0, var2.inventory.getCurrentItem(), var1);
 				var3.drawSelectionBox(var2, this.mc.objectMouseOver, 0, var2.inventory.getCurrentItem(), var1);
@@ -610,15 +601,8 @@ public class EntityRenderer {
 		this.fogColorRed += (var6 - this.fogColorRed) * var4;
 		this.fogColorGreen += (var7 - this.fogColorGreen) * var4;
 		this.fogColorBlue += (var8 - this.fogColorBlue) * var4;
-		if(var3.isInsideOfMaterial(Material.water)) {
-			this.fogColorRed = 0.02F;
-			this.fogColorGreen = 0.02F;
-			this.fogColorBlue = 0.2F;
-		} else if(var3.isInsideOfMaterial(Material.lava)) {
-			this.fogColorRed = 0.6F;
-			this.fogColorGreen = 0.1F;
-			this.fogColorBlue = 0.0F;
-		}
+		
+		// TODO fog color for being under water/lava was originally here, if you wanna change it
 
 		float var10 = this.prevFogColor + (this.fogColor - this.prevFogColor) * var1;
 		this.fogColorRed *= var10;
@@ -637,50 +621,21 @@ public class EntityRenderer {
 	}
 
 	private void setupFog(int var1) {
-		EntityPlayerSP var2 = this.mc.thePlayer;
+		
 		GL11.glFog(GL11.GL_FOG_COLOR, this.setFogColorBuffer(this.fogColorRed, this.fogColorGreen, this.fogColorBlue, 1.0F));
 		GL11.glNormal3f(0.0F, -1.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		float var3;
-		float var4;
-		float var5;
-		float var6;
-		float var7;
-		float var8;
-		if(var2.isInsideOfMaterial(Material.water)) {
-			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-			GL11.glFogf(GL11.GL_FOG_DENSITY, 0.1F);
-			var3 = 0.4F;
-			var4 = 0.4F;
-			var5 = 0.9F;
-			if(this.mc.options.anaglyph) {
-				var6 = (var3 * 30.0F + var4 * 59.0F + var5 * 11.0F) / 100.0F;
-				var7 = (var3 * 30.0F + var4 * 70.0F) / 100.0F;
-				var8 = (var3 * 30.0F + var5 * 70.0F) / 100.0F;
-			}
-		} else if(var2.isInsideOfMaterial(Material.lava)) {
-			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-			GL11.glFogf(GL11.GL_FOG_DENSITY, 2.0F);
-			var3 = 0.4F;
-			var4 = 0.3F;
-			var5 = 0.3F;
-			if(this.mc.options.anaglyph) {
-				var6 = (var3 * 30.0F + var4 * 59.0F + var5 * 11.0F) / 100.0F;
-				var7 = (var3 * 30.0F + var4 * 70.0F) / 100.0F;
-				var8 = (var3 * 30.0F + var5 * 70.0F) / 100.0F;
-			}
-		} else {
-			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR);
-			GL11.glFogf(GL11.GL_FOG_START, this.farPlaneDistance * 0.25F);
-			GL11.glFogf(GL11.GL_FOG_END, this.farPlaneDistance);
-			if(var1 < 0) {
-				GL11.glFogf(GL11.GL_FOG_START, 0.0F);
-				GL11.glFogf(GL11.GL_FOG_END, this.farPlaneDistance * 0.8F);
-			}
+		
+		GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR);
+		GL11.glFogf(GL11.GL_FOG_START, this.farPlaneDistance * 0.25F);
+		GL11.glFogf(GL11.GL_FOG_END, this.farPlaneDistance);
+		if(var1 < 0) {
+			GL11.glFogf(GL11.GL_FOG_START, 0.0F);
+			GL11.glFogf(GL11.GL_FOG_END, this.farPlaneDistance * 0.8F);
+		}
 
-			if(GLContext.getCapabilities().GL_NV_fog_distance) {
-				GL11.glFogi(NVFogDistance.GL_FOG_DISTANCE_MODE_NV, NVFogDistance.GL_EYE_RADIAL_NV);
-			}
+		if(GLContext.getCapabilities().GL_NV_fog_distance) {
+			GL11.glFogi(NVFogDistance.GL_FOG_DISTANCE_MODE_NV, NVFogDistance.GL_EYE_RADIAL_NV);
 		}
 
 		GL11.glEnable(GL11.GL_COLOR_MATERIAL);

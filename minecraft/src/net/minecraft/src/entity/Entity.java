@@ -9,10 +9,10 @@ import net.minecraft.io.NBTTagFloat;
 import net.minecraft.io.NBTTagList;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.BlockFluid;
-import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.Vec3D;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.sound.StepSound;
 import net.minecraft.src.world.World;
@@ -61,10 +61,7 @@ public abstract class Entity {
 	public int ticksExisted = 0;
 	public int fireResistance = 1;
 	public int fire = 0;
-	protected int maxAir = 300;
-	protected boolean inWater = false;
 	public int heartsLife = 0;
-	public int air = 300;
 	private boolean firstUpdate = true;
 	public String skinUrl;
 	private double entityRiderPitchDelta;
@@ -136,6 +133,7 @@ public abstract class Entity {
 	}
 
 	public void onEntityUpdate() {
+		
 		if(this.ridingEntity != null && this.ridingEntity.isDead) {
 			this.ridingEntity = null;
 		}
@@ -147,38 +145,6 @@ public abstract class Entity {
 		this.prevPosZ = this.posZ;
 		this.prevRotationPitch = this.rotationPitch;
 		this.prevRotationYaw = this.rotationYaw;
-		if(this.handleWaterMovement()) {
-			if(!this.inWater && !this.firstUpdate) {
-				float var1 = MathHelper.sqrt_double(this.motionX * this.motionX * (double)0.2F + this.motionY * this.motionY + this.motionZ * this.motionZ * (double)0.2F) * 0.2F;
-				if(var1 > 1.0F) {
-					var1 = 1.0F;
-				}
-
-				this.worldObj.playSoundAtEntity(this, "random.splash", var1, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
-				float var2 = (float)MathHelper.floor_double(this.boundingBox.minY);
-
-				int var3;
-				float var4;
-				float var5;
-				for(var3 = 0; (float)var3 < 1.0F + this.width * 20.0F; ++var3) {
-					var4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-					var5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-					this.worldObj.spawnParticle("bubble", this.posX + (double)var4, (double)(var2 + 1.0F), this.posZ + (double)var5, this.motionX, this.motionY - (double)(this.rand.nextFloat() * 0.2F), this.motionZ);
-				}
-
-				for(var3 = 0; (float)var3 < 1.0F + this.width * 20.0F; ++var3) {
-					var4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-					var5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-					this.worldObj.spawnParticle("splash", this.posX + (double)var4, (double)(var2 + 1.0F), this.posZ + (double)var5, this.motionX, this.motionY, this.motionZ);
-				}
-			}
-
-			this.fallDistance = 0.0F;
-			this.inWater = true;
-			this.fire = 0;
-		} else {
-			this.inWater = false;
-		}
 
 		if(this.fire > 0) {
 			if(this.fire % 20 == 0) {
@@ -186,11 +152,6 @@ public abstract class Entity {
 			}
 
 			--this.fire;
-		}
-
-		if(this.handleLavaMovement()) {
-			this.attackEntityFrom((Entity)null, 10);
-			this.fire = 600;
 		}
 
 		if(this.posY < -64.0D) {
@@ -389,21 +350,15 @@ public abstract class Entity {
 			}
 
 			this.ySize *= 0.4F;
-			boolean var37 = this.handleWaterMovement();
+			
 			if(this.worldObj.isBoundingBoxBurning(this.boundingBox)) {
 				this.dealFireDamage(1);
-				if(!var37) {
-					++this.fire;
-					if(this.fire == 0) {
-						this.fire = 300;
-					}
+				
+				++this.fire;
+				if (this.fire == 0) {
+					this.fire = 300;
 				}
-			} else if(this.fire <= 0) {
-				this.fire = -this.fireResistance;
-			}
-
-			if(var37 && this.fire > 0) {
-				this.worldObj.playSoundAtEntity(this, "random.fizz", 0.7F, 1.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
+			} else if (this.fire <= 0) {
 				this.fire = -this.fireResistance;
 			}
 
@@ -418,12 +373,7 @@ public abstract class Entity {
 		this.attackEntityFrom((Entity)null, var1);
 	}
 
-	protected void fall(float var1) {
-	}
-
-	public boolean handleWaterMovement() {
-		return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, (double)-0.4F, 0.0D), Material.water, this);
-	}
+	protected void fall(float var1) {}
 
 	public boolean isInsideOfMaterial(Material var1) {
 		double var2 = this.posY + (double)this.getEyeHeight();
@@ -442,10 +392,6 @@ public abstract class Entity {
 
 	protected float getEyeHeight() {
 		return 0.0F;
-	}
-
-	public boolean handleLavaMovement() {
-		return this.worldObj.isMaterialInBB(this.boundingBox.expand(0.0D, (double)-0.4F, 0.0D), Material.lava);
 	}
 
 	public void moveFlying(float var1, float var2, float var3) {
@@ -598,7 +544,6 @@ public abstract class Entity {
 		var1.setTag("Rotation", this.newFloatNBTList(new float[]{this.rotationYaw, this.rotationPitch}));
 		var1.setFloat("FallDistance", this.fallDistance);
 		var1.setShort("Fire", (short)this.fire);
-		var1.setShort("Air", (short)this.air);
 		var1.setBoolean("OnGround", this.onGround);
 		this.writeEntityToNBT(var1);
 	}
@@ -618,7 +563,6 @@ public abstract class Entity {
 		this.prevRotationPitch = this.rotationPitch = ((NBTTagFloat)var4.tagAt(1)).floatValue;
 		this.fallDistance = var1.getFloat("FallDistance");
 		this.fire = var1.getShort("Fire");
-		this.air = var1.getShort("Air");
 		this.onGround = var1.getBoolean("OnGround");
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.readEntityFromNBT(var1);

@@ -2,11 +2,11 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.Material;
 import net.minecraft.src.entity.EntityFallingSand;
 import net.minecraft.src.world.World;
 
 public class BlockSand extends Block {
+	
 	public static boolean fallInstantly = false;
 
 	public BlockSand(int var1, int var2) {
@@ -44,14 +44,9 @@ public class BlockSand extends Block {
 	}
 
 	public static boolean canFallBelow(World var0, int var1, int var2, int var3) {
-		int var4 = var0.getBlockId(var1, var2, var3);
-		if(var4 == 0) {
-			return true;
-		} else if(var4 == Block.fire.blockID) {
-			return true;
-		} else {
-			Material var5 = Block.blocksList[var4].material;
-			return var5 == Material.water ? true : var5 == Material.lava;
-		}
+		
+		int blockID = var0.getBlockId(var1, var2, var3);
+		
+		return blockID == 0 || blockID == Block.fire.blockID;
 	}
 }

@@ -2,8 +2,8 @@ package net.minecraft.src.inventory;
 
 import net.minecraft.io.NBTTagCompound;
 import net.minecraft.io.NBTTagList;
-import net.minecraft.src.Material;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.Material;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.item.ItemArmor;

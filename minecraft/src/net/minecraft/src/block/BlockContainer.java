@@ -1,6 +1,5 @@
 package net.minecraft.src.block;
 
-import net.minecraft.src.Material;
 import net.minecraft.src.world.World;
 
 public abstract class BlockContainer extends Block {
