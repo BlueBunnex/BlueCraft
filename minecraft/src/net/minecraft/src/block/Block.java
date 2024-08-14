@@ -400,14 +400,4 @@ public class Block {
 	public void onEntityCollidedWithBlock(World var1, int var2, int var3, int var4, Entity var5) {}
 
 	public void setBlockBoundsForItemRender() {}
-
-	static {
-		
-		// make item forms
-		for(int i = 0; i < 256; i++) {
-			
-			if(blocksList[i] != null)
-				Item.itemsList[i] = new ItemBlock(i);
-		}
-	}
 }

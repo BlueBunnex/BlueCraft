@@ -2,6 +2,7 @@ package net.minecraft.src.item;
 
 import java.util.Random;
 
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
@@ -77,6 +78,16 @@ public class Item {
 	static {
 		for (AllItems a : AllItems.values()) {
 			itemsList[a.item.shiftedIndex - 256] = a.item;
+		}
+		
+//		for (AllBlocks a : AllBlocks.values()) {
+//			itemsList[a.block.blockID] = a.block;
+//		}
+		
+		for(int i = 0; i < 256; i++) {
+			
+			if(Block.blocksList[i] != null)
+				Item.itemsList[i] = new ItemBlock(i);
 		}
 	}
 }
