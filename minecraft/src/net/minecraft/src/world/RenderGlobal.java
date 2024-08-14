@@ -23,7 +23,9 @@ import net.minecraft.src.RenderEngine;
 import net.minecraft.src.RenderList;
 import net.minecraft.src.Tessellator;
 import net.minecraft.src.Vec3D;
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockLeaves;
 import net.minecraft.src.block.TileEntity;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityExplodeFX;
@@ -210,7 +212,8 @@ public class RenderGlobal implements IWorldAccess {
 	}
 
 	public void loadRenderers() {
-		Block.leaves.setGraphicsLevel(this.mc.options.fancyGraphics);
+		((BlockLeaves) AllBlocks.leaves.block).setGraphicsLevel(this.mc.options.fancyGraphics);
+		
 		this.renderDistance = this.mc.options.renderDistance;
 		int var1;
 		if(this.worldRenderers != null) {
@@ -882,8 +885,9 @@ public class RenderGlobal implements IWorldAccess {
 				double var14 = var1.lastTickPosZ + (var1.posZ - var1.lastTickPosZ) * (double)var5;
 				var6.setTranslationD(-var10, -var12, -var14);
 				var6.disableColor();
+				
 				if(var9 == null) {
-					var9 = Block.stone;
+					var9 = AllBlocks.stone.block;
 				}
 
 				this.globalRenderBlocks.renderBlockUsingTexture(var9, var2.blockX, var2.blockY, var2.blockZ, 240 + (int)(this.damagePartialTime * 10.0F));

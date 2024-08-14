@@ -12,12 +12,14 @@ public class BlockFire extends Block {
 
 	protected BlockFire(int var1, int var2) {
 		super(var1, var2, Material.fire);
-		this.initializeBlock(Block.planks.blockID, 5, 20);
-		this.initializeBlock(Block.wood.blockID, 5, 5);
-		this.initializeBlock(Block.leaves.blockID, 30, 60);
-		this.initializeBlock(Block.bookshelf.blockID, 30, 20);
-		this.initializeBlock(Block.tnt.blockID, 15, 100);
-		this.initializeBlock(Block.cloth.blockID, 30, 60);
+		
+		this.initializeBlock(AllBlocks.planks.block.blockID, 5, 20);
+		this.initializeBlock(AllBlocks.wood.block.blockID, 5, 5);
+		this.initializeBlock(AllBlocks.leaves.block.blockID, 30, 60);
+		this.initializeBlock(AllBlocks.bookshelf.block.blockID, 30, 20);
+		this.initializeBlock(AllBlocks.tnt.block.blockID, 15, 100);
+		this.initializeBlock(AllBlocks.cloth.block.blockID, 30, 60);
+		
 		this.setTickOnLoad(true);
 	}
 
@@ -98,7 +100,7 @@ public class BlockFire extends Block {
 	private void tryToCatchBlockOnFire(World var1, int var2, int var3, int var4, int var5, Random var6) {
 		int var7 = this.abilityToCatchFire[var1.getBlockId(var2, var3, var4)];
 		if(var6.nextInt(var5) < var7) {
-			boolean var8 = var1.getBlockId(var2, var3, var4) == Block.tnt.blockID;
+			boolean var8 = var1.getBlockId(var2, var3, var4) == AllBlocks.tnt.block.blockID;
 			if(var6.nextInt(2) == 0) {
 				var1.setBlockWithNotify(var2, var3, var4, this.blockID);
 			} else {
@@ -106,7 +108,7 @@ public class BlockFire extends Block {
 			}
 
 			if(var8) {
-				Block.tnt.onBlockDestroyedByPlayer(var1, var2, var3, var4, 0);
+				AllBlocks.tnt.block.onBlockDestroyedByPlayer(var1, var2, var3, var4, 0);
 			}
 		}
 
@@ -171,8 +173,11 @@ public class BlockFire extends Block {
 		float var7;
 		float var8;
 		float var9;
-		if(!var1.isBlockNormalCube(var2, var3 - 1, var4) && !Block.fire.canBlockCatchFire(var1, var2, var3 - 1, var4)) {
-			if(Block.fire.canBlockCatchFire(var1, var2 - 1, var3, var4)) {
+		
+		BlockFire fire = (BlockFire) AllBlocks.fire.block;
+		
+		if(!var1.isBlockNormalCube(var2, var3 - 1, var4) && !fire.canBlockCatchFire(var1, var2, var3 - 1, var4)) {
+			if(fire.canBlockCatchFire(var1, var2 - 1, var3, var4)) {
 				for(var6 = 0; var6 < 2; ++var6) {
 					var7 = (float)var2 + var5.nextFloat() * 0.1F;
 					var8 = (float)var3 + var5.nextFloat();
@@ -181,7 +186,7 @@ public class BlockFire extends Block {
 				}
 			}
 
-			if(Block.fire.canBlockCatchFire(var1, var2 + 1, var3, var4)) {
+			if(fire.canBlockCatchFire(var1, var2 + 1, var3, var4)) {
 				for(var6 = 0; var6 < 2; ++var6) {
 					var7 = (float)(var2 + 1) - var5.nextFloat() * 0.1F;
 					var8 = (float)var3 + var5.nextFloat();
@@ -190,7 +195,7 @@ public class BlockFire extends Block {
 				}
 			}
 
-			if(Block.fire.canBlockCatchFire(var1, var2, var3, var4 - 1)) {
+			if(fire.canBlockCatchFire(var1, var2, var3, var4 - 1)) {
 				for(var6 = 0; var6 < 2; ++var6) {
 					var7 = (float)var2 + var5.nextFloat();
 					var8 = (float)var3 + var5.nextFloat();
@@ -199,7 +204,7 @@ public class BlockFire extends Block {
 				}
 			}
 
-			if(Block.fire.canBlockCatchFire(var1, var2, var3, var4 + 1)) {
+			if(fire.canBlockCatchFire(var1, var2, var3, var4 + 1)) {
 				for(var6 = 0; var6 < 2; ++var6) {
 					var7 = (float)var2 + var5.nextFloat();
 					var8 = (float)var3 + var5.nextFloat();
@@ -208,7 +213,7 @@ public class BlockFire extends Block {
 				}
 			}
 
-			if(Block.fire.canBlockCatchFire(var1, var2, var3 + 1, var4)) {
+			if(fire.canBlockCatchFire(var1, var2, var3 + 1, var4)) {
 				for(var6 = 0; var6 < 2; ++var6) {
 					var7 = (float)var2 + var5.nextFloat();
 					var8 = (float)(var3 + 1) - var5.nextFloat() * 0.1F;

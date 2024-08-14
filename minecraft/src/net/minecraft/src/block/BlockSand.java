@@ -47,6 +47,6 @@ public class BlockSand extends Block {
 		
 		int blockID = var0.getBlockId(var1, var2, var3);
 		
-		return blockID == 0 || blockID == Block.fire.blockID;
+		return blockID == 0 || blockID == AllBlocks.fire.block.blockID;
 	}
 }

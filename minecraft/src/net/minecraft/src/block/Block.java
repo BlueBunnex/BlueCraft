@@ -31,61 +31,13 @@ public class Block {
 	public static final StepSound soundGlassFootstep = new StepSoundGlass("stone", 1.0F, 1.0F);
 	public static final StepSound soundClothFootstep = new StepSound("cloth", 1.0F, 1.0F);
 	public static final StepSound soundSandFootstep = new StepSoundSand("sand", 1.0F, 1.0F);
+	
 	public static final Block[] blocksList = new Block[256];
 	public static final boolean[] tickOnLoad = new boolean[256];
 	public static final boolean[] opaqueCubeLookup = new boolean[256];
 	public static final int[] lightOpacity = new int[256];
 	public static final boolean[] canBlockGrass = new boolean[256];
 	public static final int[] lightValue = new int[256];
-	
-	public static final Block stone       = (new BlockBreakToCobble(1, 1)).setHardness(1.5F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block cobblestone = new BlockToolSensitive(4, 16, Material.rock, ToolLevel.BRONZE, ToolType.PICKAXE).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block bedrock     = (new Block(7, 17, Material.rock)).setHardness(-1.0F).setResistance(6000000.0F).setStepSound(soundStoneFootstep);
-	public static final BlockGrass grass  = (BlockGrass)(new BlockGrass(2)).setHardness(0.6F).setStepSound(soundGrassFootstep);
-	public static final Block dirt        = (new BlockDirt(3, 2)).setHardness(0.5F).setStepSound(soundGravelFootstep);
-	public static final Block planks      = (new Block(5, 4, Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep);
-	public static final Block sapling     = (new BlockSapling(6, 15)).setHardness(0.0F).setStepSound(soundGrassFootstep);
-	public static final Block sand        = (new BlockSand(12, 18)).setHardness(0.5F).setStepSound(soundSandFootstep);
-	public static final Block gravel      = (new Block(13, 19, Material.sand)).setHardness(0.6F).setStepSound(soundGravelFootstep);
-	
-	public static final Block oreCoal = (new BlockOre(16, 32)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
-	public static final Block oreIron = (new BlockOre(15, 33)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
-	public static final Block oreMithril = (new BlockOre(56, 34)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep);
-	
-	public static final Block wood = (new BlockLog(17)).setHardness(2.0F).setStepSound(soundWoodFootstep);
-	public static final BlockLeaves leaves = (BlockLeaves)(new BlockLeaves(18, 52)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep);
-	public static final Block sponge = (new Block(19, 48, Material.sponge)).setHardness(0.6F).setStepSound(soundGrassFootstep);
-	public static final Block glass = (new BlockGlass(20, 49, Material.glass, false)).setHardness(0.3F).setStepSound(soundGlassFootstep);
-	public static final Block cloth = (new Block(35, 64, Material.cloth)).setHardness(0.8F).setStepSound(soundClothFootstep);
-	public static final BlockFlower plantYellow = (BlockFlower)(new BlockFlower(37, 13)).setHardness(0.0F).setStepSound(soundGrassFootstep);
-	public static final BlockFlower plantRed = (BlockFlower)(new BlockFlower(38, 12)).setHardness(0.0F).setStepSound(soundGrassFootstep);
-	public static final BlockFlower mushroomBrown = (BlockFlower)(new BlockMushroom(39, 29)).setHardness(0.0F).setStepSound(soundGrassFootstep).setLightValue(2.0F / 16.0F);
-	public static final BlockFlower mushroomRed = (BlockFlower)(new BlockMushroom(40, 28)).setHardness(0.0F).setStepSound(soundGrassFootstep);
-	
-	public static final Block blockIron = (new BlockOreBlock(42, 38)).setHardness(5.0F).setResistance(10.0F).setStepSound(soundMetalFootstep);
-	public static final Block stairDouble = (new BlockStep(43, true)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block stairSingle = (new BlockStep(44, false)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block brick = (new Block(45, 7, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block tnt = (new BlockTNT(46, 8)).setHardness(0.0F).setStepSound(soundGrassFootstep);
-	public static final Block bookshelf = (new BlockBookshelf(47, 35)).setHardness(1.5F).setStepSound(soundWoodFootstep);
-	public static final Block cobblestoneMossy = (new Block(48, 36, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(soundStoneFootstep);
-	public static final Block obsidian = (new Block(49, 37, Material.rock)).setHardness(10.0F).setResistance(20.0F).setStepSound(soundStoneFootstep);
-	public static final Block torch = (new BlockTorch(50, 80)).setHardness(0.0F).setLightValue(15.0F / 16.0F).setStepSound(soundWoodFootstep);
-	public static final BlockFire fire = (BlockFire) new BlockFire(51, 31).setHardness(0.0F).setLightValue(1.0F).setStepSound(soundWoodFootstep);
-	public static final Block mobSpawner = (new BlockMobSpawner(52, 65)).setHardness(5.0F).setStepSound(soundMetalFootstep);
-	public static final Block stairCompactWood = new BlockStairs(53, planks);
-	public static final Block chest = (new BlockChest(54)).setHardness(2.5F).setStepSound(soundWoodFootstep);
-	
-	public static final Block blockMithril = (new BlockOreBlock(57, 40)).setHardness(5.0F).setResistance(10.0F).setStepSound(soundMetalFootstep);
-	public static final Block workbench = new BlockWorkbench(58).setHardness(2.5F).setStepSound(soundWoodFootstep);
-	public static final Block ladder = (new BlockLadder(65, 83)).setHardness(0.4F).setStepSound(soundWoodFootstep);
-	public static final Block stairCompactStone = new BlockStairs(67, cobblestone);
-	
-	public static final Block snow = (new BlockSnow(78, 66)).setHardness(0.1F).setStepSound(soundClothFootstep);
-	public static final Block ice = (new Block(79, 67, Material.ice)).setHardness(0.5F).setLightOpacity(3).setStepSound(soundGlassFootstep);
-	public static final Block blockSnow = (new BlockSnowBlock(80, 66)).setHardness(0.2F).setStepSound(soundClothFootstep);
-	
-	public static final Block jukebox = new BlockJukebox(81).setHardness(2.0F).setResistance(5.0F).setStepSound(soundWoodFootstep);
 	
 	public int blockIndexInTexture;
 	public final int blockID;

@@ -29,6 +29,7 @@ import net.minecraft.src.MetadataChunkBlock;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.NextTickListEntry;
 import net.minecraft.src.Vec3D;
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntity;
@@ -241,7 +242,7 @@ public class World implements IBlockAccess {
 	}
 
 	private boolean findSpawn(int var1, int var2) {
-		return this.getFirstUncoveredBlock(var1, var2) == Block.sand.blockID;
+		return this.getFirstUncoveredBlock(var1, var2) == AllBlocks.sand.block.blockID;
 	}
 
 	private int getFirstUncoveredBlock(int var1, int var2) {
@@ -535,7 +536,7 @@ public class World implements IBlockAccess {
 			int var5;
 			if(var4) {
 				var5 = this.getBlockId(var1, var2, var3);
-				if(var5 == Block.stairSingle.blockID) {
+				if(var5 == AllBlocks.stairSingle.block.blockID) {
 					int var6 = this.getBlockLightValue_do(var1, var2 + 1, var3, false);
 					int var7 = this.getBlockLightValue_do(var1 + 1, var2, var3, false);
 					int var8 = this.getBlockLightValue_do(var1 - 1, var2, var3, false);
@@ -1243,6 +1244,7 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean isBoundingBoxBurning(AxisAlignedBB var1) {
+		
 		int var2 = MathHelper.floor_double(var1.minX);
 		int var3 = MathHelper.floor_double(var1.maxX + 1.0D);
 		int var4 = MathHelper.floor_double(var1.minY);
@@ -1254,7 +1256,7 @@ public class World implements IBlockAccess {
 			for(int y = var4; y < var5; y++) {
 				for(int z = var6; z < var7; z++) {
 					
-					if (this.getBlockId(x, y, z) == Block.fire.blockID)
+					if (this.getBlockId(x, y, z) == AllBlocks.fire.block.blockID)
 						return true;
 				}
 			}
@@ -1375,7 +1377,7 @@ public class World implements IBlockAccess {
 			++var1;
 		}
 
-		if(this.getBlockId(var1, var2, var3) == Block.fire.blockID) {
+		if(this.getBlockId(var1, var2, var3) == AllBlocks.fire.block.blockID) {
 			this.playSoundEffect("random.fizz", (double)((float)var1 + 0.5F), (double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), 0.5F, 2.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.8F);
 			this.setBlockWithNotify(var1, var2, var3, 0);
 		}
@@ -1546,8 +1548,8 @@ public class World implements IBlockAccess {
 				var9 = this.getTopSolidOrLiquidBlock(var7 + var3, var8 + var4);
 				if(var9 >= 0 && var9 < 128 && var14.getSavedLightValue(EnumSkyBlock.Block, var7, var9, var8) < 10 && var14.getBlockID(var7, var9, var8) == 0) {
 					var10 = var14.getBlockID(var7, var9 - 1, var8);
-					if(var10 != 0 && var10 != Block.ice.blockID && Block.blocksList[var10].material.getIsSolid()) {
-						this.setBlockWithNotify(var7 + var3, var9, var8 + var4, Block.snow.blockID);
+					if(var10 != 0 && var10 != AllBlocks.ice.block.blockID && Block.blocksList[var10].material.getIsSolid()) {
+						this.setBlockWithNotify(var7 + var3, var9, var8 + var4, AllBlocks.snow.block.blockID);
 					}
 				}
 			}
@@ -1705,7 +1707,7 @@ public class World implements IBlockAccess {
 			var9 = null;
 		}
 
-		return var7 != Block.fire && var7 != Block.snow ? var1 > 0 && var7 == null && (var9 == null || this.checkIfAABBIsClear(var9)) && var8.canPlaceBlockAt(this, var2, var3, var4) : true;
+		return var7 != AllBlocks.fire.block && var7 != AllBlocks.snow.block ? var1 > 0 && var7 == null && (var9 == null || this.checkIfAABBIsClear(var9)) && var8.canPlaceBlockAt(this, var2, var3, var4) : true;
 	}
 
 	public PathEntity getPathToEntity(Entity var1, Entity var2, float var3) {

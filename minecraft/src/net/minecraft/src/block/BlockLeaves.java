@@ -22,7 +22,7 @@ public class BlockLeaves extends BlockLeavesBase {
 			for(int var7 = var2 - var6; var7 <= var2 + var6; ++var7) {
 				for(int var8 = var3 - 1; var8 <= var3 + 1; ++var8) {
 					for(int var9 = var4 - var6; var9 <= var4 + var6; ++var9) {
-						if(var1.getBlockId(var7, var8, var9) == Block.wood.blockID) {
+						if(var1.getBlockId(var7, var8, var9) == AllBlocks.wood.block.blockID) {
 							return;
 						}
 					}
@@ -39,7 +39,7 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public int idDropped(int var1, Random random) {
-		return random.nextInt(4) == 0 ? Block.sapling.blockID : Item.stick.shiftedIndex;
+		return random.nextInt(4) == 0 ? AllBlocks.sapling.block.blockID : Item.stick.shiftedIndex;
 	}
 
 	public boolean isOpaqueCube() {

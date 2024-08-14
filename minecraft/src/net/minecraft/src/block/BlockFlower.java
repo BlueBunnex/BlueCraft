@@ -6,6 +6,7 @@ import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.world.World;
 
 public class BlockFlower extends Block {
+	
 	protected BlockFlower(int var1, int var2) {
 		super(var1, Material.plants);
 		this.blockIndexInTexture = var2;
@@ -19,7 +20,7 @@ public class BlockFlower extends Block {
 	}
 
 	protected boolean canThisPlantGrowOnThisBlockID(int var1) {
-		return var1 == Block.grass.blockID || var1 == Block.dirt.blockID;
+		return var1 == AllBlocks.grass.block.blockID || var1 == AllBlocks.dirt.block.blockID;
 	}
 
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {

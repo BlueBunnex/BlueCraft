@@ -35,6 +35,7 @@ import net.minecraft.src.ThreadDownloadResources;
 import net.minecraft.src.Timer;
 import net.minecraft.src.UnexpectedThrowable;
 import net.minecraft.src.Vec3D;
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.EntityPlayerSP;
 import net.minecraft.src.entity.EntityRenderer;
@@ -759,16 +760,16 @@ public class Minecraft implements Runnable {
 			
 			int blockID = this.theWorld.getBlockId(this.objectMouseOver.blockX, this.objectMouseOver.blockY, this.objectMouseOver.blockZ);
 			
-			if(blockID == Block.grass.blockID) {
-				blockID = Block.dirt.blockID;
+			if(blockID == AllBlocks.grass.block.blockID) {
+				blockID = AllBlocks.dirt.block.blockID;
 			}
 
-			if(blockID == Block.stairDouble.blockID) {
-				blockID = Block.stairSingle.blockID;
+			if(blockID == AllBlocks.stairDouble.block.blockID) {
+				blockID = AllBlocks.stairSingle.block.blockID;
 			}
 
-			if(blockID == Block.bedrock.blockID) {
-				blockID = Block.stone.blockID;
+			if(blockID == AllBlocks.bedrock.block.blockID) {
+				blockID = AllBlocks.stone.block.blockID;
 			}
 
 			this.thePlayer.inventory.setCurrentItem(blockID);

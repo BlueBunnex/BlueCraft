@@ -14,7 +14,7 @@ public class BlockLog extends Block {
 	}
 
 	public int idDropped(int var1, Random var2) {
-		return Block.wood.blockID;
+		return AllBlocks.wood.block.blockID;
 	}
 
 	public int getBlockTextureFromSide(int var1) {

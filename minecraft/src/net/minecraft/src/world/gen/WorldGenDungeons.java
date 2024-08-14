@@ -2,6 +2,7 @@ package net.minecraft.src.world.gen;
 
 import java.util.Random;
 
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntityChest;
@@ -51,9 +52,9 @@ public class WorldGenDungeons extends WorldGenerator {
 							world.setBlockWithNotify(world0, world1, world2, 0);
 						} else if(world.getBlockMaterial(world0, world1, world2).isSolid()) {
 							if(world1 == y - 1 && rand.nextInt(4) != 0) {
-								world.setBlockWithNotify(world0, world1, world2, Block.cobblestoneMossy.blockID);
+								world.setBlockWithNotify(world0, world1, world2, AllBlocks.cobblestoneMossy.block.blockID);
 							} else {
-								world.setBlockWithNotify(world0, world1, world2, Block.cobblestone.blockID);
+								world.setBlockWithNotify(world0, world1, world2, AllBlocks.cobblestone.block.blockID);
 							}
 						}
 					}
@@ -84,7 +85,7 @@ public class WorldGenDungeons extends WorldGenerator {
 						}
 
 						if(world5 == 1) {
-							world.setBlockWithNotify(world2, y, world4, Block.chest.blockID);
+							world.setBlockWithNotify(world2, y, world4, AllBlocks.chest.block.blockID);
 							TileEntityChest world6 = (TileEntityChest)world.getBlockTileEntity(world2, y, world4);
 							int world7 = 0;
 
@@ -105,7 +106,7 @@ public class WorldGenDungeons extends WorldGenerator {
 				}
 			}
 
-			world.setBlockWithNotify(x, y, z, Block.mobSpawner.blockID);
+			world.setBlockWithNotify(x, y, z, AllBlocks.mobSpawner.block.blockID);
 			TileEntityMobSpawner world9 = (TileEntityMobSpawner)world.getBlockTileEntity(x, y, z);
 			world9.mobID = this.pickMobSpawner(rand);
 			return true;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.MathHelper;
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.sound.StepSound;
@@ -412,7 +413,7 @@ public class EntityLiving extends Entity {
 		int var1 = MathHelper.floor_double(this.posX);
 		int var2 = MathHelper.floor_double(this.boundingBox.minY);
 		int var3 = MathHelper.floor_double(this.posZ);
-		return this.worldObj.getBlockId(var1, var2, var3) == Block.ladder.blockID || this.worldObj.getBlockId(var1, var2 + 1, var3) == Block.ladder.blockID;
+		return this.worldObj.getBlockId(var1, var2, var3) == AllBlocks.ladder.block.blockID || this.worldObj.getBlockId(var1, var2 + 1, var3) == AllBlocks.ladder.block.blockID;
 	}
 
 	public void writeEntityToNBT(NBTTagCompound var1) {

@@ -3,6 +3,7 @@ package net.minecraft.src.entity.render;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.src.RenderBlocks;
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityTNTPrimed;
@@ -36,14 +37,14 @@ public class RenderTNTPrimed extends Render {
 
 		var10 = (1.0F - ((float)var1.fuse - var9 + 1.0F) / 100.0F) * 0.8F;
 		this.loadTexture("/terrain.png");
-		this.blockRenderer.renderBlockOnInventory(Block.tnt);
+		this.blockRenderer.renderBlockOnInventory(AllBlocks.tnt.block);
 		if(var1.fuse / 5 % 2 == 0) {
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glDisable(GL11.GL_LIGHTING);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_DST_ALPHA);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, var10);
-			this.blockRenderer.renderBlockOnInventory(Block.tnt);
+			this.blockRenderer.renderBlockOnInventory(AllBlocks.tnt.block);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glEnable(GL11.GL_LIGHTING);

@@ -12,13 +12,13 @@ public class BlockOre extends BlockBreakToCobble {
 
 	public int idDropped(int var1, Random var2) {
 		
-		if (this.blockID == Block.oreCoal.blockID)
+		if (this.blockID == AllBlocks.oreCoal.block.blockID)
 			return AllItems.coal.item.shiftedIndex;
 		
-		if (this.blockID == Block.oreIron.blockID)
+		if (this.blockID == AllBlocks.oreIron.block.blockID)
 			return AllItems.ingotIron.item.shiftedIndex;
 		
-		if (this.blockID == Block.oreMithril.blockID)
+		if (this.blockID == AllBlocks.oreMithril.block.blockID)
 			return AllItems.ingotMithril.item.shiftedIndex;
 		
 		return this.blockID;

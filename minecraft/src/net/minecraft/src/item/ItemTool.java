@@ -44,7 +44,7 @@ public class ItemTool extends Item {
 			
 			System.out.println(this.type.blocksEffectiveAgainst[i]);
 			
-			if (this.type.blocksEffectiveAgainst[i] == block) {
+			if (this.type.blocksEffectiveAgainst[i].block == block) {
 				return this.efficiencyOnProperMaterial;
 			}
 		}

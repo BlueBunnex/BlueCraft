@@ -1,5 +1,7 @@
 package net.minecraft.src.item;
 
+// ItemListValue?
+// ItemEntry?
 public enum AllItems {
 	
 	// ingots

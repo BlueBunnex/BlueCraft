@@ -6,6 +6,7 @@ import net.minecraft.src.Chunk;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.IProgressUpdate;
 import net.minecraft.src.MathHelper;
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockSand;
 import net.minecraft.src.block.Material;
@@ -83,16 +84,9 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 							for(int var50 = 0; var50 < 4; ++var50) {
 								int var51 = 0;
-								if(var11 * 8 + var30 < var5) {
-									if(this.worldObj.snowCovered && var11 * 8 + var30 >= var5 - 1) {
-										var51 = Block.ice.blockID;
-									} else {
-										var51 = Block.glass.blockID; // TODO
-									}
-								}
 
 								if(var46 > 0.0D) {
-									var51 = Block.stone.blockID;
+									var51 = AllBlocks.stone.block.blockID;
 								}
 
 								var3[var42] = (byte)var51;
@@ -128,44 +122,45 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				boolean var10 = this.gravelNoise[var7 + var8 * 16] + this.rand.nextDouble() * 0.2D > 3.0D;
 				int var11 = (int)(this.stoneNoise[var7 + var8 * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
 				int var12 = -1;
-				byte var13 = (byte)Block.grass.blockID;
-				byte var14 = (byte)Block.dirt.blockID;
+				byte var13 = (byte) AllBlocks.grass.block.blockID;
+				byte var14 = (byte) AllBlocks.dirt.block.blockID;
 
 				for(int var15 = 127; var15 >= 0; --var15) {
 					int var16 = (var7 * 16 + var8) * 128 + var15;
 					if(var15 <= 0 + this.rand.nextInt(6) - 1) {
-						var3[var16] = (byte)Block.bedrock.blockID;
+						var3[var16] = (byte) AllBlocks.bedrock.block.blockID;
 					} else {
 						byte var17 = var3[var16];
 						if(var17 == 0) {
 							var12 = -1;
-						} else if(var17 == Block.stone.blockID) {
+						} else if(var17 == AllBlocks.stone.block.blockID) {
 							if(var12 == -1) {
 								if(var11 <= 0) {
 									var13 = 0;
-									var14 = (byte)Block.stone.blockID;
+									var14 = (byte) AllBlocks.stone.block.blockID;
 								} else if(var15 >= var4 - 4 && var15 <= var4 + 1) {
-									var13 = (byte)Block.grass.blockID;
-									var14 = (byte)Block.dirt.blockID;
+									var13 = (byte) AllBlocks.grass.block.blockID;
+									var14 = (byte) AllBlocks.dirt.block.blockID;
 									if(var10) {
 										var13 = 0;
 									}
 
 									if(var10) {
-										var14 = (byte)Block.gravel.blockID;
+										var14 = (byte) AllBlocks.gravel.block.blockID;
 									}
 
 									if(var9) {
-										var13 = (byte)Block.sand.blockID;
+										var13 = (byte) AllBlocks.sand.block.blockID;
 									}
 
 									if(var9) {
-										var14 = (byte)Block.sand.blockID;
+										var14 = (byte) AllBlocks.sand.block.blockID;
 									}
 								}
 
+								// was lava
 								if(var15 < var4 && var13 == 0) {
-									var13 = (byte) Block.glass.blockID; // TODO
+									var13 = (byte) AllBlocks.ice.block.blockID;
 								}
 
 								var12 = var11;
@@ -317,15 +312,15 @@ public class ChunkProviderGenerate implements IChunkProvider {
 									double var49 = ((double)var48 + 0.5D - var6) / var29;
 									if(var49 > -0.7D && var57 * var57 + var49 * var49 + var44 * var44 < 1.0D) {
 										byte var51 = var3[var46];
-										if(var51 == Block.grass.blockID) {
+										if(var51 == AllBlocks.grass.block.blockID) {
 											var47 = true;
 										}
 
-										if(var51 == Block.stone.blockID || var51 == Block.dirt.blockID || var51 == Block.grass.blockID) {
+										if(var51 == AllBlocks.stone.block.blockID || var51 == AllBlocks.dirt.block.blockID || var51 == AllBlocks.grass.block.blockID) {
 											
 											var3[var46] = 0;
-											if(var47 && var3[var46 - 1] == Block.dirt.blockID) {
-												var3[var46 - 1] = (byte)Block.grass.blockID;
+											if(var47 && var3[var46 - 1] == AllBlocks.dirt.block.blockID) {
+												var3[var46 - 1] = (byte) AllBlocks.grass.block.blockID;
 											}
 										}
 									}
@@ -511,7 +506,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		for (i = 0; i < 20; i++) {
 			
-			new WorldGenMinable(Block.dirt.blockID, 32).generate(
+			new WorldGenMinable(AllBlocks.dirt.block.blockID, 32).generate(
 					this.worldObj,
 					this.rand,
 					blockX + this.rand.nextInt(16),
@@ -522,7 +517,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		for (i = 0; i < 10; i++) {
 			
-			new WorldGenMinable(Block.gravel.blockID, 32).generate(
+			new WorldGenMinable(AllBlocks.gravel.block.blockID, 32).generate(
 					this.worldObj,
 					this.rand,
 					blockX + this.rand.nextInt(16),
@@ -533,7 +528,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		for (i = 0; i < 20; i++) {
 			
-			new WorldGenMinable(Block.oreCoal.blockID, 16).generate(
+			new WorldGenMinable(AllBlocks.oreCoal.block.blockID, 16).generate(
 					this.worldObj,
 					this.rand,
 					blockX + this.rand.nextInt(16),
@@ -544,7 +539,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		for (i = 0; i < 20; i++) {
 			
-			new WorldGenMinable(Block.oreIron.blockID, 8).generate(
+			new WorldGenMinable(AllBlocks.oreIron.block.blockID, 8).generate(
 					this.worldObj,
 					this.rand,
 					blockX + this.rand.nextInt(16),
@@ -555,7 +550,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		for (i = 0; i < 1; i++) {
 			
-			new WorldGenMinable(Block.oreMithril.blockID, 7).generate(
+			new WorldGenMinable(AllBlocks.oreMithril.block.blockID, 7).generate(
 					this.worldObj,
 					this.rand,
 					blockX + this.rand.nextInt(16),
@@ -587,28 +582,28 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			var15 = blockX + this.rand.nextInt(16) + 8;
 			var16 = this.rand.nextInt(128);
 			var17 = blockZ + this.rand.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.plantYellow.blockID)).generate(this.worldObj, this.rand, var15, var16, var17);
+			(new WorldGenFlowers(AllBlocks.plantYellow.block.blockID)).generate(this.worldObj, this.rand, var15, var16, var17);
 		}
 
 		if(this.rand.nextInt(2) == 0) {
 			var14 = blockX + this.rand.nextInt(16) + 8;
 			var15 = this.rand.nextInt(128);
 			var16 = blockZ + this.rand.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.plantRed.blockID)).generate(this.worldObj, this.rand, var14, var15, var16);
+			(new WorldGenFlowers(AllBlocks.plantRed.block.blockID)).generate(this.worldObj, this.rand, var14, var15, var16);
 		}
 
 		if(this.rand.nextInt(4) == 0) {
 			var14 = blockX + this.rand.nextInt(16) + 8;
 			var15 = this.rand.nextInt(128);
 			var16 = blockZ + this.rand.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.rand, var14, var15, var16);
+			(new WorldGenFlowers(AllBlocks.mushroomBrown.block.blockID)).generate(this.worldObj, this.rand, var14, var15, var16);
 		}
 
 		if(this.rand.nextInt(8) == 0) {
 			var14 = blockX + this.rand.nextInt(16) + 8;
 			var15 = this.rand.nextInt(128);
 			var16 = blockZ + this.rand.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.rand, var14, var15, var16);
+			(new WorldGenFlowers(AllBlocks.mushroomRed.block.blockID)).generate(this.worldObj, this.rand, var14, var15, var16);
 		}
 
 		if(this.worldObj.snowCovered) {
@@ -616,7 +611,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				for(var15 = blockZ + 8 + 0; var15 < blockZ + 8 + 16; ++var15) {
 					var16 = this.worldObj.getTopSolidOrLiquidBlock(var14, var15);
 					if(var16 > 0 && var16 < 128 && this.worldObj.getBlockId(var14, var16, var15) == 0 && this.worldObj.getBlockMaterial(var14, var16 - 1, var15).getIsSolid() && this.worldObj.getBlockMaterial(var14, var16 - 1, var15) != Material.ice) {
-						this.worldObj.setBlockWithNotify(var14, var16, var15, Block.snow.blockID);
+						this.worldObj.setBlockWithNotify(var14, var16, var15, AllBlocks.snow.block.blockID);
 					}
 				}
 			}

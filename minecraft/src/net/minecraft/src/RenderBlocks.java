@@ -2,7 +2,9 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockFire;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.world.World;
 
@@ -29,6 +31,7 @@ public class RenderBlocks {
 		
 		// 5 WAS redstone wire, which no longer exists
 		// same with 7 which was block door
+		// 12 was lever
 		int renderType = var1.getRenderType();
 		
 		var1.setBlockBoundsBasedOnState(this.blockAccess, var2, var3, var4);
@@ -45,7 +48,7 @@ public class RenderBlocks {
 				: (renderType == 9 ? this.renderBlockMinecartTrack(var1, var2, var3, var4)
 				: (renderType == 10 ? this.renderBlockStairs(var1, var2, var3, var4)
 				: (renderType == 11 ? this.renderBlockFence(var1, var2, var3, var4)
-				: (renderType == 12 ? this.renderBlockLever(var1, var2, var3, var4) : false))))))))));
+				: false)))))))));
 	}
 
 	public boolean renderBlockTorch(Block var1, int var2, int var3, int var4) {
@@ -75,169 +78,6 @@ public class RenderBlocks {
 		return true;
 	}
 
-	public boolean renderBlockLever(Block var1, int var2, int var3, int var4) {
-		int var5 = this.blockAccess.getBlockMetadata(var2, var3, var4);
-		int var6 = var5 & 7;
-		boolean var7 = (var5 & 8) > 0;
-		Tessellator var8 = Tessellator.instance;
-		boolean var9 = this.overrideBlockTexture >= 0;
-		if(!var9) {
-			this.overrideBlockTexture = Block.cobblestone.blockIndexInTexture;
-		}
-
-		float var10 = 0.25F;
-		float var11 = 3.0F / 16.0F;
-		float var12 = 3.0F / 16.0F;
-		if(var6 == 5) {
-			var1.setBlockBounds(0.5F - var11, 0.0F, 0.5F - var10, 0.5F + var11, var12, 0.5F + var10);
-		} else if(var6 == 6) {
-			var1.setBlockBounds(0.5F - var10, 0.0F, 0.5F - var11, 0.5F + var10, var12, 0.5F + var11);
-		} else if(var6 == 4) {
-			var1.setBlockBounds(0.5F - var11, 0.5F - var10, 1.0F - var12, 0.5F + var11, 0.5F + var10, 1.0F);
-		} else if(var6 == 3) {
-			var1.setBlockBounds(0.5F - var11, 0.5F - var10, 0.0F, 0.5F + var11, 0.5F + var10, var12);
-		} else if(var6 == 2) {
-			var1.setBlockBounds(1.0F - var12, 0.5F - var10, 0.5F - var11, 1.0F, 0.5F + var10, 0.5F + var11);
-		} else if(var6 == 1) {
-			var1.setBlockBounds(0.0F, 0.5F - var10, 0.5F - var11, var12, 0.5F + var10, 0.5F + var11);
-		}
-
-		this.renderStandardBlock(var1, var2, var3, var4);
-		if(!var9) {
-			this.overrideBlockTexture = -1;
-		}
-
-		float var13 = var1.getBlockBrightness(this.blockAccess, var2, var3, var4);
-		if(Block.lightValue[var1.blockID] > 0) {
-			var13 = 1.0F;
-		}
-
-		var8.setColorOpaque_F(var13, var13, var13);
-		int var14 = var1.getBlockTextureFromSide(0);
-		if(this.overrideBlockTexture >= 0) {
-			var14 = this.overrideBlockTexture;
-		}
-
-		int var15 = (var14 & 15) << 4;
-		int var16 = var14 & 240;
-		float var17 = (float)var15 / 256.0F;
-		float var18 = ((float)var15 + 15.99F) / 256.0F;
-		float var19 = (float)var16 / 256.0F;
-		float var20 = ((float)var16 + 15.99F) / 256.0F;
-		Vec3D[] var21 = new Vec3D[8];
-		float var22 = 1.0F / 16.0F;
-		float var23 = 1.0F / 16.0F;
-		float var24 = 10.0F / 16.0F;
-		var21[0] = Vec3D.createVector((double)(-var22), 0.0D, (double)(-var23));
-		var21[1] = Vec3D.createVector((double)var22, 0.0D, (double)(-var23));
-		var21[2] = Vec3D.createVector((double)var22, 0.0D, (double)var23);
-		var21[3] = Vec3D.createVector((double)(-var22), 0.0D, (double)var23);
-		var21[4] = Vec3D.createVector((double)(-var22), (double)var24, (double)(-var23));
-		var21[5] = Vec3D.createVector((double)var22, (double)var24, (double)(-var23));
-		var21[6] = Vec3D.createVector((double)var22, (double)var24, (double)var23);
-		var21[7] = Vec3D.createVector((double)(-var22), (double)var24, (double)var23);
-
-		for(int var25 = 0; var25 < 8; ++var25) {
-			if(var7) {
-				var21[var25].zCoord -= 1.0D / 16.0D;
-				var21[var25].rotateAroundX((float)Math.PI * 2.0F / 9.0F);
-			} else {
-				var21[var25].zCoord += 1.0D / 16.0D;
-				var21[var25].rotateAroundX(-((float)Math.PI * 2.0F / 9.0F));
-			}
-
-			if(var6 == 6) {
-				var21[var25].rotateAroundY((float)Math.PI * 0.5F);
-			}
-
-			if(var6 < 5) {
-				var21[var25].yCoord -= 0.375D;
-				var21[var25].rotateAroundX((float)Math.PI * 0.5F);
-				if(var6 == 4) {
-					var21[var25].rotateAroundY(0.0F);
-				}
-
-				if(var6 == 3) {
-					var21[var25].rotateAroundY((float)Math.PI);
-				}
-
-				if(var6 == 2) {
-					var21[var25].rotateAroundY((float)Math.PI * 0.5F);
-				}
-
-				if(var6 == 1) {
-					var21[var25].rotateAroundY((float)Math.PI * -0.5F);
-				}
-
-				var21[var25].xCoord += (double)var2 + 0.5D;
-				var21[var25].yCoord += (double)((float)var3 + 0.5F);
-				var21[var25].zCoord += (double)var4 + 0.5D;
-			} else {
-				var21[var25].xCoord += (double)var2 + 0.5D;
-				var21[var25].yCoord += (double)((float)var3 + 2.0F / 16.0F);
-				var21[var25].zCoord += (double)var4 + 0.5D;
-			}
-		}
-
-		Vec3D var30 = null;
-		Vec3D var26 = null;
-		Vec3D var27 = null;
-		Vec3D var28 = null;
-
-		for(int var29 = 0; var29 < 6; ++var29) {
-			if(var29 == 0) {
-				var17 = (float)(var15 + 7) / 256.0F;
-				var18 = ((float)(var15 + 9) - 0.01F) / 256.0F;
-				var19 = (float)(var16 + 6) / 256.0F;
-				var20 = ((float)(var16 + 8) - 0.01F) / 256.0F;
-			} else if(var29 == 2) {
-				var17 = (float)(var15 + 7) / 256.0F;
-				var18 = ((float)(var15 + 9) - 0.01F) / 256.0F;
-				var19 = (float)(var16 + 6) / 256.0F;
-				var20 = ((float)(var16 + 16) - 0.01F) / 256.0F;
-			}
-
-			if(var29 == 0) {
-				var30 = var21[0];
-				var26 = var21[1];
-				var27 = var21[2];
-				var28 = var21[3];
-			} else if(var29 == 1) {
-				var30 = var21[7];
-				var26 = var21[6];
-				var27 = var21[5];
-				var28 = var21[4];
-			} else if(var29 == 2) {
-				var30 = var21[1];
-				var26 = var21[0];
-				var27 = var21[4];
-				var28 = var21[5];
-			} else if(var29 == 3) {
-				var30 = var21[2];
-				var26 = var21[1];
-				var27 = var21[5];
-				var28 = var21[6];
-			} else if(var29 == 4) {
-				var30 = var21[3];
-				var26 = var21[2];
-				var27 = var21[6];
-				var28 = var21[7];
-			} else if(var29 == 5) {
-				var30 = var21[0];
-				var26 = var21[3];
-				var27 = var21[7];
-				var28 = var21[4];
-			}
-
-			var8.addVertexWithUV(var30.xCoord, var30.yCoord, var30.zCoord, (double)var17, (double)var20);
-			var8.addVertexWithUV(var26.xCoord, var26.yCoord, var26.zCoord, (double)var18, (double)var20);
-			var8.addVertexWithUV(var27.xCoord, var27.yCoord, var27.zCoord, (double)var18, (double)var19);
-			var8.addVertexWithUV(var28.xCoord, var28.yCoord, var28.zCoord, (double)var17, (double)var19);
-		}
-
-		return true;
-	}
-
 	public boolean renderBlockFire(Block var1, int var2, int var3, int var4) {
 		Tessellator var5 = Tessellator.instance;
 		int var6 = var1.getBlockTextureFromSide(0);
@@ -261,7 +101,10 @@ public class RenderBlocks {
 		double var29;
 		double var31;
 		double var33;
-		if(!this.blockAccess.isBlockNormalCube(var2, var3 - 1, var4) && !Block.fire.canBlockCatchFire(this.blockAccess, var2, var3 - 1, var4)) {
+		
+		BlockFire fire = (BlockFire) (AllBlocks.fire.block);
+		
+		if(!this.blockAccess.isBlockNormalCube(var2, var3 - 1, var4) && !fire.canBlockCatchFire(this.blockAccess, var2, var3 - 1, var4)) {
 			float var37 = 0.2F;
 			float var20 = 1.0F / 16.0F;
 			if((var2 + var3 + var4 & 1) == 1) {
@@ -277,7 +120,7 @@ public class RenderBlocks {
 				var10 = var21;
 			}
 
-			if(Block.fire.canBlockCatchFire(this.blockAccess, var2 - 1, var3, var4)) {
+			if(fire.canBlockCatchFire(this.blockAccess, var2 - 1, var3, var4)) {
 				var5.addVertexWithUV((double)((float)var2 + var37), (double)((float)var3 + var18 + var20), (double)(var4 + 1), var12, var14);
 				var5.addVertexWithUV((double)(var2 + 0), (double)((float)(var3 + 0) + var20), (double)(var4 + 1), var12, var16);
 				var5.addVertexWithUV((double)(var2 + 0), (double)((float)(var3 + 0) + var20), (double)(var4 + 0), var10, var16);
@@ -288,7 +131,7 @@ public class RenderBlocks {
 				var5.addVertexWithUV((double)((float)var2 + var37), (double)((float)var3 + var18 + var20), (double)(var4 + 1), var12, var14);
 			}
 
-			if(Block.fire.canBlockCatchFire(this.blockAccess, var2 + 1, var3, var4)) {
+			if(fire.canBlockCatchFire(this.blockAccess, var2 + 1, var3, var4)) {
 				var5.addVertexWithUV((double)((float)(var2 + 1) - var37), (double)((float)var3 + var18 + var20), (double)(var4 + 0), var10, var14);
 				var5.addVertexWithUV((double)(var2 + 1 - 0), (double)((float)(var3 + 0) + var20), (double)(var4 + 0), var10, var16);
 				var5.addVertexWithUV((double)(var2 + 1 - 0), (double)((float)(var3 + 0) + var20), (double)(var4 + 1), var12, var16);
@@ -299,7 +142,7 @@ public class RenderBlocks {
 				var5.addVertexWithUV((double)((float)(var2 + 1) - var37), (double)((float)var3 + var18 + var20), (double)(var4 + 0), var10, var14);
 			}
 
-			if(Block.fire.canBlockCatchFire(this.blockAccess, var2, var3, var4 - 1)) {
+			if(fire.canBlockCatchFire(this.blockAccess, var2, var3, var4 - 1)) {
 				var5.addVertexWithUV((double)(var2 + 0), (double)((float)var3 + var18 + var20), (double)((float)var4 + var37), var12, var14);
 				var5.addVertexWithUV((double)(var2 + 0), (double)((float)(var3 + 0) + var20), (double)(var4 + 0), var12, var16);
 				var5.addVertexWithUV((double)(var2 + 1), (double)((float)(var3 + 0) + var20), (double)(var4 + 0), var10, var16);
@@ -310,7 +153,7 @@ public class RenderBlocks {
 				var5.addVertexWithUV((double)(var2 + 0), (double)((float)var3 + var18 + var20), (double)((float)var4 + var37), var12, var14);
 			}
 
-			if(Block.fire.canBlockCatchFire(this.blockAccess, var2, var3, var4 + 1)) {
+			if(fire.canBlockCatchFire(this.blockAccess, var2, var3, var4 + 1)) {
 				var5.addVertexWithUV((double)(var2 + 1), (double)((float)var3 + var18 + var20), (double)((float)(var4 + 1) - var37), var10, var14);
 				var5.addVertexWithUV((double)(var2 + 1), (double)((float)(var3 + 0) + var20), (double)(var4 + 1 - 0), var10, var16);
 				var5.addVertexWithUV((double)(var2 + 0), (double)((float)(var3 + 0) + var20), (double)(var4 + 1 - 0), var12, var16);
@@ -321,7 +164,7 @@ public class RenderBlocks {
 				var5.addVertexWithUV((double)(var2 + 1), (double)((float)var3 + var18 + var20), (double)((float)(var4 + 1) - var37), var10, var14);
 			}
 
-			if(Block.fire.canBlockCatchFire(this.blockAccess, var2, var3 + 1, var4)) {
+			if(fire.canBlockCatchFire(this.blockAccess, var2, var3 + 1, var4)) {
 				var21 = (double)var2 + 0.5D + 0.5D;
 				var23 = (double)var2 + 0.5D - 0.5D;
 				var25 = (double)var4 + 0.5D + 0.5D;

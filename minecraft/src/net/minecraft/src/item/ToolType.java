@@ -1,17 +1,17 @@
 package net.minecraft.src.item;
 
-import net.minecraft.src.block.Block;
+import net.minecraft.src.block.AllBlocks;
 
 public enum ToolType {
 	
-	SWORD(new Block[] {}),
-	PICKAXE(new Block[] { Block.cobblestone, Block.stairDouble, Block.stairSingle, Block.stone, Block.cobblestoneMossy, Block.oreIron, Block.blockIron, Block.oreCoal, Block.oreMithril, Block.blockMithril, Block.ice }),
-	AXE(new Block[] { Block.planks, Block.bookshelf, Block.wood, Block.chest }),
-	SHOVEL(new Block[] { Block.grass, Block.dirt, Block.sand, Block.gravel, Block.snow });
+	SWORD(new AllBlocks[] {}),
+	PICKAXE(new AllBlocks[] { AllBlocks.cobblestone, AllBlocks.stairDouble, AllBlocks.stairSingle, AllBlocks.stone, AllBlocks.cobblestoneMossy, AllBlocks.oreIron, AllBlocks.blockIron, AllBlocks.oreCoal, AllBlocks.oreMithril, AllBlocks.blockMithril, AllBlocks.ice }),
+	AXE(new AllBlocks[] { AllBlocks.planks, AllBlocks.bookshelf, AllBlocks.wood, AllBlocks.chest }),
+	SHOVEL(new AllBlocks[] { AllBlocks.grass, AllBlocks.dirt, AllBlocks.sand, AllBlocks.gravel, AllBlocks.snow });
 	
-	public final Block[] blocksEffectiveAgainst;
+	public final AllBlocks[] blocksEffectiveAgainst;
 	
-	ToolType(Block[] blocksEffectiveAgainst) {
+	ToolType(AllBlocks[] blocksEffectiveAgainst) {
 		this.blocksEffectiveAgainst = blocksEffectiveAgainst;
 	}
 
