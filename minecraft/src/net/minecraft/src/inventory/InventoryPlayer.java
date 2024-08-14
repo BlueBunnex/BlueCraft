@@ -187,15 +187,6 @@ public class InventoryPlayer implements IInventory {
 		var3[var1] = var2;
 	}
 
-	public float getStrVsBlock(Block var1) {
-		float var2 = 1.0F;
-		if(this.mainInventory[this.currentItem] != null) {
-			var2 *= this.mainInventory[this.currentItem].getStrVsBlock(var1);
-		}
-
-		return var2;
-	}
-
 	public NBTTagList writeToNBT(NBTTagList var1) {
 		int var2;
 		NBTTagCompound var3;

@@ -2,10 +2,12 @@ package net.minecraft.src.entity;
 
 import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.MathHelper;
+import net.minecraft.src.item.AllItems;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.world.World;
 
 public class EntitySpider extends EntityMob {
+	
 	public EntitySpider(World var1) {
 		super(var1);
 		this.texture = "/mob/spider.png";
@@ -65,6 +67,6 @@ public class EntitySpider extends EntityMob {
 	}
 
 	protected int getDropItemId() {
-		return Item.appleRed.shiftedIndex;
+		return AllItems.ruby.item.shiftedIndex;
 	}
 }

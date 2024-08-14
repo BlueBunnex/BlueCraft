@@ -2,8 +2,7 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.item.Item;
-import net.minecraft.src.world.World;
+import net.minecraft.src.item.AllItems;
 
 public class BlockOre extends BlockBreakToCobble {
 	
@@ -14,18 +13,18 @@ public class BlockOre extends BlockBreakToCobble {
 	public int idDropped(int var1, Random var2) {
 		
 		if (this.blockID == Block.oreCoal.blockID)
-			return Item.coal.shiftedIndex;
+			return AllItems.coal.item.shiftedIndex;
 		
 		if (this.blockID == Block.oreIron.blockID)
-			return Item.ingotIron.shiftedIndex;
+			return AllItems.ingotIron.item.shiftedIndex;
 		
 		if (this.blockID == Block.oreMithril.blockID)
-			return Item.ingotMithril.shiftedIndex;
+			return AllItems.ingotMithril.item.shiftedIndex;
 		
 		return this.blockID;
 	}
 
-	public int quantityDropped(Random var1) {
-		return 1;
+	public int quantityDropped(Random random) {
+		return (int) (Math.random() * 3) + 1;
 	}
 }

@@ -6,6 +6,7 @@ import net.minecraft.src.block.Block;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntityChest;
 import net.minecraft.src.block.TileEntityMobSpawner;
+import net.minecraft.src.item.AllItems;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
@@ -116,10 +117,10 @@ public class WorldGenDungeons extends WorldGenerator {
 	private ItemStack pickCheckLootItem(Random random) {
 		
 		switch (random.nextInt(4)) {
-			case 0: return new ItemStack(Item.cd);
-			case 1: return new ItemStack(Item.ingotIron, random.nextInt(4) + 1);
-			case 2: return new ItemStack(Item.bread);
-			case 3: return random.nextInt(10) == 0 ? new ItemStack(Item.appleGold) : new ItemStack(Item.appleRed);
+			case 0: return new ItemStack(AllItems.cd.item);
+			case 1: return new ItemStack(AllItems.ingotIron.item, random.nextInt(4) + 1);
+			case 2: return new ItemStack(AllItems.bread.item);
+			case 3: return random.nextInt(10) == 0 ? new ItemStack(AllItems.appleGold.item) : new ItemStack(AllItems.appleRed.item);
 			default: return null;
 		}
 	}

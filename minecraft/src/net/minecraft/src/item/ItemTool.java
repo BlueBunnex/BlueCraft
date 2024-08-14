@@ -38,12 +38,15 @@ public class ItemTool extends Item {
 		}
 	}
 
-	public float getStrVsBlock(ItemStack var1, Block block) {
+	public float getStrVsBlock(Block block) {
 		
 		for (int i = 0; i < this.type.blocksEffectiveAgainst.length; i++) {
 			
-			if (this.type.blocksEffectiveAgainst[i] == block)
+			System.out.println(this.type.blocksEffectiveAgainst[i]);
+			
+			if (this.type.blocksEffectiveAgainst[i] == block) {
 				return this.efficiencyOnProperMaterial;
+			}
 		}
 
 		return 1.0F;

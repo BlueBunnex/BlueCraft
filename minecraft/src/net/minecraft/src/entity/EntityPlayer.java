@@ -148,17 +148,6 @@ public class EntityPlayer extends EntityLiving {
 		}
 	}
 
-	public float getCurrentPlayerStrVsBlock(Block var1) {
-		
-		float var2 = this.inventory.getStrVsBlock(var1);
-
-		if(!this.onGround) {
-			var2 /= 5.0F;
-		}
-
-		return var2;
-	}
-
 	public void readEntityFromNBT(NBTTagCompound var1) {
 		super.readEntityFromNBT(var1);
 	}

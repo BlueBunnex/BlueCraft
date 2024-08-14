@@ -267,10 +267,12 @@ public class Block {
 		if (!canHarvestBlock(player))
 			return 1.0F / this.hardness / 100.0F;
 		
-		return player.getCurrentPlayerStrVsBlock(this) / this.hardness / 30.0F;
+		if (player.inventory.getCurrentItem() == null)
+			return 1.0F / this.hardness / 30.0F;
+		
+		return player.inventory.getCurrentItem().getItem().getStrVsBlock(this) / this.hardness / 30.0F;
 	}
 	
-	// ItemStack item = player.inventory.getStackInSlot(player.inventory.currentItem);
 	public boolean canHarvestBlock(EntityPlayer player) {
 		return true;
 	}

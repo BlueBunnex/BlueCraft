@@ -1,6 +1,7 @@
 package net.minecraft.src.entity;
 
 import net.minecraft.io.NBTTagCompound;
+import net.minecraft.src.item.AllItems;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.world.World;
 
@@ -38,6 +39,6 @@ public class EntityPig extends EntityAnimal {
 	}
 
 	protected int getDropItemId() {
-		return this.fire > 0 ? Item.porkCooked.shiftedIndex : Item.porkRaw.shiftedIndex;
+		return this.fire > 0 ? AllItems.porkCooked.item.shiftedIndex : AllItems.porkRaw.item.shiftedIndex;
 	}
 }

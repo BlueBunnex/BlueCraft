@@ -68,10 +68,6 @@ public final class ItemStack {
 		return this.getItem().onItemUse(this, var1, var2, var3, var4, var5, var6);
 	}
 
-	public float getStrVsBlock(Block var1) {
-		return this.getItem().getStrVsBlock(this, var1);
-	}
-
 	public ItemStack useItemRightClick(World var1, EntityPlayer var2) {
 		return this.getItem().onItemRightClick(this, var1, var2);
 	}

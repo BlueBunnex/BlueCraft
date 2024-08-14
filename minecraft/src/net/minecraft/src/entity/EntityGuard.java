@@ -1,5 +1,6 @@
 package net.minecraft.src.entity;
 
+import net.minecraft.src.item.AllItems;
 import net.minecraft.src.item.Item;
 import net.minecraft.src.world.World;
 
@@ -25,6 +26,6 @@ public class EntityGuard extends EntityMob {
 	}
 
 	protected int getDropItemId() {
-		return Item.ingotIron.shiftedIndex;
+		return AllItems.ingotIron.item.shiftedIndex;
 	}
 }
