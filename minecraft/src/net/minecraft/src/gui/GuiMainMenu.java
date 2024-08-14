@@ -155,7 +155,7 @@ public class GuiMainMenu extends GuiScreen {
 						GL11.glTranslatef((float)var7, (float)var6, var10);
 						GL11.glScalef(var11, var11, var11);
 						GL11.glRotatef(var13, 0.0F, 1.0F, 0.0F);
-						var5.renderBlockAsItem(AllBlocks.blockMithril.block, var12);
+						var5.renderBlockAsItem(AllBlocks.oreMithril.block, var12);
 						GL11.glPopMatrix();
 					}
 				}

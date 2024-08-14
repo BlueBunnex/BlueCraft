@@ -1,5 +1,6 @@
 package net.minecraft.src.item;
 
+import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
@@ -11,6 +12,10 @@ public class ItemTool extends Item {
 	
 	public final ToolLevel level;
 	public final ToolType type;
+	
+	private AllBlocks[] pickaxe = new AllBlocks[] { AllBlocks.cobblestone, AllBlocks.stairDouble, AllBlocks.stairSingle, AllBlocks.stone, AllBlocks.cobblestoneMossy, AllBlocks.oreIron, AllBlocks.blockIron, AllBlocks.oreCoal, AllBlocks.oreMithril, AllBlocks.blockMithril, AllBlocks.ice };
+	private AllBlocks[] axe = new AllBlocks[] { AllBlocks.planks, AllBlocks.bookshelf, AllBlocks.wood, AllBlocks.chest };
+	private AllBlocks[] shovel = new AllBlocks[] { AllBlocks.grass, AllBlocks.dirt, AllBlocks.sand, AllBlocks.gravel, AllBlocks.snow };
 
 	public ItemTool(int index, ToolLevel level, ToolType type) {
 		super(index);
@@ -40,11 +45,18 @@ public class ItemTool extends Item {
 
 	public float getStrVsBlock(Block block) {
 		
-		for (int i = 0; i < this.type.blocksEffectiveAgainst.length; i++) {
+		AllBlocks[] blocksEffectiveAgainst = null;
+		
+		switch (type) {
+			case PICKAXE: blocksEffectiveAgainst = pickaxe; break;
+			case AXE:     blocksEffectiveAgainst = axe;     break;
+			case SHOVEL:  blocksEffectiveAgainst = shovel;  break;
+			default: return 1.0F;
+		}
+		
+		for (int i = 0; i < blocksEffectiveAgainst.length; i++) {
 			
-			System.out.println(this.type.blocksEffectiveAgainst[i]);
-			
-			if (this.type.blocksEffectiveAgainst[i].block == block) {
+			if (blocksEffectiveAgainst[i].block == block) {
 				return this.efficiencyOnProperMaterial;
 			}
 		}
