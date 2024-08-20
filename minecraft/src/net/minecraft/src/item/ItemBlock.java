@@ -1,6 +1,6 @@
 package net.minecraft.src.item;
 
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;
@@ -18,7 +18,7 @@ public class ItemBlock extends Item {
 	public boolean onItemUse(ItemStack var1, EntityPlayer var2, World var3, int var4, int var5, int var6, int var7) {
 		
 		// TODO wtf does this do
-		if(var3.getBlockId(var4, var5, var6) == AllBlocks.snow.block.blockID) {
+		if(var3.getBlockId(var4, var5, var6) == BlockEntry.snow.block.blockID) {
 			var7 = 0;
 		} else {
 			if(var7 == 0) {

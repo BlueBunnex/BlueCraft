@@ -6,6 +6,7 @@ import net.minecraft.src.entity.EntityTNTPrimed;
 import net.minecraft.src.world.World;
 
 public class BlockTNT extends Block {
+	
 	public BlockTNT(int var1, int var2) {
 		super(var1, var2, Material.tnt);
 	}
@@ -15,7 +16,7 @@ public class BlockTNT extends Block {
 	}
 
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
-		if(var5 > 0 && Block.blocksList[var5] == AllBlocks.fire.block) {
+		if(var5 > 0 && Block.blocksList[var5] == BlockEntry.fire.block) {
 			this.onBlockDestroyedByPlayer(var1, var2, var3, var4, 0);
 			var1.setBlockWithNotify(var2, var3, var4, 0);
 		}

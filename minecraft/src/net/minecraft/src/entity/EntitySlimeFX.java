@@ -1,7 +1,7 @@
 package net.minecraft.src.entity;
 
 import net.minecraft.src.Tessellator;
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.world.World;
 
 public class EntitySlimeFX extends EntityFX {
@@ -11,7 +11,7 @@ public class EntitySlimeFX extends EntityFX {
 		
 		//this.particleTextureIndex = Item.snowball.getIconIndex(null);
 		this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
-		this.particleGravity = AllBlocks.blockSnow.block.blockParticleGravity;
+		this.particleGravity = BlockEntry.blockSnow.block.blockParticleGravity;
 		this.particleScale /= 2.0F;
 	}
 

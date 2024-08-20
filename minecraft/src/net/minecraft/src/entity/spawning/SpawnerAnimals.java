@@ -4,14 +4,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import net.minecraft.src.ChunkCoordIntPair;
-import net.minecraft.src.ChunkPosition;
 import net.minecraft.src.IProgressUpdate;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.entity.EntityLiving;
 import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;
+import net.minecraft.src.world.chunk.ChunkCoordIntPair;
+import net.minecraft.src.world.chunk.ChunkPosition;
 
 public class SpawnerAnimals {
 	private int maxSpawns;

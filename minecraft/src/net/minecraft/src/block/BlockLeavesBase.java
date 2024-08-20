@@ -1,6 +1,6 @@
 package net.minecraft.src.block;
 
-import net.minecraft.src.IBlockAccess;
+import net.minecraft.src.world.IBlockAccess;
 
 public class BlockLeavesBase extends Block {
 	protected boolean graphicsLevel;

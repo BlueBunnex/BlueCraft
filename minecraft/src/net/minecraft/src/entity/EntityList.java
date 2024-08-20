@@ -71,10 +71,10 @@ public class EntityList {
 		addMapping(EntitySpider.class, "Spider");
 		addMapping(EntityGiantZombie.class, "Giant");
 		addMapping(EntityZombie.class, "Zombie");
+		addMapping(EntityGuard.class, "Guard");
 		addMapping(EntityPig.class, "Pig");
 		addMapping(EntitySheep.class, "Sheep");
 		addMapping(EntityTNTPrimed.class, "PrimedTnt");
 		addMapping(EntityFallingSand.class, "FallingSand");
-		addMapping(EntityMinecart.class, "Minecart");
 	}
 }

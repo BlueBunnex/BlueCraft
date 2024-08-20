@@ -1,7 +1,8 @@
-package net.minecraft.src;
+package net.minecraft.src.world.chunk;
 
 import java.io.IOException;
 
+import net.minecraft.src.IProgressUpdate;
 import net.minecraft.src.world.World;
 
 public class ChunkProviderLoadOrGenerate implements IChunkProvider {

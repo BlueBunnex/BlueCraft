@@ -11,7 +11,7 @@ import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.BlockFluid;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.item.ItemStack;
@@ -19,6 +19,7 @@ import net.minecraft.src.sound.StepSound;
 import net.minecraft.src.world.World;
 
 public abstract class Entity {
+	
 	public boolean preventEntitySpawning = false;
 	public Entity riddenByEntity;
 	public Entity ridingEntity;
@@ -321,8 +322,8 @@ public abstract class Entity {
 				if(this.distanceWalkedModified > (float)this.nextStepDistance && var27 > 0) {
 					++this.nextStepDistance;
 					StepSound var28 = Block.blocksList[var27].stepSound;
-					if(this.worldObj.getBlockId(var36, var25 + 1, var38) == AllBlocks.snow.block.blockID) {
-						var28 = AllBlocks.snow.block.stepSound;
+					if(this.worldObj.getBlockId(var36, var25 + 1, var38) == BlockEntry.snow.block.blockID) {
+						var28 = BlockEntry.snow.block.stepSound;
 						this.worldObj.playSoundAtEntity(this, var28.getStepSound(), var28.getVolume() * 0.15F, var28.getPitch());
 					} else if(!Block.blocksList[var27].material.getIsLiquid()) {
 						this.worldObj.playSoundAtEntity(this, var28.getStepSound(), var28.getVolume() * 0.15F, var28.getPitch());

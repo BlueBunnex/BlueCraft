@@ -1,8 +1,6 @@
 package net.minecraft.src.item;
 
-// ItemListValue?
-// ItemEntry?
-public enum AllItems {
+public enum ItemEntry {
 	
 	// ingots
 	ingotBronze    (new Item(0).setIconIndex(0)),
@@ -54,8 +52,13 @@ public enum AllItems {
 
 	public final Item item;
 	
-	AllItems(Item item) {
+	ItemEntry(Item item) {
 		this.item = item;
+	}
+	
+	static {
+		for (ItemEntry a : ItemEntry.values())
+			Item.itemsList[a.item.shiftedIndex] = a.item;
 	}
 	
 }

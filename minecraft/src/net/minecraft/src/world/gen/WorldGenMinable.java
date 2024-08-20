@@ -3,8 +3,7 @@ package net.minecraft.src.world.gen;
 import java.util.Random;
 
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.block.AllBlocks;
-import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.world.World;
 
 public class WorldGenMinable extends WorldGenerator {
@@ -39,7 +38,7 @@ public class WorldGenMinable extends WorldGenerator {
 						double var35 = ((double)var32 + 0.5D - var20) / (var28 / 2.0D);
 						double var37 = ((double)var33 + 0.5D - var22) / (var30 / 2.0D);
 						double var39 = ((double)var34 + 0.5D - var24) / (var28 / 2.0D);
-						if(var35 * var35 + var37 * var37 + var39 * var39 < 1.0D && var1.getBlockId(var32, var33, var34) == AllBlocks.stone.block.blockID) {
+						if(var35 * var35 + var37 * var37 + var39 * var39 < 1.0D && var1.getBlockId(var32, var33, var34) == BlockEntry.stone.block.blockID) {
 							var1.setBlock(var32, var33, var34, this.minableBlockId);
 						}
 					}

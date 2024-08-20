@@ -13,7 +13,7 @@ public class BlockWorkbench extends Block {
 	public int getBlockTextureFromSide(int side) {
 		
 		if (side == 0)
-			return AllBlocks.planks.block.blockIndexInTexture;
+			return BlockEntry.planks.block.blockIndexInTexture;
 		
 		if (side == 1)
 			return this.blockIndexInTexture;

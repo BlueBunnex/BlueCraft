@@ -35,7 +35,7 @@ import net.minecraft.src.ThreadDownloadResources;
 import net.minecraft.src.Timer;
 import net.minecraft.src.UnexpectedThrowable;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.EntityPlayerSP;
 import net.minecraft.src.entity.EntityRenderer;
@@ -56,6 +56,7 @@ import net.minecraft.src.world.RenderGlobal;
 import net.minecraft.src.world.World;
 import net.minecraft.src.world.WorldRenderer;
 import net.minecraft.src.entity.Entity;
+import net.minecraft.src.entity.EntityGuard;
 import net.minecraft.src.entity.EntityZombie;
 
 import org.lwjgl.LWJGLException;
@@ -760,16 +761,16 @@ public class Minecraft implements Runnable {
 			
 			int blockID = this.theWorld.getBlockId(this.objectMouseOver.blockX, this.objectMouseOver.blockY, this.objectMouseOver.blockZ);
 			
-			if(blockID == AllBlocks.grass.block.blockID) {
-				blockID = AllBlocks.dirt.block.blockID;
+			if(blockID == BlockEntry.grass.block.blockID) {
+				blockID = BlockEntry.dirt.block.blockID;
 			}
 
-			if(blockID == AllBlocks.stairDouble.block.blockID) {
-				blockID = AllBlocks.stairSingle.block.blockID;
+			if(blockID == BlockEntry.stairDouble.block.blockID) {
+				blockID = BlockEntry.stairSingle.block.blockID;
 			}
 
-			if(blockID == AllBlocks.bedrock.block.blockID) {
-				blockID = AllBlocks.stone.block.blockID;
+			if(blockID == BlockEntry.bedrock.block.blockID) {
+				blockID = BlockEntry.stone.block.blockID;
 			}
 
 			this.thePlayer.inventory.setCurrentItem(blockID);
@@ -820,7 +821,7 @@ public class Minecraft implements Runnable {
 					break;
 					
 				case Keyboard.KEY_I:
-					Entity entity = new EntityZombie(this.theWorld);
+					Entity entity = new EntityGuard(this.theWorld);
 					entity.setLocationAndAngles(this.thePlayer.posX, this.thePlayer.posY, this.thePlayer.posZ, 0F, 0F);
 					this.theWorld.spawnEntityInWorld(entity);
 					break;

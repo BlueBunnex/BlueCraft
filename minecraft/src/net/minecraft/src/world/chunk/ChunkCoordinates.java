@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.src.world.chunk;
 
 final class ChunkCoordinates {
 	public final int posX;

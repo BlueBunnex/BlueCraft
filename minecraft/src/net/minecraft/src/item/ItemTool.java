@@ -1,6 +1,6 @@
 package net.minecraft.src.item;
 
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
@@ -13,9 +13,9 @@ public class ItemTool extends Item {
 	public final ToolLevel level;
 	public final ToolType type;
 	
-	private AllBlocks[] pickaxe = new AllBlocks[] { AllBlocks.cobblestone, AllBlocks.stairDouble, AllBlocks.stairSingle, AllBlocks.stone, AllBlocks.cobblestoneMossy, AllBlocks.oreIron, AllBlocks.blockIron, AllBlocks.oreCoal, AllBlocks.oreMithril, AllBlocks.blockMithril, AllBlocks.ice };
-	private AllBlocks[] axe = new AllBlocks[] { AllBlocks.planks, AllBlocks.bookshelf, AllBlocks.wood, AllBlocks.chest };
-	private AllBlocks[] shovel = new AllBlocks[] { AllBlocks.grass, AllBlocks.dirt, AllBlocks.sand, AllBlocks.gravel, AllBlocks.snow };
+	private BlockEntry[] pickaxe = new BlockEntry[] { BlockEntry.cobblestone, BlockEntry.stairDouble, BlockEntry.stairSingle, BlockEntry.stone, BlockEntry.cobblestoneMossy, BlockEntry.oreIron, BlockEntry.blockIron, BlockEntry.oreCoal, BlockEntry.oreMithril, BlockEntry.blockMithril, BlockEntry.ice };
+	private BlockEntry[] axe = new BlockEntry[] { BlockEntry.planks, BlockEntry.bookshelf, BlockEntry.wood, BlockEntry.chest };
+	private BlockEntry[] shovel = new BlockEntry[] { BlockEntry.grass, BlockEntry.dirt, BlockEntry.sand, BlockEntry.gravel, BlockEntry.snow };
 
 	public ItemTool(int index, ToolLevel level, ToolType type) {
 		super(index);
@@ -45,7 +45,7 @@ public class ItemTool extends Item {
 
 	public float getStrVsBlock(Block block) {
 		
-		AllBlocks[] blocksEffectiveAgainst = null;
+		BlockEntry[] blocksEffectiveAgainst = null;
 		
 		switch (type) {
 			case PICKAXE: blocksEffectiveAgainst = pickaxe; break;

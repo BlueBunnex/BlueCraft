@@ -2,7 +2,7 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.IBlockAccess;
+import net.minecraft.src.world.IBlockAccess;
 import net.minecraft.src.world.World;
 
 public class BlockStep extends Block {
@@ -27,20 +27,20 @@ public class BlockStep extends Block {
 	}
 
 	public void onBlockAdded(World var1, int var2, int var3, int var4) {
-		if(this != AllBlocks.stairSingle.block) {
+		if(this != BlockEntry.stairSingle.block) {
 			super.onBlockAdded(var1, var2, var3, var4);
 		}
 
 		int var5 = var1.getBlockId(var2, var3 - 1, var4);
-		if(var5 == AllBlocks.stairSingle.block.blockID) {
+		if(var5 == BlockEntry.stairSingle.block.blockID) {
 			var1.setBlockWithNotify(var2, var3, var4, 0);
-			var1.setBlockWithNotify(var2, var3 - 1, var4, AllBlocks.stairDouble.block.blockID);
+			var1.setBlockWithNotify(var2, var3 - 1, var4, BlockEntry.stairDouble.block.blockID);
 		}
 
 	}
 
 	public int idDropped(int var1, Random var2) {
-		return AllBlocks.stairSingle.block.blockID;
+		return BlockEntry.stairSingle.block.blockID;
 	}
 
 	public boolean renderAsNormalBlock() {
@@ -48,7 +48,7 @@ public class BlockStep extends Block {
 	}
 
 	public boolean shouldSideBeRendered(IBlockAccess var1, int var2, int var3, int var4, int var5) {
-		if(this != AllBlocks.stairSingle.block) {
+		if(this != BlockEntry.stairSingle.block) {
 			super.shouldSideBeRendered(var1, var2, var3, var4, var5);
 		}
 

@@ -7,7 +7,7 @@ import net.minecraft.src.MathHelper;
 import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.RenderEngine;
 import net.minecraft.src.Tessellator;
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.world.World;
@@ -34,7 +34,7 @@ public abstract class Render {
 
 	private void renderEntityOnFire(Entity var1, double var2, double var4, double var6, float var8) {
 		GL11.glDisable(GL11.GL_LIGHTING);
-		int var9 = AllBlocks.fire.block.blockIndexInTexture;
+		int var9 = BlockEntry.fire.block.blockIndexInTexture;
 		int var10 = (var9 & 15) << 4;
 		int var11 = var9 & 240;
 		float var12 = (float)var10 / 256.0F;

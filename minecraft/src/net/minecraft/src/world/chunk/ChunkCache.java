@@ -1,9 +1,10 @@
-package net.minecraft.src;
+package net.minecraft.src.world.chunk;
 
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntity;
+import net.minecraft.src.world.IBlockAccess;
 import net.minecraft.src.world.World;
 
 public class ChunkCache implements IBlockAccess {
@@ -63,7 +64,7 @@ public class ChunkCache implements IBlockAccess {
 				var5 = this.getBlockId(var1, var2, var3);
 				
 				// TODO what
-				if(var5 == AllBlocks.stairSingle.block.blockID) {
+				if(var5 == BlockEntry.stairSingle.block.blockID) {
 					var6 = this.getLightValueExt(var1, var2 + 1, var3, false);
 					int var7 = this.getLightValueExt(var1 + 1, var2, var3, false);
 					int var8 = this.getLightValueExt(var1 - 1, var2, var3, false);

@@ -3,7 +3,7 @@ package net.minecraft.src.block;
 import net.minecraft.src.item.ToolLevel;
 import net.minecraft.src.item.ToolType;
 
-public enum AllBlocks {
+public enum BlockEntry {
 
 	stone       ((new BlockBreakToCobble(1, 1)).setHardness(1.5F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep)),
 	cobblestone (new BlockToolSensitive(4, 16, Material.rock, ToolLevel.BRONZE, ToolType.PICKAXE).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep)),
@@ -57,7 +57,7 @@ public enum AllBlocks {
 	public final Block block;
 	// public final Item item; // in future we can store block item here too! who needs arrays anyways
 	
-	AllBlocks(Block block) {
+	BlockEntry(Block block) {
 		this.block = block;
 	}
 }

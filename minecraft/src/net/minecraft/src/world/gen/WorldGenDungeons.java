@@ -2,13 +2,11 @@ package net.minecraft.src.world.gen;
 
 import java.util.Random;
 
-import net.minecraft.src.block.AllBlocks;
-import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntityChest;
 import net.minecraft.src.block.TileEntityMobSpawner;
-import net.minecraft.src.item.AllItems;
-import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemEntry;
 import net.minecraft.src.item.ItemStack;
 import net.minecraft.src.world.World;
 
@@ -52,9 +50,9 @@ public class WorldGenDungeons extends WorldGenerator {
 							world.setBlockWithNotify(world0, world1, world2, 0);
 						} else if(world.getBlockMaterial(world0, world1, world2).isSolid()) {
 							if(world1 == y - 1 && rand.nextInt(4) != 0) {
-								world.setBlockWithNotify(world0, world1, world2, AllBlocks.cobblestoneMossy.block.blockID);
+								world.setBlockWithNotify(world0, world1, world2, BlockEntry.cobblestoneMossy.block.blockID);
 							} else {
-								world.setBlockWithNotify(world0, world1, world2, AllBlocks.cobblestone.block.blockID);
+								world.setBlockWithNotify(world0, world1, world2, BlockEntry.cobblestone.block.blockID);
 							}
 						}
 					}
@@ -85,7 +83,7 @@ public class WorldGenDungeons extends WorldGenerator {
 						}
 
 						if(world5 == 1) {
-							world.setBlockWithNotify(world2, y, world4, AllBlocks.chest.block.blockID);
+							world.setBlockWithNotify(world2, y, world4, BlockEntry.chest.block.blockID);
 							TileEntityChest world6 = (TileEntityChest)world.getBlockTileEntity(world2, y, world4);
 							int world7 = 0;
 
@@ -106,7 +104,7 @@ public class WorldGenDungeons extends WorldGenerator {
 				}
 			}
 
-			world.setBlockWithNotify(x, y, z, AllBlocks.mobSpawner.block.blockID);
+			world.setBlockWithNotify(x, y, z, BlockEntry.mobSpawner.block.blockID);
 			TileEntityMobSpawner world9 = (TileEntityMobSpawner)world.getBlockTileEntity(x, y, z);
 			world9.mobID = this.pickMobSpawner(rand);
 			return true;
@@ -118,10 +116,10 @@ public class WorldGenDungeons extends WorldGenerator {
 	private ItemStack pickCheckLootItem(Random random) {
 		
 		switch (random.nextInt(4)) {
-			case 0: return new ItemStack(AllItems.cd.item);
-			case 1: return new ItemStack(AllItems.ingotIron.item, random.nextInt(4) + 1);
-			case 2: return new ItemStack(AllItems.bread.item);
-			case 3: return random.nextInt(10) == 0 ? new ItemStack(AllItems.appleGold.item) : new ItemStack(AllItems.appleRed.item);
+			case 0: return new ItemStack(ItemEntry.cd.item);
+			case 1: return new ItemStack(ItemEntry.ingotIron.item, random.nextInt(4) + 1);
+			case 2: return new ItemStack(ItemEntry.bread.item);
+			case 3: return random.nextInt(10) == 0 ? new ItemStack(ItemEntry.appleGold.item) : new ItemStack(ItemEntry.appleRed.item);
 			default: return null;
 		}
 	}

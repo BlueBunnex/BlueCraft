@@ -2,10 +2,11 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.IBlockAccess;
+import net.minecraft.src.world.IBlockAccess;
 import net.minecraft.src.world.World;
 
 public class BlockGrass extends Block {
+	
 	protected BlockGrass(int var1) {
 		super(var1, Material.grass);
 		this.blockIndexInTexture = 3;
@@ -22,19 +23,19 @@ public class BlockGrass extends Block {
 				return;
 			}
 
-			var1.setBlockWithNotify(var2, var3, var4, AllBlocks.dirt.block.blockID);
+			var1.setBlockWithNotify(var2, var3, var4, BlockEntry.dirt.block.blockID);
 		} else if(var1.getBlockLightValue(var2, var3 + 1, var4) >= 9) {
 			int var6 = var2 + var5.nextInt(3) - 1;
 			int var7 = var3 + var5.nextInt(5) - 3;
 			int var8 = var4 + var5.nextInt(3) - 1;
-			if(var1.getBlockId(var6, var7, var8) == AllBlocks.dirt.block.blockID && var1.getBlockLightValue(var6, var7 + 1, var8) >= 4 && !var1.getBlockMaterial(var6, var7 + 1, var8).getCanBlockGrass()) {
-				var1.setBlockWithNotify(var6, var7, var8, AllBlocks.grass.block.blockID);
+			if(var1.getBlockId(var6, var7, var8) == BlockEntry.dirt.block.blockID && var1.getBlockLightValue(var6, var7 + 1, var8) >= 4 && !var1.getBlockMaterial(var6, var7 + 1, var8).getCanBlockGrass()) {
+				var1.setBlockWithNotify(var6, var7, var8, BlockEntry.grass.block.blockID);
 			}
 		}
 
 	}
 
 	public int idDropped(int var1, Random var2) {
-		return AllBlocks.dirt.block.idDropped(0, var2);
+		return BlockEntry.dirt.block.idDropped(0, var2);
 	}
 }

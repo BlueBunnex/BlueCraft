@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.src.world;
 
 import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntity;

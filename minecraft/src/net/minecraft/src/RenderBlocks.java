@@ -2,10 +2,11 @@ package net.minecraft.src;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockFire;
 import net.minecraft.src.block.Material;
+import net.minecraft.src.world.IBlockAccess;
 import net.minecraft.src.world.World;
 
 public class RenderBlocks {
@@ -102,7 +103,7 @@ public class RenderBlocks {
 		double var31;
 		double var33;
 		
-		BlockFire fire = (BlockFire) (AllBlocks.fire.block);
+		BlockFire fire = (BlockFire) (BlockEntry.fire.block);
 		
 		if(!this.blockAccess.isBlockNormalCube(var2, var3 - 1, var4) && !fire.canBlockCatchFire(this.blockAccess, var2, var3 - 1, var4)) {
 			float var37 = 0.2F;

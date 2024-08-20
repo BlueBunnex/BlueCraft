@@ -2,17 +2,17 @@ package net.minecraft.src.entity;
 
 import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.block.AllBlocks;
-import net.minecraft.src.block.Block;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.world.World;
 
 public abstract class EntityAnimal extends EntityCreature {
+	
 	public EntityAnimal(World var1) {
 		super(var1);
 	}
 
 	protected float getBlockPathWeight(int var1, int var2, int var3) {
-		return this.worldObj.getBlockId(var1, var2 - 1, var3) == AllBlocks.grass.block.blockID ? 10.0F : this.worldObj.getBrightness(var1, var2, var3) - 0.5F;
+		return this.worldObj.getBlockId(var1, var2 - 1, var3) == BlockEntry.grass.block.blockID ? 10.0F : this.worldObj.getBrightness(var1, var2, var3) - 0.5F;
 	}
 
 	public void writeEntityToNBT(NBTTagCompound var1) {

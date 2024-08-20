@@ -2,8 +2,7 @@ package net.minecraft.src.entity;
 
 import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.MathHelper;
-import net.minecraft.src.item.AllItems;
-import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemEntry;
 import net.minecraft.src.world.World;
 
 public class EntitySpider extends EntityMob {
@@ -67,6 +66,6 @@ public class EntitySpider extends EntityMob {
 	}
 
 	protected int getDropItemId() {
-		return AllItems.ruby.item.shiftedIndex;
+		return ItemEntry.ruby.item.shiftedIndex;
 	}
 }

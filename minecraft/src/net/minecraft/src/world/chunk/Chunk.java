@@ -1,10 +1,14 @@
-package net.minecraft.src;
+package net.minecraft.src.world.chunk;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.src.AxisAlignedBB;
+import net.minecraft.src.EnumSkyBlock;
+import net.minecraft.src.MathHelper;
+import net.minecraft.src.NibbleArray;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.BlockContainer;
 import net.minecraft.src.block.TileEntity;

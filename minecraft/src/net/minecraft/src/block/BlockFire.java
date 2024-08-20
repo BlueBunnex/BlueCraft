@@ -3,7 +3,7 @@ package net.minecraft.src.block;
 import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.IBlockAccess;
+import net.minecraft.src.world.IBlockAccess;
 import net.minecraft.src.world.World;
 
 public class BlockFire extends Block {
@@ -13,12 +13,12 @@ public class BlockFire extends Block {
 	protected BlockFire(int var1, int var2) {
 		super(var1, var2, Material.fire);
 		
-		this.initializeBlock(AllBlocks.planks.block.blockID, 5, 20);
-		this.initializeBlock(AllBlocks.wood.block.blockID, 5, 5);
-		this.initializeBlock(AllBlocks.leaves.block.blockID, 30, 60);
-		this.initializeBlock(AllBlocks.bookshelf.block.blockID, 30, 20);
-		this.initializeBlock(AllBlocks.tnt.block.blockID, 15, 100);
-		this.initializeBlock(AllBlocks.cloth.block.blockID, 30, 60);
+		this.initializeBlock(BlockEntry.planks.block.blockID, 5, 20);
+		this.initializeBlock(BlockEntry.wood.block.blockID, 5, 5);
+		this.initializeBlock(BlockEntry.leaves.block.blockID, 30, 60);
+		this.initializeBlock(BlockEntry.bookshelf.block.blockID, 30, 20);
+		this.initializeBlock(BlockEntry.tnt.block.blockID, 15, 100);
+		this.initializeBlock(BlockEntry.cloth.block.blockID, 30, 60);
 		
 		this.setTickOnLoad(true);
 	}
@@ -100,7 +100,7 @@ public class BlockFire extends Block {
 	private void tryToCatchBlockOnFire(World var1, int var2, int var3, int var4, int var5, Random var6) {
 		int var7 = this.abilityToCatchFire[var1.getBlockId(var2, var3, var4)];
 		if(var6.nextInt(var5) < var7) {
-			boolean var8 = var1.getBlockId(var2, var3, var4) == AllBlocks.tnt.block.blockID;
+			boolean var8 = var1.getBlockId(var2, var3, var4) == BlockEntry.tnt.block.blockID;
 			if(var6.nextInt(2) == 0) {
 				var1.setBlockWithNotify(var2, var3, var4, this.blockID);
 			} else {
@@ -108,7 +108,7 @@ public class BlockFire extends Block {
 			}
 
 			if(var8) {
-				AllBlocks.tnt.block.onBlockDestroyedByPlayer(var1, var2, var3, var4, 0);
+				BlockEntry.tnt.block.onBlockDestroyedByPlayer(var1, var2, var3, var4, 0);
 			}
 		}
 
@@ -174,7 +174,7 @@ public class BlockFire extends Block {
 		float var8;
 		float var9;
 		
-		BlockFire fire = (BlockFire) AllBlocks.fire.block;
+		BlockFire fire = (BlockFire) BlockEntry.fire.block;
 		
 		if(!var1.isBlockNormalCube(var2, var3 - 1, var4) && !fire.canBlockCatchFire(var1, var2, var3 - 1, var4)) {
 			if(fire.canBlockCatchFire(var1, var2 - 1, var3, var4)) {

@@ -20,7 +20,7 @@ public class BlockFlower extends Block {
 	}
 
 	protected boolean canThisPlantGrowOnThisBlockID(int var1) {
-		return var1 == AllBlocks.grass.block.blockID || var1 == AllBlocks.dirt.block.blockID;
+		return var1 == BlockEntry.grass.block.blockID || var1 == BlockEntry.dirt.block.blockID;
 	}
 
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {

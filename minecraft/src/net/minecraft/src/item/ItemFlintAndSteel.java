@@ -1,6 +1,6 @@
 package net.minecraft.src.item;
 
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;
@@ -40,7 +40,7 @@ public class ItemFlintAndSteel extends Item {
 		int var8 = var3.getBlockId(var4, var5, var6);
 		if(var8 == 0) {
 			var3.playSoundEffect("fire.ignite", (double)var4 + 0.5D, (double)var5 + 0.5D, (double)var6 + 0.5D, 1.0F, rand.nextFloat() * 0.4F + 0.8F);
-			var3.setBlockWithNotify(var4, var5, var6, AllBlocks.fire.block.blockID);
+			var3.setBlockWithNotify(var4, var5, var6, BlockEntry.fire.block.blockID);
 		}
 
 		var1.damageItem(1);

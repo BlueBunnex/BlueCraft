@@ -14,22 +14,15 @@ import java.util.TreeSet;
 import net.minecraft.io.CompressedStreamTools;
 import net.minecraft.io.NBTTagCompound;
 import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.Chunk;
-import net.minecraft.src.ChunkCache;
-import net.minecraft.src.ChunkCoordIntPair;
-import net.minecraft.src.ChunkLoader;
-import net.minecraft.src.ChunkProviderLoadOrGenerate;
 import net.minecraft.src.EnumSkyBlock;
 import net.minecraft.src.Explosion;
-import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.IProgressUpdate;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.MetadataChunkBlock;
 import net.minecraft.src.MovingObjectPosition;
 import net.minecraft.src.NextTickListEntry;
 import net.minecraft.src.Vec3D;
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.block.TileEntity;
@@ -37,6 +30,12 @@ import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.entity.pathfinding.PathEntity;
 import net.minecraft.src.entity.pathfinding.Pathfinder;
+import net.minecraft.src.world.chunk.Chunk;
+import net.minecraft.src.world.chunk.ChunkCache;
+import net.minecraft.src.world.chunk.ChunkCoordIntPair;
+import net.minecraft.src.world.chunk.ChunkLoader;
+import net.minecraft.src.world.chunk.ChunkProviderLoadOrGenerate;
+import net.minecraft.src.world.chunk.IChunkProvider;
 import net.minecraft.src.world.gen.ChunkProviderGenerate;
 
 public class World implements IBlockAccess {
@@ -242,7 +241,7 @@ public class World implements IBlockAccess {
 	}
 
 	private boolean findSpawn(int var1, int var2) {
-		return this.getFirstUncoveredBlock(var1, var2) == AllBlocks.sand.block.blockID;
+		return this.getFirstUncoveredBlock(var1, var2) == BlockEntry.sand.block.blockID;
 	}
 
 	private int getFirstUncoveredBlock(int var1, int var2) {
@@ -536,7 +535,7 @@ public class World implements IBlockAccess {
 			int var5;
 			if(var4) {
 				var5 = this.getBlockId(var1, var2, var3);
-				if(var5 == AllBlocks.stairSingle.block.blockID) {
+				if(var5 == BlockEntry.stairSingle.block.blockID) {
 					int var6 = this.getBlockLightValue_do(var1, var2 + 1, var3, false);
 					int var7 = this.getBlockLightValue_do(var1 + 1, var2, var3, false);
 					int var8 = this.getBlockLightValue_do(var1 - 1, var2, var3, false);
@@ -1256,7 +1255,7 @@ public class World implements IBlockAccess {
 			for(int y = var4; y < var5; y++) {
 				for(int z = var6; z < var7; z++) {
 					
-					if (this.getBlockId(x, y, z) == AllBlocks.fire.block.blockID)
+					if (this.getBlockId(x, y, z) == BlockEntry.fire.block.blockID)
 						return true;
 				}
 			}
@@ -1377,7 +1376,7 @@ public class World implements IBlockAccess {
 			++var1;
 		}
 
-		if(this.getBlockId(var1, var2, var3) == AllBlocks.fire.block.blockID) {
+		if(this.getBlockId(var1, var2, var3) == BlockEntry.fire.block.blockID) {
 			this.playSoundEffect("random.fizz", (double)((float)var1 + 0.5F), (double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), 0.5F, 2.6F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.8F);
 			this.setBlockWithNotify(var1, var2, var3, 0);
 		}
@@ -1548,8 +1547,8 @@ public class World implements IBlockAccess {
 				var9 = this.getTopSolidOrLiquidBlock(var7 + var3, var8 + var4);
 				if(var9 >= 0 && var9 < 128 && var14.getSavedLightValue(EnumSkyBlock.Block, var7, var9, var8) < 10 && var14.getBlockID(var7, var9, var8) == 0) {
 					var10 = var14.getBlockID(var7, var9 - 1, var8);
-					if(var10 != 0 && var10 != AllBlocks.ice.block.blockID && Block.blocksList[var10].material.getIsSolid()) {
-						this.setBlockWithNotify(var7 + var3, var9, var8 + var4, AllBlocks.snow.block.blockID);
+					if(var10 != 0 && var10 != BlockEntry.ice.block.blockID && Block.blocksList[var10].material.getIsSolid()) {
+						this.setBlockWithNotify(var7 + var3, var9, var8 + var4, BlockEntry.snow.block.blockID);
 					}
 				}
 			}
@@ -1707,7 +1706,7 @@ public class World implements IBlockAccess {
 			var9 = null;
 		}
 
-		return var7 != AllBlocks.fire.block && var7 != AllBlocks.snow.block ? var1 > 0 && var7 == null && (var9 == null || this.checkIfAABBIsClear(var9)) && var8.canPlaceBlockAt(this, var2, var3, var4) : true;
+		return var7 != BlockEntry.fire.block && var7 != BlockEntry.snow.block ? var1 > 0 && var7 == null && (var9 == null || this.checkIfAABBIsClear(var9)) && var8.canPlaceBlockAt(this, var2, var3, var4) : true;
 	}
 
 	public PathEntity getPathToEntity(Entity var1, Entity var2, float var3) {

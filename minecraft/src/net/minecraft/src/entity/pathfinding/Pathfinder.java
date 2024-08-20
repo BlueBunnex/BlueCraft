@@ -1,10 +1,10 @@
 package net.minecraft.src.entity.pathfinding;
 
-import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.MCHashTable;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.block.Material;
 import net.minecraft.src.entity.Entity;
+import net.minecraft.src.world.IBlockAccess;
 
 public class Pathfinder {
 	private IBlockAccess worldMap;

@@ -1,8 +1,8 @@
 package net.minecraft.src.entity.spawning;
 
-import net.minecraft.src.ChunkPosition;
 import net.minecraft.src.PlayerController;
 import net.minecraft.src.world.World;
+import net.minecraft.src.world.chunk.ChunkPosition;
 
 public class SpawnerMonsters extends SpawnerAnimals {
 	

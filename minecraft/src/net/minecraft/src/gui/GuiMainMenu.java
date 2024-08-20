@@ -8,7 +8,7 @@ import net.minecraft.src.MathHelper;
 import net.minecraft.src.RenderBlocks;
 import net.minecraft.src.ScaledResolution;
 import net.minecraft.src.Tessellator;
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 import net.minecraft.src.block.Block;
 
 public class GuiMainMenu extends GuiScreen {
@@ -155,7 +155,7 @@ public class GuiMainMenu extends GuiScreen {
 						GL11.glTranslatef((float)var7, (float)var6, var10);
 						GL11.glScalef(var11, var11, var11);
 						GL11.glRotatef(var13, 0.0F, 1.0F, 0.0F);
-						var5.renderBlockAsItem(AllBlocks.oreMithril.block, var12);
+						var5.renderBlockAsItem(BlockEntry.oreMithril.block, var12);
 						GL11.glPopMatrix();
 					}
 				}

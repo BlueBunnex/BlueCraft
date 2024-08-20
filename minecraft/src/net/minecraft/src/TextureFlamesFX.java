@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import net.minecraft.src.block.AllBlocks;
+import net.minecraft.src.block.BlockEntry;
 
 public class TextureFlamesFX extends TextureFX {
 	
@@ -8,7 +8,7 @@ public class TextureFlamesFX extends TextureFX {
 	protected float[] lastFireFrame = new float[320];
 
 	public TextureFlamesFX(int var1) {
-		super(AllBlocks.fire.block.blockIndexInTexture + var1 * 16);
+		super(BlockEntry.fire.block.blockIndexInTexture + var1 * 16);
 	}
 
 	public void onTick() {

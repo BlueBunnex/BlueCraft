@@ -1,8 +1,7 @@
 package net.minecraft.src.entity;
 
 import net.minecraft.io.NBTTagCompound;
-import net.minecraft.src.item.AllItems;
-import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemEntry;
 import net.minecraft.src.world.World;
 
 public class EntityCreeper extends EntityMob {
@@ -72,6 +71,6 @@ public class EntityCreeper extends EntityMob {
 	}
 
 	protected int getDropItemId() {
-		return AllItems.ruby.item.shiftedIndex;
+		return ItemEntry.ruby.item.shiftedIndex;
 	}
 }

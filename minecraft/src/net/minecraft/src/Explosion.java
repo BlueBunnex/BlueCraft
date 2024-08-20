@@ -7,6 +7,7 @@ import java.util.List;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.world.World;
+import net.minecraft.src.world.chunk.ChunkPosition;
 
 public class Explosion {
 	

@@ -2,7 +2,6 @@ package net.minecraft.src.item;
 
 import java.util.Random;
 
-import net.minecraft.src.block.AllBlocks;
 import net.minecraft.src.block.Block;
 import net.minecraft.src.entity.Entity;
 import net.minecraft.src.entity.EntityLiving;
@@ -12,14 +11,12 @@ import net.minecraft.src.world.World;
 public class Item {
 	
 	protected static Random rand = new Random();
-	public static Item[] itemsList = new Item[1024];
+	public static Item[] itemsList = new Item[1024]; // TODO move to ItemEntry
 	
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;
 	protected int maxDamage = 32;
 	protected int iconIndex;
-	
-	//private static int indexCounter = 0;
 
 	protected Item(int index) {
 		
@@ -76,10 +73,6 @@ public class Item {
 	}
 	
 	static {
-		for (AllItems a : AllItems.values()) {
-			itemsList[a.item.shiftedIndex - 256] = a.item;
-		}
-		
 //		for (AllBlocks a : AllBlocks.values()) {
 //			itemsList[a.block.blockID] = a.block;
 //		}

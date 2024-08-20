@@ -1,4 +1,4 @@
-package net.minecraft.src;
+package net.minecraft.src.world.chunk;
 
 public class ChunkCoordIntPair {
 	public int chunkXPos;
