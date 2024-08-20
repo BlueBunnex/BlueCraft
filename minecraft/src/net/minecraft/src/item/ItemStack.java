@@ -58,8 +58,11 @@ public final class ItemStack {
 	}
 
 	public Item getItem() {
-		System.out.println(this.itemID);
-		return Item.itemsList[this.itemID];
+		
+		Item item = Item.itemsList[this.itemID];
+		
+		// gotta do this because some calls run before itemsList is even initialized ;w;
+		return item == null ? ItemEntry.appleRed.item : item;
 	}
 
 	public int getIconIndex() {

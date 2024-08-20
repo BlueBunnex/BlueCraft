@@ -9,10 +9,10 @@ public class ItemBlock extends Item {
 	
 	private int blockID;
 
-	public ItemBlock(int blockID) {
-		super(blockID - 256);
-		this.blockID = blockID;
-		this.setIconIndex(Block.blocksList[blockID].getBlockTextureFromSide(2));
+	public ItemBlock(Block block) {
+		super(block.blockID - 256);
+		this.blockID = block.blockID;
+		this.setIconIndex(block.getBlockTextureFromSide(2));
 	}
 
 	public boolean onItemUse(ItemStack var1, EntityPlayer var2, World var3, int var4, int var5, int var6, int var7) {

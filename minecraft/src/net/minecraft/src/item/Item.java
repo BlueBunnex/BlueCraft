@@ -11,7 +11,7 @@ import net.minecraft.src.world.World;
 public class Item {
 	
 	protected static Random rand = new Random();
-	public static Item[] itemsList = new Item[1024]; // TODO move to ItemEntry
+	public static Item[] itemsList = new Item[1024];
 	
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;
@@ -22,12 +22,7 @@ public class Item {
 		
 		this.shiftedIndex = 256 + index;
 		
-		if (itemsList[256 + index] != null)
-			System.err.println("CONFLICT @ " + index);
-		
 		System.out.println(index + 256 + " " + this);
-
-		itemsList[256 + index] = this;
 	}
 
 	protected Item setIconIndex(int iconIndex) {
@@ -80,7 +75,7 @@ public class Item {
 		for(int i = 0; i < 256; i++) {
 			
 			if(Block.blocksList[i] != null)
-				Item.itemsList[i] = new ItemBlock(i);
+				Item.itemsList[i] = new ItemBlock(Block.blocksList[i]);
 		}
 	}
 }
