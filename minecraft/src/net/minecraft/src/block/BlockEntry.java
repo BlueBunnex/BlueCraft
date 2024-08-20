@@ -60,15 +60,10 @@ public enum BlockEntry {
 	public final Item item;
 	
 	BlockEntry(Block block) {
+		
 		this.block = block;
 		this.item = new ItemBlock(block);
-	}
-	
-static {
 		
-		for (BlockEntry e : BlockEntry.values()) {
-			
-			Item.itemsList[e.block.blockID] = e.item;
-		}
+		Item.itemsList[this.block.blockID] = this.item;
 	}
 }

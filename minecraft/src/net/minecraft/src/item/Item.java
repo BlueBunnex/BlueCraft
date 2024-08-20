@@ -22,7 +22,7 @@ public class Item {
 		
 		this.shiftedIndex = 256 + index;
 		
-		System.out.println(index + 256 + " " + this);
+		System.out.println(this.shiftedIndex + " " + this);
 	}
 
 	protected Item setIconIndex(int iconIndex) {

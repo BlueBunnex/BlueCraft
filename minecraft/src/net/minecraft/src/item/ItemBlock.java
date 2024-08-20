@@ -10,6 +10,7 @@ public class ItemBlock extends Item {
 	private int blockID;
 
 	public ItemBlock(Block block) {
+		
 		super(block.blockID - 256);
 		this.blockID = block.blockID;
 		this.setIconIndex(block.getBlockTextureFromSide(2));

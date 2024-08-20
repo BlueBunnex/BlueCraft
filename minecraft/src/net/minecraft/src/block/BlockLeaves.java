@@ -2,8 +2,8 @@ package net.minecraft.src.block;
 
 import java.util.Random;
 
-import net.minecraft.src.Item;
 import net.minecraft.src.entity.Entity;
+import net.minecraft.src.item.ItemEntry;
 import net.minecraft.src.world.World;
 
 public class BlockLeaves extends BlockLeavesBase {
@@ -40,7 +40,7 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public int idDropped(int var1, Random random) {
-		return random.nextInt(4) == 0 ? BlockEntry.sapling.item.shiftedIndex : Item.stick.shiftedIndex;
+		return random.nextInt(4) == 0 ? ItemEntry.appleRed.item.shiftedIndex : BlockEntry.sapling.item.shiftedIndex;
 	}
 
 	public boolean isOpaqueCube() {
