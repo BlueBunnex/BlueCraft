@@ -57,8 +57,9 @@ public enum ItemEntry {
 	}
 	
 	static {
-		for (ItemEntry a : ItemEntry.values())
+		for (ItemEntry a : ItemEntry.values()) {
 			Item.itemsList[a.item.shiftedIndex] = a.item;
+		}
 	}
 	
 }

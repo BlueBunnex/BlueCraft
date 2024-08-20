@@ -8,6 +8,7 @@ import net.minecraft.src.entity.EntityPlayer;
 import net.minecraft.src.world.World;
 
 public final class ItemStack {
+	
 	public int stackSize;
 	public int animationsToGo;
 	public int itemID;
@@ -57,6 +58,7 @@ public final class ItemStack {
 	}
 
 	public Item getItem() {
+		System.out.println(this.itemID);
 		return Item.itemsList[this.itemID];
 	}
 
