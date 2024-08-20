@@ -31,7 +31,10 @@ public enum BlockEntry {
 	mushroomBrown ((BlockFlower)(new BlockMushroom(39, 29)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setLightValue(2.0F / 16.0F)),
 	mushroomRed ((BlockFlower)(new BlockMushroom(40, 28)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep)),
 	
+	blockBronze ((new BlockOreBlock(82, 22)).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep)),
 	blockIron ((new BlockOreBlock(42, 38)).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep)),
+	blockMithril ((new BlockOreBlock(57, 54)).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep)),
+	
 	stairDouble ((new BlockStep(43, true)).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep)),
 	stairSingle ((new BlockStep(44, false)).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep)),
 	brick ((new Block(45, 7, Material.rock)).setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundStoneFootstep)),
@@ -45,7 +48,6 @@ public enum BlockEntry {
 	stairCompactWood (new BlockStairs(53, planks.block)),
 	chest ((new BlockChest(54)).setHardness(2.5F).setStepSound(Block.soundWoodFootstep)),
 	
-	blockMithril ((new BlockOreBlock(57, 40)).setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundMetalFootstep)),
 	workbench (new BlockWorkbench(58).setHardness(2.5F).setStepSound(Block.soundWoodFootstep)),
 	ladder ((new BlockLadder(65, 83)).setHardness(0.4F).setStepSound(Block.soundWoodFootstep)),
 	stairCompactStone (new BlockStairs(67, cobblestone.block)),
