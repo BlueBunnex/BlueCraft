@@ -40,7 +40,7 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public int idDropped(int var1, Random random) {
-		return random.nextInt(4) == 0 ? BlockEntry.sapling.block.blockID : Item.stick.shiftedIndex;
+		return random.nextInt(4) == 0 ? BlockEntry.sapling.item.shiftedIndex : Item.stick.shiftedIndex;
 	}
 
 	public boolean isOpaqueCube() {

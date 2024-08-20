@@ -1,5 +1,7 @@
 package net.minecraft.src.block;
 
+import net.minecraft.src.item.Item;
+import net.minecraft.src.item.ItemBlock;
 import net.minecraft.src.item.ToolLevel;
 import net.minecraft.src.item.ToolType;
 
@@ -55,9 +57,18 @@ public enum BlockEntry {
 	jukebox (new BlockJukebox(81).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep));
 	
 	public final Block block;
-	// public final Item item; // in future we can store block item here too! who needs arrays anyways
+	public final Item item;
 	
 	BlockEntry(Block block) {
 		this.block = block;
+		this.item = new ItemBlock(block);
+	}
+	
+static {
+		
+		for (BlockEntry e : BlockEntry.values()) {
+			
+			Item.itemsList[e.block.blockID] = e.item;
+		}
 	}
 }

@@ -66,16 +66,4 @@ public class Item {
 	public int getDamageVsEntity(Entity var1) {
 		return 1;
 	}
-	
-	static {
-//		for (AllBlocks a : AllBlocks.values()) {
-//			itemsList[a.block.blockID] = a.block;
-//		}
-		
-		for(int i = 0; i < 256; i++) {
-			
-			if(Block.blocksList[i] != null)
-				Item.itemsList[i] = new ItemBlock(Block.blocksList[i]);
-		}
-	}
 }
