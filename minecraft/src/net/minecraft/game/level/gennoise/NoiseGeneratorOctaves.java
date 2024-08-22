@@ -6,28 +6,31 @@ import net.minecraft.game.level.generator.noise.NoiseGenerator;
 import net.minecraft.game.level.generator.noise.NoiseGeneratorPerlin;
 
 public final class NoiseGeneratorOctaves extends NoiseGenerator {
+	
 	private NoiseGeneratorPerlin[] generatorCollection;
-	private int octaves;
+	private int numOctaves;
 
-	public NoiseGeneratorOctaves(Random var1, int var2) {
-		this.octaves = var2;
-		this.generatorCollection = new NoiseGeneratorPerlin[var2];
+	public NoiseGeneratorOctaves(Random random, int numOctaves) {
+		
+		this.numOctaves = numOctaves;
+		this.generatorCollection = new NoiseGeneratorPerlin[numOctaves];
 
-		for(int var3 = 0; var3 < var2; ++var3) {
-			this.generatorCollection[var3] = new NoiseGeneratorPerlin(var1);
+		for (int i = 0; i < numOctaves; i++) {
+			this.generatorCollection[i] = new NoiseGeneratorPerlin(random);
 		}
 
 	}
 
-	public final double generateNoise(double var1, double var3) {
-		double var5 = 0.0D;
-		double var7 = 1.0D;
+	public final double generateNoise(double a, double b) {
+		
+		double value = 0.0D;
+		double scale = 1.0D;
 
-		for(int var9 = 0; var9 < this.octaves; ++var9) {
-			var5 += this.generatorCollection[var9].generateNoise(var1 / var7, var3 / var7) * var7;
-			var7 *= 2.0D;
+		for (int i = 0; i < this.numOctaves; i++) {
+			value += this.generatorCollection[i].generateNoise(a / scale, b / scale) * scale;
+			scale *= 2.0D;
 		}
 
-		return var5;
+		return value;
 	}
 }

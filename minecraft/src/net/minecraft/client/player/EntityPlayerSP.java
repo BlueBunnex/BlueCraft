@@ -20,12 +20,9 @@ public class EntityPlayerSP extends EntityPlayer {
 	public MovementInput movementInput;
 	private Minecraft mc;
 
-	public EntityPlayerSP(Minecraft var1, World var2) {
-		
-		super(var2);
-		this.mc = var1;
-		
-		this.skinUrl = "http://www.minecraft.net/skin/" + "Anime" + ".png";
+	public EntityPlayerSP(Minecraft mc, World world) {
+		super(world);
+		this.mc = mc;
 	}
 
 	public final void updatePlayerActionState() {

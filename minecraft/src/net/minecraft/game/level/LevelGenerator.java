@@ -207,63 +207,25 @@ public final class LevelGenerator {
 			}
 		}
 
+		// generate caves and ores
 		this.updateLoadingBar("Carving...");
-		var51 = width;
-		var52 = length;
-		var53 = height;
-		var56 = var51 * var52 * var53 / 256 / 64 << 1;
-
-		for(var21 = 0; var21 < var56; ++var21) {
-			float var59 = random.nextFloat() * (float)var51;
-			float var63 = random.nextFloat() * (float)var53;
-			float var62 = random.nextFloat() * (float)var52;
-			var25 = (int)((random.nextFloat() + random.nextFloat()) * 200.0F);
-			float var66 = random.nextFloat() * (float)Math.PI * 2.0F;
-			float var68 = 0.0F;
-			float var71 = random.nextFloat() * (float)Math.PI * 2.0F;
-			float var70 = 0.0F;
-			float var73 = random.nextFloat() * random.nextFloat();
-
-			for(var31 = 0; var31 < var25; ++var31) {
-				var59 += MathHelper.sin(var66) * MathHelper.cos(var71);
-				var62 += MathHelper.cos(var66) * MathHelper.cos(var71);
-				var63 += MathHelper.sin(var71);
-				var66 += var68 * 0.2F;
-				var68 *= 0.9F;
-				var68 += random.nextFloat() - random.nextFloat();
-				var71 += var70 * 0.5F;
-				var71 *= 0.5F;
-				var70 *= 12.0F / 16.0F;
-				var70 += random.nextFloat() - random.nextFloat();
-				if(random.nextFloat() >= 0.25F) {
-					float var74 = var59 + (random.nextFloat() * 4.0F - 2.0F) * 0.2F;
-					float var33 = var63 + (random.nextFloat() * 4.0F - 2.0F) * 0.2F;
-					float var77 = var62 + (random.nextFloat() * 4.0F - 2.0F) * 0.2F;
-					float var75 = ((float)height - var33) / (float)height;
-					float var80 = 1.2F + (var75 * 3.5F + 1.0F) * var73;
-					float var78 = MathHelper.sin((float)var31 * (float)Math.PI / (float)var25) * var80;
-
-					for(var5 = (int)(var74 - var78); var5 <= (int)(var74 + var78); ++var5) {
-						for(int var81 = (int)(var33 - var78); var81 <= (int)(var33 + var78); ++var81) {
-							for(int var40 = (int)(var77 - var78); var40 <= (int)(var77 + var78); ++var40) {
-								float var41 = (float)var5 - var74;
-								float var42 = (float)var81 - var33;
-								float var48 = (float)var40 - var77;
-								var41 = var41 * var41 + var42 * var42 * 2.0F + var48 * var48;
-								if(var41 < var78 * var78 && var5 > 0 && var81 > 0 && var40 > 0 && var5 < width - 1 && var81 < height - 1 && var40 < length - 1) {
-									var7 = (var81 * length + var40) * width + var5;
-									if(blocksByteArray[var7] == Block.stone.blockID) {
-										blocksByteArray[var7] = 0;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-
 		{
+			// TODO temporary 'cave' generation
+			// maybe make mineshafts instead? more interesting to explore and easier to generate
+			// populateMineshaft()
+			for (int x = 0; x < width; x++) {
+			for (int z = 0; z < length; z++) {
+			for (int y = 0; y < height; y++) {
+						
+				int i = ((y + 1) * length + z) * width + x;
+				
+				
+				if (random.nextFloat() > 0.5f && i < blocksByteArray.length && blocksByteArray[i] == Block.stone.blockID)
+					blocksByteArray[i] = 0;
+			}
+			}
+			}
+
 			int countCoal    = populateOre(random, blocksByteArray, Block.oreCoal.blockID, 1000, 10, (height << 2) / 5);
 			int countIron    = populateOre(random, blocksByteArray, Block.oreIron.blockID, 800, 8, height * 3 / 5);
 			int countGold    = populateOre(random, blocksByteArray, Block.oreGold.blockID, 500, 6, (height << 1) / 5);
@@ -271,6 +233,7 @@ public final class LevelGenerator {
 			System.out.println("Coal: " + countCoal + ", Iron: " + countIron + ", Gold: " + countGold + ", Diamond: " + countDiamond);
 		}
 		
+		// TODO shouldn't this stuff be up where World is initialized?
 		groundLevel = waterLevel - 9;
 
 		world.skyColor = -16776961; // blue
@@ -284,11 +247,14 @@ public final class LevelGenerator {
 		this.updateLoadingBar("Assembling...");
 		world.initializeEmptyWorld(width, height, length, blocksByteArray, null);
 		
+		// build the indev house (spawn)
 		this.updateLoadingBar("Building...");
 		world.findSpawn();
 		generateHouse(world);
 		
+		// grow grass, trees, and foliage (flowers + mushrooms)
 		this.updateLoadingBar("Planting...");
+		
 		growGrassOnDirt(world);
 		
 		growTrees(random, world, 32);
@@ -298,19 +264,22 @@ public final class LevelGenerator {
 		growFoliage(random, world, Block.mushroomBrown, 50);
 		growFoliage(random, world, Block.mushroomRed, 50);
 		
+		// update lighting
 		this.updateLoadingBar("Lighting...");
 
-		for(var7 = 0; var7 < 10000; ++var7) {
+		for(int i = 0; i < 10000; i++)
 			world.updateLighting();
-		}
 
+		// spawn mobs
 		this.updateLoadingBar("Mobbing it up...");
+		
 		MobSpawner mobSpawner = new MobSpawner(world);
 
 		for(int i = 0; i < 1000; i++) {
 			mobSpawner.performSpawning();
 		}
 
+		// finalize
 		world.createTime = System.currentTimeMillis();
 		
 		return world;

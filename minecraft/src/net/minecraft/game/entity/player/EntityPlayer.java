@@ -18,6 +18,7 @@ import net.minecraft.game.level.material.Material;
 import util.MathHelper;
 
 public class EntityPlayer extends EntityLiving {
+	
 	public InventoryPlayer inventory = new InventoryPlayer(this);
 	public byte unusedByte = 0;
 	public int getScore = 0;
@@ -37,6 +38,11 @@ public class EntityPlayer extends EntityLiving {
 		this.health = 20;
 		this.fireResistance = 20;
 		this.texture = "/char.png";
+		this.skinUrl = "http://www.minecraft.net/skin/" + "Anime" + ".png";
+		
+		// TODO debug
+		inventory.setInventorySlotContents(0, new ItemStack(Item.pickaxeDiamond));
+		inventory.setInventorySlotContents(1, new ItemStack(Block.torch, 64));
 	}
 
 	public final void preparePlayerToSpawn() {

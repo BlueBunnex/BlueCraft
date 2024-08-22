@@ -3,15 +3,16 @@ package net.minecraft.game.level.gennoise;
 import net.minecraft.game.level.generator.noise.NoiseGenerator;
 
 public final class NoiseGeneratorDistort extends NoiseGenerator {
+	
 	private NoiseGenerator source;
 	private NoiseGenerator distort;
 
-	public NoiseGeneratorDistort(NoiseGenerator var1, NoiseGenerator var2) {
-		this.source = var1;
-		this.distort = var2;
+	public NoiseGeneratorDistort(NoiseGenerator source, NoiseGenerator distort) {
+		this.source = source;
+		this.distort = distort;
 	}
 
-	public final double generateNoise(double var1, double var3) {
-		return this.source.generateNoise(var1 + this.distort.generateNoise(var1, var3), var3);
+	public final double generateNoise(double a, double b) {
+		return this.source.generateNoise(a + this.distort.generateNoise(a, b), b);
 	}
 }
