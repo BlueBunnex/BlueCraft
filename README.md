@@ -1,3 +1,7 @@
+# BlueCraft
+
+![A screenshot of an early version of BlueCraft](thumb.png)
+
 Stripping down Minecraft to just the stuff I like: Building my little place and looting like it's an RPG.
 
 ## Planned content
