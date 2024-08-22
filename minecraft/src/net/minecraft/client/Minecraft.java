@@ -19,6 +19,7 @@ import net.minecraft.client.gui.GuiErrorScreen;
 import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.container.GuiInventory;
@@ -797,29 +798,13 @@ public final class Minecraft implements Runnable {
 
 	}
 
-	public final void generateLevel(int var1, int var2, int var3, int var4) {
-		this.setLevel((World)null);
+	public final void generateLevel() {
+		
+		this.setLevel(null);
 		System.gc();
-		String var5 = this.session != null ? this.session.username : "anonymous";
-		LevelGenerator var6 = new LevelGenerator(this.loadingScreen);
-		var6.islandGen = var3 == 1;
-		var6.floatingGen = var3 == 2;
-		var6.flatGen = var3 == 3;
-		var6.levelType = var4;
-		var1 = 128 << var1;
-		var3 = var1;
-		short var8 = 64;
-		if(var2 == 1) {
-			var1 /= 2;
-			var3 <<= 1;
-		} else if(var2 == 2) {
-			var1 /= 2;
-			var3 = var1;
-			var8 = 256;
-		}
 
-		World var7 = var6.generate(var5, var1, var3, var8);
-		this.setLevel(var7);
+		World world = new LevelGenerator(this.loadingScreen).generate();
+		this.setLevel(world);
 	}
 
 	public final void setLevel(World var1) {
@@ -843,7 +828,7 @@ public final class Minecraft implements Runnable {
 			this.thePlayer = (EntityPlayerSP)var1.findSubclassOf(EntityPlayerSP.class);
 			var1.playerEntity = this.thePlayer;
 			if(this.thePlayer == null) {
-				this.thePlayer = new EntityPlayerSP(this, var1, this.session);
+				this.thePlayer = new EntityPlayerSP(this, var1);
 				this.thePlayer.preparePlayerToSpawn();
 				if(var1 != null) {
 					var1.spawnEntityInWorld(this.thePlayer);

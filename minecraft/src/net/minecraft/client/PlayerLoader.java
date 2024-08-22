@@ -15,6 +15,6 @@ public final class PlayerLoader extends LevelLoader {
 	}
 
 	protected final Entity loadEntity(World var1, String var2) {
-		return (Entity)(var2.equals("LocalPlayer") ? new EntityPlayerSP(this.mc, var1, this.mc.session) : super.loadEntity(var1, var2));
+		return (Entity)(var2.equals("LocalPlayer") ? new EntityPlayerSP(this.mc, var1) : super.loadEntity(var1, var2));
 	}
 }

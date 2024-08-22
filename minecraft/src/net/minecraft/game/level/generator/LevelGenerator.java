@@ -12,6 +12,7 @@ import util.IProgressUpdate;
 import util.MathHelper;
 
 public final class LevelGenerator {
+	
 	private IProgressUpdate guiLoading;
 	private int width;
 	private int depth;
@@ -20,9 +21,7 @@ public final class LevelGenerator {
 	private byte[] blocksByteArray;
 	private int waterLevel;
 	private int groundLevel;
-	public boolean islandGen = false;
-	public boolean floatingGen = false;
-	public boolean flatGen = false;
+	
 	public int levelType;
 	private int phaseBar;
 	private int phases;
@@ -33,11 +32,11 @@ public final class LevelGenerator {
 		this.guiLoading = var1;
 	}
 
-	public final World generate(String var1, int var2, int var3, int var4) {
+	public final World generate() {
+		
+		int var2 = 64, var3 = 64, var4 = 64;
+		
 		int var5 = 1;
-		if(this.floatingGen) {
-			var5 = (var4 - 64) / 48 + 1;
-		}
 
 		this.phases = 13 + var5 * 4;
 		this.guiLoading.displayProgressMessage("Generating level");
@@ -67,99 +66,72 @@ public final class LevelGenerator {
 			int var22;
 			double var32;
 			int[] var46;
-			if(this.flatGen) {
-				var8 = new int[var2 * var3];
+			
+			this.guiLoading.displayLoadingString("Raising..");
+			this.loadingBar();
+			var9 = this;
+			NoiseGeneratorDistort var10 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
+			NoiseGeneratorDistort var11 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
+			NoiseGeneratorOctaves var12 = new NoiseGeneratorOctaves(this.rand, 6);
+			var13 = new NoiseGeneratorOctaves(this.rand, 2);
+			int[] var14 = new int[this.width * this.depth];
+			var22 = 0;
 
-				for(var45 = 0; var45 < var8.length; ++var45) {
-					var8[var45] = 0;
+			label349:
+			while(true) {
+				if(var22 >= var9.width) {
+					var8 = var14;
+					this.guiLoading.displayLoadingString("Eroding..");
+					this.loadingBar();
+					var46 = var14;
+					var9 = this;
+					var11 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
+					NoiseGeneratorDistort var50 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
+					var52 = 0;
+
+					while(true) {
+						if(var52 >= var9.width) {
+							break label349;
+						}
+
+						var9.setNextPhase((float)var52 * 100.0F / (float)(var9.width - 1));
+
+						for(var53 = 0; var53 < var9.depth; ++var53) {
+							double var20 = var11.generateNoise((double)(var52 << 1), (double)(var53 << 1)) / 8.0D;
+							var22 = var50.generateNoise((double)(var52 << 1), (double)(var53 << 1)) > 0.0D ? 1 : 0;
+							if(var20 > 2.0D) {
+								int var58 = var46[var52 + var53 * var9.width];
+								var58 = ((var58 - var22) / 2 << 1) + var22;
+								var46[var52 + var53 * var9.width] = var58;
+							}
+						}
+
+						++var52;
+					}
 				}
 
-				this.loadingBar();
-				this.loadingBar();
-			} else {
-				this.guiLoading.displayLoadingString("Raising..");
-				this.loadingBar();
-				var9 = this;
-				NoiseGeneratorDistort var10 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
-				NoiseGeneratorDistort var11 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
-				NoiseGeneratorOctaves var12 = new NoiseGeneratorOctaves(this.rand, 6);
-				var13 = new NoiseGeneratorOctaves(this.rand, 2);
-				int[] var14 = new int[this.width * this.depth];
-				var22 = 0;
+				double var23 = Math.abs(((double)var22 / ((double)var9.width - 1.0D) - 0.5D) * 2.0D);
+				var9.setNextPhase((float)var22 * 100.0F / (float)(var9.width - 1));
 
-				label349:
-				while(true) {
-					if(var22 >= var9.width) {
-						var8 = var14;
-						this.guiLoading.displayLoadingString("Eroding..");
-						this.loadingBar();
-						var46 = var14;
-						var9 = this;
-						var11 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
-						NoiseGeneratorDistort var50 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
-						var52 = 0;
-
-						while(true) {
-							if(var52 >= var9.width) {
-								break label349;
-							}
-
-							var9.setNextPhase((float)var52 * 100.0F / (float)(var9.width - 1));
-
-							for(var53 = 0; var53 < var9.depth; ++var53) {
-								double var20 = var11.generateNoise((double)(var52 << 1), (double)(var53 << 1)) / 8.0D;
-								var22 = var50.generateNoise((double)(var52 << 1), (double)(var53 << 1)) > 0.0D ? 1 : 0;
-								if(var20 > 2.0D) {
-									int var58 = var46[var52 + var53 * var9.width];
-									var58 = ((var58 - var22) / 2 << 1) + var22;
-									var46[var52 + var53 * var9.width] = var58;
-								}
-							}
-
-							++var52;
-						}
+				for(var25 = 0; var25 < var9.depth; ++var25) {
+					double var26 = Math.abs(((double)var25 / ((double)var9.depth - 1.0D) - 0.5D) * 2.0D);
+					double var28 = var10.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 6.0D + -4.0D;
+					double var30 = var11.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 5.0D + 10.0D + -4.0D;
+					var32 = var12.generateNoise((double)var22, (double)var25) / 8.0D;
+					if(var32 > 0.0D) {
+						var30 = var28;
 					}
 
-					double var23 = Math.abs(((double)var22 / ((double)var9.width - 1.0D) - 0.5D) * 2.0D);
-					var9.setNextPhase((float)var22 * 100.0F / (float)(var9.width - 1));
-
-					for(var25 = 0; var25 < var9.depth; ++var25) {
-						double var26 = Math.abs(((double)var25 / ((double)var9.depth - 1.0D) - 0.5D) * 2.0D);
-						double var28 = var10.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 6.0D + -4.0D;
-						double var30 = var11.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 5.0D + 10.0D + -4.0D;
-						var32 = var12.generateNoise((double)var22, (double)var25) / 8.0D;
-						if(var32 > 0.0D) {
-							var30 = var28;
-						}
-
-						double var34 = Math.max(var28, var30) / 2.0D;
-						if(var9.islandGen) {
-							double var36 = Math.sqrt(var23 * var23 + var26 * var26) * (double)1.2F;
-							double var39 = var13.generateNoise((double)((float)var22 * 0.05F), (double)((float)var25 * 0.05F)) / 4.0D + 1.0D;
-							var36 = Math.min(var36, var39);
-							var36 = Math.max(var36, Math.max(var23, var26));
-							if(var36 > 1.0D) {
-								var36 = 1.0D;
-							}
-
-							if(var36 < 0.0D) {
-								var36 = 0.0D;
-							}
-
-							var36 *= var36;
-							var34 = var34 * (1.0D - var36) - var36 * 10.0D + 5.0D;
-							if(var34 < 0.0D) {
-								var34 -= var34 * var34 * (double)0.2F;
-							}
-						} else if(var34 < 0.0D) {
-							var34 *= 0.8D;
-						}
-
-						var14[var22 + var25 * var9.width] = (int)var34;
+					double var34 = Math.max(var28, var30) / 2.0D;
+					
+					if(var34 < 0.0D) {
+						var34 *= 0.8D;
 					}
 
-					++var22;
+					var14[var22 + var25 * var9.width] = (int)var34;
 				}
+
+				++var22;
 			}
 
 			this.guiLoading.displayLoadingString("Soiling..");
@@ -210,10 +182,6 @@ public final class LevelGenerator {
 							var37 = Block.stone.blockID;
 						}
 
-						if(var9.floatingGen && var35 < var76) {
-							var37 = 0;
-						}
-
 						if(var9.blocksByteArray[var79] == 0) {
 							var9.blocksByteArray[var79] = (byte)var37;
 						}
@@ -239,9 +207,6 @@ public final class LevelGenerator {
 
 				for(var22 = 0; var22 < var51; ++var22) {
 					boolean var60 = var13.generateNoise((double)var21, (double)var22) > 8.0D;
-					if(var9.islandGen) {
-						var60 = var13.generateNoise((double)var21, (double)var22) > -8.0D;
-					}
 
 					if(var9.levelType == 2) {
 						var60 = var13.generateNoise((double)var21, (double)var22) > -32.0D;
@@ -344,35 +309,26 @@ public final class LevelGenerator {
 		this.loadingBar();
 		this.lavaGen();
 		var6.cloudHeight = var4 + 2;
-		if(this.floatingGen) {
-			this.groundLevel = -128;
-			this.waterLevel = this.groundLevel + 1;
-			var6.cloudHeight = -16;
-		} else if(!this.islandGen) {
-			this.groundLevel = this.waterLevel + 1;
-			this.waterLevel = this.groundLevel - 16;
-		} else {
-			this.groundLevel = this.waterLevel - 9;
-		}
+		
+		this.groundLevel = this.waterLevel - 9;
 
 		this.guiLoading.displayLoadingString("Watering..");
 		this.loadingBar();
 		this.liquidThemeSpawner();
-		if(!this.floatingGen) {
-			var5 = Block.waterStill.blockID;
-			if(this.levelType == 1) {
-				var5 = Block.lavaStill.blockID;
-			}
+		
+		var5 = Block.waterStill.blockID;
+		if(this.levelType == 1) {
+			var5 = Block.lavaStill.blockID;
+		}
 
-			for(var7 = 0; var7 < var2; ++var7) {
-				this.floodFill(var7, this.waterLevel - 1, 0, 0, var5);
-				this.floodFill(var7, this.waterLevel - 1, var3 - 1, 0, var5);
-			}
+		for(var7 = 0; var7 < var2; ++var7) {
+			this.floodFill(var7, this.waterLevel - 1, 0, 0, var5);
+			this.floodFill(var7, this.waterLevel - 1, var3 - 1, 0, var5);
+		}
 
-			for(var7 = 0; var7 < var3; ++var7) {
-				this.floodFill(var2 - 1, this.waterLevel - 1, var7, 0, var5);
-				this.floodFill(0, this.waterLevel - 1, var7, 0, var5);
-			}
+		for(var7 = 0; var7 < var3; ++var7) {
+			this.floodFill(var2 - 1, this.waterLevel - 1, var7, 0, var5);
+			this.floodFill(0, this.waterLevel - 1, var7, 0, var5);
 		}
 
 		if(this.levelType == 0) {
@@ -387,10 +343,6 @@ public final class LevelGenerator {
 			var6.skyColor = 1049600;
 			var6.skylightSubtracted = var6.skyBrightness = 7;
 			var6.defaultFluid = Block.lavaMoving.blockID;
-			if(this.floatingGen) {
-				var6.cloudHeight = var4 + 2;
-				this.waterLevel = -16;
-			}
 		}
 
 		if(this.levelType == 2) {
@@ -465,8 +417,6 @@ public final class LevelGenerator {
 		}
 
 		var6.createTime = System.currentTimeMillis();
-		var6.authorName = var1;
-		var6.name = "A Nice World";
 		if(this.phaseBar != this.phases) {
 			throw new IllegalStateException("Wrong number of phases! Wanted " + this.phases + ", got " + this.phaseBar);
 		} else {

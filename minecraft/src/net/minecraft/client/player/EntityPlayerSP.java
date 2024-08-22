@@ -3,7 +3,6 @@ package net.minecraft.client.player;
 import com.mojang.nbt.NBTTagCompound;
 import com.mojang.nbt.NBTTagList;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.Session;
 import net.minecraft.client.effect.EntityPickupFX;
 import net.minecraft.client.gui.container.GuiChest;
 import net.minecraft.client.gui.container.GuiCrafting;
@@ -20,12 +19,11 @@ public class EntityPlayerSP extends EntityPlayer {
 	public MovementInput movementInput;
 	private Minecraft mc;
 
-	public EntityPlayerSP(Minecraft var1, World var2, Session var3) {
+	public EntityPlayerSP(Minecraft var1, World var2) {
 		super(var2);
 		this.mc = var1;
-		if(var3 != null) {
-			this.skinUrl = "http://www.minecraft.net/skin/" + var3.username + ".png";
-		}
+		
+		this.skinUrl = "http://www.minecraft.net/skin/" + "HatsuneMiku" + ".png";
 
 	}
 

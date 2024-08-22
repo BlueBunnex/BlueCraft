@@ -21,14 +21,13 @@ import net.minecraft.game.physics.Vec3D;
 import util.MathHelper;
 
 public final class World {
+	
 	private static float[] lightBrightnessTable = new float[16];
 	public int width;
 	public int length;
 	public int height;
 	public byte[] blocks;
 	public byte[] data;
-	public String name;
-	public String authorName;
 	public long createTime;
 	public int xSpawn;
 	public int ySpawn;

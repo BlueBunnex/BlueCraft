@@ -60,8 +60,6 @@ public abstract class LevelLoader {
 		var9.xSpawn = ((NBTTagShort)var10.tagAt(0)).shortValue;
 		var9.ySpawn = ((NBTTagShort)var10.tagAt(1)).shortValue;
 		var9.zSpawn = ((NBTTagShort)var10.tagAt(2)).shortValue;
-		var9.authorName = var2.getString("Author");
-		var9.name = var2.getString("Name");
 		var9.createTime = var2.getLong("CreatedOn");
 		var9.cloudColor = var4.getInteger("CloudColor");
 		var9.skyColor = var4.getInteger("SkyColor");
@@ -165,8 +163,6 @@ public abstract class LevelLoader {
 		var5.setTag(new NBTTagShort((short)var1.zSpawn));
 		var4.setTag("Spawn", var5);
 		NBTTagCompound var15 = new NBTTagCompound();
-		var15.setString("Author", var1.authorName);
-		var15.setString("Name", var1.name);
 		var15.setLong("CreatedOn", var1.createTime);
 		if(this.guiLoading != null) {
 			this.guiLoading.displayLoadingString("Preparing entities..");

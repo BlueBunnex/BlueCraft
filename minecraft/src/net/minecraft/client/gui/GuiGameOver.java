@@ -4,10 +4,11 @@ import net.minecraft.client.player.EntityPlayerSP;
 import org.lwjgl.opengl.GL11;
 
 public final class GuiGameOver extends GuiScreen {
+	
 	public final void initGui() {
 		this.controlList.clear();
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 72, "Generate new level..."));
-		this.controlList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 96, "Load level.."));
+		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 72, "Generate new level..."));
+		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 96, "Load level.."));
 		if(this.mc.session == null) {
 			((GuiButton)this.controlList.get(1)).enabled = false;
 		}
@@ -17,19 +18,16 @@ public final class GuiGameOver extends GuiScreen {
 	protected final void keyTyped(char var1, int var2) {
 	}
 
-	protected final void actionPerformed(GuiButton var1) {
-		if(var1.id == 0) {
-			this.mc.displayGuiScreen(new GuiOptions(this, this.mc.options));
+	protected final void actionPerformed(GuiButton button) {
+
+		if (button.id == 0) {
+			this.mc.generateLevel();
+			this.mc.displayGuiScreen(null);
 		}
 
-		if(var1.id == 1) {
-			this.mc.displayGuiScreen(new GuiNewLevel(this));
-		}
-
-		if(this.mc.session != null && var1.id == 2) {
+		if (button.id == 1) {
 			this.mc.displayGuiScreen(new GuiLoadLevel(this));
 		}
-
 	}
 
 	public final void drawScreen(int var1, int var2, float var3) {
