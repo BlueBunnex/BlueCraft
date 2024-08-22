@@ -16,15 +16,16 @@ import net.minecraft.game.level.World;
 import net.minecraft.game.level.block.tileentity.TileEntityFurnace;
 
 public class EntityPlayerSP extends EntityPlayer {
+	
 	public MovementInput movementInput;
 	private Minecraft mc;
 
 	public EntityPlayerSP(Minecraft var1, World var2) {
+		
 		super(var2);
 		this.mc = var1;
 		
-		this.skinUrl = "http://www.minecraft.net/skin/" + "HatsuneMiku" + ".png";
-
+		this.skinUrl = "http://www.minecraft.net/skin/" + "Anime" + ".png";
 	}
 
 	public final void updatePlayerActionState() {

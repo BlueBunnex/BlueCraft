@@ -7,16 +7,12 @@ import org.lwjgl.opengl.GL11;
 import util.MathHelper;
 
 public class RenderLiving extends Render {
+	
 	protected ModelBase mainModel;
-	private ModelBase renderPassModel;
 
 	public RenderLiving(ModelBase var1, float var2) {
 		this.mainModel = var1;
 		this.shadowSize = var2;
-	}
-
-	public final void setRenderPassModel(ModelBase var1) {
-		this.renderPassModel = var1;
 	}
 
 	public void a(EntityLiving var1, float var2, float var3, float var4, float var5, float var6) {
@@ -54,14 +50,6 @@ public class RenderLiving extends Render {
 			GL11.glEnable(GL11.GL_ALPHA_TEST);
 			this.mainModel.render(var4, var3, var2, var7 - var5, var8, 1.0F);
 
-			for(int var9 = 0; var9 < 4; ++var9) {
-				if(this.shouldRenderPass(var1, var9)) {
-					this.renderPassModel.render(var4, var3, var2, var7 - var5, var8, 1.0F);
-					GL11.glDisable(GL11.GL_BLEND);
-					GL11.glEnable(GL11.GL_ALPHA_TEST);
-				}
-			}
-
 			float var15 = var1.getEntityBrightness(var6);
 			int var14 = this.getColorMultiplier(var1, var15, var6);
 			if(var14 >>> 24 > 0 || var1.hurtTime > 0 || var1.deathTime > 0) {
@@ -70,16 +58,10 @@ public class RenderLiving extends Render {
 				GL11.glEnable(GL11.GL_BLEND);
 				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 				GL11.glDepthFunc(GL11.GL_EQUAL);
+				
 				if(var1.hurtTime > 0 || var1.deathTime > 0) {
 					GL11.glColor4f(var15, 0.0F, 0.0F, 0.4F);
 					this.mainModel.render(var4, var3, var2, var7 - var5, var8, 1.0F);
-
-					for(int var10 = 0; var10 < 4; ++var10) {
-						if(this.shouldRenderPass(var1, var10)) {
-							GL11.glColor4f(var15, 0.0F, 0.0F, 0.4F);
-							this.renderPassModel.render(var4, var3, var2, var7 - var5, var8, 1.0F);
-						}
-					}
 				}
 
 				if(var14 >>> 24 > 0) {
@@ -89,13 +71,6 @@ public class RenderLiving extends Render {
 					var6 = (float)(var14 >>> 24) / 255.0F;
 					GL11.glColor4f(var16, var15, var11, var6);
 					this.mainModel.render(var4, var3, var2, var7 - var5, var8, 1.0F);
-
-					for(int var12 = 0; var12 < 4; ++var12) {
-						if(this.shouldRenderPass(var1, var12)) {
-							GL11.glColor4f(var16, var15, var11, var6);
-							this.renderPassModel.render(var4, var3, var2, var7 - var5, var8, 1.0F);
-						}
-					}
 				}
 
 				GL11.glDepthFunc(GL11.GL_LEQUAL);
@@ -111,10 +86,6 @@ public class RenderLiving extends Render {
 
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glPopMatrix();
-	}
-
-	protected boolean shouldRenderPass(EntityLiving var1, int var2) {
-		return false;
 	}
 
 	protected float getDeathMaxRotation(EntityLiving var1) {

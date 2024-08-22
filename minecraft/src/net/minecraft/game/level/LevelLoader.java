@@ -14,7 +14,6 @@ import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.game.entity.Entity;
 import net.minecraft.game.entity.EntityPainting;
 import net.minecraft.game.entity.animal.EntityPig;
-import net.minecraft.game.entity.animal.EntitySheep;
 import net.minecraft.game.entity.misc.EntityItem;
 import net.minecraft.game.entity.monster.EntityCreeper;
 import net.minecraft.game.entity.monster.EntityGiantZombie;
@@ -127,8 +126,19 @@ public abstract class LevelLoader {
 		return var9;
 	}
 
-	protected Entity loadEntity(World var1, String var2) {
-		return (Entity)(var2.equals("Pig") ? new EntityPig(var1) : (var2.equals("Sheep") ? new EntitySheep(var1) : (var2.equals("Creeper") ? new EntityCreeper(var1) : (var2.equals("Skeleton") ? new EntitySkeleton(var1) : (var2.equals("Spider") ? new EntitySpider(var1) : (var2.equals("Zombie") ? new EntityZombie(var1) : (var2.equals("Giant") ? new EntityGiantZombie(var1) : (var2.equals("Item") ? new EntityItem(var1) : (var2.equals("Painting") ? new EntityPainting(var1) : null)))))))));
+	protected Entity loadEntity(World world, String entityName) {
+		
+		switch (entityName) {
+			case "Pig":      return new EntityPig(world);
+			case "Creeper":  return new EntityCreeper(world);
+			case "Skeleton": return new EntitySkeleton(world);
+			case "Spider":   return new EntitySpider(world);
+			case "Zombie":   return new EntityZombie(world);
+			case "Giant":    return new EntityGiantZombie(world);
+			case "Item":     return new EntityItem(world);
+			case "Painting": return new EntityPainting(world);
+			default:         return null;
+		}
 	}
 
 	public final void save(World var1, OutputStream var2) throws IOException {
