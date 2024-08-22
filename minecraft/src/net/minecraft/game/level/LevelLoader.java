@@ -75,7 +75,6 @@ public abstract class LevelLoader {
 		var9.cloudHeight = var4.getShort("CloudHeight");
 		var9.groundLevel = var4.getShort("SurroundingGroundHeight");
 		var9.waterLevel = var4.getShort("SurroundingWaterHeight");
-		var9.defaultFluid = var4.getByte("SurroundingWaterType");
 		var9.worldTime = var4.getShort("TimeOfDay");
 		var9.skylightSubtracted = var9.getSkyBrightness();
 		var9.generate(var6, var8, var7, var3.getByteArray("Blocks"), var3.getByteArray("Data"));
@@ -159,7 +158,6 @@ public abstract class LevelLoader {
 		var3.setShort("SurroundingGroundHeight", (short)var1.groundLevel);
 		var3.setShort("SurroundingWaterHeight", (short)var1.waterLevel);
 		var3.setByte("SurroundingGroundType", (byte)Block.grass.blockID);
-		var3.setByte("SurroundingWaterType", (byte)var1.defaultFluid);
 		var3.setShort("TimeOfDay", (short)var1.worldTime);
 		NBTTagCompound var4 = new NBTTagCompound();
 		var4.setShort("Width", (short)var1.width);

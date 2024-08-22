@@ -477,10 +477,13 @@ public final class RenderGlobal implements IWorldAccess {
 		var12.draw();
 	}
 
+	// TODO wtf is this
 	public final void oobGroundRenderer() {
+		
 		float var1 = this.worldObj.getLightBrightness(0, this.worldObj.getGroundLevel(), 0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/dirt.png"));
-		if(this.worldObj.getGroundLevel() > this.worldObj.getWaterLevel() && this.worldObj.defaultFluid == Block.waterMoving.blockID) {
+		
+		if(this.worldObj.getGroundLevel() > this.worldObj.getWaterLevel()) {
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/grass.png"));
 		}
 

@@ -59,6 +59,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
 public final class Minecraft implements Runnable {
+	
 	public PlayerController playerController = new PlayerControllerSP(this);
 	private boolean fullscreen = false;
 	public int displayWidth;
@@ -848,15 +849,9 @@ public final class Minecraft implements Runnable {
 			if(this.effectRenderer != null) {
 				this.effectRenderer.clearEffects(var1);
 			}
-
-			this.textureWaterFX.textureId = 0;
+			
+			this.textureWaterFX.textureId = this.renderEngine.getTexture("/water.png");
 			this.textureLavaFX.textureId = 0;
-			int var4 = this.renderEngine.getTexture("/water.png");
-			if(var1.defaultFluid == Block.waterMoving.blockID) {
-				this.textureWaterFX.textureId = var4;
-			} else {
-				this.textureLavaFX.textureId = var4;
-			}
 		}
 
 		System.gc();

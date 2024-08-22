@@ -183,18 +183,13 @@ public final class LevelGenerator {
 			var56 = this.waterLevel - 1;
 
 			for(var21 = 0; var21 < var49; ++var21) {
-
 				for(var22 = 0; var22 < var51; ++var22) {
+					
 					boolean var60 = var13.generateNoise((double)var21, (double)var22) > 8.0D;
-
-					boolean var61 = var54.generateNoise((double)var21, (double)var22) > 12.0D;
 
 					var25 = var46[var21 + var22 * var49];
 					int var65 = (var25 * var9.length + var22) * var9.width + var21;
 					int var67 = var9.blocksByteArray[((var25 + 1) * var9.length + var22) * var9.width + var21] & 255;
-					if((var67 == Block.waterMoving.blockID || var67 == Block.waterStill.blockID || var67 == 0) && var25 <= var9.waterLevel - 1 && var61) {
-						var9.blocksByteArray[var65] = (byte)Block.gravel.blockID;
-					}
 
 					if(var67 == 0) {
 						int var69 = -1;
