@@ -4,7 +4,7 @@ public final class GuiIngameMenu extends GuiScreen {
 	public final void initGui() {
 		this.controlList.clear();
 		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4, "Options..."));
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 24, "Generate new level..."));
+		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 24, "Generate new level"));
 		this.controlList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 48, "Save level.."));
 		this.controlList.add(new GuiButton(3, this.width / 2 - 100, this.height / 4 + 72, "Load level.."));
 		this.controlList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 120, "Back to game"));
@@ -21,17 +21,16 @@ public final class GuiIngameMenu extends GuiScreen {
 		}
 
 		if(var1.id == 1) {
-			this.mc.displayGuiScreen(new GuiNewLevel(this));
+			this.mc.generateLevel();
+			this.mc.displayGuiScreen(null);
 		}
 
-		if(this.mc.session != null) {
-			if(var1.id == 2) {
-				this.mc.displayGuiScreen(new GuiSaveLevel(this));
-			}
+		if(var1.id == 2) {
+			this.mc.displayGuiScreen(new GuiSaveLevel(this));
+		}
 
-			if(var1.id == 3) {
-				this.mc.displayGuiScreen(new GuiLoadLevel(this));
-			}
+		if(var1.id == 3) {
+			this.mc.displayGuiScreen(new GuiLoadLevel(this));
 		}
 
 		if(var1.id == 4) {

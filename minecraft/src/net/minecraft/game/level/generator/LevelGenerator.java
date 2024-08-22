@@ -1,6 +1,5 @@
 package net.minecraft.game.level.generator;
 
-import java.util.ArrayList;
 import java.util.Random;
 import net.minecraft.game.level.MobSpawner;
 import net.minecraft.game.level.World;
@@ -22,10 +21,8 @@ public final class LevelGenerator {
 	private int waterLevel;
 	private int groundLevel;
 	
-	private int phaseBar;
-	private int phases;
-	private float phaseBareLength = 0.0F;
-	private int[] floodFillBlocks = new int[1048576];
+	private int loadingProgress = 0;
+	private static final int maxLoadingProgress = 10;
 
 	public LevelGenerator(IProgressUpdate var1) {
 		this.guiLoading = var1;
@@ -37,7 +34,6 @@ public final class LevelGenerator {
 		
 		int var5 = 1;
 
-		this.phases = 13 + var5 * 4;
 		this.guiLoading.displayProgressMessage("Generating level");
 		World var6 = new World();
 		var6.waterLevel = this.waterLevel;
@@ -66,8 +62,7 @@ public final class LevelGenerator {
 			double var32;
 			int[] var46;
 			
-			this.guiLoading.displayLoadingString("Raising..");
-			this.loadingBar();
+			this.updateLoadingBar("Making noise...");
 			var9 = this;
 			NoiseGeneratorDistort var10 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
 			NoiseGeneratorDistort var11 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
@@ -80,8 +75,7 @@ public final class LevelGenerator {
 			while(true) {
 				if(var22 >= var9.width) {
 					var8 = var14;
-					this.guiLoading.displayLoadingString("Eroding..");
-					this.loadingBar();
+					this.updateLoadingBar("Eroding...");
 					var46 = var14;
 					var9 = this;
 					var11 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(this.rand, 8), new NoiseGeneratorOctaves(this.rand, 8));
@@ -89,11 +83,9 @@ public final class LevelGenerator {
 					var52 = 0;
 
 					while(true) {
-						if(var52 >= var9.width) {
+						
+						if(var52 >= var9.width)
 							break label349;
-						}
-
-						var9.setNextPhase((float)var52 * 100.0F / (float)(var9.width - 1));
 
 						for(var53 = 0; var53 < var9.depth; ++var53) {
 							double var20 = var11.generateNoise((double)(var52 << 1), (double)(var53 << 1)) / 8.0D;
@@ -109,11 +101,7 @@ public final class LevelGenerator {
 					}
 				}
 
-				double var23 = Math.abs(((double)var22 / ((double)var9.width - 1.0D) - 0.5D) * 2.0D);
-				var9.setNextPhase((float)var22 * 100.0F / (float)(var9.width - 1));
-
 				for(var25 = 0; var25 < var9.depth; ++var25) {
-					double var26 = Math.abs(((double)var25 / ((double)var9.depth - 1.0D) - 0.5D) * 2.0D);
 					double var28 = var10.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 6.0D + -4.0D;
 					double var30 = var11.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 5.0D + 10.0D + -4.0D;
 					var32 = var12.generateNoise((double)var22, (double)var25) / 8.0D;
@@ -133,8 +121,7 @@ public final class LevelGenerator {
 				++var22;
 			}
 
-			this.guiLoading.displayLoadingString("Soiling..");
-			this.loadingBar();
+			this.updateLoadingBar("Soiling...");
 			var46 = var8;
 			var9 = this;
 			int var49 = this.width;
@@ -145,7 +132,6 @@ public final class LevelGenerator {
 
 			for(var21 = 0; var21 < var49; ++var21) {
 				double var57 = Math.abs(((double)var21 / ((double)var49 - 1.0D) - 0.5D) * 2.0D);
-				var9.setNextPhase((float)var21 * 100.0F / (float)(var49 - 1));
 
 				for(int var24 = 0; var24 < var51; ++var24) {
 					double var64 = Math.abs(((double)var24 / ((double)var51 - 1.0D) - 0.5D) * 2.0D);
@@ -188,8 +174,7 @@ public final class LevelGenerator {
 				}
 			}
 
-			this.guiLoading.displayLoadingString("Growing..");
-			this.loadingBar();
+			this.updateLoadingBar("Growing...");
 			var46 = var8;
 			var9 = this;
 			var49 = this.width;
@@ -199,7 +184,6 @@ public final class LevelGenerator {
 			var56 = this.waterLevel - 1;
 
 			for(var21 = 0; var21 < var49; ++var21) {
-				var9.setNextPhase((float)var21 * 100.0F / (float)(var49 - 1));
 
 				for(var22 = 0; var22 < var51; ++var22) {
 					boolean var60 = var13.generateNoise((double)var21, (double)var22) > 8.0D;
@@ -227,8 +211,7 @@ public final class LevelGenerator {
 			}
 		}
 
-		this.guiLoading.displayLoadingString("Carving..");
-		this.loadingBar();
+		this.updateLoadingBar("Carving...");
 		var9 = this;
 		var51 = this.width;
 		var52 = this.depth;
@@ -236,7 +219,6 @@ public final class LevelGenerator {
 		var56 = var51 * var52 * var53 / 256 / 64 << 1;
 
 		for(var21 = 0; var21 < var56; ++var21) {
-			var9.setNextPhase((float)var21 * 100.0F / (float)(var56 - 1));
 			float var59 = var9.rand.nextFloat() * (float)var51;
 			float var63 = var9.rand.nextFloat() * (float)var53;
 			float var62 = var9.rand.nextFloat() * (float)var52;
@@ -291,28 +273,14 @@ public final class LevelGenerator {
 		var45 = this.populateOre(Block.oreGold.blockID, 500, 6, (var4 << 1) / 5);
 		var5 = this.populateOre(Block.oreDiamond.blockID, 800, 2, var4 / 5);
 		System.out.println("Coal: " + var7 + ", Iron: " + var44 + ", Gold: " + var45 + ", Diamond: " + var5);
-		this.guiLoading.displayLoadingString("Melting..");
-		this.loadingBar();
-		this.lavaGen();
+		
+//		this.guiLoading.displayLoadingString("Melting..");
+//		this.updateLoadingBar();
+//		this.lavaGen();
+		
 		var6.cloudHeight = var4 + 2;
 		
 		this.groundLevel = this.waterLevel - 9;
-
-		this.guiLoading.displayLoadingString("Watering..");
-		this.loadingBar();
-		this.liquidThemeSpawner();
-		
-		var5 = Block.waterStill.blockID;
-
-		for(var7 = 0; var7 < var2; ++var7) {
-			this.floodFill(var7, this.waterLevel - 1, 0, 0, var5);
-			this.floodFill(var7, this.waterLevel - 1, var3 - 1, 0, var5);
-		}
-
-		for(var7 = 0; var7 < var3; ++var7) {
-			this.floodFill(var2 - 1, this.waterLevel - 1, var7, 0, var5);
-			this.floodFill(0, this.waterLevel - 1, var7, 0, var5);
-		}
 
 		var6.skyColor = 10079487;
 		var6.fogColor = 16777215;
@@ -344,55 +312,40 @@ public final class LevelGenerator {
 
 		var6.waterLevel = this.waterLevel;
 		var6.groundLevel = this.groundLevel;
-		this.guiLoading.displayLoadingString("Assembling..");
-		this.loadingBar();
-		this.setNextPhase(0.0F);
+		this.updateLoadingBar("Assembling...");
+		
 		var6.generate(var2, var4, var3, this.blocksByteArray, (byte[])null);
-		this.guiLoading.displayLoadingString("Building..");
-		this.loadingBar();
-		this.setNextPhase(0.0F);
+		this.updateLoadingBar("Building...");
+		
 		var6.findSpawn();
 		generateHouse(var6);
-		this.guiLoading.displayLoadingString("Planting..");
-		this.loadingBar();
+		this.updateLoadingBar("Planting...");
 		this.growGrassOnDirt(var6);
-
-		this.loadingBar();
+		
 		this.growTrees(var6, 32);
 
 		short flowerDensity = 100;
 
-		this.loadingBar();
 		this.populateFlowersAndMushrooms(var6, Block.plantYellow, flowerDensity);
-		this.loadingBar();
 		this.populateFlowersAndMushrooms(var6, Block.plantRed, flowerDensity);
-		this.loadingBar();
 		this.populateFlowersAndMushrooms(var6, Block.mushroomBrown, 50);
-		this.loadingBar();
 		this.populateFlowersAndMushrooms(var6, Block.mushroomRed, 50);
-		this.guiLoading.displayLoadingString("Lighting..");
-		this.loadingBar();
+		
+		this.updateLoadingBar("Lighting...");
 
 		for(var7 = 0; var7 < 10000; ++var7) {
-			this.setNextPhase((float)(var7 * 100 / 10000));
 			var6.updateLighting();
 		}
 
-		this.guiLoading.displayLoadingString("Spawning..");
-		this.loadingBar();
+		this.updateLoadingBar("Mobbing it up...");
 		MobSpawner var47 = new MobSpawner(var6);
 
 		for(var2 = 0; var2 < 1000; ++var2) {
-			this.setNextPhase((float)var2 * 100.0F / 999.0F);
 			var47.performSpawning();
 		}
 
 		var6.createTime = System.currentTimeMillis();
-		if(this.phaseBar != this.phases) {
-			throw new IllegalStateException("Wrong number of phases! Wanted " + this.phases + ", got " + this.phaseBar);
-		} else {
-			return var6;
-		}
+		return var6;
 	}
 
 	private static void generateHouse(World world) {
@@ -425,9 +378,8 @@ public final class LevelGenerator {
 	}
 
 	private void growGrassOnDirt(World var1) {
+		
 		for(int var2 = 0; var2 < this.width; ++var2) {
-			this.setNextPhase((float)var2 * 100.0F / (float)(this.width - 1));
-
 			for(int var3 = 0; var3 < this.height; ++var3) {
 				for(int var4 = 0; var4 < this.depth; ++var4) {
 					if(var1.getBlockId(var2, var3, var4) == Block.dirt.blockID && var1.getBlockLightValue(var2, var3 + 1, var4) >= 4 && !var1.getBlockMaterial(var2, var3 + 1, var4).getCanBlockGrass()) {
@@ -436,15 +388,11 @@ public final class LevelGenerator {
 				}
 			}
 		}
-
 	}
 
 	private void growTrees(World var1, int growAttempts) {
 
 		for(int var3 = 0; var3 < growAttempts; ++var3) {
-			if(var3 % 100 == 0) {
-				this.setNextPhase((float)var3 * 100.0F / (float)(growAttempts - 1));
-			}
 
 			int var4 = this.rand.nextInt(this.width);
 			int var5 = this.rand.nextInt(this.height);
@@ -472,9 +420,6 @@ public final class LevelGenerator {
 		var3 = (int)((long)this.width * (long)this.depth * (long)this.height * (long)var3 / 1600000L);
 
 		for(int var4 = 0; var4 < var3; ++var4) {
-			if(var4 % 100 == 0) {
-				this.setNextPhase((float)var4 * 100.0F / (float)(var3 - 1));
-			}
 
 			int var5 = this.rand.nextInt(this.width);
 			int var6 = this.rand.nextInt(this.height);
@@ -507,7 +452,6 @@ public final class LevelGenerator {
 		var2 = var6 * var7 * var8 / 256 / 64 * var2 / 100;
 
 		for(int var9 = 0; var9 < var2; ++var9) {
-			this.setNextPhase((float)var9 * 100.0F / (float)(var2 - 1));
 			float var10 = this.rand.nextFloat() * (float)var6;
 			float var11 = this.rand.nextFloat() * (float)var8;
 			float var12 = this.rand.nextFloat() * (float)var7;
@@ -555,187 +499,13 @@ public final class LevelGenerator {
 		return var5;
 	}
 
-	private void liquidThemeSpawner() {
-		int var1 = Block.waterStill.blockID;
-
-		int var2 = this.width * this.depth * this.height / 1000;
-
-		for(int var3 = 0; var3 < var2; ++var3) {
-			if(var3 % 100 == 0) {
-				this.setNextPhase((float)var3 * 100.0F / (float)(var2 - 1));
-			}
-
-			int var4 = this.rand.nextInt(this.width);
-			int var5 = this.rand.nextInt(this.height);
-			int var6 = this.rand.nextInt(this.depth);
-			if(this.blocksByteArray[(var5 * this.depth + var6) * this.width + var4] == 0) {
-				long var7 = this.floodFill(var4, var5, var6, 0, 255);
-				if(var7 > 0L && var7 < 640L) {
-					this.floodFill(var4, var5, var6, 255, var1);
-				} else {
-					this.floodFill(var4, var5, var6, 255, 0);
-				}
-			}
-		}
-
-		this.setNextPhase(100.0F);
-	}
-
-	private void loadingBar() {
-		++this.phaseBar;
-		this.phaseBareLength = 0.0F;
-		this.setNextPhase(0.0F);
-	}
-
-	private void setNextPhase(float var1) {
-		if(var1 < 0.0F) {
-			throw new IllegalStateException("Failed to set next phase!");
-		} else {
-			int var2 = (int)(((float)(this.phaseBar - 1) + var1 / 100.0F) * 100.0F / (float)this.phases);
-			this.guiLoading.setLoadingProgress(var2);
-		}
-	}
-
-	private void lavaGen() {
-		int var1 = this.width * this.depth * this.height / 2000;
-		int var2 = this.groundLevel;
-
-		for(int var3 = 0; var3 < var1; ++var3) {
-			if(var3 % 100 == 0) {
-				this.setNextPhase((float)var3 * 100.0F / (float)(var1 - 1));
-			}
-
-			int var4 = this.rand.nextInt(this.width);
-			int var5 = Math.min(Math.min(this.rand.nextInt(var2), this.rand.nextInt(var2)), Math.min(this.rand.nextInt(var2), this.rand.nextInt(var2)));
-			int var6 = this.rand.nextInt(this.depth);
-			if(this.blocksByteArray[(var5 * this.depth + var6) * this.width + var4] == 0) {
-				long var7 = this.floodFill(var4, var5, var6, 0, 255);
-				if(var7 > 0L && var7 < 640L) {
-					this.floodFill(var4, var5, var6, 255, Block.lavaStill.blockID);
-				} else {
-					this.floodFill(var4, var5, var6, 255, 0);
-				}
-			}
-		}
-
-		this.setNextPhase(100.0F);
-	}
-
-	private long floodFill(int var1, int var2, int var3, int var4, int var5) {
-		byte var6 = (byte)var5;
-		byte var22 = (byte)var4;
-		ArrayList var7 = new ArrayList();
-		byte var8 = 0;
-		int var9 = 1;
-
-		int var10;
-		for(var10 = 1; 1 << var9 < this.width; ++var9) {
-		}
-
-		while(1 << var10 < this.depth) {
-			++var10;
-		}
-
-		int var11 = this.depth - 1;
-		int var12 = this.width - 1;
-		int var23 = var8 + 1;
-		this.floodFillBlocks[0] = ((var2 << var10) + var3 << var9) + var1;
-		long var14 = 0L;
-		var1 = this.width * this.depth;
-
-		while(var23 > 0) {
-			--var23;
-			var2 = this.floodFillBlocks[var23];
-			if(var23 == 0 && var7.size() > 0) {
-				this.floodFillBlocks = (int[])var7.remove(var7.size() - 1);
-				var23 = this.floodFillBlocks.length;
-			}
-
-			var3 = var2 >> var9 & var11;
-			int var13 = var2 >> var9 + var10;
-			int var16 = var2 & var12;
-
-			int var17;
-			for(var17 = var16; var16 > 0 && this.blocksByteArray[var2 - 1] == var22; --var2) {
-				--var16;
-			}
-
-			while(var17 < this.width && this.blocksByteArray[var2 + var17 - var16] == var22) {
-				++var17;
-			}
-
-			int var18 = var2 >> var9 & var11;
-			int var19 = var2 >> var9 + var10;
-			if(var5 == 255 && (var16 == 0 || var17 == this.width - 1 || var13 == 0 || var13 == this.height - 1 || var3 == 0 || var3 == this.depth - 1)) {
-				return -1L;
-			}
-
-			if(var18 != var3 || var19 != var13) {
-				System.out.println("Diagonal flood!?");
-			}
-
-			boolean var24 = false;
-			boolean var25 = false;
-			boolean var20 = false;
-			var14 += (long)(var17 - var16);
-
-			for(var16 = var16; var16 < var17; ++var16) {
-				this.blocksByteArray[var2] = var6;
-				boolean var21;
-				if(var3 > 0) {
-					var21 = this.blocksByteArray[var2 - this.width] == var22;
-					if(var21 && !var24) {
-						if(var23 == this.floodFillBlocks.length) {
-							var7.add(this.floodFillBlocks);
-							this.floodFillBlocks = new int[1048576];
-							var23 = 0;
-						}
-
-						this.floodFillBlocks[var23++] = var2 - this.width;
-					}
-
-					var24 = var21;
-				}
-
-				if(var3 < this.depth - 1) {
-					var21 = this.blocksByteArray[var2 + this.width] == var22;
-					if(var21 && !var25) {
-						if(var23 == this.floodFillBlocks.length) {
-							var7.add(this.floodFillBlocks);
-							this.floodFillBlocks = new int[1048576];
-							var23 = 0;
-						}
-
-						this.floodFillBlocks[var23++] = var2 + this.width;
-					}
-
-					var25 = var21;
-				}
-
-				if(var13 > 0) {
-					byte var26 = this.blocksByteArray[var2 - var1];
-					if((var6 == Block.lavaMoving.blockID || var6 == Block.lavaStill.blockID) && (var26 == Block.waterMoving.blockID || var26 == Block.waterStill.blockID)) {
-						this.blocksByteArray[var2 - var1] = (byte)Block.stone.blockID;
-					}
-
-					var21 = var26 == var22;
-					if(var21 && !var20) {
-						if(var23 == this.floodFillBlocks.length) {
-							var7.add(this.floodFillBlocks);
-							this.floodFillBlocks = new int[1048576];
-							var23 = 0;
-						}
-
-						this.floodFillBlocks[var23++] = var2 - var1;
-					}
-
-					var20 = var21;
-				}
-
-				++var2;
-			}
-		}
-
-		return var14;
+	private void updateLoadingBar(String message) {
+		
+		this.guiLoading.displayProgressMessage(message);
+		
+		this.loadingProgress++;
+		
+		int progress = (int) (this.loadingProgress * 100.0F / this.maxLoadingProgress);
+		this.guiLoading.setLoadingProgress(progress);
 	}
 }

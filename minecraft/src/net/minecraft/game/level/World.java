@@ -168,8 +168,9 @@ public final class World {
 	}
 
 	public final void findSpawn() {
-		Random var1 = new Random();
-		int var2 = 0;
+		
+		Random random = new Random();
+		int attempts = 0;
 
 		while(true) {
 			
@@ -179,13 +180,14 @@ public final class World {
 				int var5;
 				do {
 					do {
-						++var2;
-						var3 = var1.nextInt(this.width / 2) + this.width / 4;
-						var4 = var1.nextInt(this.length / 2) + this.length / 4;
+						attempts++;
+						var3 = random.nextInt(this.width / 2) + this.width / 4;
+						var4 = random.nextInt(this.length / 2) + this.length / 4;
 						var5 = this.getFirstUncoveredBlock(var3, var4) + 1;
-						if(var2 == 1000000) {
+						
+						if(attempts == 1000000) {
 							this.xSpawn = var3;
-							this.ySpawn = this.height + 100;
+							this.ySpawn = this.height - 20;
 							this.zSpawn = var4;
 							this.rotSpawn = 180.0F;
 							return;
