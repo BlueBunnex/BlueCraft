@@ -160,12 +160,6 @@ public final class RenderGlobal implements IWorldAccess {
 		}
 
 		this.worldRenderersToUpdate.clear();
-		GL11.glNewList(this.glGenList, GL11.GL_COMPILE);
-		this.oobGroundRenderHeight();
-		GL11.glEndList();
-		GL11.glNewList(this.glGenList + 1, GL11.GL_COMPILE);
-		this.oobWaterRenderHeight();
-		GL11.glEndList();
 		this.markBlocksForUpdate(0, 0, 0, this.worldObj.width, this.worldObj.height, this.worldObj.length);
 	}
 
@@ -477,99 +471,6 @@ public final class RenderGlobal implements IWorldAccess {
 		var12.draw();
 	}
 
-	// TODO wtf is this
-	public final void oobGroundRenderer() {
-		
-		float var1 = this.worldObj.getLightBrightness(0, this.worldObj.getGroundLevel(), 0);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/dirt.png"));
-		
-		if(this.worldObj.getGroundLevel() > this.worldObj.getWaterLevel()) {
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/grass.png"));
-		}
-
-		GL11.glColor4f(var1, var1, var1, 1.0F);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glCallList(this.glGenList);
-	}
-
-	private void oobGroundRenderHeight() {
-		Tessellator var1 = Tessellator.instance;
-		float var2 = (float)this.worldObj.getGroundLevel();
-		int var3 = 128;
-		if(128 > this.worldObj.width) {
-			var3 = this.worldObj.width;
-		}
-
-		if(var3 > this.worldObj.length) {
-			var3 = this.worldObj.length;
-		}
-
-		int var4 = 2048 / var3;
-		var1.startDrawingQuads();
-
-		for(int var5 = -var3 * var4; var5 < this.worldObj.width + var3 * var4; var5 += var3) {
-			for(int var6 = -var3 * var4; var6 < this.worldObj.length + var3 * var4; var6 += var3) {
-				if(var2 < 0.0F || var5 < 0 || var6 < 0 || var5 >= this.worldObj.width || var6 >= this.worldObj.length) {
-					var1.addVertexWithUV((float)var5, var2, (float)(var6 + var3), 0.0F, (float)var3);
-					var1.addVertexWithUV((float)(var5 + var3), var2, (float)(var6 + var3), (float)var3, (float)var3);
-					var1.addVertexWithUV((float)(var5 + var3), var2, (float)var6, (float)var3, 0.0F);
-					var1.addVertexWithUV((float)var5, var2, (float)var6, 0.0F, 0.0F);
-				}
-			}
-		}
-
-		var1.draw();
-	}
-
-	public final void oobWaterRenderer() {
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/water.png"));
-		float var1 = this.worldObj.getLightBrightness(0, this.worldObj.getWaterLevel(), 0);
-		GL11.glColor4f(var1, var1, var1, 1.0F);
-		GL11.glCallList(this.glGenList + 1);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDisable(GL11.GL_BLEND);
-	}
-
-	private void oobWaterRenderHeight() {
-		float var1 = (float)this.worldObj.getWaterLevel();
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		Tessellator var2 = Tessellator.instance;
-		int var3 = 128;
-		if(128 > this.worldObj.width) {
-			var3 = this.worldObj.width;
-		}
-
-		if(var3 > this.worldObj.length) {
-			var3 = this.worldObj.length;
-		}
-
-		int var4 = 2048 / var3;
-		var2.startDrawingQuads();
-		float var5 = Block.waterMoving.minX;
-		float var6 = Block.waterMoving.minZ;
-
-		for(int var7 = -var3 * var4; var7 < this.worldObj.width + var3 * var4; var7 += var3) {
-			for(int var8 = -var3 * var4; var8 < this.worldObj.length + var3 * var4; var8 += var3) {
-				float var9 = var1 + Block.waterMoving.minY;
-				if(var1 < 0.0F || var7 < 0 || var8 < 0 || var7 >= this.worldObj.width || var8 >= this.worldObj.length) {
-					var2.addVertexWithUV((float)var7 + var5, var9, (float)(var8 + var3) + var6, 0.0F, (float)var3);
-					var2.addVertexWithUV((float)(var7 + var3) + var5, var9, (float)(var8 + var3) + var6, (float)var3, (float)var3);
-					var2.addVertexWithUV((float)(var7 + var3) + var5, var9, (float)var8 + var6, (float)var3, 0.0F);
-					var2.addVertexWithUV((float)var7 + var5, var9, (float)var8 + var6, 0.0F, 0.0F);
-					var2.addVertexWithUV((float)var7 + var5, var9, (float)var8 + var6, 0.0F, 0.0F);
-					var2.addVertexWithUV((float)(var7 + var3) + var5, var9, (float)var8 + var6, (float)var3, 0.0F);
-					var2.addVertexWithUV((float)(var7 + var3) + var5, var9, (float)(var8 + var3) + var6, (float)var3, (float)var3);
-					var2.addVertexWithUV((float)var7 + var5, var9, (float)(var8 + var3) + var6, 0.0F, (float)var3);
-				}
-			}
-		}
-
-		var2.draw();
-		GL11.glDisable(GL11.GL_BLEND);
-	}
-
 	public final void updateRenderers(EntityPlayer var1) {
 		Collections.sort(this.worldRenderersToUpdate, new RenderSorter(var1));
 		int var2 = this.worldRenderersToUpdate.size() - 1;
@@ -731,23 +632,20 @@ public final class RenderGlobal implements IWorldAccess {
 		float var9 = this.worldObj.playerEntity.posY - var3;
 		float var10 = this.worldObj.playerEntity.posZ - var4;
 		if(var8 * var8 + var9 * var9 + var10 * var10 <= 256.0F) {
-			if(var1 == "bubble") {
+			if (var1 == "bubble") {
 				this.mc.effectRenderer.addEffect(new EntityBubbleFX(this.worldObj, var2, var3, var4, var5, var6, var7));
-			} else if(var1 == "smoke") {
+			} else if (var1 == "smoke") {
 				this.mc.effectRenderer.addEffect(new EntitySmokeFX(this.worldObj, var2, var3, var4));
-			} else if(var1 == "explode") {
+			} else if (var1 == "explode") {
 				this.mc.effectRenderer.addEffect(new EntityExplodeFX(this.worldObj, var2, var3, var4, var5, var6, var7));
-			} else if(var1 == "flame") {
+			} else if (var1 == "flame") {
 				this.mc.effectRenderer.addEffect(new EntityFlameFX(this.worldObj, var2, var3, var4));
-			} else if(var1 == "lava") {
+			} else if (var1 == "lava") {
 				this.mc.effectRenderer.addEffect(new EntityLavaFX(this.worldObj, var2, var3, var4));
-			} else if(var1 == "splash") {
+			} else if (var1 == "splash") {
 				this.mc.effectRenderer.addEffect(new EntitySplashFX(this.worldObj, var2, var3, var4));
-			} else {
-				if(var1 == "largesmoke") {
-					this.mc.effectRenderer.addEffect(new EntitySmokeFX(this.worldObj, var2, var3, var4, 2.5F));
-				}
-
+			} else if (var1 == "largesmoke") {
+				this.mc.effectRenderer.addEffect(new EntitySmokeFX(this.worldObj, var2, var3, var4, 2.5F));
 			}
 		}
 	}
@@ -770,12 +668,5 @@ public final class RenderGlobal implements IWorldAccess {
 
 	}
 
-	public final void updateAllRenderers() {
-		GL11.glNewList(this.glGenList, GL11.GL_COMPILE);
-		this.oobGroundRenderHeight();
-		GL11.glEndList();
-		GL11.glNewList(this.glGenList + 1, GL11.GL_COMPILE);
-		this.oobWaterRenderHeight();
-		GL11.glEndList();
-	}
+	public final void updateAllRenderers() {}
 }

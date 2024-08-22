@@ -290,7 +290,6 @@ public final class EntityRenderer {
 							RenderHelper.disableStandardItemLighting();
 							GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/terrain.png"));
 							var17.sortAndRender(var15, 0);
-							var17.oobGroundRenderer();
 							if(var16.cloudHeight < var16.height) {
 								var17.renderSky(0.0F);
 							}
@@ -302,10 +301,6 @@ public final class EntityRenderer {
 							GL11.glColorMask(true, true, true, true);
 							if(var13 > 0) {
 								var17.renderAllRenderLists();
-							}
-
-							if(var16.getGroundLevel() >= 0) {
-								var17.oobWaterRenderer();
 							}
 
 							GL11.glDepthMask(true);
@@ -527,7 +522,6 @@ public final class EntityRenderer {
 			RenderHelper.disableStandardItemLighting();
 			this.setupFog();
 			var6.renderParticles(var3, var1);
-			var5.oobGroundRenderer();
 			if(this.mc.objectMouseOver != null && var3.isInsideOfWater()) {
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				var5.drawBlockBreaking(this.mc.objectMouseOver, 0, var3.inventory.getCurrentItem());
@@ -537,7 +531,6 @@ public final class EntityRenderer {
 
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			this.setupFog();
-			var5.oobWaterRenderer();
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_CULL_FACE);
 			GL11.glColorMask(false, false, false, false);

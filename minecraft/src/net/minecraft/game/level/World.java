@@ -97,24 +97,8 @@ public final class World {
 		for(int x = 0; x < this.width; x++) {
 			for(int z = 0; z < this.length; z++) {
 				for(int y = 0; y < this.height; y++) {
-					
-					int borderBlockID = 0;
-					
-					if(y < this.groundLevel - 1) {
-						borderBlockID = Block.bedrock.blockID;
-						
-					} else if(y < this.groundLevel) {
-						if (this.groundLevel > this.waterLevel) {
-							borderBlockID = Block.grass.blockID;
-						} else {
-							borderBlockID = Block.dirt.blockID;
-						}
-						
-					} else if(y < this.waterLevel) {
-						borderBlockID = Block.glass.blockID;
-					}
 
-					blocks[(y * this.length + z) * this.width + x] = (byte) borderBlockID;
+					blocks[(y * this.length + z) * this.width + x] = (byte) Block.glass.blockID;
 					
 					if(y == 1 && x != 0 && z != 0 && x != this.width - 1 && z != this.length - 1) {
 						y = this.height - 2;
