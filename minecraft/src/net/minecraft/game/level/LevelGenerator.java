@@ -281,8 +281,8 @@ public final class LevelGenerator {
 		
 		this.groundLevel = this.waterLevel - 9;
 
-		var6.skyColor = 10079487;
-		var6.fogColor = 16777215;
+		var6.skyColor = -16776961; // blue
+		var6.fogColor = -16777216; // black
 		var6.cloudColor = 16777215;
 //
 //		if(this.levelType == 1) {
