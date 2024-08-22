@@ -290,13 +290,8 @@ public final class Minecraft implements Runnable {
 			var24.clear().limit(256);
 			this.renderGlobal = new RenderGlobal(this, this.renderEngine);
 			GL11.glViewport(0, 0, this.displayWidth, this.displayHeight);
-			if(this.server != null && this.session != null) {
-				World var31 = new World();
-				var31.generate(8, 8, 8, new byte[512], new byte[512]);
-				this.setLevel(var31);
-			} else if(this.theWorld == null) {
-				this.displayGuiScreen(new GuiMainMenu());
-			}
+			
+			this.displayGuiScreen(new GuiMainMenu());
 
 			this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
 

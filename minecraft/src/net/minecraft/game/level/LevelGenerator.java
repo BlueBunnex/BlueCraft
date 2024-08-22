@@ -305,8 +305,7 @@ public final class LevelGenerator {
 		world.groundLevel = this.groundLevel;
 		
 		this.updateLoadingBar("Assembling...");
-		// TODO what tf does this call do
-		world.generate(width, height, length, this.blocksByteArray, null);
+		world.initializeEmptyWorld(width, height, length, this.blocksByteArray, null);
 		
 		this.updateLoadingBar("Building...");
 		world.findSpawn();

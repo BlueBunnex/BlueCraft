@@ -47,37 +47,44 @@ public abstract class LevelLoader {
 		NBTTagCompound var3 = var13.getCompoundTag("Map");
 		NBTTagCompound var4 = var13.getCompoundTag("Environment");
 		NBTTagList var5 = var13.getTagList("Entities");
-		short var6 = var3.getShort("Width");
-		short var7 = var3.getShort("Length");
-		short var8 = var3.getShort("Height");
-		World var9 = new World();
+		
+		World world = new World();
 		if(this.guiLoading != null) {
 			this.guiLoading.displayLoadingString("Preparing level..");
 		}
 
 		NBTTagList var10 = var3.getTagList("Spawn");
-		var9.xSpawn = ((NBTTagShort)var10.tagAt(0)).shortValue;
-		var9.ySpawn = ((NBTTagShort)var10.tagAt(1)).shortValue;
-		var9.zSpawn = ((NBTTagShort)var10.tagAt(2)).shortValue;
-		var9.createTime = var2.getLong("CreatedOn");
-		var9.cloudColor = var4.getInteger("CloudColor");
-		var9.skyColor = var4.getInteger("SkyColor");
-		var9.fogColor = var4.getInteger("FogColor");
-		var9.skyBrightness = var4.getByte("SkyBrightness");
-		if(var9.skyBrightness < 0) {
-			var9.skyBrightness = 0;
+		
+		world.xSpawn = ((NBTTagShort)var10.tagAt(0)).shortValue;
+		world.ySpawn = ((NBTTagShort)var10.tagAt(1)).shortValue;
+		world.zSpawn = ((NBTTagShort)var10.tagAt(2)).shortValue;
+		world.createTime = var2.getLong("CreatedOn");
+		world.cloudColor = var4.getInteger("CloudColor");
+		world.skyColor = var4.getInteger("SkyColor");
+		world.fogColor = var4.getInteger("FogColor");
+		
+		world.skyBrightness = var4.getByte("SkyBrightness");
+		if (world.skyBrightness < 0) {
+			world.skyBrightness = 0;
 		}
 
-		if(var9.skyBrightness > 16) {
-			var9.skyBrightness = var9.skyBrightness * 15 / 100;
+		if (world.skyBrightness > 16) {
+			world.skyBrightness = world.skyBrightness * 15 / 100;
 		}
 
-		var9.cloudHeight = var4.getShort("CloudHeight");
-		var9.groundLevel = var4.getShort("SurroundingGroundHeight");
-		var9.waterLevel = var4.getShort("SurroundingWaterHeight");
-		var9.worldTime = var4.getShort("TimeOfDay");
-		var9.skylightSubtracted = var9.getSkyBrightness();
-		var9.generate(var6, var8, var7, var3.getByteArray("Blocks"), var3.getByteArray("Data"));
+		world.cloudHeight = var4.getShort("CloudHeight");
+		world.groundLevel = var4.getShort("SurroundingGroundHeight");
+		world.waterLevel = var4.getShort("SurroundingWaterHeight");
+		world.worldTime = var4.getShort("TimeOfDay");
+		world.skylightSubtracted = world.getSkyBrightness();
+		
+		world.initializeEmptyWorld(
+				var3.getShort("Width"),
+				var3.getShort("Length"),
+				var3.getShort("Height"),
+				var3.getByteArray("Blocks"),
+				var3.getByteArray("Data"));
+		
 		if(this.guiLoading != null) {
 			this.guiLoading.displayLoadingString("Preparing entities..");
 		}
@@ -86,10 +93,10 @@ public abstract class LevelLoader {
 			try {
 				var3 = (NBTTagCompound)var5.tagAt(var16);
 				String var19 = var3.getString("id");
-				Entity var21 = this.loadEntity(var9, var19);
+				Entity var21 = this.loadEntity(world, var19);
 				if(var21 != null) {
 					var21.readFromNBT(var3);
-					var9.spawnEntityInWorld(var21);
+					world.spawnEntityInWorld(var21);
 				} else {
 					System.out.println("Skipping unknown entity id \"" + var19 + "\"");
 				}
@@ -112,7 +119,7 @@ public abstract class LevelLoader {
 					int var23 = (var22 >> 10) % 1024;
 					var22 = (var22 >> 20) % 1024;
 					((TileEntity)var20).readFromNBT(var4);
-					var9.setBlockTileEntity(var15, var23, var22, (TileEntity)var20);
+					world.setBlockTileEntity(var15, var23, var22, (TileEntity) var20);
 				} else {
 					System.out.println("Skipping unknown tile entity id \"" + var14 + "\"");
 				}
@@ -122,7 +129,7 @@ public abstract class LevelLoader {
 			}
 		}
 
-		return var9;
+		return world;
 	}
 
 	protected Entity loadEntity(World world, String entityName) {

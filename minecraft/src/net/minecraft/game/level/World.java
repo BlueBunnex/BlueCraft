@@ -84,10 +84,10 @@ public final class World {
 		}
 	}
 
-	public final void generate(int width, int height, int length, byte[] blocks, byte[] var5) {
+	public final void initializeEmptyWorld(int width, int height, int length, byte[] blocks, byte[] data) {
 		
-		if (var5 != null && var5.length == 0)
-			var5 = null;
+		if (data != null && data.length == 0)
+			data = null;
 
 		this.width = width;
 		this.height = height;
@@ -98,9 +98,11 @@ public final class World {
 			for(int z = 0; z < this.length; z++) {
 				for(int y = 0; y < this.height; y++) {
 
+					// create border
 					blocks[(y * this.length + z) * this.width + x] = (byte) Block.glass.blockID;
 					
-					if(y == 1 && x != 0 && z != 0 && x != this.width - 1 && z != this.length - 1) {
+					// ignore interior blocks
+					if (y == 1 && x != 0 && z != 0 && x != this.width - 1 && z != this.length - 1) {
 						y = this.height - 2;
 					}
 				}
@@ -110,7 +112,7 @@ public final class World {
 		this.heightMap = new int[width * length];
 		Arrays.fill(this.heightMap, this.height);
 		
-		if(var5 == null) {
+		if(data == null) {
 			this.data = new byte[blocks.length];
 			this.lightUpdates = new Light(this);
 			World var11 = this;
@@ -142,13 +144,12 @@ public final class World {
 
 			var11.lightUpdates.updateBlockLight(0, 0, 0, var11.width, var11.height, var11.length);
 		} else {
-			this.data = var5;
+			this.data = data;
 			this.lightUpdates = new Light(this);
 		}
 
-		for(int var2 = 0; var2 < this.worldAccesses.size(); ++var2) {
-			((IWorldAccess)this.worldAccesses.get(var2)).loadRenderers();
-		}
+		for (int i = 0; i < this.worldAccesses.size(); i++)
+			((IWorldAccess)this.worldAccesses.get(i)).loadRenderers();
 
 		this.tickList.clear();
 		this.findSpawn();
