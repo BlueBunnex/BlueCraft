@@ -1,6 +1,9 @@
-package net.minecraft.game.level.generator.noise;
+package net.minecraft.game.level.gennoise;
 
 import java.util.Random;
+
+import net.minecraft.game.level.generator.noise.NoiseGenerator;
+import net.minecraft.game.level.generator.noise.NoiseGeneratorPerlin;
 
 public final class NoiseGeneratorOctaves extends NoiseGenerator {
 	private NoiseGeneratorPerlin[] generatorCollection;

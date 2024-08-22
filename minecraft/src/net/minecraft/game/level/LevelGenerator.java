@@ -1,12 +1,11 @@
-package net.minecraft.game.level.generator;
+package net.minecraft.game.level;
 
 import java.util.Random;
-import net.minecraft.game.level.MobSpawner;
-import net.minecraft.game.level.World;
+
 import net.minecraft.game.level.block.Block;
 import net.minecraft.game.level.block.BlockFlower;
-import net.minecraft.game.level.generator.noise.NoiseGeneratorDistort;
-import net.minecraft.game.level.generator.noise.NoiseGeneratorOctaves;
+import net.minecraft.game.level.gennoise.NoiseGeneratorDistort;
+import net.minecraft.game.level.gennoise.NoiseGeneratorOctaves;
 import util.IProgressUpdate;
 import util.MathHelper;
 

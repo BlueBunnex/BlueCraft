@@ -1,4 +1,6 @@
-package net.minecraft.game.level.generator.noise;
+package net.minecraft.game.level.gennoise;
+
+import net.minecraft.game.level.generator.noise.NoiseGenerator;
 
 public final class NoiseGeneratorDistort extends NoiseGenerator {
 	private NoiseGenerator source;
