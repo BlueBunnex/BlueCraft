@@ -23,9 +23,9 @@ import util.MathHelper;
 public final class World {
 	
 	private static float[] lightBrightnessTable = new float[16];
-	public int width;
-	public int length;
-	public int height;
+	
+	public int width, length, height;
+	
 	public byte[] blocks;
 	public byte[] data;
 	public long createTime;
@@ -65,9 +65,11 @@ public final class World {
 	public int difficultySetting = 2;
 
 	public final void load() {
-		if(this.blocks == null) {
+		
+		if (this.blocks == null) {
 			throw new RuntimeException("The level is corrupt!");
 		} else {
+			
 			this.worldAccesses = new ArrayList();
 			this.heightMap = new int[this.width * this.length];
 			Arrays.fill(this.heightMap, this.height);
@@ -75,30 +77,28 @@ public final class World {
 			this.random = new Random();
 			this.randId = this.random.nextInt();
 			this.tickList = new ArrayList();
-			if(this.entityMap == null) {
+			
+			if (this.entityMap == null)
 				this.entityMap = new EntityMap(this.width, this.height, this.length);
-			}
-
 		}
 	}
 
-	public final void generate(int var1, int var2, int var3, byte[] var4, byte[] var5) {
-		if(var5 != null && var5.length == 0) {
+	public final void generate(int width, int height, int length, byte[] blocks, byte[] var5) {
+		
+		if (var5 != null && var5.length == 0)
 			var5 = null;
-		}
 
-		this.width = var1;
-		this.length = var3;
-		this.height = var2;
-		this.blocks = var4;
-
-		int var6;
-		int var7;
-		for(var2 = 0; var2 < this.width; ++var2) {
-			for(var6 = 0; var6 < this.length; ++var6) {
-				for(var7 = 0; var7 < this.height; ++var7) {
+		this.width = width;
+		this.height = height;
+		this.length = length;
+		this.blocks = blocks;
+		
+		for(int x = 0; x < this.width; x++) {
+			for(int var6 = 0; var6 < this.length; ++var6) {
+				for(int var7 = 0; var7 < this.height; ++var7) {
+					
 					int var8 = 0;
-					if(var7 <= 1 && var7 < this.groundLevel - 1 && var4[((var7 + 1) * this.length + var6) * this.width + var2] == 0) {
+					if(var7 <= 1 && var7 < this.groundLevel - 1 && blocks[((var7 + 1) * this.length + var6) * this.width + x] == 0) {
 						var8 = Block.lavaStill.blockID;
 					} else if(var7 < this.groundLevel - 1) {
 						var8 = Block.bedrock.blockID;
@@ -112,39 +112,41 @@ public final class World {
 						var8 = this.defaultFluid;
 					}
 
-					var4[(var7 * this.length + var6) * this.width + var2] = (byte)var8;
-					if(var7 == 1 && var2 != 0 && var6 != 0 && var2 != this.width - 1 && var6 != this.length - 1) {
+					blocks[(var7 * this.length + var6) * this.width + x] = (byte)var8;
+					if(var7 == 1 && x != 0 && var6 != 0 && x != this.width - 1 && var6 != this.length - 1) {
 						var7 = this.height - 2;
 					}
 				}
 			}
 		}
 
-		this.heightMap = new int[var1 * var3];
+		this.heightMap = new int[width * length];
 		Arrays.fill(this.heightMap, this.height);
+		
 		if(var5 == null) {
-			this.data = new byte[var4.length];
+			this.data = new byte[blocks.length];
 			this.lightUpdates = new Light(this);
-			boolean var10 = true;
 			World var11 = this;
-			var2 = this.skylightSubtracted;
+			int var2 = this.skylightSubtracted;
 
-			for(var3 = 0; var3 < var11.width; ++var3) {
-				for(int var12 = 0; var12 < var11.length; ++var12) {
-					int var13;
-					for(var13 = var11.height - 1; var13 > 0 && Block.lightOpacity[var11.getBlockId(var3, var13, var12)] == 0; --var13) {
-					}
+			for(int x = 0; x < var11.width; x++) {
+				for(int z = 0; z < var11.length; z++) {
+					
+					int y, var6, var7;
+					
+					for (y = var11.height - 1; y > 0 && Block.lightOpacity[var11.getBlockId(x, y, z)] == 0; y--) {}
 
-					var11.heightMap[var3 + var12 * var11.width] = var13 + 1;
+					var11.heightMap[x + z * var11.width] = y + 1;
 
-					for(var13 = 0; var13 < var11.height; ++var13) {
-						var6 = (var13 * var11.length + var12) * var11.width + var3;
-						var7 = var11.heightMap[var3 + var12 * var11.width];
-						var7 = var13 >= var7 ? var2 : 0;
+					for (y = 0; y < var11.height; y++) {
+						
+						var6 = (y * var11.length + z) * var11.width + x;
+						var7 = var11.heightMap[x + z * var11.width];
+						var7 = y >= var7 ? var2 : 0;
 						byte var14 = var11.blocks[var6];
-						if(var7 < Block.lightValue[var14]) {
+						
+						if (var7 < Block.lightValue[var14])
 							var7 = Block.lightValue[var14];
-						}
 
 						var11.data[var6] = (byte)((var11.data[var6] & 240) + var7);
 					}
@@ -157,7 +159,7 @@ public final class World {
 			this.lightUpdates = new Light(this);
 		}
 
-		for(var2 = 0; var2 < this.worldAccesses.size(); ++var2) {
+		for(int var2 = 0; var2 < this.worldAccesses.size(); ++var2) {
 			((IWorldAccess)this.worldAccesses.get(var2)).loadRenderers();
 		}
 
@@ -227,19 +229,17 @@ public final class World {
 		}
 	}
 
-	public final void addWorldAccess(IWorldAccess var1) {
-		for(int var2 = 0; var2 < this.entityMap.entities.size(); ++var2) {
-			var1.obtainEntitySkin((Entity)this.entityMap.entities.get(var2));
+	public final void addWorldAccess(IWorldAccess access) {
+		
+		for (int i = 0; i < this.entityMap.entities.size(); i++) {
+			access.obtainEntitySkin((Entity) this.entityMap.entities.get(i));
 		}
 
-		this.worldAccesses.add(var1);
+		this.worldAccesses.add(access);
 	}
 
-	public final void finalize() {
-	}
-
-	public final void removeWorldAccess(IWorldAccess var1) {
-		this.worldAccesses.remove(var1);
+	public final void removeWorldAccess(IWorldAccess access) {
+		this.worldAccesses.remove(access);
 	}
 
 	public final ArrayList getCollidingBoundingBoxes(AxisAlignedBB var1) {
@@ -1623,9 +1623,11 @@ public final class World {
 	}
 
 	static {
-		for(int var0 = 0; var0 <= 15; ++var0) {
-			float var1 = 1.0F - (float)var0 / 15.0F;
-			lightBrightnessTable[var0] = (1.0F - var1) / (var1 * 3.0F + 1.0F) * 0.95F + 0.05F;
+		
+		for (int i = 0; i <= 15; i++) {
+			
+			float lerp = 1.0F - (float) i / 15.0F;
+			lightBrightnessTable[i] = (1.0F - lerp) / (lerp * 3.0F + 1.0F) * 0.95F + 0.05F;
 		}
 
 		floodFillCounter = 0;
