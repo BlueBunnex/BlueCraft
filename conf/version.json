@@ -1,12 +1,12 @@
 {
- "releaseTime": "2010-07-13T20:49:50+00:00",
+ "releaseTime": "2010-02-23T14:42:06+00:00",
  "assets": "empty",
  "minecraftArguments": "--username ${auth_player_name} --sessionid ${auth_session} --gameDir ${game_directory} --assetsDir ${game_assets} --resourcesProxyPort 11702 --skinProxy pre-b1.9-pre4",
  "mainClass": "org.mcphackers.launchwrapper.Launch",
  "downloads": {"client": {
-  "sha1": "fe189e91a3e7166d46fad8ce53ba0ce34b4c5f97",
-  "size": 780225,
-  "url": "http://files.betacraft.uk/launcher/assets/versions/a1.0.5-2.jar"
+  "sha1": "801ce486bb7fd1b43a56bc5d226dfb1370c08678",
+  "size": 555633,
+  "url": "http://files.betacraft.uk/launcher/assets/versions/in-20100223.jar"
  }},
  "javaVersion": {
   "component": "jre-legacy",
@@ -318,7 +318,7 @@
   "id": "empty",
   "url": "https://mcphackers.github.io/assets/empty.json"
  },
- "id": "a1.0.5",
+ "id": "in-20100223",
  "time": "2023-03-20T18:25:26+00:00",
  "type": "old_alpha"
 }
