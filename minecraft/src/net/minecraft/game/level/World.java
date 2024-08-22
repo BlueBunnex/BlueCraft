@@ -172,8 +172,8 @@ public final class World {
 		int var2 = 0;
 
 		while(true) {
-			label58:
-			while(true) {
+			
+			label58: {
 				int var3;
 				int var4;
 				int var5;
@@ -192,7 +192,7 @@ public final class World {
 						}
 					} while(var5 < 4);
 				} while(var5 <= this.waterLevel);
-
+	
 				int var6;
 				int var7;
 				int var8;
@@ -200,22 +200,22 @@ public final class World {
 					for(var7 = var5 - 1; var7 <= var5 + 2; ++var7) {
 						for(var8 = var4 - 3 - 2; var8 <= var4 + 3; ++var8) {
 							if(this.getBlockMaterial(var6, var7, var8).isSolid()) {
-								continue label58;
+								break label58;
 							}
 						}
 					}
 				}
-
+	
 				var6 = var5 - 2;
-
+	
 				for(var7 = var3 - 3; var7 <= var3 + 3; ++var7) {
 					for(var8 = var4 - 3 - 2; var8 <= var4 + 3; ++var8) {
 						if(!Block.opaqueCubeLookup[this.getBlockId(var7, var6, var8)]) {
-							continue label58;
+							break label58;
 						}
 					}
 				}
-
+	
 				this.xSpawn = var3;
 				this.ySpawn = var5;
 				this.zSpawn = var4;

@@ -22,7 +22,6 @@ public final class LevelGenerator {
 	private int waterLevel;
 	private int groundLevel;
 	
-	public int levelType;
 	private int phaseBar;
 	private int phases;
 	private float phaseBareLength = 0.0F;
@@ -198,9 +197,6 @@ public final class LevelGenerator {
 			var13 = new NoiseGeneratorOctaves(this.rand, 8);
 			var54 = new NoiseGeneratorOctaves(this.rand, 8);
 			var56 = this.waterLevel - 1;
-			if(this.levelType == 2) {
-				var56 += 2;
-			}
 
 			for(var21 = 0; var21 < var49; ++var21) {
 				var9.setNextPhase((float)var21 * 100.0F / (float)(var49 - 1));
@@ -208,14 +204,7 @@ public final class LevelGenerator {
 				for(var22 = 0; var22 < var51; ++var22) {
 					boolean var60 = var13.generateNoise((double)var21, (double)var22) > 8.0D;
 
-					if(var9.levelType == 2) {
-						var60 = var13.generateNoise((double)var21, (double)var22) > -32.0D;
-					}
-
 					boolean var61 = var54.generateNoise((double)var21, (double)var22) > 12.0D;
-					if(var9.levelType == 1 || var9.levelType == 3) {
-						var60 = var13.generateNoise((double)var21, (double)var22) > -8.0D;
-					}
 
 					var25 = var46[var21 + var22 * var49];
 					int var65 = (var25 * var9.depth + var22) * var9.width + var21;
@@ -228,9 +217,6 @@ public final class LevelGenerator {
 						int var69 = -1;
 						if(var25 <= var56 && var60) {
 							var69 = Block.sand.blockID;
-							if(var9.levelType == 1) {
-								var69 = Block.grass.blockID;
-							}
 						}
 
 						if(var9.blocksByteArray[var65] != 0 && var69 > 0) {
@@ -317,9 +303,6 @@ public final class LevelGenerator {
 		this.liquidThemeSpawner();
 		
 		var5 = Block.waterStill.blockID;
-		if(this.levelType == 1) {
-			var5 = Block.lavaStill.blockID;
-		}
 
 		for(var7 = 0; var7 < var2; ++var7) {
 			this.floodFill(var7, this.waterLevel - 1, 0, 0, var5);
@@ -331,35 +314,33 @@ public final class LevelGenerator {
 			this.floodFill(0, this.waterLevel - 1, var7, 0, var5);
 		}
 
-		if(this.levelType == 0) {
-			var6.skyColor = 10079487;
-			var6.fogColor = 16777215;
-			var6.cloudColor = 16777215;
-		}
-
-		if(this.levelType == 1) {
-			var6.cloudColor = 2164736;
-			var6.fogColor = 1049600;
-			var6.skyColor = 1049600;
-			var6.skylightSubtracted = var6.skyBrightness = 7;
-			var6.defaultFluid = Block.lavaMoving.blockID;
-		}
-
-		if(this.levelType == 2) {
-			var6.skyColor = 13033215;
-			var6.fogColor = 13033215;
-			var6.cloudColor = 15658751;
-			var6.skylightSubtracted = var6.skyBrightness = 15;
-			var6.skyBrightness = 16;
-			var6.cloudHeight = var4 + 64;
-		}
-
-		if(this.levelType == 3) {
-			var6.skyColor = 7699847;
-			var6.fogColor = 5069403;
-			var6.cloudColor = 5069403;
-			var6.skylightSubtracted = var6.skyBrightness = 12;
-		}
+		var6.skyColor = 10079487;
+		var6.fogColor = 16777215;
+		var6.cloudColor = 16777215;
+//
+//		if(this.levelType == 1) {
+//			var6.cloudColor = 2164736;
+//			var6.fogColor = 1049600;
+//			var6.skyColor = 1049600;
+//			var6.skylightSubtracted = var6.skyBrightness = 7;
+//			var6.defaultFluid = Block.lavaMoving.blockID;
+//		}
+//
+//		if(this.levelType == 2) {
+//			var6.skyColor = 13033215;
+//			var6.fogColor = 13033215;
+//			var6.cloudColor = 15658751;
+//			var6.skylightSubtracted = var6.skyBrightness = 15;
+//			var6.skyBrightness = 16;
+//			var6.cloudHeight = var4 + 64;
+//		}
+//
+//		if(this.levelType == 3) {
+//			var6.skyColor = 7699847;
+//			var6.fogColor = 5069403;
+//			var6.cloudColor = 5069403;
+//			var6.skylightSubtracted = var6.skyBrightness = 12;
+//		}
 
 		var6.waterLevel = this.waterLevel;
 		var6.groundLevel = this.groundLevel;
@@ -374,27 +355,17 @@ public final class LevelGenerator {
 		generateHouse(var6);
 		this.guiLoading.displayLoadingString("Planting..");
 		this.loadingBar();
-		if(this.levelType != 1) {
-			this.growGrassOnDirt(var6);
-		}
+		this.growGrassOnDirt(var6);
 
 		this.loadingBar();
-		this.growTrees(var6);
-		if(this.levelType == 3) {
-			for(var5 = 0; var5 < 50; ++var5) {
-				this.growTrees(var6);
-			}
-		}
+		this.growTrees(var6, 32);
 
-		short var43 = 100;
-		if(this.levelType == 2) {
-			var43 = 1000;
-		}
+		short flowerDensity = 100;
 
 		this.loadingBar();
-		this.populateFlowersAndMushrooms(var6, Block.plantYellow, var43);
+		this.populateFlowersAndMushrooms(var6, Block.plantYellow, flowerDensity);
 		this.loadingBar();
-		this.populateFlowersAndMushrooms(var6, Block.plantRed, var43);
+		this.populateFlowersAndMushrooms(var6, Block.plantRed, flowerDensity);
 		this.loadingBar();
 		this.populateFlowersAndMushrooms(var6, Block.mushroomBrown, 50);
 		this.loadingBar();
@@ -424,10 +395,10 @@ public final class LevelGenerator {
 		}
 	}
 
-	private static void generateHouse(World var0) {
-		int var1 = var0.xSpawn;
-		int var2 = var0.ySpawn;
-		int var3 = var0.zSpawn;
+	private static void generateHouse(World world) {
+		int var1 = world.xSpawn;
+		int var2 = world.ySpawn;
+		int var3 = world.zSpawn;
 
 		for(int var4 = var1 - 3; var4 <= var1 + 3; ++var4) {
 			for(int var5 = var2 - 2; var5 <= var2 + 2; ++var5) {
@@ -444,13 +415,13 @@ public final class LevelGenerator {
 						var7 = 0;
 					}
 
-					var0.setBlockWithNotify(var4, var5, var6, var7);
+					world.setBlockWithNotify(var4, var5, var6, var7);
 				}
 			}
 		}
 
-		var0.setBlockWithNotify(var1 - 3 + 1, var2, var3, Block.torch.blockID);
-		var0.setBlockWithNotify(var1 + 3 - 1, var2, var3, Block.torch.blockID);
+		world.setBlockWithNotify(var1 - 3 + 1, var2, var3, Block.torch.blockID);
+		world.setBlockWithNotify(var1 + 3 - 1, var2, var3, Block.torch.blockID);
 	}
 
 	private void growGrassOnDirt(World var1) {
@@ -468,12 +439,11 @@ public final class LevelGenerator {
 
 	}
 
-	private void growTrees(World var1) {
-		int var2 = this.width * this.depth * this.height / 80000;
+	private void growTrees(World var1, int growAttempts) {
 
-		for(int var3 = 0; var3 < var2; ++var3) {
+		for(int var3 = 0; var3 < growAttempts; ++var3) {
 			if(var3 % 100 == 0) {
-				this.setNextPhase((float)var3 * 100.0F / (float)(var2 - 1));
+				this.setNextPhase((float)var3 * 100.0F / (float)(growAttempts - 1));
 			}
 
 			int var4 = this.rand.nextInt(this.width);
@@ -587,9 +557,6 @@ public final class LevelGenerator {
 
 	private void liquidThemeSpawner() {
 		int var1 = Block.waterStill.blockID;
-		if(this.levelType == 1) {
-			var1 = Block.lavaStill.blockID;
-		}
 
 		int var2 = this.width * this.depth * this.height / 1000;
 
