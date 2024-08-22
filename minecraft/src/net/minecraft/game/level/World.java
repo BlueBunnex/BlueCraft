@@ -34,10 +34,12 @@ public final class World {
 	public int zSpawn;
 	public float rotSpawn;
 	
-	List worldAccesses = new ArrayList();
-	private List tickList = new LinkedList();
-	public Map map = new HashMap();
-	private List list = new ArrayList();
+	List<IWorldAccess> worldAccesses = new ArrayList<IWorldAccess>();
+	private List<NextTickListEntry> tickList = new LinkedList<NextTickListEntry>();
+	
+	public Map<Integer, TileEntity> map = new HashMap<Integer, TileEntity>();
+	private List<TileEntity> list = new ArrayList<TileEntity>();
+	
 	int[] heightMap;
 	public Random random = new Random();
 	private Random rand = new Random();
@@ -50,7 +52,6 @@ public final class World {
 	public int fogColor = 16777215;
 	public int cloudColor = 16777215;
 	private int updateLCG = 0;
-	private int playTime = 0;
 	public EntityLiving playerEntity;
 	public boolean survivalWorld = true;
 	public int skyBrightness = 15;
@@ -536,7 +537,6 @@ public final class World {
 			this.updateChunkLight(this.skylightSubtracted + 1);
 		}
 
-		++this.playTime;
 		var1 = 1;
 
 		int var2;
@@ -558,7 +558,7 @@ public final class World {
 		int var7;
 		int var10;
 		for(var7 = 0; var7 < var6; ++var7) {
-			NextTickListEntry var8 = (NextTickListEntry)this.tickList.remove(0);
+			NextTickListEntry var8 = this.tickList.remove(0);
 			if(var8.scheduledTime > 0) {
 				--var8.scheduledTime;
 				this.tickList.add(var8);

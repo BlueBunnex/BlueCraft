@@ -499,7 +499,7 @@ public final class LevelGenerator {
 		
 		this.loadingProgress++;
 		
-		int progress = (int) (this.loadingProgress * 100.0F / this.maxLoadingProgress);
+		int progress = (int) (this.loadingProgress * 100.0F / maxLoadingProgress);
 		this.guiLoading.setLoadingProgress(progress);
 	}
 }
