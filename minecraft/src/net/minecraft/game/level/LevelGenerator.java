@@ -210,8 +210,7 @@ public final class LevelGenerator {
 		// generate ~caves (dungeons) and ores
 		this.updateLoadingBar("Carving...");
 		{
-			
-			populateDungeon(random, blocksByteArray, 100);
+			populateDungeon(random, blocksByteArray, 50);
 
 			int countCoal    = populateOre(random, blocksByteArray, (byte) Block.oreCoal.blockID, 1000, 10, (WORLD_DIM << 2) / 5);
 			int countIron    = populateOre(random, blocksByteArray, (byte) Block.oreIron.blockID, 800, 8, WORLD_DIM * 3 / 5);
@@ -273,45 +272,54 @@ public final class LevelGenerator {
 		return world;
 	}
 
-	private static void populateDungeon(Random random, byte[] blocksByteArray, int amount) {
+	private static void populateDungeon(Random random, byte[] blocksByteArray, int count) {
 		
-		for (int i=0; i<amount; i++) {
+		for (int i=0; i<count; i++) {
 			
-			// if 0, shortDir = x, longDir = z
-			// if 1, shortDir = z, longDir = x
+			// 0 => short = x, long = z
+			// 1 => short = z, long = x
 			int direction = random.nextInt(2);
 			
-			int shortPos = random.nextInt(WORLD_DIM / 4) * 4;
-			int longPos  = random.nextInt(WORLD_DIM);
-			int yPos     = random.nextInt((WORLD_DIM - 40) / 4) * 4;
+			int shortStart = random.nextInt(WORLD_DIM / 4) * 4;
+			int longStart  = random.nextInt(WORLD_DIM / 4) * 4;
 			
-			int dx   = direction == 0 ? shortPos : longPos,
-				maxX = dx + (direction == 0 ? 3 : 20);
-			int dz   = direction == 1 ? shortPos : longPos,
-				maxZ = dz + (direction == 1 ? 3 : 20);
+			int xStart = direction == 0 ? shortStart : longStart,    maxX = xStart + (direction == 0 ? 3 : 16);
+			int yStart = random.nextInt((WORLD_DIM - 40) / 4) * 4,   maxY = yStart + 3;
+			int zStart = direction == 1 ? shortStart : longStart,    maxZ = zStart + (direction == 1 ? 3 : 16);
 			
-			int dy   = yPos,
-				maxY = dy + 3;
-			
-			for (; dx < maxX; dx++) {
-			for (; dz < maxZ; dz++) {
-			for (; dy < maxY; dy++) {
+			for (int x = xStart; x < maxX; x++) {
+			for (int y = yStart; y < maxY; y++) {
+			for (int z = zStart; z < maxZ; z++) {
 
-				int index = get3DArrayIndex(dx, dy, dz);
+				int index = get3DArrayIndex(x, y, z);
 				
-				if (index < blocksByteArray.length && blocksByteArray[index] == Block.stone.blockID) {
+				if (index < blocksByteArray.length) {
 					
-					// TODO struts
-					blocksByteArray[index] = 0;
+					// replace stone with a regular path
+					if (blocksByteArray[index] == Block.stone.blockID) {
+						
+						// struts
+						int shortPos = direction == 0 ? x : z;
+						int longPos  = direction == 1 ? x : z;
+						
+						if (longPos % 6 == 0 && (shortPos != shortStart + 1 || y == yStart + 2)) {
+							blocksByteArray[index] = (byte) Block.planks.blockID;
+						} else {
+							blocksByteArray[index] = 0;
+						}
+						
+					// replace existing paths (the struts) with just air (to prevent struts at junctions)
+					} else if (blocksByteArray[index] == Block.planks.blockID) {
+						
+						blocksByteArray[index] = 0;
+					}
 				}
-			}
-			}
-			}
+			}}}
 		}
 	}
 	
 	private static int get3DArrayIndex(int x, int y, int z) {
-		return ((y + 1) * WORLD_DIM + z) * WORLD_DIM + x;
+		return (y * WORLD_DIM + z) * WORLD_DIM + x;
 	}
 
 	private static void generateHouse(World world) {
