@@ -207,29 +207,17 @@ public final class LevelGenerator {
 			}
 		}
 
-		// generate caves and ores
+		// generate ~caves (dungeons) and ores
 		this.updateLoadingBar("Carving...");
 		{
-			// TODO temporary 'cave' generation
-			// maybe make mineshafts instead? more interesting to explore and easier to generate
-			// populateMineshaft()
-			for (int x = 0; x < width; x++) {
-			for (int z = 0; z < length; z++) {
-			for (int y = 0; y < height; y++) {
-						
-				int i = ((y + 1) * length + z) * width + x;
-				
-				
-				if (random.nextFloat() > 0.5f && i < blocksByteArray.length && blocksByteArray[i] == Block.stone.blockID)
-					blocksByteArray[i] = 0;
-			}
-			}
-			}
+			
+			populateDungeon(random, blocksByteArray, 30);
 
-			int countCoal    = populateOre(random, blocksByteArray, Block.oreCoal.blockID, 1000, 10, (height << 2) / 5);
-			int countIron    = populateOre(random, blocksByteArray, Block.oreIron.blockID, 800, 8, height * 3 / 5);
-			int countGold    = populateOre(random, blocksByteArray, Block.oreGold.blockID, 500, 6, (height << 1) / 5);
-			int countDiamond = populateOre(random, blocksByteArray, Block.oreDiamond.blockID, 800, 2, height / 5);
+			int countCoal    = populateOre(random, blocksByteArray, (byte) Block.oreCoal.blockID, 1000, 10, (height << 2) / 5);
+			int countIron    = populateOre(random, blocksByteArray, (byte) Block.oreIron.blockID, 800, 8, height * 3 / 5);
+			int countGold    = populateOre(random, blocksByteArray, (byte) Block.oreGold.blockID, 500, 6, (height << 1) / 5);
+			int countDiamond = populateOre(random, blocksByteArray, (byte) Block.oreDiamond.blockID, 800, 2, height / 5);
+			
 			System.out.println("Coal: " + countCoal + ", Iron: " + countIron + ", Gold: " + countGold + ", Diamond: " + countDiamond);
 		}
 		
@@ -285,6 +273,32 @@ public final class LevelGenerator {
 		return world;
 	}
 
+	private static void populateDungeon(Random random, byte[] blocksByteArray, int amount) {
+		
+		for (int i=0; i<amount; i++) {
+			
+			int x = random.nextInt(width);
+			int y = random.nextInt(height / 2);
+			int z = random.nextInt(length);
+			
+			for (int dx = x; dx < x + 3; dx++) {
+			for (int dy = y; dy < y + 3; dy++) {
+			for (int dz = z; dz < z + 20; dz++) {
+
+				int index = get3DArrayIndex(dx, dy, dz);
+				
+				if (index < blocksByteArray.length && blocksByteArray[index] == Block.stone.blockID)
+					blocksByteArray[index] = 0;
+			}
+			}
+			}
+		}
+	}
+	
+	private static int get3DArrayIndex(int x, int y, int z) {
+		return ((y + 1) * length + z) * width + x;
+	}
+
 	private static void generateHouse(World world) {
 		int var1 = world.xSpawn;
 		int var2 = world.ySpawn;
@@ -327,7 +341,7 @@ public final class LevelGenerator {
 		}
 	}
 
-	private static void growTrees(Random random, World var1, int growAttempts) {
+	private static void growTrees(Random random, World world, int growAttempts) {
 
 		for(int var3 = 0; var3 < growAttempts; ++var3) {
 
@@ -345,7 +359,7 @@ public final class LevelGenerator {
 					var9 += random.nextInt(3) - random.nextInt(6);
 					var10 += random.nextInt(12) - random.nextInt(12);
 					if(var8 >= 0 && var9 >= 0 && var10 >= 0 && var8 < width && var9 < height && var10 < length) {
-						var1.growTrees(var8, var9, var10);
+						world.growTrees(var8, var9, var10);
 					}
 				}
 			}
@@ -390,9 +404,8 @@ public final class LevelGenerator {
 
 	}
 
-	private static int populateOre(Random random, byte[] blocksByteArray, int var1, int var2, int var3, int var4) {
+	private static int populateOre(Random random, byte[] blocksByteArray, byte blockID, int var2, int var3, int var4) {
 		int var5 = 0;
-		byte var26 = (byte)var1;
 		int var6 = width;
 		int var7 = length;
 		int var8 = height;
@@ -430,10 +443,12 @@ public final class LevelGenerator {
 								float var25 = (float)var22 - var12;
 								var23 = var23 * var23 + var24 * var24 * 2.0F + var25 * var25;
 								if(var23 < var19 * var19 && var20 > 0 && var21 > 0 && var22 > 0 && var20 < width - 1 && var21 < height - 1 && var22 < length - 1) {
-									int var27 = (var21 * length + var22) * width + var20;
-									if(blocksByteArray[var27] == Block.stone.blockID) {
-										blocksByteArray[var27] = var26;
-										++var5;
+									
+									int index = get3DArrayIndex(var20, var21, var22);
+									
+									if(blocksByteArray[index] == Block.stone.blockID) {
+										blocksByteArray[index] = blockID;
+										var5++;
 									}
 								}
 							}

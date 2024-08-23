@@ -52,7 +52,7 @@ public final class GuiMainMenu extends GuiScreen {
 		float var15 = 1.8F - MathHelper.abs(MathHelper.sin((float)(System.currentTimeMillis() % 1000L) / 1000.0F * (float)Math.PI * 2.0F) * 0.1F);
 		var15 = var15 * 100.0F / (float)(this.fontRenderer.getStringWidth(this.currentSplash) + 32);
 		GL11.glScalef(var15, var15, var15);
-		drawCenteredString(this.fontRenderer, this.currentSplash, 0, -8, 16776960);
+		drawCenteredString(this.fontRenderer, this.currentSplash, 0, -8, -16711681); // cyan
 		GL11.glPopMatrix();
 		
 		super.drawScreen(var1, var2, var3);
