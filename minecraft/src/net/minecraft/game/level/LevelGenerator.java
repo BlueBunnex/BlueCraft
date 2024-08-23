@@ -15,7 +15,7 @@ public final class LevelGenerator {
 	
 	private int loadingProgress = 0;
 	private static final int maxLoadingProgress = 10;
-	private static final int width = 64, length = 64, height = 64;
+	private static final int WORLD_DIM = 64;
 
 	public LevelGenerator(IProgressUpdate progress) {
 		this.guiLoading = progress;
@@ -45,7 +45,7 @@ public final class LevelGenerator {
 		world.waterLevel = waterLevel;
 		world.groundLevel = groundLevel;
 		
-		byte[] blocksByteArray = new byte[width * length * height];
+		byte[] blocksByteArray = new byte[WORLD_DIM * WORLD_DIM * WORLD_DIM];
 		
 		
 
@@ -58,7 +58,7 @@ public final class LevelGenerator {
 		int var53;
 		int var56;
 		for(var7 = 0; var7 < var5; ++var7) {
-			waterLevel = height - 32 - var7 * 48;
+			waterLevel = WORLD_DIM - 32 - var7 * 48;
 			groundLevel = waterLevel - 2;
 			int[] var8;
 			NoiseGeneratorOctaves var13;
@@ -72,12 +72,12 @@ public final class LevelGenerator {
 			NoiseGeneratorDistort var11 = new NoiseGeneratorDistort(new NoiseGeneratorOctaves(random, 8), new NoiseGeneratorOctaves(random, 8));
 			NoiseGeneratorOctaves var12 = new NoiseGeneratorOctaves(random, 6);
 			var13 = new NoiseGeneratorOctaves(random, 2);
-			int[] var14 = new int[width * length];
+			int[] var14 = new int[WORLD_DIM * WORLD_DIM];
 			var22 = 0;
 
 			label349:
 			while(true) {
-				if(var22 >= width) {
+				if(var22 >= WORLD_DIM) {
 					var8 = var14;
 					this.updateLoadingBar("Eroding...");
 					var46 = var14;
@@ -87,16 +87,16 @@ public final class LevelGenerator {
 
 					while(true) {
 						
-						if(var52 >= width)
+						if(var52 >= WORLD_DIM)
 							break label349;
 
-						for(var53 = 0; var53 < length; ++var53) {
+						for(var53 = 0; var53 < WORLD_DIM; ++var53) {
 							double var20 = var11.generateNoise((double)(var52 << 1), (double)(var53 << 1)) / 8.0D;
 							var22 = var50.generateNoise((double)(var52 << 1), (double)(var53 << 1)) > 0.0D ? 1 : 0;
 							if(var20 > 2.0D) {
-								int var58 = var46[var52 + var53 * width];
+								int var58 = var46[var52 + var53 * WORLD_DIM];
 								var58 = ((var58 - var22) / 2 << 1) + var22;
-								var46[var52 + var53 * width] = var58;
+								var46[var52 + var53 * WORLD_DIM] = var58;
 							}
 						}
 
@@ -104,7 +104,7 @@ public final class LevelGenerator {
 					}
 				}
 
-				for(var25 = 0; var25 < length; ++var25) {
+				for(var25 = 0; var25 < WORLD_DIM; ++var25) {
 					double var28 = var10.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 6.0D + -4.0D;
 					double var30 = var11.generateNoise((double)((float)var22 * 1.3F), (double)((float)var25 * 1.3F)) / 5.0D + 10.0D + -4.0D;
 					var32 = var12.generateNoise((double)var22, (double)var25) / 8.0D;
@@ -118,7 +118,7 @@ public final class LevelGenerator {
 						var34 *= 0.8D;
 					}
 
-					var14[var22 + var25 * width] = (int)var34;
+					var14[var22 + var25 * WORLD_DIM] = (int)var34;
 				}
 
 				++var22;
@@ -126,9 +126,9 @@ public final class LevelGenerator {
 
 			this.updateLoadingBar("Soiling...");
 			var46 = var8;
-			int var49 = width;
-			var51 = length;
-			var52 = height;
+			int var49 = WORLD_DIM;
+			var51 = WORLD_DIM;
+			var52 = WORLD_DIM;
 			NoiseGeneratorOctaves var54 = new NoiseGeneratorOctaves(random, 8);
 			NoiseGeneratorOctaves var55 = new NoiseGeneratorOctaves(random, 8);
 
@@ -153,13 +153,13 @@ public final class LevelGenerator {
 
 					var32 = var55.generateNoise((double)var21 * 2.3D, (double)var24 * 2.3D) / 24.0D;
 					int var76 = (int)(Math.sqrt(Math.abs(var32)) * Math.signum(var32) * 20.0D) + waterLevel;
-					var76 = (int)((double)var76 * (1.0D - var27) + var27 * (double) height);
+					var76 = (int)((double)var76 * (1.0D - var27) + var27 * (double) WORLD_DIM);
 					if(var76 > waterLevel) {
-						var76 = height;
+						var76 = WORLD_DIM;
 					}
 
 					for(int var35 = 0; var35 < var52; ++var35) {
-						int var79 = (var35 * length + var24) * width + var21;
+						int var79 = (var35 * WORLD_DIM + var24) * WORLD_DIM + var21;
 						int var37 = 0;
 						if(var35 <= var72) {
 							var37 = Block.dirt.blockID;
@@ -178,8 +178,8 @@ public final class LevelGenerator {
 
 			this.updateLoadingBar("Growing...");
 			var46 = var8;
-			var49 = width;
-			var51 = length;
+			var49 = WORLD_DIM;
+			var51 = WORLD_DIM;
 			var13 = new NoiseGeneratorOctaves(random, 8);
 			var54 = new NoiseGeneratorOctaves(random, 8);
 			var56 = waterLevel - 1;
@@ -190,8 +190,8 @@ public final class LevelGenerator {
 					boolean var60 = var13.generateNoise((double)var21, (double)var22) > 8.0D;
 
 					var25 = var46[var21 + var22 * var49];
-					int var65 = (var25 * length + var22) * width + var21;
-					int var67 = blocksByteArray[((var25 + 1) * length + var22) * width + var21] & 255;
+					int var65 = (var25 * WORLD_DIM + var22) * WORLD_DIM + var21;
+					int var67 = blocksByteArray[((var25 + 1) * WORLD_DIM + var22) * WORLD_DIM + var21] & 255;
 
 					if(var67 == 0) {
 						int var69 = -1;
@@ -211,12 +211,12 @@ public final class LevelGenerator {
 		this.updateLoadingBar("Carving...");
 		{
 			
-			populateDungeon(random, blocksByteArray, 30);
+			populateDungeon(random, blocksByteArray, 100);
 
-			int countCoal    = populateOre(random, blocksByteArray, (byte) Block.oreCoal.blockID, 1000, 10, (height << 2) / 5);
-			int countIron    = populateOre(random, blocksByteArray, (byte) Block.oreIron.blockID, 800, 8, height * 3 / 5);
-			int countGold    = populateOre(random, blocksByteArray, (byte) Block.oreGold.blockID, 500, 6, (height << 1) / 5);
-			int countDiamond = populateOre(random, blocksByteArray, (byte) Block.oreDiamond.blockID, 800, 2, height / 5);
+			int countCoal    = populateOre(random, blocksByteArray, (byte) Block.oreCoal.blockID, 1000, 10, (WORLD_DIM << 2) / 5);
+			int countIron    = populateOre(random, blocksByteArray, (byte) Block.oreIron.blockID, 800, 8, WORLD_DIM * 3 / 5);
+			int countGold    = populateOre(random, blocksByteArray, (byte) Block.oreGold.blockID, 500, 6, (WORLD_DIM << 1) / 5);
+			int countDiamond = populateOre(random, blocksByteArray, (byte) Block.oreDiamond.blockID, 800, 2, WORLD_DIM / 5);
 			
 			System.out.println("Coal: " + countCoal + ", Iron: " + countIron + ", Gold: " + countGold + ", Diamond: " + countDiamond);
 		}
@@ -227,13 +227,13 @@ public final class LevelGenerator {
 		world.skyColor = -16776961; // blue
 		world.fogColor = -16777216; // black
 		world.cloudColor = 16777215;
-		world.cloudHeight = height + 2;
+		world.cloudHeight = WORLD_DIM + 2;
 
 		world.waterLevel = waterLevel;
 		world.groundLevel = groundLevel;
 		
 		this.updateLoadingBar("Assembling...");
-		world.initializeEmptyWorld(width, height, length, blocksByteArray, null);
+		world.initializeEmptyWorld(WORLD_DIM, WORLD_DIM, WORLD_DIM, blocksByteArray, null);
 		
 		// build the indev house (spawn)
 		this.updateLoadingBar("Building...");
@@ -277,18 +277,33 @@ public final class LevelGenerator {
 		
 		for (int i=0; i<amount; i++) {
 			
-			int x = random.nextInt(width);
-			int y = random.nextInt(height / 2);
-			int z = random.nextInt(length);
+			// if 0, shortDir = x, longDir = z
+			// if 1, shortDir = z, longDir = x
+			int direction = random.nextInt(2);
 			
-			for (int dx = x; dx < x + 3; dx++) {
-			for (int dy = y; dy < y + 3; dy++) {
-			for (int dz = z; dz < z + 20; dz++) {
+			int shortPos = random.nextInt(WORLD_DIM / 4) * 4;
+			int longPos  = random.nextInt(WORLD_DIM);
+			int yPos     = random.nextInt((WORLD_DIM - 40) / 4) * 4;
+			
+			int dx   = direction == 0 ? shortPos : longPos,
+				maxX = dx + (direction == 0 ? 3 : 20);
+			int dz   = direction == 1 ? shortPos : longPos,
+				maxZ = dz + (direction == 1 ? 3 : 20);
+			
+			int dy   = yPos,
+				maxY = dy + 3;
+			
+			for (; dx < maxX; dx++) {
+			for (; dz < maxZ; dz++) {
+			for (; dy < maxY; dy++) {
 
 				int index = get3DArrayIndex(dx, dy, dz);
 				
-				if (index < blocksByteArray.length && blocksByteArray[index] == Block.stone.blockID)
+				if (index < blocksByteArray.length && blocksByteArray[index] == Block.stone.blockID) {
+					
+					// TODO struts
 					blocksByteArray[index] = 0;
+				}
 			}
 			}
 			}
@@ -296,7 +311,7 @@ public final class LevelGenerator {
 	}
 	
 	private static int get3DArrayIndex(int x, int y, int z) {
-		return ((y + 1) * length + z) * width + x;
+		return ((y + 1) * WORLD_DIM + z) * WORLD_DIM + x;
 	}
 
 	private static void generateHouse(World world) {
@@ -330,9 +345,9 @@ public final class LevelGenerator {
 
 	private static void growGrassOnDirt(World var1) {
 		
-		for(int var2 = 0; var2 < width; ++var2) {
-			for(int var3 = 0; var3 < height; ++var3) {
-				for(int var4 = 0; var4 < length; ++var4) {
+		for(int var2 = 0; var2 < WORLD_DIM; ++var2) {
+			for(int var3 = 0; var3 < WORLD_DIM; ++var3) {
+				for(int var4 = 0; var4 < WORLD_DIM; ++var4) {
 					if(var1.getBlockId(var2, var3, var4) == Block.dirt.blockID && var1.getBlockLightValue(var2, var3 + 1, var4) >= 4 && !var1.getBlockMaterial(var2, var3 + 1, var4).getCanBlockGrass()) {
 						var1.setBlock(var2, var3, var4, Block.grass.blockID);
 					}
@@ -345,9 +360,9 @@ public final class LevelGenerator {
 
 		for(int var3 = 0; var3 < growAttempts; ++var3) {
 
-			int var4 = random.nextInt(width);
-			int var5 = random.nextInt(height);
-			int var6 = random.nextInt(length);
+			int var4 = random.nextInt(WORLD_DIM);
+			int var5 = random.nextInt(WORLD_DIM);
+			int var6 = random.nextInt(WORLD_DIM);
 
 			for(int var7 = 0; var7 < 25; ++var7) {
 				int var8 = var4;
@@ -358,7 +373,7 @@ public final class LevelGenerator {
 					var8 += random.nextInt(12) - random.nextInt(12);
 					var9 += random.nextInt(3) - random.nextInt(6);
 					var10 += random.nextInt(12) - random.nextInt(12);
-					if(var8 >= 0 && var9 >= 0 && var10 >= 0 && var8 < width && var9 < height && var10 < length) {
+					if(var8 >= 0 && var9 >= 0 && var10 >= 0 && var8 < WORLD_DIM && var9 < WORLD_DIM && var10 < WORLD_DIM) {
 						world.growTrees(var8, var9, var10);
 					}
 				}
@@ -371,9 +386,9 @@ public final class LevelGenerator {
 
 		for(int i = 0; i < growAttempts; i++) {
 
-			int x = random.nextInt(width);
-			int y = random.nextInt(height);
-			int z = random.nextInt(length);
+			int x = random.nextInt(WORLD_DIM);
+			int y = random.nextInt(WORLD_DIM);
+			int z = random.nextInt(WORLD_DIM);
 
 			for (int var8 = 0; var8 < 10; ++var8) {
 				int var9 = x;
@@ -389,9 +404,9 @@ public final class LevelGenerator {
 							   var9 >= 0
 							&& var11 >= 0
 							&& var10 > 0
-							&& var9 < width
-							&& var11 < length
-							&& var10 < height
+							&& var9 < WORLD_DIM
+							&& var11 < WORLD_DIM
+							&& var10 < WORLD_DIM
 							&& var1.getBlockId(var9, var10, var11) == 0
 							&& foliageBlock.canBlockStay(var1, var9, var10, var11)
 							) {
@@ -406,9 +421,9 @@ public final class LevelGenerator {
 
 	private static int populateOre(Random random, byte[] blocksByteArray, byte blockID, int var2, int var3, int var4) {
 		int var5 = 0;
-		int var6 = width;
-		int var7 = length;
-		int var8 = height;
+		int var6 = WORLD_DIM;
+		int var7 = WORLD_DIM;
+		int var8 = WORLD_DIM;
 		var2 = var6 * var7 * var8 / 256 / 64 * var2 / 100;
 
 		for(int var9 = 0; var9 < var2; ++var9) {
@@ -442,7 +457,7 @@ public final class LevelGenerator {
 								float var24 = (float)var21 - var11;
 								float var25 = (float)var22 - var12;
 								var23 = var23 * var23 + var24 * var24 * 2.0F + var25 * var25;
-								if(var23 < var19 * var19 && var20 > 0 && var21 > 0 && var22 > 0 && var20 < width - 1 && var21 < height - 1 && var22 < length - 1) {
+								if(var23 < var19 * var19 && var20 > 0 && var21 > 0 && var22 > 0 && var20 < WORLD_DIM - 1 && var21 < WORLD_DIM - 1 && var22 < WORLD_DIM - 1) {
 									
 									int index = get3DArrayIndex(var20, var21, var22);
 									
