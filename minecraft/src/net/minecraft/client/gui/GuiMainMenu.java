@@ -9,7 +9,8 @@ import org.lwjgl.opengl.GL11;
 import util.MathHelper;
 
 // TODO add sand-box world button to GuiGameOver and GuiIngameMenu
-// TODO add return to main menu button and close game button
+// TODO add return to main menu button
+// TODO add milk peaches and boob bar... probably lol idk (icon is bread + 1)
 
 public final class GuiMainMenu extends GuiScreen {
 	
@@ -46,7 +47,11 @@ public final class GuiMainMenu extends GuiScreen {
 				this.mc.generateLevel();
 				
 				this.mc.thePlayer.inventory.setInventorySlotContents(0, new ItemStack(Item.pickaxeDiamond));
-				this.mc.thePlayer.inventory.setInventorySlotContents(1, new ItemStack(Block.torch, 64));
+				this.mc.thePlayer.inventory.setInventorySlotContents(1, new ItemStack(Item.shovelDiamond));
+				this.mc.thePlayer.inventory.setInventorySlotContents(2, new ItemStack(Block.torch, 64));
+				
+				for (int i=3; i<9; i++)
+					this.mc.thePlayer.inventory.setInventorySlotContents(i, new ItemStack(Item.porkCooked));
 				
 				this.mc.displayGuiScreen(null);
 				
