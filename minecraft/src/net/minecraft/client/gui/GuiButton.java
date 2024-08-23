@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 
 public class GuiButton extends Gui {
+	
 	private int width;
 	private int height;
 	private int xPosition;
@@ -13,21 +14,21 @@ public class GuiButton extends Gui {
 	public boolean enabled;
 	public boolean visible;
 
-	public GuiButton(int var1, int var2, int var3, String var4) {
-		this(var1, var2, var3, 200, 20, var4);
+	public GuiButton(int id, int posX, int posY, String display) {
+		this(id, posX, posY, 200, 20, display);
 	}
 
-	protected GuiButton(int var1, int var2, int var3, int var4, int var5, String var6) {
+	protected GuiButton(int id, int posX, int posY, int width, int height, String display) {
 		this.width = 200;
 		this.height = 20;
 		this.enabled = true;
 		this.visible = true;
-		this.id = var1;
-		this.xPosition = var2;
-		this.yPosition = var3;
-		this.width = var4;
-		this.height = 20;
-		this.displayString = var6;
+		this.id = id;
+		this.xPosition = posX;
+		this.yPosition = posY;
+		this.width = width;
+		this.height = height; // was forced to 20 before
+		this.displayString = display;
 	}
 
 	public final void drawButton(Minecraft var1, int var2, int var3) {

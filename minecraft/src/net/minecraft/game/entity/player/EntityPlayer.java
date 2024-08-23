@@ -26,23 +26,21 @@ public class EntityPlayer extends EntityLiving {
 	public float cameraYaw;
 	private int damageRemainder = 0;
 
-	public EntityPlayer(World var1) {
-		super(var1);
-		if(var1 != null) {
-			var1.playerEntity = this;
-			var1.releaseEntitySkin(this);
+	public EntityPlayer(World world) {
+		
+		super(world);
+		
+		if (world != null) {
+			world.playerEntity = this;
+			world.releaseEntitySkin(this);
 		}
 
-		this.setPositionAndRotation((float)var1.xSpawn, (float)var1.ySpawn, (float)var1.zSpawn, 0.0F, 0.0F);
+		this.setPositionAndRotation((float) world.xSpawn, (float) world.ySpawn, (float) world.zSpawn, 0.0F, 0.0F);
 		this.yOffset = 1.62F;
 		this.health = 20;
 		this.fireResistance = 20;
 		this.texture = "/char.png";
 		this.skinUrl = "http://www.minecraft.net/skin/" + "Anime" + ".png";
-		
-		// TODO debug
-		inventory.setInventorySlotContents(0, new ItemStack(Item.pickaxeDiamond));
-		inventory.setInventorySlotContents(1, new ItemStack(Block.torch, 64));
 	}
 
 	public final void preparePlayerToSpawn() {

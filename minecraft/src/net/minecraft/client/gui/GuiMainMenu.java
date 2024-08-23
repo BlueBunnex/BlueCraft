@@ -1,43 +1,68 @@
 package net.minecraft.client.gui;
 
 import net.minecraft.client.render.Tessellator;
+import net.minecraft.game.item.Item;
+import net.minecraft.game.item.ItemStack;
+import net.minecraft.game.level.block.Block;
+
 import org.lwjgl.opengl.GL11;
 import util.MathHelper;
 
-/*
- * GuiSmallButton for
- * > New Survival
- * > New Sandbox (starts with some tools)
- */
+// TODO add sand-box world button to GuiGameOver and GuiIngameMenu
+// TODO add return to main menu button and close game button
 
 public final class GuiMainMenu extends GuiScreen {
 	
 	private String[] splashes = new String[]{ "May contain Blue 40!" };
 	private String currentSplash = this.splashes[(int)(Math.random() * (double) this.splashes.length)];
 
-	protected final void keyTyped(char var1, int var2) {
-	}
+	protected final void keyTyped(char var1, int var2) {}
 
 	public final void initGui() {
 		this.controlList.clear();
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 48, "Generate new level..."));
-		this.controlList.add(new GuiButton(2, this.width / 2 - 100, this.height / 4 + 72, "Load level.."));
-		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, "Options..."));
+		
+		int commonX = this.width / 2 - 100;
+		int commonY = this.height / 4;
+		this.controlList.add(new GuiButton(0, commonX, commonY + 48, 98, 20, "New survival world"));
+		this.controlList.add(new GuiButton(1, commonX + 102, commonY + 48, 98, 20, "New sandbox world"));
+		
+		this.controlList.add(new GuiButton(2, commonX, commonY + 72, "Load world..."));
+		
+		this.controlList.add(new GuiButton(3, commonX, commonY + 108, "Options..."));
+		this.controlList.add(new GuiButton(4, commonX, commonY + 132, "Exit game"));
 	}
 
 	protected final void actionPerformed(GuiButton var1) {
 		
-		if (var1.id == 0) {
-			this.mc.displayGuiScreen(new GuiOptions(this, this.mc.options));
-		}
-
-		if (var1.id == 1) {
-			this.mc.generateLevel();
-			this.mc.displayGuiScreen(null);
-		}
-
-		if (var1.id == 2) {
-			this.mc.displayGuiScreen(new GuiLoadLevel(this));
+		switch (var1.id) {
+		
+			case 0:
+				this.mc.generateLevel();
+				this.mc.displayGuiScreen(null);
+				break;
+				
+			case 1:
+				
+				this.mc.generateLevel();
+				
+				this.mc.thePlayer.inventory.setInventorySlotContents(0, new ItemStack(Item.pickaxeDiamond));
+				this.mc.thePlayer.inventory.setInventorySlotContents(1, new ItemStack(Block.torch, 64));
+				
+				this.mc.displayGuiScreen(null);
+				
+				break;
+				
+			case 2:
+				this.mc.displayGuiScreen(new GuiLoadLevel(this));
+				break;
+				
+			case 3:
+				this.mc.displayGuiScreen(new GuiOptions(this, this.mc.options));
+				break;
+				
+			case 4:
+				this.mc.shutdownMinecraftApplet();
+				break;
 		}
 	}
 

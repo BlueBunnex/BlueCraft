@@ -163,8 +163,6 @@ public final class InventoryPlayer implements IInventory {
 
 	public final void setInventorySlotContents(int index, ItemStack stack) {
 		
-		System.out.println(stack);
-		
 		// set armor
 		if (index >= this.mainInventory.length) {
 			
