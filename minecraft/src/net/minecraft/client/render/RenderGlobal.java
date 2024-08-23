@@ -33,6 +33,7 @@ import org.lwjgl.opengl.GLContext;
 import util.MathHelper;
 
 public final class RenderGlobal implements IWorldAccess {
+	
 	private World worldObj;
 	private RenderEngine renderEngine;
 	private int glGenList;
@@ -221,14 +222,6 @@ public final class RenderGlobal implements IWorldAccess {
 			}
 		}
 
-	}
-
-	public final String getDebugInfoRenders() {
-		return "C: " + this.renderersBeingRendered + "/" + this.renderersLoaded + ". F: " + this.renderersBeingClipped + ", O: " + this.renderersBeingOccluded;
-	}
-
-	public final String getDebugInfoEntities() {
-		return "E: " + this.countEntitiesRendered + "/" + this.countEntitiesTotal + ". B: " + this.countEntitiesHidden + ", I: " + (this.countEntitiesTotal - this.countEntitiesHidden - this.countEntitiesRendered);
 	}
 
 	public final int sortAndRender(EntityPlayer var1, int var2) {

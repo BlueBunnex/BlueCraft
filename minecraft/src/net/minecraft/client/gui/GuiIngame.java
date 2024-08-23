@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.RenderHelper;
 import net.minecraft.client.player.EntityPlayerSP;
 import net.minecraft.client.render.entity.RenderItem;
+import net.minecraft.game.entity.player.EntityPlayer;
 import net.minecraft.game.entity.player.InventoryPlayer;
 import net.minecraft.game.item.ItemStack;
 import org.lwjgl.opengl.GL11;
@@ -151,23 +152,18 @@ public final class GuiIngame extends Gui {
 
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDisable(GL11.GL_NORMALIZE);
-		if(this.mc.options.showFPS) {
+		
+		if (this.mc.options.showDebug) {
+			
 			var4.drawStringWithShadow("BlueCraft (" + this.mc.debug + ")", 2, 2, 16777215);
-			Minecraft var23 = this.mc;
-			var4.drawStringWithShadow(var23.renderGlobal.getDebugInfoRenders(), 2, 12, 16777215);
-			var23 = this.mc;
-			var4.drawStringWithShadow(var23.renderGlobal.getDebugInfoEntities(), 2, 22, 16777215);
-			var23 = this.mc;
-			var4.drawStringWithShadow("P: " + var23.effectRenderer.getStatistics() + ". T: " + var23.theWorld.debugSkylightUpdates(), 2, 32, 16777215);
-			long var24 = Runtime.getRuntime().maxMemory();
-			long var27 = Runtime.getRuntime().totalMemory();
-			long var28 = Runtime.getRuntime().freeMemory();
-			long var16 = var24 - var28;
-			String var18 = "Free memory: " + var16 * 100L / var24 + "% of " + var24 / 1024L / 1024L + "MB";
-			drawString(var4, var18, var3 - var4.getStringWidth(var18) - 2, 2, 14737632);
-			var18 = "Allocated memory: " + var27 * 100L / var24 + "% (" + var27 / 1024L / 1024L + "MB)";
-			drawString(var4, var18, var3 - var4.getStringWidth(var18) - 2, 12, 14737632);
+			
+			EntityPlayer player = this.mc.thePlayer;
+			var4.drawStringWithShadow("x: " + player.posX, 2, 12, 16777215);
+			var4.drawStringWithShadow("y: " + player.posY, 2, 22, 16777215);
+			var4.drawStringWithShadow("z: " + player.posZ, 2, 32, 16777215);
+		
 		} else {
+			
 			var4.drawStringWithShadow("BlueCraft", 2, 2, 16777215);
 		}
 
