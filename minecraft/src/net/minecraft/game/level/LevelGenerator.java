@@ -212,10 +212,10 @@ public final class LevelGenerator {
 		{
 			populateDungeon(random, blocksByteArray, 50);
 
-			int countCoal    = populateOre(random, blocksByteArray, (byte) Block.oreCoal.blockID, 1000, 10, (WORLD_DIM << 2) / 5);
-			int countIron    = populateOre(random, blocksByteArray, (byte) Block.oreIron.blockID, 800, 8, WORLD_DIM * 3 / 5);
-			int countGold    = populateOre(random, blocksByteArray, (byte) Block.oreGold.blockID, 500, 6, (WORLD_DIM << 1) / 5);
-			int countDiamond = populateOre(random, blocksByteArray, (byte) Block.oreDiamond.blockID, 800, 2, WORLD_DIM / 5);
+			int countCoal    = populateOre(random, blocksByteArray, (byte) Block.oreCoal.blockID,    400, 10, (WORLD_DIM << 2) / 5);
+			int countIron    = populateOre(random, blocksByteArray, (byte) Block.oreIron.blockID,    250,  8, WORLD_DIM * 3 / 5);
+			int countGold    = populateOre(random, blocksByteArray, (byte) Block.oreGold.blockID,    100,  6, (WORLD_DIM << 1) / 5);
+			int countDiamond = populateOre(random, blocksByteArray, (byte) Block.oreDiamond.blockID, 200,  4, WORLD_DIM / 5);
 			
 			System.out.println("Coal: " + countCoal + ", Iron: " + countIron + ", Gold: " + countGold + ", Diamond: " + countDiamond);
 		}
@@ -332,7 +332,7 @@ public final class LevelGenerator {
 				for(int var6 = var3 - 3; var6 <= var3 + 3; ++var6) {
 					int var7 = var5 < var2 - 1 ? Block.obsidian.blockID : 0;
 					if(var4 == var1 - 3 || var6 == var3 - 3 || var4 == var1 + 3 || var6 == var3 + 3 || var5 == var2 - 2 || var5 == var2 + 2) {
-						var7 = Block.stone.blockID;
+						var7 = Block.stoneBrick.blockID;
 						if(var5 >= var2 - 1) {
 							var7 = Block.planks.blockID;
 						}
@@ -427,28 +427,28 @@ public final class LevelGenerator {
 
 	}
 
-	private static int populateOre(Random random, byte[] blocksByteArray, byte blockID, int var2, int var3, int var4) {
-		int var5 = 0;
-		int var6 = WORLD_DIM;
-		int var7 = WORLD_DIM;
-		int var8 = WORLD_DIM;
-		var2 = var6 * var7 * var8 / 256 / 64 * var2 / 100;
+	private static int populateOre(Random random, byte[] blocksByteArray, byte blockID, int veinAttempts, int veinSize, int maxHeight) {
+		
+		int count = 0;
 
-		for(int var9 = 0; var9 < var2; ++var9) {
-			float var10 = random.nextFloat() * (float)var6;
-			float var11 = random.nextFloat() * (float)var8;
-			float var12 = random.nextFloat() * (float)var7;
-			if(var11 <= (float)var4) {
-				int var13 = (int)((random.nextFloat() + random.nextFloat()) * 75.0F * (float)var3 / 100.0F);
+		for(int i = 0; i < veinAttempts; i++) {
+			
+			float x = random.nextFloat() * (float) WORLD_DIM;
+			float y = random.nextFloat() * (float) WORLD_DIM;
+			float z = random.nextFloat() * (float) WORLD_DIM;
+			
+			if(y <= (float) maxHeight) {
+				
+				int var13 = (int)((random.nextFloat() + random.nextFloat()) * 75.0F * (float) veinSize / 100.0F);
 				float var14 = random.nextFloat() * (float)Math.PI * 2.0F;
 				float var15 = 0.0F;
 				float var16 = random.nextFloat() * (float)Math.PI * 2.0F;
 				float var17 = 0.0F;
 
 				for(int var18 = 0; var18 < var13; ++var18) {
-					var10 += MathHelper.sin(var14) * MathHelper.cos(var16);
-					var12 += MathHelper.cos(var14) * MathHelper.cos(var16);
-					var11 += MathHelper.sin(var16);
+					x += MathHelper.sin(var14) * MathHelper.cos(var16);
+					z += MathHelper.cos(var14) * MathHelper.cos(var16);
+					y += MathHelper.sin(var16);
 					var14 += var15 * 0.2F;
 					var15 *= 0.9F;
 					var15 += random.nextFloat() - random.nextFloat();
@@ -456,22 +456,22 @@ public final class LevelGenerator {
 					var16 *= 0.5F;
 					var17 *= 0.9F;
 					var17 += random.nextFloat() - random.nextFloat();
-					float var19 = MathHelper.sin((float)var18 * (float)Math.PI / (float)var13) * (float)var3 / 100.0F + 1.0F;
+					float var19 = MathHelper.sin((float)var18 * (float)Math.PI / (float)var13) * (float) veinSize / 100.0F + 1.0F;
 
-					for(int var20 = (int)(var10 - var19); var20 <= (int)(var10 + var19); ++var20) {
-						for(int var21 = (int)(var11 - var19); var21 <= (int)(var11 + var19); ++var21) {
-							for(int var22 = (int)(var12 - var19); var22 <= (int)(var12 + var19); ++var22) {
-								float var23 = (float)var20 - var10;
-								float var24 = (float)var21 - var11;
-								float var25 = (float)var22 - var12;
+					for(int var20 = (int)(x - var19); var20 <= (int)(x + var19); ++var20) {
+						for(int var21 = (int)(y - var19); var21 <= (int)(y + var19); ++var21) {
+							for(int var22 = (int)(z - var19); var22 <= (int)(z + var19); ++var22) {
+								float var23 = (float)var20 - x;
+								float var24 = (float)var21 - y;
+								float var25 = (float)var22 - z;
 								var23 = var23 * var23 + var24 * var24 * 2.0F + var25 * var25;
 								if(var23 < var19 * var19 && var20 > 0 && var21 > 0 && var22 > 0 && var20 < WORLD_DIM - 1 && var21 < WORLD_DIM - 1 && var22 < WORLD_DIM - 1) {
 									
 									int index = get3DArrayIndex(var20, var21, var22);
 									
-									if(blocksByteArray[index] == Block.stone.blockID) {
+									if (blocksByteArray[index] == Block.stone.blockID) {
 										blocksByteArray[index] = blockID;
-										var5++;
+										count++;
 									}
 								}
 							}
@@ -481,6 +481,6 @@ public final class LevelGenerator {
 			}
 		}
 
-		return var5;
+		return count;
 	}
 }

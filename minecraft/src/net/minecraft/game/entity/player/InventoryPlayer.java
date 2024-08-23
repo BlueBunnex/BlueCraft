@@ -5,6 +5,7 @@ import net.minecraft.game.item.ItemArmor;
 import net.minecraft.game.item.ItemStack;
 
 public final class InventoryPlayer implements IInventory {
+	
 	public ItemStack[] mainInventory = new ItemStack[36];
 	public ItemStack[] armorInventory = new ItemStack[4];
 	public int currentItem = 0;
@@ -160,14 +161,20 @@ public final class InventoryPlayer implements IInventory {
 		}
 	}
 
-	public final void setInventorySlotContents(int var1, ItemStack var2) {
-		ItemStack[] var3 = this.mainInventory;
-		if(var1 >= this.mainInventory.length) {
-			var3 = this.armorInventory;
-			var1 -= this.mainInventory.length;
+	public final void setInventorySlotContents(int index, ItemStack stack) {
+		
+		System.out.println(stack);
+		
+		// set armor
+		if (index >= this.mainInventory.length) {
+			
+			this.armorInventory[index - this.mainInventory.length] = stack;
+			
+		// set inventory
+		} else {
+			
+			this.mainInventory[index] = stack;
 		}
-
-		var3[var1] = var2;
 	}
 
 	public final int getSizeInventory() {

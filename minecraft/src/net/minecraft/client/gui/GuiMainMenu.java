@@ -4,6 +4,12 @@ import net.minecraft.client.render.Tessellator;
 import org.lwjgl.opengl.GL11;
 import util.MathHelper;
 
+/*
+ * GuiSmallButton for
+ * > New Survival
+ * > New Sandbox (starts with some tools)
+ */
+
 public final class GuiMainMenu extends GuiScreen {
 	
 	private String[] splashes = new String[]{ "May contain Blue 40!" };

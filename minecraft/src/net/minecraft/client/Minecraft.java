@@ -283,8 +283,6 @@ public final class Minecraft implements Runnable {
 			this.renderEngine.registerTextureFX(new TextureWaterFlowFX());
 			this.renderEngine.registerTextureFX(new TextureFlamesFX(0));
 			this.renderEngine.registerTextureFX(new TextureFlamesFX(1));
-			this.renderEngine.registerTextureFX(new TextureGearsFX(0));
-			this.renderEngine.registerTextureFX(new TextureGearsFX(1));
 			this.fontRenderer = new FontRenderer(this.options, "/default.png", this.renderEngine);
 			var24 = BufferUtils.createIntBuffer(256);
 			var24.clear().limit(256);
